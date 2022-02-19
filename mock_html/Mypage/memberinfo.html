@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html 레퍼런스</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="styleshhet" href="/css/custom.css">
+    <style>
+ 
+    .header{
+        border: 1px solid gray;
+        width: 360px;
+        height: 60px;
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    .left{
+        line-height: 55px;
+    }
+    .headerInfo{
+        line-height: 60px;
+       padding-left: 110px;
+        
+    }
+   
+ main{
+     margin: 30px;
+ }
+   img{
+       width: 30px;
+       height: 30px;
+   }
+   .MemberInfo{
+       font-size: 16px;
+       
+   }
+   .name{
+       font-size: 16px;
+       
+   }
+   .id{
+       font-size:16px;
+   }
+   .main-ni{
+      
+       
+       display: flex;
+       flex-wrap: nowrap;
+     } 
+   .Main-name{
+       padding-right: 30px;
+   }   
+   
+  
+   .nameInput{
+      width: 135px;
+      height: 40px;
+      font-size: 14px;
+   }
+   .idInput{
+      width: 135px;
+      height: 40px;
+      font-size: 14px;
+   }
+   .main-pw{
+       margin-top: 30px;
+   }
+  .inputpw{
+      width: 300px;
+      height: 140px;
+  }
+  input::placeholder{
+      font-size: 14px;
+  }
+  input.password{
+      width: 300px;
+      height: 40px;
+     
+      
+  }
+  .password{
+      font-size: 16px;
+  }
+  .pw-1{
+      width: 300px;
+      height: 40px;
+      
+  }
+  .main-email{
+      margin-top: 30px;
+  }
+  .email{
+      font-size: 16px;
+  }
+  .inputEmail{
+      width: 300px;
+      height: 40px;
+  }
+  .main-phone{
+      margin-top: 30px;
+  }
+  .inputPhone{
+      width: 300px;
+      height: 40px;
+  }
+  .main-address{
+      margin-top: 30px;
+  }
+  .inputaddress-2{
+      width: 300px;
+      height: 40px;
+  }
+  .inputaddress-1{
+      width: 230px;
+      height: 40px;
+  }
+  .btn{
+      width: 70px;
+      height: 40px;
+      font-size: 10px;
+  }
+  .addressbutton{
+      display: flex;
+      flex-wrap: nowrap;
+  }
+  .footer{
+     margin: 30px;
+  }
+  .footer .btn{
+      width: 300px;
+      height: 40px;
+      font-size: 16px;
+ }   
+
+ 
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+        <div class="left">
+    <img src="left.png" alt=""></div>
+      <div class="headerInfo"><span class="MemberInfo">회원정보</span></div></div>
+     
+</header>
+<main>
+    <div class="main-ni">
+       
+            <div class="Main-name">
+            <span class="name">이름</span><br>
+             <input type="text" class="nameInput" value="name" disabled></div>
+             <div class="Main-id">
+            <span class="id">아이디</span><br>
+             <input type="text" class="idInput" value="id" disabled></div>
+        
+    </div>
+    <div class="main-pw">
+     <span class="password">비밀번호</span><br>
+     <div class="inputpw">
+     <input type="password" placeholder="기존 비밀번호 입력" class="pw-1"> <br>
+     <input type="password" placeholder="변경할 비밀번호 입력" class="pw-1"> <br>
+     <input type="password" placeholder="비밀번호 확인" class="pw-1"> 
+     </div>
+    </div>
+
+    <div class="main-email">
+        <span class="email">이메일</span><br>
+        <input type="text" placeholder="test@naver.com" class="inputEmail">
+
+    </div>
+
+    <div class="main-phone">
+        <span class="phone">전화번호</span><br>
+        <input type="text" placeholder="전화번호를 입력해 주세요" class="inputPhone">
+
+    </div>
+
+    <div class="main-address">
+        <span>주소</span>
+        <div class="inputAddress">
+        <span class="addressbutton"><input type="text" placeholder="우편번호" class="inputaddress-1">
+            <button type="button" class="btn btn-secondary">주소찾기</button>
+
+        </span>
+        <input type="text" placeholder="주소" class="inputaddress-2"><br>
+        <input type="text" placeholder="상세주소" class="inputaddress-2">
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="footer">
+        <button type="submit" class="btn btn-primary">수정하기</button>
+
+    </div>
+</footer>
+
+<!-- bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
