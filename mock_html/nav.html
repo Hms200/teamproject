@@ -12,7 +12,11 @@
 <body>
     <nav>
     <!-- container -->
-        <div class="container-sm container-fluid d-flex flex-row justify-content-between align-items-center fixed-bottom border border-dark-50" style="max-width: 520px; height: 60px;">
+        <div class="container-sm container-fluid d-flex flex-row justify-content-between align-items-center fixed-bottom border border-dark-50 " style="max-width: 520px; height: 60px;">
+        <!-- top scroll 버튼 -->
+            <div class="mx-auto bg-white border border-dark-50 rounded position-absolute" onclick="javascript:window.scrollTo(0,0)" style="right: 12px;bottom: 82px; cursor: pointer;">
+                <img src="/img/icon/chevron.png" alt="위로가기" width="35px" height="35px">
+            </div>
    
         <!-- icon container 4개 -->
             <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='main'" style="cursor: pointer;">
@@ -43,6 +47,7 @@
                 <div class="text-center border-bottom border-dark-50"  style="height: 40px;line-height: 40px;" onclick="location.href=비누주소">비누</div>
 
             </div>
+        
         </div>
     </nav>
 
