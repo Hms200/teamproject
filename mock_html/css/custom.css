@@ -1,0 +1,23 @@
+.btn-primary{
+    background-color: rgb(167, 130, 111) !important;
+}
+.btn-secondary{
+    background-color: rgb(244, 244, 244) !important;
+}
+.text-primary{
+    color: rgb(167, 130, 111) !important;
+}
+.text-secondary{
+    color: rgb(244, 244, 244) !important;
+}
+.bg-primary{
+    background-color: rgb(167, 130, 111) !important;
+}
+.bg-secondary{
+    background-color: rgb(244, 244, 244)!important;
+}
+.btn-outline-primary{
+    background-color: white !important;
+    border: 2px solid rgb(167, 130, 111) !important;
+    color: rgb(167, 130, 111) !important;
+}

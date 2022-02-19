@@ -13,7 +13,7 @@
     
     <header>
         <!-- header container -->
-        <div class="container-sm container-fluid px-3 py-2 d-flex flex-row justify-content-between align-items-center border-bottom border-dark-50 position-relative" style="max-width: 520px; height: 60px;">
+        <div class="container-sm container-fluid px-3 py-2 d-flex flex-row justify-content-between align-items-center border-bottom border-dark-50 position-relative fixed-top" style="max-width: 520px; height: 60px;">
             <!-- header logo img -->
             <div >
                 <a href="main">
@@ -67,15 +67,18 @@
     };
     
     // 장바구니 벳지 장바구니가 0이면 숨기기
+    ///로딩시.  ajax통신으로 실시간 반영될 경우 ajax 코드에서 해당 함수 호출되게 만들것.
     window.onload(bedgeHideAndShow());
     function bedgeHideAndShow() {
         const bedge = document.getElementById('bedge');
         const bedgeNumber = document.getElementById('bedgeNumber').innerText;
         if(bedgeNumber == '0'){
+            bedge.classList.remove("d-block");
             bedge.classList.add("d-none");
 
         }else{
             bedge.classList.add("d-block");
+            bedge.classList.remove("d-none");
         } 
     };
     
