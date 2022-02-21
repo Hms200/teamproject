@@ -14,13 +14,13 @@
     <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative pl-0 pr-0" style="max-width: 520px;">
    
         <!-- title container -->
-        <div class="container-fluid d-flex flex-row mb-0" style="height: 60px;">
+        <div class="container-fluid d-flex flex-row my-4" style="height: 60px;">
         <!-- title back btn -->
-            <div class="col-1 my-3">
+            <div class="col-1 my-3" onclick="location.href='main'" style="cursor: pointer;">
                 <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
             </div>
         <!-- title -->
-            <div class="col-11 my-3 py-1 text-center text-bold" style="font-size: 16px;">
+            <div class="col-11 my-3 py-1 text-center font-weight-bold" style="font-size: 16px;">
                 공지사항
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="container-fluid text-center">
             <!-- table -->
             <table class="table table-hover border border-dark-50">
-                <thead class="thead-dark-50">
+                <thead class="thead-dark-50 bg-secondary">
                     <th scope="col">번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">날짜</th>
@@ -51,8 +51,42 @@
                     </tr>
                 </tbody>
             </table>
+            
+        </div>
             <!-- 작성버튼 -->
-            <button class="btn btn-secondary text-dark border-0" style="width: 100px;">작성</button>
+        <div class="d-flex flex-column justify-content-center">
+            <button class="btn btn-secondary text-dark border-0 mx-auto" style="width: 100px;">
+                작성
+            </button>
+
+            <!-- 페이지 표시기 -->
+            <div class="container row my-3 mx-auto">
+                <nav class="mx-auto">
+                <ul class="pagination justify-content-center ">
+                        
+                        <li class="page-item ">
+                            <a class="page-link" href="community01?curruntPage=${ beginPagenation - 1}">&lang;</a>
+                        </li>
+                        
+                        <li class="page-item active">
+                            <a class="page-link" href="community01?curruntPage=${ page }">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="community01?curruntPage=${ page }">2</a>
+                        </li><li class="page-item ">
+                            <a class="page-link" href="community01?curruntPage=${ page }">3</a>
+                        </li><li class="page-item ">
+                            <a class="page-link" href="community01?curruntPage=${ page }">4</a>
+                        </li><li class="page-item ">
+                            <a class="page-link" href="community01?curruntPage=${ page }">5</a>
+                        </li>
+                        
+                        <li class="page-item">
+                            <a class="page-link" href="community01?curruntPage=${endPagenation+1}">&rang;</a>
+                        </li>
+                </ul>
+                </nav>
+            </div>
         </div>
     
     </div>

@@ -44,3 +44,13 @@ input[type="color"]:focus,
   box-shadow: 0 0 0 1px rgba(167, 130, 111, 0.6) inset, 0 0 0 1px rgba(167, 130, 111, 0.8) !important;
   outline-color: rgb(167, 130, 111);
 }
+.page-link{
+    color: black !important;
+}
+.page-link:hover{
+    color: black !important;
+}
+.page-item.active .page-link{
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
