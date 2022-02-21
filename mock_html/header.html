@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+    
+    <header>
+        <!-- header container -->
+        <div class="container-sm container-fluid px-3 py-2 d-flex flex-row justify-content-between align-items-center border-bottom border-dark-50 fixed-top bg-white" style="max-width: 520px; height: 60px;">
+            <!-- header logo img -->
+            <div >
+                <a href="main">
+                <img width="100px" src="/img/logo.png" alt="사이트로고">
+                </a>
+            </div>
+            <!-- header search bar (hide & show) -->
+            <div class="form-group my-auto d-none" id="searchbar">
+                <form method="get" action="mainsearchAction">
+                    <div class="form-control border-0 px-0">
+                        <input class="border rounded border-dark-50" type="text" name="searchtext" placeholder="Search" style="width: 150px !important;">
+                    </div>
+                </form>
+            </div>
+            <!-- header right-side icons -->
+            <div class="bg-transparent">
+                <!-- 검색아이콘 -->
+                <img id="search-icon" src="/img/icon/search.png" alt="검색아이콘" width="25px" height="25px" style="cursor: pointer;" onclick="searchbarHideAndShow();">  
+                <!-- 장바구니아이콘 jsp로 변환시 링크 수정해야함-->
+                <a href="cart">  
+                    <img src="/img/icon/bag.png" alt="장바구니아이콘" width="25px" height="25px">
+                </a>
+            </div>
+            <!-- 장바구니 뱃지 -->
+            <div class="position-absolute rounded-circle bg-danger text-light" id="bedge" width="20px" height="10px" style="font-size: 10px;right:5px; top:5px;">
+                <span class="p-1" id="bedgeNumber">1</span>
+            </div>
+        </div>
+    </header>
+    
+
+<!-- bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+<!-- header js -->
+<script>
+    
+    
+    // 검색바 hide & show   
+    function searchbarHideAndShow() {
+        const searchIcon = document.getElementById('search-icon');
+        const searchBar = document.getElementById('searchbar');
+        if(searchBar.classList.contains("d-none")){
+            searchBar.classList.add("d-block");
+            searchBar.classList.remove("d-none");
+        }else if(searchBar.classList.contains("d-block")){
+            searchBar.classList.add("d-none");
+            searchBar.classList.remove("d-block");
+        }
+    };
+    
+    // 장바구니 벳지 장바구니가 0이면 숨기기
+    ///로딩시.  ajax통신으로 실시간 반영될 경우 ajax 코드에서 해당 함수 호출되게 만들것.
+    window.onload(bedgeHideAndShow());
+    function bedgeHideAndShow() {
+        const bedge = document.getElementById('bedge');
+        const bedgeNumber = document.getElementById('bedgeNumber').innerText;
+        if(bedgeNumber == '0'){
+            bedge.classList.remove("d-block");
+            bedge.classList.add("d-none");
+
+        }else{
+            bedge.classList.add("d-block");
+            bedge.classList.remove("d-none");
+        } 
+    };
+    
+</script>
+</body>
+</html>
