@@ -1,0 +1,60 @@
+<!-- 미완성 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+  <!-- container -->
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+    <!-- 타이틀 -->
+    <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
+      <div class="col-1 my-3">
+        <a href="/customer">
+          <img src="/img/icon/left.png" alt="" width="30px" height="30px">
+        </a>
+      </div>
+      <div class="col-11 my-3 py-1 text-center font-weight-bold">
+        문의하기
+      </div>
+      </div>
+      <!-- 입력폼 -->
+      <div class="container-sm contaier-fluid d-flex flex-wrap justify-content-between" style="margin: 30px; height: 420px; font-size: 14px;">
+        <form action="qnaQuestionAction" method="post" name="" onsubmit=""></form>
+          <span class="container-sm contaier-fluid font-weight-bold" style="font-size: 16px;">
+            [아이디]님
+          </span>
+          <span >
+            <input type="text" name="title" placeholder="제목을 입력해주세요" style="width: 200px; height: 40px;">
+          </span>
+          <select name="cat" id="" style="width: 100px; height: 40px;">
+            <option selected hidden>문의 종류</option>
+            <option value="1">상품 문의</option>
+            <option value="2">배송 문의</option>
+            <option value="3">결제 문의</option>
+          </select>
+          <span>
+            <textarea name="content" placeholder="내용을 입력해주세요" style="width: 300px; height: 300px;"></textarea>
+          </span>
+          </div>
+            <div class="container-sm container-fluid d-flex flex-row justify-content-around" style="height: 40px;">
+              <a href="/customer">
+                <button style="width: 100px;">취소</button>
+              </a>
+              <button type="submit" style="width: 190px;">문의하기</button>
+        </form>
+    </div>
+  </div>
+<!-- bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<!-- main js -->
+<script src="/js/main.js"></script>
+</body>
+</html>
