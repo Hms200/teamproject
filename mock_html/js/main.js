@@ -26,11 +26,3 @@ function bedgeHideAndShow() {
     } 
 };
 
-//  카테고리 슬라이드 업
-$(function(){
-    var hideContainer = $("#cat_slideup");
-    $("#slide_toggle").click(function(){
-            hideContainer.slideToggle(600);
-        });
-})
-    
