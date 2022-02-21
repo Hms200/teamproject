@@ -59,26 +59,26 @@
                 작성
             </button>
 
-            <!-- 페이지 표시기 -->
+            <!-- 페이지 표시기 jsp변환시 링크수정! -->
             <div class="container row my-3 mx-auto">
                 <nav class="mx-auto">
                 <ul class="pagination justify-content-center ">
                         
                         <li class="page-item ">
-                            <a class="page-link" href="community01?curruntPage=${ beginPagenation - 1}">&lang;</a>
+                            <a class="page-link" href="community01?currentPage=${ beginPagenation - 1}">&lang;</a>
                         </li>
                         
                         <li class="page-item active">
-                            <a class="page-link" href="community01?curruntPage=${ page }">1</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">1</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="community01?curruntPage=${ page }">2</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">2</a>
                         </li><li class="page-item ">
-                            <a class="page-link" href="community01?curruntPage=${ page }">3</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">3</a>
                         </li><li class="page-item ">
-                            <a class="page-link" href="community01?curruntPage=${ page }">4</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">4</a>
                         </li><li class="page-item ">
-                            <a class="page-link" href="community01?curruntPage=${ page }">5</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">5</a>
                         </li>
                         
                         <li class="page-item">
@@ -88,7 +88,7 @@
                 </nav>
             </div>
         </div>
-        <!-- 하단 팝업 별도 페이지로 작성예정! -->
+        <!-- 팝업 별도 페이지로 작성예정! -->
         <!-- 공지사항 열람/수정(관리자) 팝업창 -->
         <div class="position-absolute d-none bg-white border border-dark-50 rouned" id="notice_popup" style=" top: 120px;z-index: 1100;">
 
@@ -98,7 +98,7 @@
             </div>
             <!-- form 시작 -->
             <div class="form-group w-100">
-                <form method="post" action="noticeUpdateAction">
+                <form name="noticeUpdateForm" method="post" action="noticeUpdateAction">
                     <!-- 히든 input -->
                     <input type="hidden" name="notice_idx" value="notice_idx">
                     <!-- 날짜 표시 -->
@@ -135,7 +135,7 @@
             </div>
             <!-- form 시작 -->
             <div class="form-group w-100">
-                <form method="post" action="noticeWriteAction">
+                <form name="noticeWriteForm" method="post" action="noticeWriteAction">
                     <!-- 히든 input -->
                     <input type="hidden" name="notice_idx" value="notice_idx">
                     <!-- 날짜 표시 -->
