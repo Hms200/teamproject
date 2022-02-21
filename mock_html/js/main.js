@@ -1,12 +1,12 @@
 // popup hide & show   
 function popupHideAndShow(target) {
-    const searchBar = document.getElementById(String(target));
-    if(searchBar.classList.contains("d-none")){
-        searchBar.classList.add("d-block");
-        searchBar.classList.remove("d-none");
-    }else if(searchBar.classList.contains("d-block")){
-        searchBar.classList.add("d-none");
-        searchBar.classList.remove("d-block");
+    const targetWindow = document.getElementById(String(target));
+    if(targetWindow.classList.contains("d-none")){
+        targetWindow.classList.add("d-block");
+        targetWindow.classList.remove("d-none");
+    }else if(targetWindow.classList.contains("d-block")){
+        targetWindow.classList.add("d-none");
+        targetWindow.classList.remove("d-block");
     }
 };
 
