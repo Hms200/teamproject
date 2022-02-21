@@ -4,202 +4,110 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MemberInfo</title>
+    <title>memberinfo</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="styleshhet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <style>
- 
-    .header{
-        border: 1px solid gray;
-        width: 360px;
-        height: 60px;
-        display: flex;
-        flex-wrap: wrap;
-        
-    }
-    .left{
-        line-height: 55px;
-    }
-    .headerInfo{
-        line-height: 60px;
-       padding-left: 110px;
-        
-    }
-   
- main{
-     margin: 30px;
- }
-   img{
-       width: 30px;
-       height: 30px;
-   }
-   .MemberInfo{
-       font-size: 16px;
-       
-   }
-   .name{
-       font-size: 16px;
-       
-   }
-   .id{
-       font-size:16px;
-   }
-   .main-ni{
-      
-       
-       display: flex;
-       flex-wrap: nowrap;
-     } 
-   .Main-name{
-       padding-right: 30px;
-   }   
-   
-  
-   .nameInput{
-      width: 135px;
-      height: 40px;
-      font-size: 14px;
-   }
-   .idInput{
-      width: 135px;
-      height: 40px;
-      font-size: 14px;
-   }
-   .main-pw{
-       margin-top: 30px;
-   }
-  .inputpw{
-      width: 300px;
-      height: 140px;
-  }
-  input::placeholder{
-      font-size: 14px;
-  }
-  input.password{
-      width: 300px;
-      height: 40px;
-     
-      
-  }
-  .password{
-      font-size: 16px;
-  }
-  .pw-1{
-      width: 300px;
-      height: 40px;
-      
-  }
-  .main-email{
-      margin-top: 30px;
-  }
-  .email{
-      font-size: 16px;
-  }
-  .inputEmail{
-      width: 300px;
-      height: 40px;
-  }
-  .main-phone{
-      margin-top: 30px;
-  }
-  .inputPhone{
-      width: 300px;
-      height: 40px;
-  }
-  .main-address{
-      margin-top: 30px;
-  }
-  .inputaddress-2{
-      width: 300px;
-      height: 40px;
-  }
-  .inputaddress-1{
-      width: 230px;
-      height: 40px;
-  }
-  .btn{
-      width: 70px;
-      height: 40px;
-      font-size: 10px;
-  }
-  .addressbutton{
-      display: flex;
-      flex-wrap: nowrap;
-  }
-  .footer{
-     margin: 30px;
-  }
-  .footer .btn{
-      width: 300px;
-      height: 40px;
-      font-size: 16px;
- }   
-
- 
+        input::placeholder{
+            font-size: 14px;
+        }
+        button {
+            border: none;
+            width: 70px;
+            height: 38px;
+            
+            
+            
+            
+        }
     </style>
+    
 </head>
 <body>
-    <header>
-        <div class="header">
-        <div class="left">
-    <img src="/img/icons/뒤로가기 (2).png" id="icon-left"></div>
-      <div class="headerInfo"><span class="MemberInfo">회원정보</span></div></div>
-     
-</header>
-<main>
-    <div class="main-ni">
+    <!-- container -->
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+   
+        <!-- 헤더 -->
+        <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
+            <div class="col-1 my-3">
+              <a href="/customer">
+                <img src="/img/icon/뒤로가기 (2).png" alt="" width="30px" height="30px">
+              </a>
+            </div>
+            <div class="col-11 my-3 py-1 text-center font-weight-bold">
+              회원정보
+            </div>
+          </div>
+          <!-- 이름, 아이디 -->
+          <div class="col-12 my-3 d-flex flex-row justify-content-center">
+              <div class="d-flex justify-content-around" style="width: 300px;">
+              <div style="height: 65px;" class="col font-weight-bold form-hroup text-dark pr-2">
+               이름
+               <input type="text" class="form-control-plaintext col-12 rounded font-weight-normal border" style="font-size: 12px; width: 125px; height: 40px;" placeholder="홍길동"  readonly>
+              </div>
+              <div style="height: 65px;" class="col font-weight-bold form-hroup text-dark">
+                아이디
+                <input type="text" class="form-control-plaintext col-12 rounded font-weight-normal border" style="font-size: 12px;  width: 125px; height: 40px;" placeholder="홍길동"  readonly>
+               </div>
+               </div>
+          </div>
+
+          <!-- 비밀번호 -->
+          <div class="d-flex flex-column">
+          <div style="height: 140px; width: 300px;" class="my-3 col-12 font-weight-bold form-group text-dark">
+            비밀번호
+            <input type="password" class="form-control col-12 rounded font-weight-nomal" placeholder="기존 비밀번호 입력">
+            <input type="password" class="form-control col-12 rounded font-weight-nomal" placeholder="변경할 비밀번호 입력">
+            <input type="password" class="form-control col-12 rounded font-weight-nomal" placeholder="비밀번호 확인">
+
+          </div>
+          <!-- 이메일 -->
+          <div style="height: 140px; width: 300px;" class="my-3 col-12 font-weight-bold form-group text-dark">
+            이메일
+            <input type="email" class="form-control col-12 rounded font-weight-nomal" placeholder="test@gmail.com">
+          </div>
        
-            <div class="Main-name">
-            <span class="name">이름</span><br>
-             <input type="text" class="nameInput" value="name" disabled></div>
-             <div class="Main-id">
-            <span class="id">아이디</span><br>
-             <input type="text" class="idInput" value="id" disabled></div>
-        
-    </div>
-    <div class="main-pw">
-     <span class="password">비밀번호</span><br>
-     <div class="inputpw">
-     <input type="password" placeholder="기존 비밀번호 입력" class="pw-1"> <br>
-     <input type="password" placeholder="변경할 비밀번호 입력" class="pw-1"> <br>
-     <input type="password" placeholder="비밀번호 확인" class="pw-1"> 
-     </div>
-    </div>
-
-    <div class="main-email">
-        <span class="email">이메일</span><br>
-        <input type="text" placeholder="test@naver.com" class="inputEmail">
-
-    </div>
-
-    <div class="main-phone">
-        <span class="phone">전화번호</span><br>
-        <input type="text" placeholder="전화번호를 입력해 주세요" class="inputPhone">
-
-    </div>
-
-    <div class="main-address">
-        <span>주소</span>
-        <div class="inputAddress">
-        <span class="addressbutton"><input type="text" placeholder="우편번호" class="inputaddress-1">
-            <button type="button" class="btn btn-secondary">주소찾기</button>
-
-        </span>
-        <input type="text" placeholder="주소" class="inputaddress-2"><br>
-        <input type="text" placeholder="상세주소" class="inputaddress-2">
+        <!-- 전화번호 -->
+        <div style="height: 140px; width: 300px;" class="my-3 col-12 font-weight-bold form-group text-dark">
+            전화번호
+            <input type="email" class="form-control col-12 rounded font-weight-nomal" placeholder="010-0000-0000">
         </div>
-    </div>
-</main>
-<footer>
-    <div class="footer">
-        <button type="submit" class="btn btn-primary">수정하기</button>
 
+        <!-- 주소 -->
+        <div style="width: 300px; height: 120px;" class="my-3 col-12 form-group">
+            <div class="d-flex flex-row">
+                <div class="text-dark font-weight-bold pr-5">
+                  주소
+                </div>
+                <div>
+                    <div class="d-flex flex-row">
+                    <input type="text" class="form-control col-9 rounded font-weight-nomal" placeholder="주소">
+                    <button type="button" class="btn btn-secondary align-middle" style="font-size: 10px;">주소찾기</button>
+                    </div>
+                    <input type="text" class="form-control col-12 rounded font-weight-nomal" placeholder="주소">
+                    <input type="text" class="form-control col-12 rounded font-weight-nomal" placeholder="상세주소">
+                </div>
+                
+ 
+            </div>
+        
+        </div>
+
+
+        <!-- 비밀번호-주소 column div -->
+        </div>
+
+
+          
+    <!-- 목업 div -->
     </div>
-</footer>
+
 
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<!-- main js -->
+<script src="/js/main.js"></script>
 </body>
 </html>
