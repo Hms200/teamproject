@@ -1,0 +1,59 @@
+:root{
+    --primary : rgb(167, 130, 111);
+}
+.btn-primary{
+    background-color: rgb(167, 130, 111) !important;
+    border-color: rgb(167, 130, 111) !important
+}
+.btn-secondary{
+    background-color: rgb(244, 244, 244) !important;
+    border-color: rgb(244, 244, 244) !important;
+    color: black;
+}
+.text-primary{
+    color: rgb(167, 130, 111) !important;
+}
+.text-secondary{
+    color: rgb(244, 244, 244) !important;
+}
+.bg-primary{
+    background-color: rgb(167, 130, 111) !important;
+}
+.bg-secondary{
+    background-color: rgb(244, 244, 244)!important;
+}
+.btn-outline-primary{
+    background-color: white !important;
+    border: 2px solid rgb(167, 130, 111) !important;
+    color: rgb(167, 130, 111) !important;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+  border-color: rgba(167, 130, 111, 1) !important;
+  box-shadow: 0 0 0 1px rgba(167, 130, 111, 0.6) inset, 0 0 0 1px rgba(167, 130, 111, 0.8) !important;
+  outline-color: rgb(167, 130, 111);
+}
+.page-link{
+    color: black !important;
+}
+.page-link:hover{
+    color: black !important;
+}
+.page-item.active .page-link{
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
