@@ -63,11 +63,8 @@
           document.getElementById('joinCK2').focus();
           return false
         }
-
           return true; //submit전송됨.
         }
-  
-
       </script>
 
 </head>
@@ -82,11 +79,10 @@
             </div>
             <div class="col-11 my-3 py-1 text-center text-bold">회원가입</div>  
         </div>
-
         <!-- joinMainDiv -->
         <div class="container-sm container-fluid col-11 d-flex flex-column mt-3 justify-content-center align-items-center" style="max-width:520px;">
             
-            <form action="" method="get" name="userInfo" onsubmit="return checkValue();">
+            <form action="joinAction" method="get" name="userInfo" onsubmit="return checkValue();">
                 
                 <!-- 중복체크 아직 안함 -->
                 <div class="text-left font-weight-bold pl-2 mt-2">아이디</div>

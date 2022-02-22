@@ -34,7 +34,7 @@
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
       
         <div class="col-12 pl-0 pr-0  ml-0 mr-0 column">
-          <form action="#" method="get" class="control mb-1" name="userInfo" onsubmit="return checkValue();">
+          <form action="loginAction" method="get" class="control mb-1" name="userInfo" onsubmit="return checkValue();">
             <!-- <div class="form-group"> -->
             <input type="text" class="mb-1 p-2 w-100" style="font-size: 14px;" id="user_id" placeholder="아이디를 입력하세요.">
             <!-- </div> -->
@@ -86,7 +86,7 @@
     <!-- 비밀번호찾기 팝업창  -->
     <div class="container-sm container-fluid col-12 position-absolute d-none flex-column justify-content-center bg-white border border-dark-50 rounded" style="top:50%; left: 50%; transform:translate(-50%, -50%); max-width:340px;" id="pwFindForm">          
       <!-- iconDiv -->
-      <div class="d-100  d-flex flex-row  justify-content-end">
+      <div class="d-100 d-flex flex-row  justify-content-end">
         <img src="/img/icon/cross.png" alt="" width="30px" height="30px" onclick="popupHideAndShow(target ='pwFindForm');">
       </div>
         <!-- main div -->
@@ -112,19 +112,6 @@
         </div>         
     <!-- 팝업창 div 끝-->
     </div>
-
-  <script>
-      function popupHideAndShow(target) {
-      const searchBar = document.getElementById(String(target));
-      if(searchBar.classList.contains("d-none")){
-        searchBar.classList.add("d-block");
-        searchBar.classList.remove("d-none");
-      }else if(searchBar.classList.contains("d-block")){
-        searchBar.classList.add("d-none");
-        searchBar.classList.remove("d-block");
-      }
-    };
-  </script>
 
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
