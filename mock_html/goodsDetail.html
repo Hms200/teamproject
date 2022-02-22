@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상품 상세정보</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <link rel="styleshhet" href="/css/custom.css">
+</head>
+
+<body>
+  <div
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
+    style="max-width: 520px;">
+    <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
+    <div class="container-sm container-fluid d-flex flex-row mb-0 px-0" style="height: 60px;">
+      <div class="col-2 my-3">
+        <img src="/img/left.png" alt="" class="mx-auto d-block my-auto img-fluid" width="30px" height="30px">
+      </div>
+      <div class="col-10 my-3 py-1 pr-5 text-center font-weight-bold">
+        상품상세정보
+      </div>
+    </div>
+    <!--상품 상세보기 이미지-->
+    <div class=" mx-0 px-0">
+      <img src="/img/Candle01_01 (1).jpeg" alt="" class="img-fluid" width="360px" height="240px">
+    </div>
+    <!--상품 상세보기 타이틀-->
+    <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
+      <!--부모클래스bg-primary 안넣었음 -->
+      네이쳐 소이캔들
+    </div>
+    <!--상품 상세보기 옵션 드롭다운-->
+    <div class="d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px;">
+      <div class="py-2">
+        상품 옵션
+      </div>
+      <div class="dropdown border ">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-expanded="false" style="width: 200px; font-size: 14px;">
+          옵션
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">선물포장+1000</a>
+        </div>
+      </div>
+    </div>
+    <!--판매가격-->
+    <div class="mx-2 my-2 d-flex flex-row justify-content-between w-75" style="font-size: 14px;">
+      <div class="col-3" style="font-size: 14px;">
+        판매가
+      </div>
+      <div class="col-4" style="font-size: 14px;">
+        17.000원
+      </div>
+    </div>
+    <div class="w-100 bg-dark" style="height: 20px;">
+      <!--bg-dark-50-->
+    </div>
+    <!--상품정보 리뷰 문의/안내 네브-->
+    <div class="d-flex flex-row justify-content-around my-2 font-weight-bold border-bottom w-100" style="height: 50px;">
+      <div>상품 정보</div>
+      <div>리뷰</div>
+      <div>문의/안내</div>
+    </div>
+    <!--해당네브:상품정보 상품이미지-->
+    <div class="mx-5 my-4">
+      <img src="/img/Candle_01.jpeg" alt="" class="img-fluid" style="width: 264px;">
+    </div>
+    <!--구매하기버튼/장바구니 아이콘-->
+    <div class="ml-2 my-2">
+      <img src="/img/carticon.png" alt="" style="width: 40px; height: 40px;">
+      <button type="button" class="btn btn-primary" style="width: 300px;">구매하기</button>
+    </div>
+    <hr>
+    <hr>
+    <!--해당네브:리뷰-->
+    <div class="d-flex flex-row justify-content-between mx-4 mt-5">
+      <div style="width: 150px; height: 230px;">
+        <!--날짜 div-->
+        <div class="text-right" style="font-size: 8px; height: 15px;">
+          2022-00-00
+        </div>
+        <!--이미지 div-->
+        <div style="height: 150px;">
+          <img src="/img/Candle01_01 (1).jpeg" class="img-fluid" alt="" style="width: 150px;">
+        </div>
+        <!--별점div-->
+        <div style="width: 15px; height: 15px; font-size: 8px;">
+          ★(4.5)
+        </div>
+        <!--이름div-->
+        <div class="font-weight-bold" style="font-size: 14px;">
+          네이쳐 소이캔들
+        </div>
+      </div>
+      <div style="width: 150px; height: 230px;">
+        <!--날짜 div-->
+        <div class="text-right" style="font-size: 8px; height: 15px;">
+          2022-00-00
+        </div>
+        <!--이미지 div-->
+        <div style="height: 150px;">
+          <img src="/img/Candle01_01 (1).jpeg" class="img-fluid" alt="" style="width: 150px;">
+        </div>
+        <!--별점div-->
+        <div style="width: 15px; height: 15px; font-size: 8px;">
+          ★(4.5)
+        </div>
+        <!--이름div-->
+        <div class="font-weight-bold" style="font-size: 14px;">
+          네이쳐 소이캔들
+        </div>
+      </div>
+    </div>
+    <hr>
+    <hr>
+    <!--해당네브:문의/안내-->
+    <!--아코디언 제목-->
+    <div class="container w-100 mx-auto  py-3 mb-4">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne" style="height: 55px;">
+            <h2 class="mb-0">
+              <button class="btn btn-block text-left d-flex flex-row justify-content-between mb-3" type="button"
+                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                style="font-size: 14px;">
+                <span>제목</span><img src="/img/down.png" alt="" class="img-fluid" style="width: 25px; height: 25px;">
+              </button>
+            </h2>
+          </div>
+          <!--아코디언 내용-->
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"
+            style="font-size: 14px;">
+            <div class="card-body">
+              2022-01-01<br>
+              문의내용
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--상품 문의하기 버튼-->
+    <div class="container w-100 my-5 d-flex justify-content-center">
+      <button type="button" class="btn btn-primary">
+        상품 문의하기
+      </button>
+    </div>
+    <hr>
+    <hr>
+    <!--상품문의 작성팝업-->
+    <div class="d-flex flex-column border bg-white mx-auto" style="border-radius:6px; width: 340px; height: 320px;">
+      <!--X아이콘-->
+      <div class="d-flex justify-content-end" style="width: 340px;height: 30px;">
+        <img src="/img/cross.png" alt="" style="width:30px; height: 30px;">
+      </div>
+      <div style="width: 300px; height: 260px; margin: 0 20px 30px 20px;">
+        <div class="text-center font-weight-bold text-dark" style="font-size: 16px; width: 300px; height: 25px;">
+          상품문의
+        </div>
+        <p class="text-right text-black-50 d-block" style="font-size: 12px; height: 20px;">2022-00-00</p>
+        <div class="d-block" style="margin-bottom: 5px;">
+          <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border w-100 text-dark"
+            style="border-radius: 6px; padding: 2px 15px; font-size: 14px; height: 40px;">
+        </div>
+        <div class="d-block">
+          <input type="textarea" placeholder="상품문의 내용을 입력해주세요." class="border w-100 text-dark"
+            style="border-radius: 6px; padding: 2px 15px; font-size: 14px; margin-bottom: 30px; height: 100px;">
+        </div>
+        <input type="button" class="btn btn-secondary text-dark" value="취소" style="width: 100px; height: 40px;">
+        <input type="button" class="btn text-light ml-2" value="문의하기"
+          style="width: 185px; height: 40px; background-color: dimgrey;">
+      </div>
+    </div>
+  </div>
+  <!-- bootstrap js -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
