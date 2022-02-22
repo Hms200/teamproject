@@ -12,8 +12,7 @@
 </head>
 <body>
   
-
-  <div class="container-sm container-fluid col-12 position-absolute d-flex flex-column justify-content-center bg-white border border-dark-50 rounded" style="max-width: 340px; top: 50%; left: 50%; transform:translate(-50%, -50%);">
+  <div class="container-sm container-fluid col-12 position-absolute d-flex flex-column justify-content-center bg-white border border-dark-50 rounded" id="quitForm" style="max-width: 340px; top: 50%; left: 50%; transform:translate(-50%, -50%);">
     <div class="d-100  d-flex flex-row  justify-content-end">
       <img src="/img/icon/cross.png" alt="취소아이콘" width="30px" height="30px" onclick="window.close();">
     </div>
@@ -31,7 +30,6 @@
       </div>
     </div>
     
-
     <div class="d-flex justify-content-center mb-3">
       <input type="submit" class="col-5 btn btn-dark text-light my-3 mr-1" height="40px" value="네" onclick="agree();">
       <!-- <input type="button" class="col-5 btn btn-secondary text-dark my-3 ml-1"  height="40px" value="아니오">       -->
@@ -52,7 +50,7 @@
         }
       }
       if(isAllCheck == true){
-        window.location.href ='/main.html'
+        window.location.href ='quitAction'
         // quitAction?user_id=${ user_id } 으로 변경하기
       }else{
         alert('정보처리에 동의하셔야 회원탈퇴가 가능합니다.');
