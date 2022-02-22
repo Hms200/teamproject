@@ -1,5 +1,6 @@
 :root{
     --primary : rgb(167, 130, 111);
+    --secondary : rgb(244,244,244);
 }
 .btn-primary{
     background-color: rgb(167, 130, 111) !important;
