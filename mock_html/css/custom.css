@@ -8,7 +8,10 @@
 .btn-secondary{
     background-color: rgb(244, 244, 244) !important;
     border-color: rgb(244, 244, 244) !important;
-    color: black;
+    color: #4e5358;
+}
+.btn-secondary:active, .btn-secondary:hover, .btn-primary:focus{
+    color: black !important;
 }
 .text-primary{
     color: rgb(167, 130, 111) !important;
