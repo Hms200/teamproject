@@ -38,8 +38,10 @@
             <div class="w-100 text-left border-bottom border-dark-50" style="font-size: 14px; height: 40px;">
                 구매번호 - 0000001
             </div>
+
             <!-- 상품정보 반복-->
             <div class="w-100 border-bottom border-dark-50 d-flex flex-row justifiy-content-start align-items-center py-1">
+
                 <!-- thumbnail -->
                 <div class="col-4">
                     <img class="img-fluid" src="/img/goods/candle/Candle01_01.jpeg" alt="">
@@ -96,11 +98,59 @@
 
                 </div>
             </div>
-
-
         </div>
 
+        <!-- 구매자 or 수령인 정보표시 -->
+        
+        <div class="container-fluid d-flex flex-column mb-4  pb-2 form-group">
+            <form name="transactionDetailForm" method="get" action="transactionDetailAction">
+                <label class="row text-center w-100 ml-2 font-weight-bold" style="line-height: 38px;">
+                    수 &numsp;&numsp; 령 &numsp;&numsp; 인
+                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_name" value="수령인" readonly>
+                </label>
+                <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
+                    연 &numsp;&numsp; 락 &numsp;&numsp;  처 
+                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_phone" value="010-0000-0000" readonly>
+                </label>
+                <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
+                    주   &numsp;&numsp;&numsp;&numsp;&numsp;&numsp;  소 
+                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_address" value="경기도 의정부시" readonly>
+                </label>
+                <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50 mb-4" style="line-height: 38px;">
+                    배 &numsp;송 &numsp;매 &numsp;모 
+                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_request" value="문 앞에 두고 가 주세요" readonly>
+                </label>
 
+                <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
+                    총 &numsp;결제 &numsp;금액 &numsp;&numsp;&numsp;&numsp;&numsp;
+                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_total_price" value="12,000" readonly>
+                </label>
+                <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
+                    &numsp;결제 &numsp;&numsp;수단 &numsp;&numsp;&numsp;&numsp;&numsp;&numsp;
+                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_total_price" value="카드" readonly>
+                </label>
+                <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
+                    &numsp;현재 &numsp;&numsp;상태 &numsp;&numsp;&numsp;&numsp;&numsp;&numsp;
+                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_statement" value="배송 준비중" readonly>
+                </label>
+                <!-- 주문상태별 value값 정해야함. -->
+                <select class="form-control col-6 mx-auto" name="purchase_statement">
+                    <option value="#" selected>주문상태 변경</option>
+                    <option value="">주문접수</option>
+                    <option value="">발송준비중</option>
+                    <option value="">배송중</option>
+                    <option value="">완료</option>
+                </select>
+
+                <!-- 버튼 그룹 -->
+                <div class="w-100 d-flex flex-wrap flex-row justify-content-around mt-4" style="height: 125px;">
+                    <button class="btn btn-secondary col-5 my-auto">교환접수</button>
+                    <button class="btn btn-secondary col-5 my-auto">반품접수</button>
+                    <button class="btn btn-secondary col-5 my-auto">주문취소</button>
+                    <button class="btn btn-secondary col-5 my-auto">확인</button>
+                </div>
+            </form>
+        </div>
 
     </div>
 
