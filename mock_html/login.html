@@ -8,7 +8,22 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/custom.css">
-  
+
+  <script>
+    function checkValue() {
+      if(!document.userInfo.user_id.value) { 
+         alert("입력된 아이디가 없습니다");
+          document.getElementById('user_id').focus();
+          return false; 
+         }
+        if(!document.userInfo.user_pw.value) { 
+        alert("입력된 비밀번호가 없습니다");
+        document.getElementById('user_pw').focus();
+        return false;
+      }
+      return true;
+    }
+  </script>    
 </head>
 <body>
   <!-- container -->
@@ -19,7 +34,7 @@
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
       
         <div class="col-12 pl-0 pr-0  ml-0 mr-0 column">
-          <form action="loginAction" method="get" class="control mb-1" name="userInfo" onsubmit="return checkValue();">
+          <form action="#" method="get" class="control mb-1" name="userInfo" onsubmit="return checkValue();">
             <!-- <div class="form-group"> -->
             <input type="text" class="mb-1 p-2 w-100" style="font-size: 14px;" id="user_id" placeholder="아이디를 입력하세요.">
             <!-- </div> -->
@@ -93,10 +108,23 @@
               <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" style="font-size: 16px" height="40px">
             </form>
           </div>    
-      <!-- mainDiv 끝 -->
-      </div>         
-  <!-- 팝업창 div 끝-->
-  </div>
+        <!-- mainDiv 끝 -->
+        </div>         
+    <!-- 팝업창 div 끝-->
+    </div>
+
+  <script>
+      function popupHideAndShow(target) {
+      const searchBar = document.getElementById(String(target));
+      if(searchBar.classList.contains("d-none")){
+        searchBar.classList.add("d-block");
+        searchBar.classList.remove("d-none");
+      }else if(searchBar.classList.contains("d-block")){
+        searchBar.classList.add("d-none");
+        searchBar.classList.remove("d-block");
+      }
+    };
+  </script>
 
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
