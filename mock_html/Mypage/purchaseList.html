@@ -46,6 +46,8 @@
       <div class="font-weight-bold mt-2">
         내 구매내역 보기
         </div>
+
+        <!-- 드롭다운 -->
         <div class="form-control" style="width: 120px; height: 40px;">
           <select class="form-select " aria-label="문의종류"value="문의종류">
             <option value="0">전체</option>
@@ -61,8 +63,9 @@
           </div>
           </div>
           
+          
           <!-- 카드 -->
-          <div class="col-12 d-flex flex-column border border-dark-50" style="height: 160px;">
+          <div class="w-100 col-12 d-flex flex-column border border-dark-50" style="height: 160px;">
             
             <div class="w-100 d-flex flex-row justify-content-between"  style="font-size: 12px;">
               <div>
@@ -86,20 +89,36 @@
                    </div>
                    <div class="col-12 text-left pl-2 position-relative">
                      <span>가격</span>
-                    <span style="right: 0%; position: absolute; cursor:pointer" class="text-dark " onclick="popupHideAndShow(target_reviewpopup)">리뷰쓰기</span>
+                    <span style="right: 0%; position: absolute; cursor:pointer" class="text-dark" onclick="popupHideAndShow(target_reviewpopup)">리뷰쓰기</span>
                    </div>
-                   <div class="col-15 border rounded d-flex flex-row justify-content-between form-control">
-                    <button type="button" value="환불신청" class="p-0">환불신청</button>
-                    <button type="button" value="교환신청" class="p-0">교환신청</button>
-                    <button type="button" value="반품신청" class="p-0">반품신청</button>
+
+                   <form action="pruchaseRefundAction" name="purchaseHistoryForm">
+                   <div class="col-12 border rounded d-flex flex-row justify-content-between form-control">
+                   
+
+                    <form action="purchaseCancleRefundAction"> 
+                     <button type="button" value="환불신청" class="p-0">환불신청</button>
+                    </form>
+                   
+                    <form action="purchaseChangeAction"
+                   ><button type="button" value="교환신청" class="p-0">교환신청</button>
+                  </form>
+                    
+                  <form action="purchaseCancleChangeAction"> 
+                      <button type="button" value="반품신청" class="p-0">반품신청</button>
+                    </form>
   
                   </div>
+                </form>
                
                   
   
                    
                 </div>
+              
                  </div>
+                
+                
                
                
                 
