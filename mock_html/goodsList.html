@@ -10,42 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
     integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="/mock_html/css/custom.css">
-  <style>
-    body .dep {
-      display: none;
-    }
 
-    main.candle .dep._candle,
-    main.warmer .dep._warmer,
-    main.diffuser .dep._diffuser,
-    main.soap .dep._soap {
-      display: block;
-    }
-
-    div .on {
-      border-bottom: 2px solid rgb(161, 159, 159); 
-    }
-
-    nav div .candle:hover,
-    nav div .warmer:hover,
-    nav div .diffuser:hover,
-    nav div .soap:hover {
-      background-color: aliceblue;
-      transition: background-color .5s; 
-      cursor: pointer; 
-    }
-  </style>
-  <script>
-    function setGoodsList(_type) {
-      var types = document.querySelectorAll("div .goodsList div");
-      types.forEach(function (type) {
-        type.classList.remove('on');
-      });
-      document.querySelector("div .goodsList div." + _type).classList.add("on");
-
-      document.querySelector("main").className = _type;
-    }
-  </script>
 </head>
 
 <body>
