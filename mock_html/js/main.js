@@ -63,5 +63,6 @@ function setGoodsList(_type) {
       type.classList.remove('on');
     });
     document.querySelector("div .goodsList div." + _type).classList.add("on");
+
     document.querySelector("main").className = _type;
   }
