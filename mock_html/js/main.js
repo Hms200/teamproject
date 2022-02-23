@@ -54,3 +54,14 @@ function multiSubmit(formName, formAction, onsubmit){
     targetForm[0].submit();
     }
 };
+
+
+// 상품리스트 노출
+function setGoodsList(_type) {
+    var types = document.querySelectorAll("div .goodsList div");
+    types.forEach(function (type) {
+      type.classList.remove('on');
+    });
+    document.querySelector("div .goodsList div." + _type).classList.add("on");
+    document.querySelector("main").className = _type;
+  }
