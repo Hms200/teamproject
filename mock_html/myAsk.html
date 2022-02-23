@@ -17,7 +17,7 @@
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
       <!-- 뒤로가기 버튼 -->
       <div class="col-1 my-3">
-          <img src="/img/icon/left.png" onclick="location.href='customer'" alt="" width="30px" height="30px" style="cursor: pointer;">
+          <img src="/img/icon/left.png" onclick="location.href='/customer'" alt="" width="30px" height="30px" style="cursor: pointer;">
       </div>
       <div class="col-11 my-3 py-1 text-center font-weight-bold">
         고객센터
@@ -27,20 +27,20 @@
     <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center text-decoration-none text-center border-bottom font-weight-bold" style="font-size: 16px; height: 90px;">
       <nav>
         <span>
-          <a href="customer/faq" class="text-black-50">FAQ</a>
+          <a href="/customer/faq" class="text-black-50">FAQ</a>
         </span>
         <span>
-          <a href="customer/myAsk" class="text-primary">내 문의내역</a>
+          <a href="/customer/myAsk" class="text-primary">내 문의내역</a>
         </span>
         <span>
-          <a href="customer/akc" class="text-black-50">문의하기</a>
+          <a href="/customer/akc" class="text-black-50">문의하기</a>
         </span>
       </nav>
     </div>
     <!-- 문의종류 -->
     <div class="container-sm container-fluid d-flex justify-content-end" style="margin: 10px 0 10px;">
       <span>
-        <select name="cat" style="width: 100px; height: 50px; font-size: 14px;">
+        <select name="onetooneCat" style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의 종류</option>
           <option value="1">상품 문의</option>
           <option value="2">배송 문의</option>

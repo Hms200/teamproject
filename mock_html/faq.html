@@ -1,4 +1,4 @@
-<!-- 미완성 -->
+<!-- 완성 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +40,7 @@
     <!-- 문의종류 -->
     <div class="container-sm container-fluid d-flex justify-content-end" style="margin: 10px 0 10px;">
       <span>
-        <select name="cat" style="width: 100px; height: 50px; font-size: 14px;">
+        <select name="faqCat" style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의 종류</option>
           <option value="1">상품 문의</option>
           <option value="2">배송 문의</option>
@@ -132,18 +132,19 @@
     </div>
 
     <!-- faq작성 팝업(관리자) -->
-    <div class="position-absolute d-none bg-white border border-dark-50 rouned" id="faq_write_popup" style="top: 120px;z-index: 1100; width: 340px; height: 320px;">
+    <div class="position-absolute d-none bg-white border border-dark-50 rouned w-100" id="faq_write_popup" style="top: 120px;z-index: 1100;">
       <!-- 닫기 버튼 -->
       <div class="d-flex justify-content-end">
         <img src="/img/icon/cross.png" alt="닫기 버튼" width="30px" height="30px" style="cursor: pointer;" onclick="popupHideAndShow(target ='faq_write_popup')">
       </div>
-      <div style="height: 260px; margin: 0 20px 30px">
+      <div style="margin: 0 20px 30px">
         <!-- 타이틀 -->
         <div class="text-center font-weight-bold text-dark" style="height: 25px; margin-bottom: 20px; font-size: 16px;">
           FAQ문의
         </div>
-        <!-- 작성폼 시작 null값 체크 js추가 예정 -->
-      <form action="faqWriteAction" method="post" name="faqWriteForm" onclick="">
+        <div class="d-flex justify-content-center">
+        <!-- 작성폼 시작 -->
+      <form action="faqWriteAction" method="post" name="faqWriteForm" onclick="return checkValue()">
         <!-- 히든 input -->
         <input type="hidden" name="faq_idx" value="faq_idx">
         <div class="d-flex">
@@ -167,12 +168,31 @@
       </div>
       <!-- 확인 버튼 -->
       <div class="d-flex align-items-center justify-content-center">
-        <input type="button" value="확인" class="btn btn-dark text-light" style="width: 185px; height: 40px; margin: 20px 80px 0; font-size: 14px; cursor: pointer;">
+        <input type="submit" value="확인" class="btn btn-dark text-light form-control" style="width: 185px; margin: 20px 80px 0; font-size: 14px; cursor: pointer;">
       </div>
     </div>
     </form>
+  </div>
     </div>
   </div>
+  <!-- faq작성폼 null값 확인 스크립트 -->
+  <!-- <script>
+    function checkValue() {
+      if(!document.faqWriteForm.faq_title.value) {
+        alert("제목을 입력해주세요");
+        return false;
+      }
+      if(!document.faqWriteForm.faq_cat.value) {
+        alert("카테고리를 선택해주세요");
+        return false;
+      }
+      if(!document.faqWriteForm.faq_contents.value) {
+        alert("내용을 입력해주세요");
+        return false;
+      }
+      return true;
+    }
+  </script> -->
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
