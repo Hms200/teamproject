@@ -26,3 +26,18 @@ function bedgeHideAndShow() {
     } 
 };
 
+// null checker
+function nullChecker(){
+    const target = document.getElementsByClassName('nullcheck');
+    for(i=0; i<target.length; i++){
+        if(target[i].value == ''){
+            alert(target[i].placeholder);
+            target[i].focus();
+            return false;
+        }else if(target[i].type == 'checkbox' && target[i].checked == false){
+            alert('필수 동의사항을 체크해 주세요');
+            return false;
+        }
+    }
+    return true;
+}

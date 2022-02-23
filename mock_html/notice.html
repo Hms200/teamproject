@@ -135,7 +135,7 @@
             </div>
             <!-- form 시작 -->
             <div class="form-group w-100">
-                <form name="noticeWriteForm" method="post" action="noticeWriteAction">
+                <form name="noticeWriteForm" method="post" action="noticeWriteAction" onsubmit="return nullChecker();">
                     <!-- 히든 input -->
                     <input type="hidden" name="notice_idx" value="notice_idx">
                     <!-- 날짜 표시 -->
@@ -144,11 +144,11 @@
                     </div>
                     <!-- 공지사항 제목 -->
                     <div class="col-11 mx-auto">
-                        <input class="form-control bg-white" type="text" name="notice_title" value="공지제목">
+                        <input class="form-control bg-white nullcheck" type="text" name="notice_title" placeholder="제목을 입력해주세요.">
                     </div>
                     <!-- 공지사항 내용 -->
                     <div class="col-11 mx-auto mt-1">
-                        <textarea class="form-control overflow-auto bg-white" name="notice_content"cols="30" rows="10" style="resize: none;">공지사항 내용입니다.</textarea>
+                        <textarea class="form-control overflow-auto bg-white nullcheck" name="notice_content"cols="30" rows="10" placeholder="내용을 입력해 주세요." style="resize: none;"></textarea>
                     </div>
                     <!-- 중요공지사항(관리자) -->
                     <div class="ml-4 my-2 pl-2">
