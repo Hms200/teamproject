@@ -31,9 +31,8 @@
     </div>
     
     <div class="d-flex justify-content-center mb-3">
-      <input type="submit" class="col-5 btn btn-dark text-light my-3 mr-1" height="40px" value="네" onclick="agree();">
-      <!-- <input type="button" class="col-5 btn btn-secondary text-dark my-3 ml-1"  height="40px" value="아니오">       -->
-      <a href="/main.html" class="col-5 btn btn-secondary text-dark my-3 ml-1" height="40px">아니오</a>
+      <input type="submit" class="col-5 btn btn-dark text-light my-3 mr-1" value="네" onclick="agree();">   
+      <a href="/main.html" class="col-5 btn btn-secondary text-dark my-3 ml-1">아니오</a>
     </div>
 
   </div>
@@ -50,7 +49,7 @@
         }
       }
       if(isAllCheck == true){
-        window.location.href ='quitAction'
+        window.location.href ='/quitAction'
         // quitAction?user_id=${ user_id } 으로 변경하기
       }else{
         alert('정보처리에 동의하셔야 회원탈퇴가 가능합니다.');
