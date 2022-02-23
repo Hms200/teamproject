@@ -9,21 +9,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/custom.css">
 
-  <script>
-    function checkValue() {
-      if(!document.userInfo.user_id.value) { 
-         alert("입력된 아이디가 없습니다");
-          document.getElementById('user_id').focus();
-          return false; 
-         }
-        if(!document.userInfo.user_pw.value) { 
-        alert("입력된 비밀번호가 없습니다");
-        document.getElementById('user_pw').focus();
-        return false;
-      }
-      return true;
-    }
-  </script>    
 </head>
 <body>
   <!-- container -->
@@ -34,12 +19,12 @@
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
       
         <div class="col-12 pl-0 pr-0  ml-0 mr-0 column">
-          <form action="loginAction" method="get" class="control mb-1" name="userInfo" onsubmit="return checkValue();">
+          <form action="loginAction" method="get" class="control mb-1" name="userInfo" onsubmit="return nullChecker();">
             <!-- <div class="form-group"> -->
-            <input type="text" class="mb-1 p-2 w-100" style="font-size: 14px;" id="user_id" placeholder="아이디를 입력하세요.">
+            <input type="text" class="mb-1 p-2 w-100 nullcheck" style="font-size: 14px;" id="user_id" placeholder="아이디를 입력하세요.">
             <!-- </div> -->
             <!-- <div class="form-group"> -->
-            <input type="password" class="mb-3 p-2 w-100" style="font-size: 14px;" id="user_pw" placeholder="비밀번호를 입력하세요.">
+            <input type="password" class="mb-3 p-2 w-100 nullcheck" style="font-size: 14px;" id="user_pw" placeholder="비밀번호를 입력하세요.">
              <!-- </div> -->
             <input type="submit" class="btn btn-primary w-100 rouned-lg text-white mb-2" style="font-size: 16px;" value="로그인">
           </form>
