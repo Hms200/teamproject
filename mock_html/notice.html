@@ -107,20 +107,23 @@
                     </div>
                     <!-- 공지사항 제목 -->
                     <div class="col-11 mx-auto">
-                        <input class="form-control bg-white" readonly type="text" name="notice_title" value="공지제목">
+                        <input class="form-control bg-white nullcheck" readonly type="text" name="notice_title" value="공지제목">
                     </div>
                     <!-- 공지사항 내용 -->
                     <div class="col-11 mx-auto mt-1">
-                        <textarea class="form-control overflow-auto bg-white" readonly name="notice_content"cols="30" rows="10" style="resize: none;">공지사항 내용입니다.</textarea>
+                        <textarea class="form-control overflow-auto bg-white nullcheck" readonly name="notice_content"cols="30" rows="10" style="resize: none;">공지사항 내용입니다.</textarea>
                     </div>
                     <!-- 중요공지사항(관리자) -->
                     <div class="ml-4 my-2 pl-2">
                         <label><input class="mr-2" type="checkbox" name="notice_show">중요공지사항</label>
                     </div>
-                    <!-- 확인버튼 / 수정버튼(관리자)-->
+                    <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
                     <div class="mx-auto" style="width: fit-content;">
+                        <!-- 사용자용 확인버튼 -->
+                        <button class="btn btn-dark btn-lg d-none" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup')">확인</button>
+                        <!-- 관리자용 확인버튼 -->
                         <input type="submit" class="btn btn-dark btn-lg" style="width: 140px;" value="확인">
-                        <button class="btn btn-secondary" type="button">삭제</button>
+                        <button class="btn btn-secondary" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction', onsubmit ='return nullChecker();')">삭제</button>
                     </div>
                 </form>
             </div>
