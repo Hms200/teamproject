@@ -23,6 +23,31 @@
         Qna
       </div>
     </div>
+    <div class="container-sm container-fluid mt-1" style="font-size: 16px;">
+      <table class="table table-hover border border-dark-50" id="myTable">
+        <thead class="text-center" style="height: 40px;">
+          <tr>
+          <th class="col-4" style="font-size: 14px;">유형</th>
+          <th class="col-8">내용</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" data-parent="#myTable">
+              <th style="font-size: 14px;">상품상세보기</th>
+              <td>2022-02-22 작성자:***</td>
+            </tr>
+            <tr class="collapse" id="collapse1" style="font-size: 14px;">
+              <td class="hiddenRow" style="width: 100px;">상품번호 및 상품이름</td>
+              <td style="width: 260px;">문의 내용입니다</td>
+            </tr>
+            <tr>
+              <div>
+                <button class="btn btn-secondary">답글등록</button>
+              </div>
+            </tr>
+          </tbody> 
+      </table>
+    </div>
   </div>
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

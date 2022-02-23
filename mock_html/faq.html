@@ -144,13 +144,13 @@
         </div>
         <div class="d-flex justify-content-center">
         <!-- 작성폼 시작 -->
-      <form action="faqWriteAction" method="post" name="faqWriteForm" onclick="return checkValue()">
+      <form action="faqWriteAction" method="post" name="faqWriteForm" onsubmit="return nullChecker();">
         <!-- 히든 input -->
         <input type="hidden" name="faq_idx" value="faq_idx">
         <div class="d-flex">
           <!-- 제목 -->
       <div>
-        <input type="text" name="faq_title" placeholder="제목을 입력해주세요" class="text-dark" style="width: 200px; height: 40px; margin-bottom: 5px; padding: 2px 15px; font-size: 14px;">
+        <input type="text" name="faq_title" placeholder="제목을 입력해주세요" class="text-dark nullcheck" style="width: 200px; height: 40px; margin-bottom: 5px; padding: 2px 15px; font-size: 14px;">
       </div>
       <!-- 카테고리 -->
       <div>
@@ -164,7 +164,7 @@
     </div>
     <!-- 내용 -->
       <div>
-        <textarea name="faq_contents" placeholder="내용을 입력해주세요" cols="30" rows="10" class="text-dark" style="width: 300px; height: 100px; font-size: 14px; margin-bottom: 30px;"></textarea>
+        <textarea name="faq_contents" placeholder="내용을 입력해주세요" cols="30" rows="10" class="text-dark nullcheck" style="width: 300px; height: 100px; font-size: 14px; margin-bottom: 30px;"></textarea>
       </div>
       <!-- 확인 버튼 -->
       <div class="d-flex align-items-center justify-content-center">
@@ -175,24 +175,6 @@
   </div>
     </div>
   </div>
-  <!-- faq작성폼 null값 확인 스크립트 -->
-  <!-- <script>
-    function checkValue() {
-      if(!document.faqWriteForm.faq_title.value) {
-        alert("제목을 입력해주세요");
-        return false;
-      }
-      if(!document.faqWriteForm.faq_cat.value) {
-        alert("카테고리를 선택해주세요");
-        return false;
-      }
-      if(!document.faqWriteForm.faq_contents.value) {
-        alert("내용을 입력해주세요");
-        return false;
-      }
-      return true;
-    }
-  </script> -->
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
