@@ -39,9 +39,9 @@
     </div>
     <!-- 문의종류 -->
     <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
-      <form action="" name="faqCatForm">
+      <form name="faqCatForm" method="post">
       <span>
-        <select name="faqCat" style="width: 100px; height: 50px; font-size: 14px;">
+        <select name="faqCat" onchange=submit(); style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의 종류</option>
           <option value="1">상품 문의</option>
           <option value="2">배송 문의</option>

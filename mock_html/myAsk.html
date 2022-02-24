@@ -39,14 +39,16 @@
     </div>
     <!-- 문의종류 -->
     <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
+      <form name="myAskCatForm" method="post">
       <span>
-        <select name="onetooneCat" style="width: 100px; height: 50px; font-size: 14px;">
+        <select name="onetooneCat" onchange=submit(); style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의 종류</option>
           <option value="1">상품 문의</option>
           <option value="2">배송 문의</option>
           <option value="3">결제 문의</option>
         </select>
       </span>
+    </form>
     </div>
     <!-- faq아코디언 -->
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 14px;">
