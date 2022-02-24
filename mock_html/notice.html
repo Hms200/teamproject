@@ -14,13 +14,13 @@
     <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative pl-0 pr-0" style="max-width: 520px;">
    
         <!-- title container -->
-        <div class="container-fluid d-flex flex-row my-4" style="height: 60px;">
+        <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
         <!-- title back btn -->
             <div class="col-1 my-3" onclick="location.href='main'" style="cursor: pointer;">
                 <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
             </div>
         <!-- title -->
-            <div class="col-11 my-3 py-1 text-center font-weight-bold" style="font-size: 16px;">
+            <div class="col-11 my-3 py-1 text-center font-weight-bold">
                 공지사항
             </div>
         </div>
@@ -59,26 +59,26 @@
                 작성
             </button>
 
-            <!-- 페이지 표시기 -->
+            <!-- 페이지 표시기 jsp변환시 링크수정! -->
             <div class="container row my-3 mx-auto">
                 <nav class="mx-auto">
                 <ul class="pagination justify-content-center ">
                         
                         <li class="page-item ">
-                            <a class="page-link" href="community01?curruntPage=${ beginPagenation - 1}">&lang;</a>
+                            <a class="page-link" href="community01?currentPage=${ beginPagenation - 1}">&lang;</a>
                         </li>
                         
                         <li class="page-item active">
-                            <a class="page-link" href="community01?curruntPage=${ page }">1</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">1</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="community01?curruntPage=${ page }">2</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">2</a>
                         </li><li class="page-item ">
-                            <a class="page-link" href="community01?curruntPage=${ page }">3</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">3</a>
                         </li><li class="page-item ">
-                            <a class="page-link" href="community01?curruntPage=${ page }">4</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">4</a>
                         </li><li class="page-item ">
-                            <a class="page-link" href="community01?curruntPage=${ page }">5</a>
+                            <a class="page-link" href="community01?currentPage=${ page }">5</a>
                         </li>
                         
                         <li class="page-item">
@@ -88,7 +88,7 @@
                 </nav>
             </div>
         </div>
-
+        <!-- 팝업 별도 페이지로 작성예정! -->
         <!-- 공지사항 열람/수정(관리자) 팝업창 -->
         <div class="position-absolute d-none bg-white border border-dark-50 rouned" id="notice_popup" style=" top: 120px;z-index: 1100;">
 
@@ -98,7 +98,7 @@
             </div>
             <!-- form 시작 -->
             <div class="form-group w-100">
-                <form method="post" action="noticeUpdateAction">
+                <form name="noticeUpdateForm" method="post" action="noticeUpdateAction">
                     <!-- 히든 input -->
                     <input type="hidden" name="notice_idx" value="notice_idx">
                     <!-- 날짜 표시 -->
@@ -107,20 +107,23 @@
                     </div>
                     <!-- 공지사항 제목 -->
                     <div class="col-11 mx-auto">
-                        <input class="form-control bg-white" readonly type="text" name="notice_title" value="공지제목">
+                        <input class="form-control bg-white nullcheck" readonly type="text" name="notice_title" value="공지제목">
                     </div>
                     <!-- 공지사항 내용 -->
                     <div class="col-11 mx-auto mt-1">
-                        <textarea class="form-control overflow-auto bg-white" readonly name="notice_content"cols="30" rows="10" style="resize: none;">공지사항 내용입니다.</textarea>
+                        <textarea class="form-control overflow-auto bg-white nullcheck" readonly name="notice_content"cols="30" rows="10" style="resize: none;">공지사항 내용입니다.</textarea>
                     </div>
                     <!-- 중요공지사항(관리자) -->
                     <div class="ml-4 my-2 pl-2">
                         <label><input class="mr-2" type="checkbox" name="notice_show">중요공지사항</label>
                     </div>
-                    <!-- 확인버튼 / 수정버튼(관리자)-->
+                    <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
                     <div class="mx-auto" style="width: fit-content;">
+                        <!-- 사용자용 확인버튼 -->
+                        <button class="btn btn-dark btn-lg d-none" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup')">확인</button>
+                        <!-- 관리자용 확인버튼 -->
                         <input type="submit" class="btn btn-dark btn-lg" style="width: 140px;" value="확인">
-                        <button class="btn btn-secondary" type="button">삭제</button>
+                        <button class="btn btn-secondary" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction', onsubmit ='return nullChecker();')">삭제</button>
                     </div>
                 </form>
             </div>
@@ -135,7 +138,7 @@
             </div>
             <!-- form 시작 -->
             <div class="form-group w-100">
-                <form method="post" action="noticeWriteAction">
+                <form name="noticeWriteForm" method="post" action="noticeWriteAction" onsubmit="return nullChecker();">
                     <!-- 히든 input -->
                     <input type="hidden" name="notice_idx" value="notice_idx">
                     <!-- 날짜 표시 -->
@@ -144,11 +147,11 @@
                     </div>
                     <!-- 공지사항 제목 -->
                     <div class="col-11 mx-auto">
-                        <input class="form-control bg-white" type="text" name="notice_title" value="공지제목">
+                        <input class="form-control bg-white nullcheck" type="text" name="notice_title" placeholder="제목을 입력해주세요.">
                     </div>
                     <!-- 공지사항 내용 -->
                     <div class="col-11 mx-auto mt-1">
-                        <textarea class="form-control overflow-auto bg-white" name="notice_content"cols="30" rows="10" style="resize: none;">공지사항 내용입니다.</textarea>
+                        <textarea class="form-control overflow-auto bg-white nullcheck" name="notice_content"cols="30" rows="10" placeholder="내용을 입력해 주세요." style="resize: none;"></textarea>
                     </div>
                     <!-- 중요공지사항(관리자) -->
                     <div class="ml-4 my-2 pl-2">

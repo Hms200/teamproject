@@ -1,14 +1,20 @@
+/* Bootstrap css override */
 :root{
     --primary : rgb(167, 130, 111);
+    --secondary : rgb(244,244,244);
 }
 .btn-primary{
     background-color: rgb(167, 130, 111) !important;
     border-color: rgb(167, 130, 111) !important
+    
 }
 .btn-secondary{
     background-color: rgb(244, 244, 244) !important;
     border-color: rgb(244, 244, 244) !important;
-    color: black;
+    color: #4e5358;
+}
+.btn-secondary:active, .btn-secondary:hover, .btn-primary:focus{
+    color: black !important;
 }
 .text-primary{
     color: rgb(167, 130, 111) !important;
@@ -42,9 +48,11 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
+select:focus,
+.btn-primary:focus,
 .uneditable-input:focus {   
   border-color: rgba(167, 130, 111, 1) !important;
-  box-shadow: 0 0 0 1px rgba(167, 130, 111, 0.6) inset, 0 0 0 1px rgba(167, 130, 111, 0.8) !important;
+  box-shadow: 0 0 0 1px rgba(167, 130, 111, 0.6) inset, 0 0 0 3px rgba(167, 130, 111, 0.8) !important;
   outline-color: rgb(167, 130, 111);
 }
 .page-link{
@@ -57,3 +65,29 @@ input[type="color"]:focus,
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
 }
+
+
+/* goodslist */
+body .dep {
+    display: none;
+  }
+
+  main.candle .dep._candle,
+  main.warmer .dep._warmer,
+  main.diffuser .dep._diffuser,
+  main.soap .dep._soap {
+    display: block;
+  }
+
+  div .on {
+    border-bottom: 2px solid rgb(161, 159, 159); 
+  }
+
+  nav div .candle:hover,
+  nav div .warmer:hover,
+  nav div .diffuser:hover,
+  nav div .soap:hover {
+    background-color: aliceblue;
+    transition: background-color .5s; 
+    cursor: pointer; 
+  }

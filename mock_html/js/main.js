@@ -1,12 +1,12 @@
 // popup hide & show   
 function popupHideAndShow(target) {
-    const searchBar = document.getElementById(String(target));
-    if(searchBar.classList.contains("d-none")){
-        searchBar.classList.add("d-block");
-        searchBar.classList.remove("d-none");
-    }else if(searchBar.classList.contains("d-block")){
-        searchBar.classList.add("d-none");
-        searchBar.classList.remove("d-block");
+    const targetWindow = document.getElementById(String(target));
+    if(targetWindow.classList.contains("d-none")){
+        targetWindow.classList.add("d-block");
+        targetWindow.classList.remove("d-none");
+    }else if(targetWindow.classList.contains("d-block")){
+        targetWindow.classList.add("d-none");
+        targetWindow.classList.remove("d-block");
     }
 };
 
@@ -26,3 +26,43 @@ function bedgeHideAndShow() {
     } 
 };
 
+// null checker
+function nullChecker(){
+    const target = document.getElementsByClassName('nullcheck');
+
+    for(i=0; i<target.length; i++){
+        if(target[i].value == ''){
+            alert(target[i].placeholder);
+            target[i].focus();
+            return false;
+        }else if(target[i].type == 'checkbox' && target[i].checked == false){
+            alert('채크사항을 확인 해 주세요');
+            return false;
+        }
+    }
+    return true;
+};
+
+// multi submit form
+function multiSubmit(formName, formAction, onsubmit){
+    const targetForm = document.getElementsByName(String(formName));
+    targetForm[0].action = formAction;
+    if(onsubmit != null){
+        targetForm[0].onsubmit = String(onsubmit);
+        targetForm[0].submit();
+    }else{
+    targetForm[0].submit();
+    }
+};
+
+
+// 상품리스트 노출
+function setGoodsList(_type) {
+    var types = document.querySelectorAll("div .goodsList div");
+    types.forEach(function (type) {
+      type.classList.remove('on');
+    });
+    document.querySelector("div .goodsList div." + _type).classList.add("on");
+
+    document.querySelector("main").className = _type;
+  }
