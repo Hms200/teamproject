@@ -1,4 +1,4 @@
-<!-- 미완성 -->
+<!-- 완성? -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,39 +15,44 @@
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
     <!-- 타이틀 -->
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
+      <!-- 뒤로가기 버튼 -->
       <div class="col-1 my-3">
-        <a href="/customer">
-          <img src="/img/icon/left.png" alt="" width="30px" height="30px">
-        </a>
+          <img src="/img/icon/left.png" alt="뒤로가기" onclick="location.href='/customer'" width="30px" height="30px" style="cursor: pointer;">
       </div>
       <div class="col-11 my-3 py-1 text-center font-weight-bold">
         문의하기
       </div>
-      </div>
-      <!-- 입력폼 -->
-      <div class="container-sm contaier-fluid d-flex flex-wrap justify-content-between" style="margin: 30px; height: 420px; font-size: 14px;">
-        <form action="qnaQuestionAction" method="post" name="" onsubmit=""></form>
-          <span class="container-sm contaier-fluid font-weight-bold" style="font-size: 16px;">
+    </div>
+      <div class="container-sm contaier-fluid d-flex flex-wrap" style="margin: 30px; font-size: 14px;">
+          <span class="container-sm contaier-fluid font-weight-bold mb-2" style="font-size: 16px;">
             [아이디]님
           </span>
-          <span >
-            <input type="text" name="title" placeholder="제목을 입력해주세요" style="width: 200px; height: 40px;">
+          <!-- 폼 시작 -->
+          <form action="qnaQuestionAction" method="post" name="qnaQuestionForm" onsubmit="return nullChecker();">
+          <!-- 히든 input -->
+          <input type="hidden" name="notice_idx" value="notice_idx">
+          <input type="hidden" name="onetoone_date" value="onetoone_date">
+          <!-- 제목 -->
+          <span>
+            <input type="text" name="onetoone_title" class="nullcheck" placeholder="제목을 입력해주세요" style="width: 200px; height: 40px;">
           </span>
-          <select name="cat" id="" style="width: 100px; height: 40px;">
+          <!-- 카테고리 -->
+          <select name="onetoone_cat" style="width: 100px; height: 40px;">
             <option selected hidden>문의 종류</option>
             <option value="1">상품 문의</option>
             <option value="2">배송 문의</option>
             <option value="3">결제 문의</option>
           </select>
+          <!-- 내용 -->
           <span>
-            <textarea name="content" placeholder="내용을 입력해주세요" style="width: 300px; height: 300px;"></textarea>
+            <input type="text" name="onetoone_contents" class="nullcheck" placeholder="내용을 입력해주세요" style="width: 300px; height: 300px;">
           </span>
           </div>
             <div class="container-sm container-fluid d-flex flex-row justify-content-around" style="height: 40px;">
-              <a href="/customer">
-                <button style="width: 100px;">취소</button>
-              </a>
-              <button type="submit" style="width: 190px;">문의하기</button>
+              <!-- 취소버튼 -->
+              <button class="btn btn-secondary" style="width: 100px; cursor: pointer;" onclick="location.href='customer'">취소</button>
+              <!-- 작성버튼 -->
+              <button type="submit" class="btn btn-dark" style="width: 190px; cursor: pointer;">문의하기</button>
         </form>
     </div>
   </div>
