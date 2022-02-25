@@ -15,6 +15,8 @@
 <body>
 
 <c:import url="header.jsp"></c:import>
+
+
     <section>
         <!-- main container -->
         <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center pl-0 pr-0" style="max-width: 520px; margin-top: 60px;">
@@ -50,6 +52,7 @@
         
         </div>
         </section>
+        
 
 <c:import url="footer.jsp"></c:import>
 <c:import url="nav.jsp"></c:import>
