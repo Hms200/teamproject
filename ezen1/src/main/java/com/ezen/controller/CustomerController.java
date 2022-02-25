@@ -40,7 +40,7 @@ public class CustomerController {
 	}
 
 //	FAQ 전체 리스트
-	@RequestMapping("/customer/faq")
+	@RequestMapping("/customer")
 	public String faq( Model model, HttpServletRequest request) {
 		List<FaQ> list = faqDao.getFaqList();
 		model.addAttribute("list", list);
