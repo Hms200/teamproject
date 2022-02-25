@@ -39,10 +39,10 @@
     </div>
     <!-- 문의종류 -->
     <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
-      <form name="myAskCatForm" method="post">
+      <form name="myAskCatForm" method="post" action="myAskCatAction">
       <span>
-        <select name="myAskCat" onchange=submit(); style="width: 100px; height: 50px; font-size: 14px;">
-          <option selected hidden>문의 종류</option>
+        <select name="myAskCat" onchange="submit();" style="width: 100px; height: 50px; font-size: 14px;">
+          <option selected>문의 종류</option>
           <option value="1">상품 문의</option>
           <option value="2">배송 문의</option>
           <option value="3">결제 문의</option>
@@ -54,7 +54,7 @@
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 14px;">
       <!-- 1번 -->
       <div class="card">
-          <button class="container-sm container-fluid" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" style="height: 80px;">
+          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
             <div class="d-flex flex-wrap justify-content-between">
               <span>
                 상품문의 제목 입니다.
@@ -80,8 +80,8 @@
           </div>
       </div>
       <!-- 2번 -->
-      <div class="card2">
-        <button class="container-sm container-fluid" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse" style="height: 80px;">
+      <div class="card">
+        <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
           <div class="d-flex flex-wrap justify-content-between">
             <span>
               상품문의 제목 입니다.
@@ -106,8 +106,8 @@
         </div>
     </div>
     <!-- 3번 -->
-    <div class="card3">
-      <button class="container-sm container-fluid" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse" style="height: 80px;">
+    <div class="card">
+      <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
         <div class="d-flex flex-wrap justify-content-between">
           <span>
             상품문의 제목 입니다.
