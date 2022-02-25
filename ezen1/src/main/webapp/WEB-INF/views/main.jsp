@@ -15,6 +15,8 @@
 <body>
 
 <c:import url="header.jsp"></c:import>
+
+
     <section>
         <!-- main container -->
         <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center pl-0 pr-0" style="max-width: 520px; margin-top: 60px;">
@@ -50,6 +52,7 @@
         
         </div>
         </section>
+        
 
 <c:import url="footer.jsp"></c:import>
 <c:import url="nav.jsp"></c:import>
@@ -57,5 +60,6 @@
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
