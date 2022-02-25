@@ -9,8 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
     integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-  <link rel="stylesheet" href="/mock_html/css/custom.css">
-  <script src="/mock_html/js/main.js"></script>
+  <link rel="stylesheet" href="/css/custom.css">
   <style>
     body .dep {
       display: none;
@@ -30,7 +29,7 @@
     nav div .review:hover,
     nav div .inquiry:hover {
       background-color: aliceblue;
-      transition: background-color .5s;
+      transition: background-color 0.7s;
       cursor: pointer;
     }
 
@@ -97,17 +96,6 @@
       background-color: dimgrey;
     }
   </style>
-  <script>
-    function setMenu(_type) {
-      var types = document.querySelectorAll("div .navMenu div");
-      types.forEach(function (type) {
-        type.classList.remove('on');
-      });
-      document.querySelector("div .navMenu div." + _type).classList.add("on");
-      document.querySelector("main").className = _type;
-    }
-
-  </script>
 </head>
 
 <body>
@@ -117,7 +105,7 @@
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0">
       <div class="col-2 my-3">
-        <a href="goodsList"><img src="/mock_html/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
+        <a href="goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
             width="30px" height="30px"></a>
       </div>
       <div class="col-10 my-3 py-1 pr-5 text-center font-weight-bold">
@@ -126,7 +114,7 @@
     </div>
     <!--상품 상세보기 이미지-->
     <div class=" mx-0 px-0">
-      <img src="/mock_html//img//goods/candle/Candle01_01.jpeg" alt="" class="img-fluid" width="360px" height="240px">
+      <img src="/img//goods/candle/Candle01_01.jpeg" alt="" class="img-fluid" width="360px" height="240px">
     </div>
     <!--상품 상세보기 타이틀-->
     <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
@@ -176,11 +164,11 @@
     <main class="info">
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
-          <img src="/mock_html/img/goods/candle/Candle_01.jpeg" alt="" class="img-fluid" style="width: 264px;">
+          <img src="/img/goods/candle/Candle_01.jpeg" alt="" class="img-fluid" style="width: 264px;">
           <!--구매하기버튼/장바구니 아이콘-->
           <div class="col-12 my-2">
             <!--장바구니 버튼을 누르면 장바구니 페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <img src="/mock_html/img/icon/장바구니_큰아이콘.png" class="goodsDetailCartIcon"
+            <img src="/img/icon/장바구니_큰아이콘.png" class="goodsDetailCartIcon"
               onclick="location.href='toShoppingCartAction?goods_name={}' " style="width: 40px; height: 40px;">
             <!--구매하기 버튼을 누르면 구매 페이지로 이동하고 구매페이지에서 해당상품 페이지에 보고있던 상품이 추가된다-->
             <button type="submit" class="btn btn-primary goodsDeatailPurchaseButton" onclick="location.href='purchaseList?goodsname={}' ">구매하기</button>
@@ -197,7 +185,7 @@
             </div>
             <!--이미지 div-->
             <div class="goodsDetailReviewImgBox" style="height: 150px;">
-              <img src="/mock_html/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="" style="width: 150px;">
+              <img src="/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="" style="width: 150px;">
             </div>
             <!--별점div-->
             <div style="font-size: 8px;">
@@ -215,7 +203,7 @@
             </div>
             <!--이미지 div-->
             <div class="goodsDetailReviewImgBox" style="height: 150px;">
-              <img src="/mock_html/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="" style="width: 150px;">
+              <img src="/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="" style="width: 150px;">
             </div>
             <!--별점div-->
             <div style="font-size: 8px;">
@@ -239,7 +227,7 @@
                   <button class="btn btn-block text-left d-flex flex-row justify-content-between mb-3" type="button"
                     data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
                     style="font-size: 14px;">
-                    <span>제목</span><img src="/mock_html/img/icon/down.png" alt="" class="img-fluid"
+                    <span>제목</span><img src="/img/icon/down.png" alt="" class="img-fluid"
                       style="width: 25px; height: 25px;">
                   </button>
                 </h2>
@@ -268,7 +256,7 @@
       <div class="d-flex flex-column border bg-white mx-auto goodsDetailInquiryPop">
         <!--X아이콘-->
         <div class="d-flex justify-content-end goodsDetailCrossIconBox">
-          <img src="/mock_html/img/icon/cross.png" alt="" class="goodsDetailCrossIconImg"
+          <img src="/img/icon/cross.png" alt="" class="goodsDetailCrossIconImg"
             onclick="popupHideAndShow('goodDetailInquiryPop')" style="width:30px; height: 30px;">
         </div>
         <div class="goodsDetailInquiryPopBox1 mr-3 mb-4 ml-3">
@@ -304,6 +292,20 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
     crossorigin="anonymous"></script>
+    <!-- main.js -->
+    <script src="/js/main.js"></script>
+    <!-- show info , reviw , inquiry -->
+    <script>
+      function setMenu(_type) {
+        var types = document.querySelectorAll("div .navMenu div");
+        types.forEach(function (type) {
+          type.classList.remove('on');
+        });
+        document.querySelector("div .navMenu div." + _type).classList.add("on");
+        document.querySelector("main").className = _type;
+      }
+  
+    </script>
 </body>
 
 </html>
