@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nav</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="styleshhet" href="/css/custom.css">
+</head>
+<body>
+    <nav>
+        <!-- container -->
+            <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center fixed-bottom border border-dark-50 bg-white" style="max-width: 520px; height: 60px;">
+            <!-- top scroll 버튼 -->
+                <div class="mx-auto bg-white border border-dark-50 rounded position-absolute" onclick="javascript:window.scrollTo(0,0)" style="right: 12px;bottom: 82px; cursor: pointer;">
+                    <img src="/img/icon/chevron.png" alt="위로가기" width="35px" height="35px">
+                </div>
+    
+            <!-- icon container 4개 -->
+                <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='main'" style="cursor: pointer;">
+                    <img class="mx-auto" src="/img/icon/home.png" alt="홈으로" width="25px" height="25px" >
+                    <span class="text-dark"style="font-size: 11px;">홈</span>
+                </div>
+                
+                <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" id="slide_toggle"  style="cursor: pointer;">
+                    <img class="mx-auto" src="/img/icon/information.png" alt="카테고리" width="25px" height="25px" >
+                    <span class="text-dark"style="font-size: 11px;">카테고리</span>
+                </div>  
+    
+                <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='main'" style="cursor: pointer;">
+                    <img class="mx-auto" src="/img/icon/application.png" alt="사이트맵" width="25px" height="25px" >
+                    <span class="text-dark"style="font-size: 11px;">사이트맵</span>
+                </div>  
+    
+                <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='main'" style="cursor: pointer;">
+                    <img class="mx-auto" src="/img/icon/my.png" alt="마이페이지" width="25px" height="25px" >
+                    <span class="text-dark"style="font-size: 11px;">마이페이지</span>
+                </div>  
+            <!-- 카테고리버튼 슬라이드업 -->
+                <div class="border border-dark-50 position-absolute bg-white" id="cat_slideup" style="width: 80px; left: 28%; bottom: 60px;display: none;">
+    
+                    <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href=캔들주소">캔들</div>
+                    <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href=워머주소">캔들워머</div>
+                    <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href=디퓨저주소">디퓨저</div>
+                    <div class="text-center border-bottom border-dark-50"  style="height: 40px;line-height: 40px;" onclick="location.href=비누주소">비누</div>
+    
+                </div>
+            
+            </div>
+        </nav>
+
+<!-- bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+<!-- custom js -->
+<script>
+//  카테고리 슬라이드 업
+    $(function(){
+    var hideContainer = $("#cat_slideup");
+    $("#slide_toggle").click(function(){
+          hideContainer.slideToggle(600);
+        });
+})
+</script>
+</body>
+</html>
