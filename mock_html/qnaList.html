@@ -12,7 +12,7 @@
 </head>
 <body>
   <!-- container -->
-  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px;">
     <!-- 타이틀 -->
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
       <!-- 뒤로가기 버튼 -->
@@ -85,7 +85,7 @@
     </div>
 
     <!-- 상품 문의 답글 팝업 -->
-    <div class="position-absolute d-none bg-white border border-dark-50 rouned w-100" id="qna_reply_popup" style="top: 115px; left: 10px; z-index: 1100;">
+    <div class="position-absolute d-none bg-white border border-dark-50 rouned w-100" id="qna_reply_popup" style="top: 115px; left: 10px; z-index: 1100; max-width: 520px;">
       <!-- 닫기 버튼 -->
       <div class="d-flex justify-content-end">
         <img src="/img/icon/cross.png" alt="닫기 버튼" width="30px" height="30px" style="cursor: pointer;" onclick="popupHideAndShow(target ='qna_reply_popup')">
@@ -104,7 +104,7 @@
         <input type="hidden" name="question_isreplied" value="question_isreplied">
       <!-- 내용 -->
       <div>
-        <textarea name="question_reply" placeholder="내용을 입력해주세요" cols="30" rows="10" class="border border-dark-50 rouned nullcheck" style="width: 300px; height: 100px; font-size: 14px; padding: 2px 15px;"></textarea>
+        <textarea name="question_reply" placeholder="내용을 입력해주세요" cols="30" rows="20" class="border border-dark-50 rouned nullcheck" style="width: 300px; height: 100px; font-size: 14px; padding: 2px 15px;resize: none;"></textarea>
       </div>
       <!-- 확인 버튼 -->
       <div class="d-flex align-items-center justify-content-center">
@@ -135,7 +135,7 @@
         <input type="hidden" name="onetoone_isreplied" value="onetoone_isreplied">
       <!-- 내용 -->
       <div>
-        <textarea name="onetoone_reply" placeholder="내용을 입력해주세요" cols="30" rows="10" class="border border-dark-50 rouned nullcheck" style="width: 300px; height: 100px; font-size: 14px; padding: 2px 15px;"></textarea>
+        <textarea name="onetoone_reply" placeholder="내용을 입력해주세요" cols="30" rows="20" class="border border-dark-50 rouned nullcheck" style="width: 300px; height: 100px; font-size: 14px; padding: 2px 15px; resize: none;"></textarea>
       </div>
       <!-- 확인 버튼 -->
       <div class="d-flex align-items-center justify-content-center">
