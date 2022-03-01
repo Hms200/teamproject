@@ -1,19 +1,102 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>goodsDetail</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/custom.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/custom.css">
+    <style>
+      body .dep {
+    display: none;
+  }
+  main.info .dep._info,
+  main.review .dep._review,
+  main.inquiry .dep._inquiry {
+    display: block;
+  }
+  div .on {
+    border-bottom: 2px solid rgb(161, 159, 159);
+  }
+  nav div .info:hover,
+  nav div .review:hover,
+  nav div .inquiry:hover {
+    background-color: aliceblue;
+    transition: background-color 0.7s;
+    cursor: pointer;
+  }
+  .accordionGoodsDetail {
+    width: 300px;
+  }
+  .cardHeaderGoodsDetail {
+    height: 55px;
+  }
+  .goodsDetailCrossIconImg {
+    cursor: pointer;
+  }
+  /*팝업의 위치설정css 설계서에는 t60 l10 이였는데 b30으로 지정 추후에 결정*/
+  #goodDetailInquiryPop {
+    position: absolute;
+    bottom: 30px;
+  }
+  .goodsDetailCartIcon {
+    cursor: pointer;
+  }
+  .goodsDetailOption{
+    width: 200px;
+  }
+  .goodsDeatailMenu{
+    width: 50px;
+  }
+  .goodsDetailDivisionLine{
+    height: 20px;
+  }
+  .goodsDeatailPurchaseButton{
+    width: 280px;
+  }
+  .goodsDetailReviewImgBox{
+    height: 150px;
+  }
+  .goodsDetailInquiryPop{
+    border-radius: 6px; width: 340px; height: 320px;
+  }
+  .goodsDetailCrossIconBox{
+    height: 30px;
+  }
+  .goodsDetailInquiryPopBox1{
+    width: 300px; height: 260px;
+  }
+  .goodsDetailInquiryPopBox2{
+    width: 300px; height: 25px;
+  }
+  .goodsDetailInquiryPopDate{
+    height: 20px;
+  }
+  .goodsDetailInquiryPopTitle{
+    border-radius: 6px; height: 40px;
+  }
+  .goodsDetailInquiryPopContent{
+    border-radius: 6px; height: 100px;
+  }
+  .goodsDetailInquiryPopCancle{
+    width: 100px; height: 40px;
+  }
+  .goodsDetailInquiryPopSubmit{
+    width: 185px; height: 40px;
+    background-color: dimgrey;
+  }
+    </style>
 </head>
-
 <body>
-  <div
+
+<c:import url="../header.jsp"></c:import>
+
+<div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
     style="max-width: 520px;">
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
@@ -200,15 +283,15 @@
       </div>
     </div>
   </div>
-  <!-- bootstrap js -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-    crossorigin="anonymous"></script>
-    <!-- main.js -->
-    <script src="/js/main.js"></script>
-    <!-- show info , reviw , inquiry -->
+
+    
+<c:import url="../footer.jsp"></c:import>
+<c:import url="../nav.jsp"></c:import>
+
+
+<!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
     <script>
       function setMenu(_type) {
         var types = document.querySelectorAll("div .navMenu div");
@@ -220,5 +303,4 @@
       }
     </script>
 </body>
-
 </html>
