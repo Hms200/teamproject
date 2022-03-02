@@ -5,5 +5,16 @@
     
 <mapper namespace="com.ezen.dao.IcartDAO">
 
+	<select id="getCartIsDone">
+		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=0
+	</select>
 
+	<select id="getNumberOfCartIsNotDone">
+		SELECT COUNT(*) FROM MALL_CART WHERE USER_IDX = #{user_idx} AND CART_ISDONE = 1
+	</select>
+	
+	<select id="getCartIsNotDone">
+		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=1
+	</select>
+	
 </mapper>
