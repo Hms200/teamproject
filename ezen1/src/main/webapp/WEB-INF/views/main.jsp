@@ -50,6 +50,7 @@
                 파일 업로드 서비스 테스트
                 <form method="post" action="fileuploadetest" enctype="multipart/form-data">
                 <input type="file" name="filetest">
+                <input type="text" name="dummy">
                	<input type="submit" value="전송">
                 </form>
             </div>

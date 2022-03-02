@@ -62,7 +62,7 @@ public class FileService {
 			System.out.println("업로드 실패 파일: " + multipartFile.getOriginalFilename());
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
-		return copyLoacation.toString();
+		return copyLoacation.toString().replace("src/main/resources/static/img/", "/img/");
 	}
 
 }
