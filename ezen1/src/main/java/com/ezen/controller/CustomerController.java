@@ -36,19 +36,9 @@ public class CustomerController {
 	}
 	
 //	FAQ 작성
-	@RequestMapping("faqWriteAction")
-	@ResponseBody
-	public String faqWriteAction(@RequestBody FaQ FaQ) {
-	
-		int result = customerService.FaqWrite(FaQ);
-	
-		if( result == 1) {
-			return "<script>alert('작성 성공'); location.href='/customer/faq';</script>";
-		}
-		else {
-			return "<script>alert('작성 실패'); history.back(-1);</script>";
-		}
-	}
+
+
+
 
 
 }

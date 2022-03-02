@@ -12,11 +12,6 @@ public class CustomerService {
 	@Autowired
 	IfaqDAO faqDao;
 	
-	public int FaqWrite(FaQ faQ) {
-		
-		int result = faqDao.FaqWrite(faQ);
-		
-		return result;
-	}
+
 	
 }
