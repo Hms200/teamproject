@@ -14,9 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 // application.properties에 다음과 같이 추가 해 주세요.
 //#File uploade service
-//app.goods.img.dir=/src/main/resources/static/img/uploadedGoodsImgs
-//app.reviews.img.dir=/src/main/resources/static/img/uploadedReviewImgs
-//app.thumb.img.dir=/src/main/resources/static/img/uploadedGoodsThumb
+//app.goods.img.dir=src/main/resources/static/img/uploadedGoodsImgs
+//app.reviews.img.dir=src/main/resources/static/img/uploadedReviewImgs
+//app.thumb.img.dir=src/main/resources/static/img/uploadedGoodsThumb
 @Service
 public class FileService {
 
@@ -52,17 +52,17 @@ public class FileService {
 		}
 		
 		// 파일 저장 경로 
-		Path copyLoacation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+		Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
 		
-		// input stream 으로 파일 가져와서 copyLoacation에 저장. 기존에 존재하는 파일이면 replace
+		// input stream 으로 파일 가져와서 copyLocation에 저장. 기존에 존재하는 파일이면 replace
 		try {
-			Files.copy(multipartFile.getInputStream(), copyLoacation, StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(multipartFile.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("업로드 실패 파일: " + multipartFile.getOriginalFilename());
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
-		return copyLoacation.toString().replace("src/main/resources/static/img/", "/img/");
+		return copyLocation.toString().replace("src/main/resources/static/img/", "/img/");
 	}
 
 }
