@@ -1,16 +1,21 @@
-<!-- 완성? -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 문의내역</title>
+    <title>문의내역</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
+
+<c:import url="header.jsp"></c:import>
+
   <!-- container -->
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
     <!-- 타이틀 -->
@@ -33,7 +38,7 @@
           <a href="/customer/myAsk" class="text-primary col-4">내 문의내역</a>
         </span>
         <span>
-          <a href="/customer/akc" class="text-black-50 col-4">문의하기</a>
+          <a href="/customer/ask" class="text-black-50 col-4">문의하기</a>
         </span>
       </nav>
     </div>
@@ -134,10 +139,13 @@
       </div>
     </div>
   </div>
-<!-- bootstrap js -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+<c:import url="footer.jsp"></c:import>
+<c:import url="nav.jsp"></c:import>
+
+
+<!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-<!-- main js -->
 <script src="/js/main.js"></script>
 </body>
 </html>

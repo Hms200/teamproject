@@ -1,4 +1,6 @@
-<!-- 완성? -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +13,10 @@
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
-  <!-- container -->
+
+<c:import url="header.jsp"></c:import>
+
+<!-- container -->
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
     <!-- 타이틀 -->
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
@@ -58,10 +63,13 @@
         </div>
       </form>
   </div>
-<!-- bootstrap js -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+<c:import url="footer.jsp"></c:import>
+<c:import url="nav.jsp"></c:import>
+
+
+<!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-<!-- main js -->
 <script src="/js/main.js"></script>
 </body>
 </html>
