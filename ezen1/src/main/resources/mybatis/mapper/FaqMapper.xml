@@ -5,5 +5,21 @@
     
 <mapper namespace="com.ezen.dao.IfaqDAO">
 
+	<select id="getFaqList" resultType="com.ezen.dto.FaQ">
+		SELECT * FROM mall_faq ORDER BY faq_idx DESC
+	</select>
+	
+	<select id="getFaqListByCat" resultType="com.ezen.dto.FaQ">
+		SELECT * FROM mall_faq WHERE faq_cat DESC
+	</select>
+	
+	<insert id="FaqWrite" parameterType="com.ezen.dto.FaQ">
+		INSERT INTO mall_faq VALUES
+		(mall_faq_seq.nextval, #{faq_title}, #{faq_contents}, #{faq_cat})
+	</insert>
+	
+	<delete id="faqDeleteByFaqIdx">
+		DELETE FROM mall_faq WHERE faq_idx=#{faq_idx}
+	</delete>
 
 </mapper>
