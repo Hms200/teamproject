@@ -5,5 +5,14 @@
     
 <mapper namespace="com.ezen.dao.IquestionDAO">
 
-
+	<select id="getQuestionList" resultType="com.ezen.dto.Question">
+		SELECT * FROM mall_question ORDER BY question_idx DESC
+	</select>
+	
+	<insert id="insertQna" parameterType="com.ezen.dto.Question">
+		INSERT INTO mall_question VALUES
+		(mall_question_seq.nextval, #{user_idx}, #{goods_idx}, #{question_title},#{question_contents}, sysdate,
+		 #{question_isreplied})
+	</insert>
+	
 </mapper>

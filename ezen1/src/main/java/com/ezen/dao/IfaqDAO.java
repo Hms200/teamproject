@@ -9,7 +9,7 @@ import com.ezen.dto.FaQ;
 @Mapper
 public interface IfaqDAO {
 	public ArrayList<FaQ> getFaqList();
-	public ArrayList<FaQ> getFaqListByCat(String cat);
-	public int FaqWrite(FaQ FaQ);
+	public ArrayList<FaQ> getFaqListByCat();
+	public int FaqWrite();
 	public int faqDeleteByFaqIdx();
 }

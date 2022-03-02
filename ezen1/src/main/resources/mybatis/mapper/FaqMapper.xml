@@ -13,9 +13,13 @@
 		SELECT * FROM mall_faq WHERE faq_cat DESC
 	</select>
 	
-	<select id="FaqWrite" parameterType="com.ezen.dto.FaQ">
+	<insert id="FaqWrite" parameterType="com.ezen.dto.FaQ">
 		INSERT INTO mall_faq VALUES
 		(mall_faq_seq.nextval, #{faq_title}, #{faq_contents}, #{faq_cat})
-	</select>
+	</insert>
+	
+	<delete id="faqDeleteByFaqIdx">
+		DELETE FROM mall_faq WHERE faq_idx=#{faq_idx}
+	</delete>
 
 </mapper>

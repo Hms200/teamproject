@@ -16,7 +16,6 @@ import com.ezen.dto.FaQ;
 import com.ezen.service.CustomerService;
 
 @Controller
-@RequestMapping("customer")
 public class CustomerController {
 	
 	@Autowired
@@ -24,29 +23,32 @@ public class CustomerController {
 	@Autowired
 	private IfaqDAO faqDao;
 	
-//	FAQ 작성
-	@RequestMapping("faqWriteAction")
-	@ResponseBody
-	public String faqWriteAction(@RequestBody FaQ FaQ) {
-	
-	int result = customerService.FaqWrite(FaQ);
-	
-	if( result == 1) {
-		return "<script>alert('작성 성공'); location.href='/customer/faq';</script>";
-	}
-	else {
-		return "<script>alert('작성 실패'); history.back(-1);</script>";
-	}
-	}
-
 //	FAQ 전체 리스트
 	@RequestMapping("/customer")
 	public String faq( Model model, HttpServletRequest request) {
 		List<FaQ> list = faqDao.getFaqList();
 		model.addAttribute("list", list);
+		model.addAttribute("customer", "customer/faq.jsp");
 		
 		System.out.println(list);
 		
 		return "/costomer/faq";
 	}
+	
+//	FAQ 작성
+	@RequestMapping("faqWriteAction")
+	@ResponseBody
+	public String faqWriteAction(@RequestBody FaQ FaQ) {
+	
+		int result = customerService.FaqWrite(FaQ);
+	
+		if( result == 1) {
+			return "<script>alert('작성 성공'); location.href='/customer/faq';</script>";
+		}
+		else {
+			return "<script>alert('작성 실패'); history.back(-1);</script>";
+		}
+	}
+
+
 }
