@@ -17,7 +17,7 @@
   <div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
     style="max-width: 520px;">
-    <form action="productRegisterAction" name="productRegisterForm" method="post" onsubmit="return nullChecker()" >
+    <form action="productRegisterAction" class="w-100" name="productRegisterForm" method="post" onsubmit="return nullChecker()" >
     <div class="d-flex flex-column bg-white border border-dark-50 rounded col-12"
       style="height: auto;">
       <div class="d-flex justify-content-end w-100" style="height: 30px;">
@@ -28,20 +28,20 @@
       </p>
       <div class="d-flex felx-row justify-content-around mb-3 form-group">
         <span class="font-weight-bold text-dark" style="font-size: 14px;">상품이름</span>
-        <input type="text" name="goods_name" class="nullcheck form-control" placeholder="상품이름을 입력해주세요" style="font-size: 14px;">
+        <input type="text" name="goods_name" class="nullcheck form-control col-7" placeholder="상품이름을 입력해주세요" style="font-size: 14px;">
         <input type="hidden" name="goods_idx">
       </div>
       <div class="d-flex felx-row justify-content-around mb-3 form-group">
         <span class="font-weight-bold text-dark" style="font-size: 14px;">정품가격</span>
-        <input type="text" name="goods_price" class="nullcheck form-control" placeholder="상품가격을 입력해주세요" style="font-size: 14px;">
+        <input type="text" name="goods_price" class="nullcheck form-control col-7" placeholder="상품가격을 입력해주세요" style="font-size: 14px;">
       </div>
       <div class="d-flex felx-row justify-content-around mb-3 form-group">
         <span class="font-weight-bold text-dark" style="font-size: 14px;">판매수량</span>
-        <input type="text" name="goods_purchased" class="nullcheck form-control" placeholder="상품수량을 입력해주세요" style="font-size: 14px;">
+        <input type="text" name="goods_purchased" class="nullcheck form-control col-7" placeholder="상품수량을 입력해주세요" style="font-size: 14px;">
       </div>
       <div class="d-flex felx-row justify-content-between mx-4 mb-4">
-        <span class="font-weight-bold " style="font-size: 14px;">옵션등록</span>
-        <select class="text-dark form-control" name="goods_option" id="" style="font-size: 14px;">
+        <span class="font-weight-bold" style="font-size: 14px;">옵션등록</span>
+        <select class="text-dark form-control col-7" name="goods_option" id="" style="font-size: 14px;">
           <option selected value="">옵션select</option>
           <option value="">옵션1</option>
         </select>
@@ -80,8 +80,8 @@
           style="width: 76px; height: 27px; font-size: 12px;">파일선택</label>
       </div>
       <div class="d-flex flex-row justify-content-between my-3">
-          <button type="button" class="btn btn-dark text-light ml-3" style="width: 140px; height: 40px; border-radius: 6px;">취소</button>
-          <button class="btn btn-primary text-light mr-3" style="width: 140px; height: 40px; border-radius: 6px;">확인</button>
+          <button type="button" class="btn btn-dark text-light ml-3 col-5" style="height: 40px; border-radius: 6px;">취소</button>
+          <button class="btn btn-primary text-light mr-3 col-5" style="height: 40px; border-radius: 6px;">확인</button>
       </div>
     </div>
   </form>
