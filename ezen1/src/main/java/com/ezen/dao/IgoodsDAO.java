@@ -10,10 +10,10 @@ import com.ezen.dto.Goods;
 public interface IgoodsDAO {
 
 	// 썸네일 가져오기
-	public String getGoodsThumb();
+	public String getGoodsThumb(int goods_idx);
 	
 	// 상품명 가져오기
-	public String getGoodsName();
+	public String getGoodsName(int goods_idx);
 	
 	// 해당 검색어를 포함하는 모든 상품 정보 가져오기
 	public ArrayList<Goods> getGoodsListBySearch(String searchKeyword);

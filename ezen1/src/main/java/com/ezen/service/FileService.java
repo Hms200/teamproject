@@ -21,15 +21,15 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService {
 
 	// 상품이미지 업로드 경로
-	@Value("{app.goods.img.dir}")
+	@Value("${app.goods.img.dir}")
 	private String goodsImgUploadDir;
 	
 	// 리뷰이미지 업로드 경로
-	@Value("{app.reviews.img.dir}")
+	@Value("${app.reviews.img.dir}")
 	private String reviewImgUploadDir;
 	
 	// thumbnail 이미지 업로드 경로
-	@Value("{app.thumb.img.dir}")
+	@Value("${app.thumb.img.dir}")
 	private String thumbImgUploadDir;
 	
 	

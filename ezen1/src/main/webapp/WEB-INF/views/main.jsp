@@ -47,7 +47,11 @@
 
             <!-- 카드영역 -->
             <div class="w-100" style="height: 700px;">
-                카드영역
+                파일 업로드 서비스 테스트
+                <form method="post" action="fileuploadetest" enctype="multipart/form-data">
+                <input type="file" name="filetest">
+               	<input type="submit" value="전송">
+                </form>
             </div>
         
         </div>
