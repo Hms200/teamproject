@@ -32,7 +32,7 @@ public class CustomerController {
 		
 		System.out.println(list);
 		
-		return "/costomer/faq";
+		return "customer/faq";
 	}
 	
 //	FAQ 작성
