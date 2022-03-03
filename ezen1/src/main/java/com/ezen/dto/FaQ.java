@@ -15,7 +15,7 @@ public class FaQ {
 
 	private int faq_idx;
 	private String faq_title;
-	private String faq_content;
+	private String faq_contents;
 	private String faq_cat;
 	
 	@Builder
@@ -23,7 +23,7 @@ public class FaQ {
 		super();
 		this.faq_idx = faq_idx;
 		this.faq_title = faq_title;
-		this.faq_content = faq_content;
+		this.faq_contents = faq_contents;
 		this.faq_cat = faq_cat;
 	}
 	

@@ -32,13 +32,13 @@
     <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center text-decoration-none text-center border-bottom font-weight-bold" style="font-size: 16px; height: 90px;">
       <nav>
         <span>
-          <a href="customer/faq" class="text-primary col-4">FAQ</a>
+          <a href="" class="text-primary col-4">FAQ</a>
         </span>
         <span>
-          <a href="customer/myAsk" class="text-black-50 col-4">내 문의내역</a>
+          <a href="myAsk" class="text-black-50 col-4">내 문의내역</a>
         </span>
         <span>
-          <a href="customer/ask" class="text-black-50 col-4">문의하기</a>
+          <a href="ask" class="text-black-50 col-4">문의하기</a>
         </span>
       </nav>
     </div>
@@ -46,24 +46,24 @@
     <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
       <form name="faqCatForm" method="post" action="faqCatAction">
       <span>
-        <select name="faqCat" onchange="submit();" style="width: 100px; height: 50px; font-size: 14px;">
+        <select name="faq_Cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의종류</option>
-          <option value="1">상품문의</option>
-          <option value="2">배송문의</option>
-          <option value="3">결제문의</option>
+          <option value="상품문의">상품문의</option>
+          <option value="배송문의">배송문의</option>
+          <option value="결제문의">결제문의</option>
         </select>
       </span>
       </form>
     </div>
     <!-- faq아코디언 -->
-    <c:forEach var="dto" items="${ list }">
+    <c:forEach var="dto" items="${ getFaqList }">
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 16px;">
       <!-- 1번 -->
       <div class="card my-1">
           <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
             <div class="d-flex justify-content-between">
               <span>
-                ${dto.faq_name}
+                ${dto.faq_title}
               </span>
               <span>
                 <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">

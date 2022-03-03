@@ -32,10 +32,10 @@
     <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center text-decoration-none text-center border-bottom font-weight-bold" style="font-size: 16px; height: 90px;">
       <nav>
         <span>
-          <a href="/customer" class="text-black-50 col-4">FAQ</a>
+          <a href="/customer/faq" class="text-black-50 col-4">FAQ</a>
         </span>
         <span>
-          <a href="/customer/myAsk" class="text-primary col-4">내 문의내역</a>
+          <a href="" class="text-primary col-4">내 문의내역</a>
         </span>
         <span>
           <a href="/customer/ask" class="text-black-50 col-4">문의하기</a>
@@ -48,9 +48,9 @@
       <span>
         <select name="myAskCat" onchange="submit();" style="width: 100px; height: 50px; font-size: 14px;">
           <option selected>문의종류</option>
-          <option value="1">상품문의</option>
-          <option value="2">배송문의</option>
-          <option value="3">결제문의</option>
+          <option value="상품문의">상품문의</option>
+          <option value="배송문의">배송문의</option>
+          <option value="결제문의">결제문의</option>
         </select>
       </span>
     </form>
