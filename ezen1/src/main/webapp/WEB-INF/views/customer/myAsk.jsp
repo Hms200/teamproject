@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<c:import url="header.jsp"></c:import>
+<c:import url="../header.jsp"></c:import>
 
   <!-- container -->
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
@@ -32,7 +32,7 @@
     <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center text-decoration-none text-center border-bottom font-weight-bold" style="font-size: 16px; height: 90px;">
       <nav>
         <span>
-          <a href="/customer/faq" class="text-black-50 col-4">FAQ</a>
+          <a href="/customer" class="text-black-50 col-4">FAQ</a>
         </span>
         <span>
           <a href="/customer/myAsk" class="text-primary col-4">내 문의내역</a>
@@ -140,8 +140,8 @@
     </div>
   </div>
     
-<c:import url="footer.jsp"></c:import>
-<c:import url="nav.jsp"></c:import>
+<c:import url="../footer.jsp"></c:import>
+<c:import url="../nav.jsp"></c:import>
 
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->

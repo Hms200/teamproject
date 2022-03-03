@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<c:import url="header.jsp"></c:import>
+<c:import url="../header.jsp"></c:import>
 
 <!-- container -->
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
@@ -64,8 +64,8 @@
       </form>
   </div>
     
-<c:import url="footer.jsp"></c:import>
-<c:import url="nav.jsp"></c:import>
+<c:import url="../footer.jsp"></c:import>
+<c:import url="../nav.jsp"></c:import>
 
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->

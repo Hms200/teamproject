@@ -23,19 +23,25 @@ public class CustomerController {
 	@Autowired
 	private IfaqDAO faqDao;
 	
-//	FAQ 전체 리스트
+	//자주묻는질문(FAQ)
 	@RequestMapping("/customer")
-	public String faq( Model model, HttpServletRequest request) {
-		List<FaQ> list = faqDao.getFaqList();
-		model.addAttribute("list", list);
-		model.addAttribute("customer", "customer/faq.jsp");
-		
-		System.out.println(list);
-		
+	public String faq() {
 		return "customer/faq";
 	}
 	
-//	FAQ 작성
+	//내문의내역(myAsk)
+	@RequestMapping("/customer/myAsk")
+	public String myAsk() {
+		return "customer/myAsk";
+	}
+	
+	//문의하기(ask)
+	@RequestMapping("/customer/ask")
+	public String ask() {
+		return "customer/ask";
+	}
+	
+	//FAQ 작성
 
 
 
