@@ -11,5 +11,5 @@ public interface IgoodsIMGSDAO {
 	public ArrayList<String> getGoodsImgs(int goods_idx);
 	
 	// 해당 goods_idx를 가진 행에 Img 저장 경로를 insert
-	public int insertGoodsImgs(int goods_idx);
+	public int insertGoodsImgs(int goods_idx, String goods_img);
 }
