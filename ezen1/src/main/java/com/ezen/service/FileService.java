@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -50,9 +51,10 @@ public class FileService {
 		}else {
 			return "f 잘못된 경로 지정";
 		}
-		
+		// 파일명 생성기
+		String newName = fileNameGenerator(multipartFile.getOriginalFilename());
 		// 파일 저장 경로 
-		Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+		Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(newName));
 		
 		// input stream 으로 파일 가져와서 copyLocation에 저장. 기존에 존재하는 파일이면 replace
 		try {
@@ -63,6 +65,14 @@ public class FileService {
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
 		return copyLocation.toString().replace("src/main/resources/static/img/", "/img/");
+	}
+	
+	// 파일명 생성기. 같은 이름의 파일이 업로드되어 덮어쓰기 되는것 방지용
+	// original File Name 앞에 난수생성기로 2자리 숫자 생성하여 붙임
+	public String fileNameGenerator(String originalFileName) {
+		Random random = new Random();
+		String randomNum = String.valueOf(random.nextInt(100));
+		return randomNum + originalFileName;
 	}
 
 }
