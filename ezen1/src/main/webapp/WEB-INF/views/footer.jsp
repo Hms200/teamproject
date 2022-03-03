@@ -17,7 +17,7 @@
                     무통장입금 : 0000-0000-0000(국민)
                 </div>
                 <!-- 회사소개 링크버튼 -->
-                <div class="border border-dark-50 rounded-pill my-2" style="font-size: 10px; width: 90px; height: 22px; line-height: 22px; cursor: pointer;" onclick="loaction.href='aboutUs'">
+                <div class="border border-dark-50 rounded-pill my-2" style="font-size: 10px; width: 90px; height: 22px; line-height: 22px; cursor: pointer;" onclick="location.href='aboutUs'">
                     회사소개
                 </div>
                 <!-- copyright -->
