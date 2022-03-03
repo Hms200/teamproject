@@ -49,11 +49,14 @@ public class FileService {
 		}else if(cat.equals("thumb")){
 			uploadDir = thumbImgUploadDir;
 		}else {
-			return "f 잘못된 경로 지정";
+			return "f 잘못된 이미지 카테고리 지정";
 		}
+		
 		// 파일명 생성기
 		String newName = fileNameGenerator(multipartFile.getOriginalFilename());
+		
 		// 파일 저장 경로 
+		// File.separator 는 os마다 다른 경로구분문자를 알아서 넣어줌. cleanPath는 파일명의 지저분한 값들을 다 지워줌
 		Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(newName));
 		
 		// input stream 으로 파일 가져와서 copyLocation에 저장. 기존에 존재하는 파일이면 replace
@@ -68,10 +71,10 @@ public class FileService {
 	}
 	
 	// 파일명 생성기. 같은 이름의 파일이 업로드되어 덮어쓰기 되는것 방지용
-	// original File Name 앞에 난수생성기로 2자리 숫자 생성하여 붙임
+	// original File Name 앞에 난수생성기로 4자리 숫자 생성하여 붙임
 	public String fileNameGenerator(String originalFileName) {
 		Random random = new Random();
-		String randomNum = String.valueOf(random.nextInt(100));
+		String randomNum = String.valueOf(random.nextInt(10000));
 		return randomNum + originalFileName;
 	}
 
