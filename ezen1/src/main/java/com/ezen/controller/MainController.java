@@ -25,6 +25,8 @@ public class MainController {
 	public String main(HttpSession session, Model model) {
 //		int cartBedgeNum = session.getAttribute(String(cart));	
 //		model.addAttribute("cartBedgeNum", cartBedgeNum);
+		model = mainService.noticeForMain(model);
+		System.out.println(model.toString());
 		return "main";
 	}
 	

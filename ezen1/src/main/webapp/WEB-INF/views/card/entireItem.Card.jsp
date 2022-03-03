@@ -7,8 +7,9 @@
     <div class="mx-2 my-2 font-weight-bold">전체상품보기</div>
     <a href="goodsList" style="text-decoration: none;"><div style="font-size: 13px;">더보기<img src="/img/icon/right.png" alt="" style="width: 15px; height: 15px;"></div></a>
   </div>
-    <div class="d-flex flex-row justify-content-center">
-      <div class="d-flex flex-column mx-3 my-2 border">
+  
+    <div class="d-flex flex-row flex-nowrap px-0" style="overflow: auto; white-space: nowrap;">
+      <div class="d-flex flex-column mx-3 my-2 border rounded">
         <a href=""><img src="/img/goods/candle/Candle01_01.jpeg" alt="" style="width: 150px; height: 150px;"></a>
         <div class="text-center py-2">
           이름
@@ -28,6 +29,29 @@
           가격
         </div>
       </div>
+      
+      <div class="d-flex flex-column mx-3 my-2 border">
+        <a href=""><img src="/img/goods/candle/Candle01_01.jpeg" alt="" style="width: 150px; height: 150px;"></a>
+        <div class="text-center py-2">
+          이름
+        </div>
+        <div class="text-center py2">
+          가격
+        </div>
+      </div>
+      
+      <div class="d-flex flex-column mx-3 my-2 border">
+        <a href=""><img src="/img/goods/candle/Candle01_01.jpeg" alt="" style="width: 150px; height: 150px;"></a>
+        <div class="text-center py-2">
+          이름
+        </div>
+        <div class="text-center py2">
+          가격
+        </div>
+      </div>
+      
+      
+      
     </div>
     
     

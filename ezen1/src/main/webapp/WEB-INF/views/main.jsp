@@ -41,8 +41,23 @@
             </div>
 
             <!-- 공지사항 -->
-            <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3" onclick="location.href='notice'" style="font-size: 14px;">
-                [공지] 공지내용입니다.
+            <div id="carouselNotice" class="carousel slide w-100" data-ride="carousel">
+                <div class="carousel-inner">
+	                <div class="carousel-item active" data-interval="4000">
+	                    <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3" onclick="location.href='notice'" style="font-size: 14px;">
+	                		[공지] ${ noticeList[0].notice_title }
+	            		</div>
+	                </div>
+	                
+	                <c:forEach var="notice" items="${noticeList}" begin="1" step="1">
+	                <div class="carousel-item" data-interval="4000">
+	                    <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3" onclick="location.href='notice'" style="font-size: 14px;">
+	              		  [공지] ${ notice.notice_title }
+	            		</div>
+	                </div>
+	                </c:forEach>
+                
+                </div>
             </div>
 
             <!-- 카드영역 -->
@@ -51,8 +66,8 @@
              <c:import url="card/BestItems.Card.jsp"></c:import>
              <c:import url="card/MDpick.Card.jsp"></c:import>
              <c:import url="card/MonthDiscount.Card.jsp"></c:import>
-             <c:import url="card/entireItem.Card.jsp"></c:import>
              <c:import url="card/Reviews.Card.jsp"></c:import>
+             <c:import url="card/entireItem.Card.jsp"></c:import>
                 
             </div>
         
