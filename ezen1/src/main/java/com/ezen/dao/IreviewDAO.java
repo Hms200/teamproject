@@ -8,6 +8,9 @@ import com.ezen.dto.Review;
 
 @Mapper
 public interface IreviewDAO {
-
+	//goods_idx를 받아 MALL_REVIEW에서 해당 idx를 가진 모든 data를 가져옴.
 	public ArrayList<Review> getReviewList(int goods_idx);
+	
+	//review insert
+	public int insertReview(Review review);
 }
