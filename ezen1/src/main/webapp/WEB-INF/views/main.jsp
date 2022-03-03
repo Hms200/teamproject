@@ -46,13 +46,14 @@
             </div>
 
             <!-- 카드영역 -->
-            <div class="w-100" style="height: 700px;">
-                파일 업로드 서비스 테스트
-                <form method="post" action="fileuploadetest" enctype="multipart/form-data">
-                <input type="file" name="filetest">
-                <input type="text" name="dummy">
-               	<input type="submit" value="전송">
-                </form>
+            <div class="w-100">
+             
+             <c:import url="card/BestItems.Card.jsp"></c:import>
+             <c:import url="card/MDpick.Card.jsp"></c:import>
+             <c:import url="card/MonthDiscount.Card.jsp"></c:import>
+             <c:import url="card/entireItem.Card.jsp"></c:import>
+             <c:import url="card/Reviews.Card.jsp"></c:import>
+                
             </div>
         
         </div>

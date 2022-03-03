@@ -17,6 +17,8 @@
           가격
         </div>
       </div>
+      
+      
       <div class="d-flex flex-column mx-3 my-2 border">
         <a href=""><img src="/img/goods/candle/Candle01_01.jpeg" alt="" style="width: 150px; height: 150px;"></a>
         <div class="text-center py-2">
@@ -27,6 +29,9 @@
         </div>
       </div>
     </div>
+    
+    
+    
 
     <!-- 페이지 표시기 jsp변환시 링크수정! -->
     <div class="container row my-3 mx-auto">
