@@ -37,7 +37,7 @@ public interface IgoodsDAO {
 	public int getNewestGoodsIdx();
 	
 	// 해당 goods_idx를 가진 상품의 onEvent 값 변경
-	public int updateEvent(int goods_idx);
+	public int updateEvent(int goods_idx, int onEvent);
 	
 	// 해당 goods_idx를 가진 상품의 판매중 정보를 품절로 변경
 	public int updateGoodsStockSoldOut(int goods_idx);
@@ -46,7 +46,7 @@ public interface IgoodsDAO {
 	public int updateGoodsStockOrder(int stock);
 	
 	// 해당 goods_idx를 가진 상품의 goods_purchased를 증가시킴
-	public int updatePurchased(int goods_idx);
+	public int updatePurchased(int goods_idx, int cart_amount);
 	
 	// 해당 goods_idx를 가진 상품을 db에서 삭제
 	public int deleteGoods(int goods_idx);

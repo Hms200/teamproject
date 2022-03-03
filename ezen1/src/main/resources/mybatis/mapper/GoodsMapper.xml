@@ -9,5 +9,71 @@
 	<select id="getGoodsThumb" resultType="String">
 		SELECT goods_thumb FROM MALL_GOODS WHERE goods_idx = #{goods_idx}
 	</select>
-
+	
+	<!-- 상품명 가져오기 -->
+	<select id="getGoodsName" resultType="String">
+		SELECT goods_name FROM MALL_GOODS WHERE goods_idx = #{goods_idx}
+	</select>
+	
+	<!-- 해당 검색어를 포함하는 모든 상품 정보 가져오기 -->
+	<select id="getGoodsListBySearch" resultType="com.ezen.dto.Goods">
+		SELECT * FROM MALL_GOODS WHERE goods_name = '%'||#{searchKeyword}||'%'
+	</select>
+	
+	<!-- 해당 카테고리를 가진 모든 상품정보 가져오기 -->
+	<select id="getGoodsListByCat" resultType="com.ezen.dto.Goods">
+		SELECT * FROM MALL_GOODS WHERE goods_cat = #{cat}
+	</select>
+	
+	<!-- 해당 이벤트를 시행중인 모든 상품정보 가져오 -->
+	<select id="getGoodsListByOnEvnet" resultType="com.ezen.dto.Goods">
+		SELECT * FROM MALL_GOODS WHERE goods_onevent = #{onEvent}
+	</select>
+	
+	<!-- 등록된 모든 상품 정보 가져오 -->
+	<select id="getGoodsList" resultType="com.ezen.dto.Goods">
+		SELECT * FROM MALL_GOODS
+	</select>
+	
+	<!-- 해당 goods_idx를 가진 상품 정보 가져오 -->
+	<select id="getGoodsInfo" resultType="com.ezen.dto.Goods">
+		SELECT * FROM MALL_GOODS WHERE goods_idx = #{goods_idx}
+	</select>
+	
+	<!-- 상품 신규 등록 -->
+	<insert id="insertGoods" parameterType="com.ezen.dto.Goods">
+		INSERT INTO MALL_GOODS (goods_idx, goods_name, goods_price, goods_thumb, goods_cat, goods_stock, goods_onevent, goods_purchased, goods_detail, goods_onsale)
+			VALUES (mall_goods_seq.nextval, #{goods_name}, #{goods_price}, #{goods_thumb}, #{goods_cat}, #{goods_stock}, #{goods_onevent}, #{goods_purchased}, #{goods_detail}, #{goods_onsale})
+	</insert>
+	
+	<!-- 가장 최근 등록한 상품의 goods_idx가져오 -->
+	<select id="getNewestGoodsIdx" resultType="int">
+		SELECT MAX(goods_idx) FROM MALL_GOODS
+	</select>
+	
+	<!-- 해당 goods_idx를 가진 상품의 OnEvent값을 변경 -->
+	<update id="updateEvent">
+		UPDATE MALL_GOODS SET goods_onevent = #{onEvent} WHERE goods_idx = #{goods_idx}
+	</update>
+	
+	<!-- 해당 goods_idx를 가진 상품의 판매중 정보를 품절로 변경 -->
+	<update id="updateGoodsStockSoldOut">
+		UPDATE MALL_GOODS SET goods_onsale = 1 WHERE goods_idx = #{goods_idx}
+	</update>
+	
+	<!-- 해당 goods_idx를 가진 상품의 재고량을 입력받은 수 만큼 더함 -->
+	<update id="updateGoodsStockOrder">
+		UPDATE MALL_GOODS SET goods_stock = goods_stock + #{stock} WHERE goods_idx = #{goods_idx}
+	</update>
+	
+	<!-- 해당 goods_idx를 가진 상품의 goods_purchased를 cart_amount 만큼 증가시킴 -->
+	<update id="updatePurchased">
+		UPDATE MALL_GOODS SET goods_purchased = goods_purchased + #{cart_amount} WHERE goods_idx = #{goods_idx}
+	</update>
+	
+	<!-- 해당  goods_idx를 가진 상품을 mall_goods에서 삭제함 -->
+	<delete id="deleteGoods">
+		DELETE FROM MALL_GOODS WHERE goods_idx = #{goods_idx}
+	</delete>
+	
 </mapper>
