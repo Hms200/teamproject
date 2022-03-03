@@ -1,7 +1,5 @@
 package com.ezen.controller;
 
-import java.lang.ProcessBuilder.Redirect;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +41,20 @@ public class MainController {
 			return "script:alert('파일업로드에 실패하였습니다.'); location.href='main'";     
 		}
 		return "script: location.href='main'";
+	}
+	
+	@RequestMapping("aboutUs")
+	public String aboutUs() {
+		return "aboutUs";
+	}
+	
+	@RequestMapping("siteMap")
+	public String siteMap() {
+		return "siteMap";
+	}
+	
+	@RequestMapping("notice")
+	public String notice() {
+		return "notice";
 	}
 }
