@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dao.IfaqDAO;
@@ -25,8 +26,20 @@ public class CustomerController {
 	
 	//자주묻는질문(FAQ)
 	@RequestMapping("/customer")
-	public String faq() {
+	public String faq(Model model, HttpServletRequest request) {
+		
+		List<FaQ> getFaqList = faqDao.getFaqList();
+		model.addAttribute("getFaqList", getFaqList);
+		
 		return "customer/faq";
+	}
+	
+	public String getFaqListByCat(@RequestParam(value="faq_cat", required = false) String faq_cat,
+								   HttpServletRequest request, Model model) {
+		
+		List<FaQ> getFaqListByCat = null;
+		
+		if()
 	}
 	
 	//내문의내역(myAsk)
@@ -41,10 +54,6 @@ public class CustomerController {
 		return "customer/ask";
 	}
 	
-	//FAQ 작성
-
-
-
 
 
 }

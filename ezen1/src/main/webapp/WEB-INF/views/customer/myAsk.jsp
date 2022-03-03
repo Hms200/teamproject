@@ -47,10 +47,10 @@
       <form name="myAskCatForm" method="post" action="myAskCatAction">
       <span>
         <select name="myAskCat" onchange="submit();" style="width: 100px; height: 50px; font-size: 14px;">
-          <option selected>문의 종류</option>
-          <option value="1">상품 문의</option>
-          <option value="2">배송 문의</option>
-          <option value="3">결제 문의</option>
+          <option selected>문의종류</option>
+          <option value="1">상품문의</option>
+          <option value="2">배송문의</option>
+          <option value="3">결제문의</option>
         </select>
       </span>
     </form>

@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getFaqListByCat" resultType="com.ezen.dto.FaQ">
-		SELECT * FROM mall_faq WHERE faq_cat DESC
+		SELECT * FROM mall_faq WHERE faq_cat LIKE DESC
 	</select>
 	
 	<insert id="FaqWrite" parameterType="com.ezen.dto.FaQ">
