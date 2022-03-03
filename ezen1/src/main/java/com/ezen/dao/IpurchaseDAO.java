@@ -9,9 +9,12 @@ import com.ezen.dto.Purchase;
 @Mapper
 public interface IpurchaseDAO {
 
-	public Purchase getPurchaseInfoByCartListidx(int cartlist_idx);
+	//해당 idx에 해당하는 모든값가져옴 
+	public Purchase getPurchaseInfoByCartListidx(int cart_list_idx);
 	
-	public int updatePurchaseStatementByMyPage(int purchase_idx,String purchase_statemnet);
+	//해당 idx에 해당하는 값의 starement를 변경
+	public int updatePurchaseStatementByMyPage(int purchase_idx,String purchase_statement);
 	
+	//모든 값을 가져옴
 	public ArrayList<Purchase> getPurchaseList();
 }
