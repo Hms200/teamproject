@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>admin/stock</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
 
-<c:import url="header.jsp"></c:import>
+<c:import url="../header.jsp"></c:import>
 
    <!-- container -->
    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative pl-0 pr-0" style="max-width: 520px;">
@@ -68,8 +68,8 @@
 
 
     
-<c:import url="footer.jsp"></c:import>
-<c:import url="nav.jsp"></c:import>
+<c:import url="../footer.jsp"></c:import>
+<c:import url="../nav.jsp"></c:import>
 
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
