@@ -49,12 +49,12 @@
             <div class="row my-2">
                 <div class="col-3">
                     <a href="main">
-                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">메인</button>
+                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='main'">메인</button>
                     </a>
                 </div>
                 <div class="col-3">
                     <a href="notice">
-                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">공지사항</button>
+                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='notice'">공지사항</button>
                     </a>
                 </div>
             </div>
@@ -66,13 +66,13 @@
         <div class="container-sm container-fluid my-3 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">로그인</button>
+                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='login/login'">로그인</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;">회원가입</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='login/join'">회원가입</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;">회원탈퇴</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='login/quit'">회원탈퇴</button>
                 </div>
             </div>
         </div><div class="line"></div>
@@ -83,13 +83,13 @@
         <div class="container-sm container-fluid my-3 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">마이<br>페이지</button>
+                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="'myPage/myPage'">마이<br>페이지</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;">회원정보조회</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="'myPage/memberInfo'">회원정보조회</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;">구매내역보기</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="'myPage/purchaseList'">구매내역보기</button>
                 </div>
             </div>
         </div><div class="line"></div>
@@ -100,7 +100,7 @@
         <div class="container-sm container-fluid my-3 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">회사소개</button>
+                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='aboutUs'">회사소개</button>
                 </div>
             </div>
         </div><div class="line"></div>
@@ -111,10 +111,13 @@
         <div class="container-sm container-fluid my-3 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">FAQ</button>
+                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/faq'">FAQ</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;">1:1문의</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/myAsk'">내 문의내역</button>
+                </div>
+                 <div class="col-3">
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/ask'">문의하기</button>
                 </div>
             </div>
         </div><div class="line"></div>
@@ -125,13 +128,13 @@
         <div class="container-sm container-fluid my-3 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">상품목록</button>
+                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='goodsList/goodsList'">상품목록</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;">장바구니</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='goodsList/cart'">장바구니</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;">내<br>문의내역</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='goodsList/purchase'">구매</button>
                 </div>
             </div>
         </div>        

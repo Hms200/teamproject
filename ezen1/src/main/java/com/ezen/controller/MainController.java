@@ -38,9 +38,9 @@ public class MainController {
 		String filelocation = fileService.fileUploader("thumb", file);
 		System.out.println(filelocation);
 		if(filelocation.charAt(0) == 'f') {
-			return "script:alert('파일업로드에 실패하였습니다.'); location.href='main'";     
+			return "<script>alert('파일업로드에 실패하였습니다.'); location.href='main'</script>";     
 		}
-		return "script: location.href='main'";
+		return "<script> location.href='main'</script>";
 	}
 	
 	@RequestMapping("aboutUs")
