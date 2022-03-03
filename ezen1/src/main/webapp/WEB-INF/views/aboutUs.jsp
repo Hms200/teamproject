@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>about Us</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -21,7 +21,7 @@
       <!--  -->
       <div class="w-100 d-flex align-items-center pl-3" style="height: 60px;">
         <div style="width: 100px;">
-          <img src="/img/logo.png" class="img-fluid" alt="siteLogo" onclick="location.href='/main';">
+          <img src="/img/logo.png" class="img-fluid" alt="siteLogo" onclick="location.href='main';">
         </div>   
       </div>    
       <!-- mainBOX -->
