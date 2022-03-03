@@ -11,7 +11,7 @@
         <div class="col-5 inline-block mx-1 my-2 px-0 border rounded">
             <a href="">
             <img src="/img/goods/candle/Candle01_01.jpeg" class="card-img-top" alt="임시이미지사용">
-            <div class="card-body py-2 pl-3 pr-3"> 
+            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
             <h5 class="card-title font-weight-bold" style="font-size: 14px;">네이처 소이캔들</h5>
             <span class="card-text" style="font-size:12px;">15,000원</span><span>->13,000원</span>              
             </div>

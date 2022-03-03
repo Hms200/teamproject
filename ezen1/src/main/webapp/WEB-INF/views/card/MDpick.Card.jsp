@@ -11,7 +11,7 @@
 
             <!-- 단일상품 -->
             <div class="container-fluid col-4 mb-2 py-3 mx-1 border rounded">
-                <a href="">
+                <a href="" class="text-dark text-decoration-none">
                 <img src="/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="추천1">
                 <p>상품명</p>
                 <p>가격</p>

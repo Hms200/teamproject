@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="col-12 border rounded d-flex flex-column justify-content-center" style="max-width: 520px;">
+<div class="col-12 border rounded d-flex flex-column justify-content-center mt-1 mb-2" style="max-width: 520px;">
 
     <div class="d-flex felx-row justify-content-between">
     <div class="mx-2 my-2 font-weight-bold">
     	<c:if test="${ searchResult == 1 }">검색결과</c:if>
     	<c:if test="${ searchResult != 1 }">전체상품보기</c:if>
     </div>
-    <a href="goodsList" style="text-decoration: none;"><div style="font-size: 13px;">더보기<img src="/img/icon/right.png" alt="" style="width: 15px; height: 15px;"></div></a>
+    <c:if test="${ searchResult != 1 }">
+    <a href="goodsList/goodsList" style="text-decoration: none;"><div style="font-size: 13px;">더보기<img src="/img/icon/right.png" alt="" style="width: 15px; height: 15px;"></div></a>
+    </c:if>
+    <c:if test="${ searchResult eq 1 }">
+    <a href="main" class="text-dark text-decoration-none"><div style="font-size: 13px;">검색결과 닫기<img src="/img/icon/right.png" alt="" style="width: 15px; height: 15px;"></div></a>
+    </c:if>
   </div>
   	
   	<!-- 평상시 메인에 노출되는경우  -->
@@ -48,35 +53,24 @@
     </div>
     
     
-    
-	<c:if test="${ searchResult != 1 }">
-    <!-- 페이지 표시기 jsp변환시 링크수정! -->
+    <!-- 페이지 표시기. 검색결과로 나올때는노출안됨 & 1페이지로 끝나는 경우에도 표시 안됨 -->
+	<c:if test="${ searchResult != 1 } && ${ beginPagenation != endPagenation }">
+   
     <div class="container row my-3 mx-auto">
       <nav class="mx-auto">
         <ul class="pagination justify-content-center ">
-
-          <li class="page-item ">
+			<!-- 현재 페이지가 페이지표시기의 페이지 표시 수 보다 작으면 뒤로가기버튼 disable -->
+          <li class="page-item <c:if test="${ currentPage <= 5 }">disabled</c:if>">
             <a class="page-link" href="main?currentPage=${ beginPagenation - 1}">&lang;</a>
           </li>
-
-          <li class="page-item active">
-            <a class="page-link" href="main?currentPage=${ page }">1</a>
+		  <c:forEach var="page" begin="${ beginPagenation }" end="${ endPagenation }" step="1">
+          <li class="page-item <c:if test="${ currentPage == page }">active</c:if>">
+            <a class="page-link" href="main?currentPage=${ page }">${ page }</a>
           </li>
-          <li class="page-item">
-            <a class="page-link" href="main?currentPage=${ page }">2</a>
-          </li>
-          <li class="page-item ">
-            <a class="page-link" href="main?currentPage=${ page }">3</a>
-          </li>
-          <li class="page-item ">
-            <a class="page-link" href="main?currentPage=${ page }">4</a>
-          </li>
-          <li class="page-item ">
-            <a class="page-link" href="main?currentPage=${ page }">5</a>
-          </li>
-
-          <li class="page-item">
-            <a class="page-link" href="main?curruntPage=${endPagenation+1}">&rang;</a>
+          </c:forEach>
+          <!-- 마지막페이지까지 표시되면 앞으로 가기 표시 안됨 -->
+          <li class="page-item <c:if test="${ countOfPage eq endPagenation }">disabled</c:if>">
+            <a class="page-link" href="main?curruntPage=${ endPagenation+1}">&rang;</a>
           </li>
         </ul>
       </nav>
