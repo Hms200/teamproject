@@ -16,4 +16,6 @@ public interface InoticeDAO {
 	public ArrayList<Notice> getNoticeLIst();
 	//MALL_NOTICE의 해당 notice_idx를 갖는 공지 가져옴
 	public Notice getNotice(int notice_idx);
+	//메인화면용 공지사항 리스트
+	public ArrayList<Notice> getNoticeForMain();
 }
