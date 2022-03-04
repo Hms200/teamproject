@@ -36,7 +36,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("main")
-	public String main(HttpSession session, Model model) {
+	public String main(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
 //		int cartBedgeNum = session.getAttribute(String(cart));	
 //		model.addAttribute("cartBedgeNum", cartBedgeNum);
 
@@ -46,18 +46,6 @@ public class MainController {
 		// entireGoods card
 		model = mainService.entireItemCardData(currentPage, model);
 		return "main";
-	}
-	
-	@PostMapping("fileuploadetest")
-	@ResponseBody
-	public String testing(@RequestParam("filetest") MultipartFile file) {
-	
-		String filelocation = fileService.fileUploader("thumb", file);
-		System.out.println(filelocation);
-		if(filelocation.charAt(0) == 'f') {
-			return "<script>alert('파일업로드에 실패하였습니다.'); location.href='main'</script>";     
-		}
-		return "<script> location.href='main'</script>";
 	}
 	
 	@RequestMapping("aboutUs")

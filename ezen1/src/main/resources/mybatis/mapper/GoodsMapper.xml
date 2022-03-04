@@ -81,4 +81,9 @@
 		DELETE FROM MALL_GOODS WHERE goods_idx = #{goods_idx}
 	</delete>
 	
+	<!-- 등록된 모든 상품의 갯수 가져오기 -->
+	<select id="countOfGoods" resultType="int">
+		SELECT COUNT(*) FROM mall_goods
+	</select>
+	
 </mapper>
