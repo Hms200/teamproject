@@ -7,14 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ezen.dto.User;
-
+import com.ezen.dao.IuserDAO;
 import com.ezen.service.LoginService;
 
 @Controller
@@ -23,6 +20,9 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
+	
+	@Autowired
+	IuserDAO userDao;
 	
 	
 	@RequestMapping("login")
@@ -57,15 +57,31 @@ public class LoginController {
 				@RequestParam("user_pw") String user_pw,
 				HttpSession session, Model model) {
 			
-			String result = loginService.login(user_id, user_pw, model);
-			System.out.println("result:"+result);
+			Model result = loginService.login(user_id, user_pw, model);			
 			
-			session.setAttribute("user_id", user_id);
-			
-			return result;
-			
+			int user_idx = userDao.getUserIdx(user_id);
+	
+			if( result == null ) { 	
+				return "<script>alert('로그인 실패!'); history.back(-1);</script>";
+				}			
+			else {
+					session.setAttribute("user_id", user_id);
+					session.setAttribute("user_idx", user_idx);		
+					return "<script>alert('로그인 성공!'); location.href='test';</script>";	
+			}	
 		}
 
+	//로그아웃 기능
+	@RequestMapping("logoutAction")
+	@ResponseBody
+	public String loginAction(HttpServletRequest request) {
+			
+		//세션객체 초기화
+		request.getSession().invalidate();
+		return "<script>alert('로그아웃 되었습니다.'); location.href='test';</script>";
+			
+	}
+	
 	//아이디찾기(미완성)
 //	@RequestMapping("idFindAction")
 //	@ResponseBody
