@@ -20,7 +20,7 @@
              <span class="text-dark"style="font-size: 11px;">카테고리</span>
          </div>  
 
-         <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='siteMap''" style="cursor: pointer;">
+         <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='siteMap'" style="cursor: pointer;">
              <img class="mx-auto" src="/img/icon/application.png" alt="사이트맵" width="25px" height="25px" >
              <span class="text-dark"style="font-size: 11px;">사이트맵</span>
          </div>  
