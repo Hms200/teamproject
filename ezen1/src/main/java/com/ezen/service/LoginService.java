@@ -29,7 +29,12 @@ public class LoginService {
 		String userPw = userDao.getUserPw(user_id);
 		// 입력한 id의 비밀번호와 DB의 비밀번호가 같은지 대조
 		if(user_pw.equals(userPw)) {
-			result = "<script>alert('로그인되었습니다.'); location.href='index';</script>";
+			
+			//유저 idx 불러오기 성공.
+			String user_idx = userDao.getUserID(user_id);
+			System.out.println("user_idx:"+user_idx);
+			
+			result = "<script>alert('로그인되었습니다.'); location.href='/main';</script>";
 			return result;
 		}
 		return result;
