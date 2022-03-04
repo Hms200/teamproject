@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dao.IfaqDAO;
+import com.ezen.dao.IonetooneDAO;
 import com.ezen.dao.IquestionDAO;
 import com.ezen.dto.FaQ;
 import com.ezen.dto.OneToOne;
+import com.ezen.dto.Question;
 import com.ezen.service.CustomerService;
 
 @Controller
@@ -28,7 +30,7 @@ public class CustomerController {
 	@Autowired
 	IfaqDAO faqDao;
 	@Autowired
-	IquestionDAO questionDao;
+	IonetooneDAO onetooneDao;
 	
 	//고객센터 이동시 FAQ로 리다이렉트
 	@RequestMapping("/customer")
@@ -95,7 +97,12 @@ public class CustomerController {
 	
 	//내문의내역(myAsk)
 	@RequestMapping("/customer/myAsk")
-	public String myAsk() {
+	public String myAsk(Model model, HttpServletRequest request) {
+		
+		ArrayList<OneToOne> getOneToOneList = onetooneDao.getOneToOneList();
+		model.addAttribute("getOneToOneList", getOneToOneList);
+		
+		System.out.println(getOneToOneList);
 		return "customer/myAsk";
 	}
 	
@@ -109,7 +116,13 @@ public class CustomerController {
 	
 	//문의하기 액션
 	@RequestMapping("qnaQuestionAction")
-	public String qnaQuestionAction(@ResponseBody OneToOne onetoone) {
-		int result = insertQna
+	public String qnaQuestionAction(@RequestBody OneToOne onetoone) {
+		int result = onetooneDao.insertOneToOne(onetoone);
+		if(result == 1) {
+			return "<script>alert('작성 성공'); location.href='/customer';</script>";
+		}
+		else {
+			return "<script>alert('작성 실패');</script>";
+		}
 	}
 }

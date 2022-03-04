@@ -55,20 +55,21 @@
       </span>
     </form>
     </div>
-    <!-- faq아코디언 -->
+    <!-- 문의내역 아코디언 -->
+    <c:forEach var="dto" items="${ getOneToOneList }">
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 14px;">
       <!-- 1번 -->
       <div class="card">
           <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
             <div class="d-flex flex-wrap justify-content-between">
               <span>
-                상품문의 제목 입니다.
+                ${dto.onetoone_title}
               </span>
               <span style="font-size: 12px;">
-                2022-02-21
+                ${dto.onetoone_date}
               </span>
               <span>
-                문의 내용 입니다.
+                ${dto.onetoone_contents}
               </span>
               <span>
                 <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
@@ -79,13 +80,14 @@
           <div class="collapse" id="collapse1" data-parent="#accordion">
             <div class="card-body">
               <span >
-                답변입니다.
+                ${dto.onetoone_reply}
               </span>
             </div>
           </div>
       </div>
+      </c:forEach>
       <!-- 2번 -->
-      <div class="card">
+      <!-- <div class="card">
         <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
           <div class="d-flex flex-wrap justify-content-between">
             <span>
@@ -101,7 +103,7 @@
               <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
             </span>
         </button>
-        <!-- 2번 답변 -->
+        2번 답변
         <div class="collapse" id="collapse2" data-parent="#accordion">
           <div class="card-body">
             <span >
@@ -110,7 +112,7 @@
           </div>
         </div>
     </div>
-    <!-- 3번 -->
+    3번
     <div class="card">
       <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
         <div class="d-flex flex-wrap justify-content-between">
@@ -128,7 +130,7 @@
           </span>
         </div>
       </button>
-      <!-- 3번 답변 -->
+      3번 답변
       <div class="collapse" id="collapse3" data-parent="#accordion">
         <div class="card-body">
           <span >
@@ -137,7 +139,7 @@
         </div>
       </div>
       </div>
-    </div>
+    </div> -->
   </div>
     
 <c:import url="../footer.jsp"></c:import>

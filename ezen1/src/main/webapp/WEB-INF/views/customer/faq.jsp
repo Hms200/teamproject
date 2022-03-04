@@ -135,8 +135,8 @@
           </div>
         </div>
       </div>
-      </div>
-    </div> -->
+      </div> -->
+    </div>
     <!-- 등록 버튼(관리자) -->
     <div class="container-sm container-fluid d-flex justify-content-end">
       <button class="btn btn-secondary mt-5" style="width: 100px; height: 40px; cursor: pointer;" onclick="popupHideAndShow(target = 'faq_write_popup')">등록</button>
