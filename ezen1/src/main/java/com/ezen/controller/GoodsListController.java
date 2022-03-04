@@ -1,9 +1,6 @@
 package com.ezen.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,8 +25,10 @@ public class GoodsListController {
 //	전체상품 페이지
 	@RequestMapping("/goodsList")
 	public String goodsList(Model model) {
+
 		ArrayList<Goods> list = goodsDAO.getAllGoodsList();
 		model.addAttribute("list",list);
+
 		return "goodsList/goodsList";
 	}
 // 	상품 상세 페이지

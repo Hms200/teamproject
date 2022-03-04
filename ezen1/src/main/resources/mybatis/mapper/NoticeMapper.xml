@@ -19,11 +19,8 @@
 		SELECT * FROM mall_notice ORDER BY notice_idx DESC
 	</select>
 	
-	<select id="getNotice" resultType="com.ezen.dto.Notice">
+	<select id="getNotice" parameterType="com.ezen.dto.Notice">
 		SELECT * FROM mall_notice WHERE notice_idx=#{notice_idx}
 	</select>
 	
-	<select id="getNoticeForMain" resultType="com.ezen.dto.Notice">
-		SELECT * FROM mall_notice WHERE notice_show = 1
-	</select>
 </mapper>

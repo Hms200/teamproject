@@ -25,6 +25,7 @@ public interface IgoodsDAO {
 	public ArrayList<Goods> getGoodsListByOnEvent(String onEvent);
 	
 	// 등록된 모든 상품 정보 가져오기
+
 	public ArrayList<Goods> getAllGoodsList();
 
 	public ArrayList<Goods> getGoodsList(int start, int end);
@@ -32,9 +33,6 @@ public interface IgoodsDAO {
 	
 	// 해당 goods_idx를 가진 상품 정보 가져오기
 	public Goods getGoodsInfo(int goods_idx);
-	
-	// 전체 상품 갯수 가져오기
-	public int countOfGoods();
 	
 	// 상품 신규 등록 
 	public int insertGoods(Goods goods);
