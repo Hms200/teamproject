@@ -124,7 +124,7 @@
                     <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
                     <div class="mx-auto" style="width: fit-content;">
                         <!-- 사용자용 확인버튼 -->
-                        <button class="btn btn-dark btn-lg <c:if test="${ user_id eq 'admin' }">d-none</c:if>>"" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')">확인</button>
+                        <button class="btn btn-dark btn-lg <c:if test="${ user_id eq 'admin' }">d-none</c:if>>" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" type="button">확인</button>
                         <!-- 관리자용 확인버튼 -->
                         <c:if test="${ user_id eq 'admin' }">
                         <input type="submit" class="btn btn-dark btn-lg" style="width: 140px;" value="확인">
