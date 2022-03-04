@@ -4,9 +4,17 @@ package com.ezen.service;
 import java.util.ArrayList;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.ezen.dao.IgoodsDAO;
+import com.ezen.dao.IgoodsIMGSDAO;
+import com.ezen.dao.InoticeDAO;
+import com.ezen.dto.Goods;
+import com.ezen.dto.Notice;
 
 @Service
 public class MainService {
