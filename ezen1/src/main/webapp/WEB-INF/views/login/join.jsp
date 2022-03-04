@@ -40,9 +40,7 @@
     	    				//아이디가 중복 안됨. 사용 가능.
     	    				alert("사용가능한 아이디입니다.");
     						$('#user_id_check').val("yes");
-    					
-    	    			}
-    	    			
+    	    			} 	    			
     	    		},
     	    		error: function(){
     	    			console.log('통신 실패');
