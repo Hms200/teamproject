@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>goodsDetail</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -116,7 +116,7 @@
     <!--상품 상세보기 타이틀-->
     <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
       <!--부모클래스bg-primary 안넣었음 -->
-      네이쳐 소이캔들
+	네이쳐 소이캔들
     </div>
     <!--상품 상세보기 옵션 드롭다운-->
     <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px;">
