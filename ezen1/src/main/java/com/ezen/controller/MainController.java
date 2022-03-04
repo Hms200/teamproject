@@ -6,7 +6,6 @@ package com.ezen.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +22,7 @@ import com.ezen.service.MainService;
 @Controller
 public class MainController {
 	
+	
 	@Autowired
 	MainService mainService;
 	
@@ -36,7 +36,7 @@ public class MainController {
 	public String main(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
 //		int cartBedgeNum = session.getAttribute(String(cart));	
 //		model.addAttribute("cartBedgeNum", cartBedgeNum);
-
+		
 		// 메인용 공지사항
 		model = mainService.noticeForMain(model);
 		// 카드 표시용 데이터 
@@ -60,7 +60,6 @@ public class MainController {
 		model = mainService.noticeList(currentPage, model);
 		return "notice";
 	}
-
 	
 	// main검색
 	@GetMapping("mainsearchAction")
