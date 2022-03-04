@@ -56,5 +56,8 @@ public interface IgoodsDAO {
 	// 해당 goods_idx를 가진 상품을 db에서 삭제
 	public int deleteGoods(int goods_idx);
 	
+	// 등록된 모든 상품의 갯수 가져오기
+	public int countOfGoods();
+	
 	
 }
