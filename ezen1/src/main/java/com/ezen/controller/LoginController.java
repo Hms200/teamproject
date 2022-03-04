@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dto.User;
+
 import com.ezen.service.LoginService;
 
 @Controller
@@ -22,6 +23,7 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
+	
 	
 	@RequestMapping("login")
 	public String login() {
@@ -46,6 +48,7 @@ public class LoginController {
 		return "login/test";
 	}
 	
+
 	//로그인_ 수정필요 현재 user_id정보만 불러와짐 RequestParam 외 정보(idx) or Model 이용으로 변경생각하기.
 	@RequestMapping("loginAction")
 	@ResponseBody
@@ -114,4 +117,5 @@ public class LoginController {
 			return "<script>alert('회원가입 실패'); history.back(-1);</script>";
 		}
 	}	
+
 }
