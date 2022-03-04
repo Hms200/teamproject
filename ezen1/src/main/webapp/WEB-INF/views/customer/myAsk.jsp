@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<c:import url="header.jsp"></c:import>
+<c:import url="../header.jsp"></c:import>
 
   <!-- container -->
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
@@ -35,7 +35,7 @@
           <a href="/customer/faq" class="text-black-50 col-4">FAQ</a>
         </span>
         <span>
-          <a href="/customer/myAsk" class="text-primary col-4">내 문의내역</a>
+          <a href="" class="text-primary col-4">내 문의내역</a>
         </span>
         <span>
           <a href="/customer/ask" class="text-black-50 col-4">문의하기</a>
@@ -47,28 +47,29 @@
       <form name="myAskCatForm" method="post" action="myAskCatAction">
       <span>
         <select name="myAskCat" onchange="submit();" style="width: 100px; height: 50px; font-size: 14px;">
-          <option selected>문의 종류</option>
-          <option value="1">상품 문의</option>
-          <option value="2">배송 문의</option>
-          <option value="3">결제 문의</option>
+          <option selected>문의종류</option>
+          <option value="상품문의">상품문의</option>
+          <option value="배송문의">배송문의</option>
+          <option value="결제문의">결제문의</option>
         </select>
       </span>
     </form>
     </div>
-    <!-- faq아코디언 -->
+    <!-- 문의내역 아코디언 -->
+    <c:forEach var="dto" items="${ getOneToOneList }">
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 14px;">
       <!-- 1번 -->
       <div class="card">
           <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
             <div class="d-flex flex-wrap justify-content-between">
               <span>
-                상품문의 제목 입니다.
+                ${dto.onetoone_title}
               </span>
               <span style="font-size: 12px;">
-                2022-02-21
+                ${dto.onetoone_date}
               </span>
               <span>
-                문의 내용 입니다.
+                ${dto.onetoone_contents}
               </span>
               <span>
                 <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
@@ -79,13 +80,14 @@
           <div class="collapse" id="collapse1" data-parent="#accordion">
             <div class="card-body">
               <span >
-                답변입니다.
+                ${dto.onetoone_reply}
               </span>
             </div>
           </div>
       </div>
+      </c:forEach>
       <!-- 2번 -->
-      <div class="card">
+      <!-- <div class="card">
         <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
           <div class="d-flex flex-wrap justify-content-between">
             <span>
@@ -101,7 +103,7 @@
               <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
             </span>
         </button>
-        <!-- 2번 답변 -->
+        2번 답변
         <div class="collapse" id="collapse2" data-parent="#accordion">
           <div class="card-body">
             <span >
@@ -110,7 +112,7 @@
           </div>
         </div>
     </div>
-    <!-- 3번 -->
+    3번
     <div class="card">
       <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
         <div class="d-flex flex-wrap justify-content-between">
@@ -128,7 +130,7 @@
           </span>
         </div>
       </button>
-      <!-- 3번 답변 -->
+      3번 답변
       <div class="collapse" id="collapse3" data-parent="#accordion">
         <div class="card-body">
           <span >
@@ -137,11 +139,11 @@
         </div>
       </div>
       </div>
-    </div>
+    </div> -->
   </div>
     
-<c:import url="footer.jsp"></c:import>
-<c:import url="nav.jsp"></c:import>
+<c:import url="../footer.jsp"></c:import>
+<c:import url="../nav.jsp"></c:import>
 
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->

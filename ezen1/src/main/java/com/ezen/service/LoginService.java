@@ -1,13 +1,15 @@
 package com.ezen.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import org.springframework.ui.Model;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.User;
 
+
 @Service
 public class LoginService {
+
 
 	@Autowired
 	IuserDAO userDao;
@@ -91,4 +93,5 @@ public class LoginService {
 		System.out.println("result:"+result);
 		return result;
 	}
+
 }

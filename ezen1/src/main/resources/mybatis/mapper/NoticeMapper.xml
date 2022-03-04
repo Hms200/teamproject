@@ -11,19 +11,30 @@
 	</insert>
 	
 	<update id="updateNotice" parameterType="com.ezen.dto.Notice">
-		UPDATE mall_notice SET notice_title=#{notice_title}, notice_contents=#{notice_contents}, notice_show=#{notice_show} notice_date=sysdate
-		WHERE notice_idx=#{notice_idx}
+		UPDATE mall_notice SET notice_title=#{notice_title}, notice_contents=#{notice_contents}, notice_show=${notice_show}, notice_date=sysdate
+		WHERE notice_idx=${notice_idx}
 	</update>
 	
 	<select id="getNoticeLIst" resultType="com.ezen.dto.Notice">
-		SELECT * FROM mall_notice ORDER BY notice_idx DESC
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_notice.* FROM mall_notice)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by notice_idx
 	</select>
 	
-	<select id="getNotice" resultType="com.ezen.dto.Notice">
+	<select id="getNotice" parameterType="com.ezen.dto.Notice">
 		SELECT * FROM mall_notice WHERE notice_idx=#{notice_idx}
 	</select>
-	
+
 	<select id="getNoticeForMain" resultType="com.ezen.dto.Notice">
 		SELECT * FROM mall_notice WHERE notice_show = 1
 	</select>
+	
+	<select id="countOfNotice" resultType="int">
+		SELECT COUNT(*) FROM mall_notice
+	</select>
+	
+	<delete id="deleteNotice">
+		DELETE FROM mall_notice WHERE notice_idx=#{notice_idx}
+	</delete>
+
 </mapper>
