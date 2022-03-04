@@ -124,3 +124,18 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 };
+
+// checkbox value int 형으로 바꾸기 체크되어있으면 1 체크해제시 0]
+function changeValueOfCheckbox(){
+
+	let checkbox = document.getElementsByClassName('checkbox');
+	for(i=0; i<checkbox.length; i++){
+	if(checkbox[i].value == 'on'){
+		checkbox[i].value = 1;
+	}else {
+		checkbox[i].value = 0;
+	}
+	}
+	return true;
+}
+

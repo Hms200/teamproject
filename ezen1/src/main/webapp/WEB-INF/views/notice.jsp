@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
 <c:import url="header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative pl-0 pr-0" style="max-width: 520px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative pl-0 pr-0" style="max-width: 520px; margin-top: 60px">
    
         <!-- title container -->
         <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
@@ -41,99 +42,95 @@
                     <th scope="col">날짜</th>
                 </thead>
                 <tbody>
+                	<c:forEach var="notice" items="${ noticeList }">
                     <tr>
-                        <th scope="row">3</th>
-                        <td onclick="popupHideAndShow(target = 'notice_popup')" style="cursor: pointer;"> 공지 제목입니다.</td>
-                        <td> 2022-02-21</td>
+                        <th scope="row">${ notice.notice_idx }</th>
+                        <td onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" style="cursor: pointer;"> ${ notice.notice_title }</td>
+                        <fmt:formatDate var="date" value="${ notice.notice_date }" pattern="YY.MM.dd"/>
+                        <td>${ date } </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td onclick="popupHideAndShow(target = 'notice_popup')" style="cursor: pointer;"> 공지 제목입니다.</td>
-                        <td> 2022-02-21</td>
-                    </tr><tr>
-                        <th scope="row">1</th>
-                        <td onclick="popupHideAndShow(target = 'notice_popup')" style="cursor: pointer;"> 공지 제목입니다.</td>
-                        <td> 2022-02-21</td>
-                    </tr>
+                    </c:forEach>
+                    
                 </tbody>
             </table>
             
         </div>
             <!-- 작성버튼 -->
-        <div class="d-flex flex-column justify-content-center">
+        <div class="d-flex flex-column justify-content-center mb-2">
             <button class="btn btn-secondary text-dark border-0 mx-auto font-weight-bold" style="width: 100px;font-size: 16px;" onclick="popupHideAndShow(target = 'notice_write_popup')">
                 작성
             </button>
 
-            <!-- 페이지 표시기 jsp변환시 링크수정! -->
-            <div class="container row my-3 mx-auto">
-                <nav class="mx-auto">
-                <ul class="pagination justify-content-center ">
-                        
-                        <li class="page-item ">
-                            <a class="page-link" href="community01?currentPage=${ beginPagenation - 1}">&lang;</a>
-                        </li>
-                        
-                        <li class="page-item active">
-                            <a class="page-link" href="community01?currentPage=${ page }">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="community01?currentPage=${ page }">2</a>
-                        </li><li class="page-item ">
-                            <a class="page-link" href="community01?currentPage=${ page }">3</a>
-                        </li><li class="page-item ">
-                            <a class="page-link" href="community01?currentPage=${ page }">4</a>
-                        </li><li class="page-item ">
-                            <a class="page-link" href="community01?currentPage=${ page }">5</a>
-                        </li>
-                        
-                        <li class="page-item">
-                            <a class="page-link" href="community01?curruntPage=${endPagenation+1}">&rang;</a>
-                        </li>
-                </ul>
-                </nav>
-            </div>
+            <!-- 페이지 표시기 -->
+			<c:if test="${ pages.beginPagenation != pages.endPagenation }">
+		    <div class="container row my-3 mx-auto">
+		      <nav class="mx-auto">
+		        <ul class="pagination justify-content-center ">
+					<!-- 현재 페이지가 페이지표시기의 페이지 표시 수 보다 작으면 뒤로가기버튼 disable -->
+		          <li class="page-item <c:if test="${ pages.currentPage <= 5 }">disabled</c:if>">
+		            <a class="page-link" href="notice?currentPage=${ pages.beginPagenation - 1}">&lang;</a>
+		          </li>
+				  <c:forEach var="page" begin="${ pages.beginPagenation }" end="${ pages.endPagenation }" step="1">
+		          <li class="page-item <c:if test="${ pages.currentPage == page }">active</c:if>">
+		            <a class="page-link" href="notice?currentPage=${ page }">${ page }</a>
+		          </li>
+		          </c:forEach>
+		          <!-- 마지막페이지까지 표시되면 앞으로 가기 표시 안됨 -->
+		          <li class="page-item <c:if test="${ pages.countOfPages eq pages.endPagenation }">disabled</c:if>">
+		            <a class="page-link" href="notice?curruntPage=${ pages.endPagenation+1}">&rang;</a>
+		          </li>
+		        </ul>
+		      </nav>
+		    </div>
+		    </c:if>
+		    
+			    
         </div>
+        
         <!-- 팝업 별도 페이지로 작성예정! -->
         <!-- 공지사항 열람/수정(관리자) 팝업창 -->
-        <div class="position-absolute d-none bg-white border border-dark-50 rouned" id="notice_popup" style=" top: 120px;z-index: 1100;">
+        <c:forEach var="notice" items="${ noticeList }">
+        <div class="position-absolute d-none bg-white border border-dark-50 rouned" id="notice_popup${ notice.notice_idx }" style=" top: 120px;z-index: 1100;">
 
             <!-- 닫기 버튼 -->
             <div class="w-100 d-flex flex-row my-2 pr-3 justify-content-end">
-                <img src="/img/icon/cross.png" alt="닫기버튼" width="25px" height="25px" onclick="popupHideAndShow(target ='notice_popup')" style="cursor: pointer;">
+                <img src="/img/icon/cross.png" alt="닫기버튼" width="25px" height="25px" onclick="popupHideAndShow(target ='notice_popup${ notice.notice_idx}')" style="cursor: pointer;">
             </div>
             <!-- form 시작 -->
             <div class="form-group w-100">
-                <form name="noticeUpdateForm" method="post" action="noticeUpdateAction">
+                <form name="noticeUpdateForm${ notice.notice_idx }" method="post" action="noticeUpdateAction" onsubmit="return changeValueOfCheckbox();">
                     <!-- 히든 input -->
-                    <input type="hidden" name="notice_idx" value="notice_idx">
+                    <input type="hidden" name="notice_idx" value="${ notice.notice_idx }">
                     <!-- 날짜 표시 -->
                     <div class="w-100 my-1">
-                        <input class="form-control-plaintext text-right pr-4" disabled type="text" value="2022-02-11" style="font-size: 14px;">
+                    	<fmt:formatDate var="date" value="${ notice.notice_date }" pattern="YY.MM.dd"/>
+                        <input class="form-control-plaintext text-right pr-4" disabled type="text" value="${ date }" style="font-size: 14px;">
                     </div>
                     <!-- 공지사항 제목 -->
                     <div class="col-11 mx-auto">
-                        <input class="form-control bg-white nullcheck" readonly type="text" name="notice_title" value="공지제목">
+                        <input class="form-control bg-white nullcheck" readonly type="text" name="notice_title" value="${ notice.notice_title }">
                     </div>
                     <!-- 공지사항 내용 -->
                     <div class="col-11 mx-auto mt-1">
-                        <textarea class="form-control overflow-auto bg-white nullcheck" readonly name="notice_content"cols="30" rows="10" style="resize: none;">공지사항 내용입니다.</textarea>
+                        <textarea class="form-control overflow-auto bg-white nullcheck" readonly name="notice_contents"cols="30" rows="10" style="resize: none;">${ notice.notice_contents }</textarea>
                     </div>
                     <!-- 중요공지사항(관리자) -->
                     <div class="ml-4 my-2 pl-2">
-                        <label><input class="mr-2" type="checkbox" name="notice_show">중요공지사항</label>
+                        <label><input class="mr-2 checkbox" type="checkbox" name="notice_show"<c:if test="${ notice.notice_show eq 1 }"> checked</c:if>
+                        	>중요공지사항</label>
                     </div>
                     <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
                     <div class="mx-auto" style="width: fit-content;">
                         <!-- 사용자용 확인버튼 -->
-                        <button class="btn btn-dark btn-lg d-none" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup')">확인</button>
+                        <button class="btn btn-dark btn-lg d-none" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')">확인</button>
                         <!-- 관리자용 확인버튼 -->
                         <input type="submit" class="btn btn-dark btn-lg" style="width: 140px;" value="확인">
-                        <button class="btn btn-secondary" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction', onsubmit ='return nullChecker();')">삭제</button>
+                        <button class="btn btn-secondary" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction?${ notice.notice_idx}')">삭제</button>
                     </div>
                 </form>
             </div>
         </div>
+        </c:forEach>
     
         <!-- 공지사항 작성 팝업(관리자) -->
         <div class="position-absolute d-none bg-white border border-dark-50 rouned" id="notice_write_popup" style=" top: 120px;z-index: 1100;">
@@ -144,9 +141,8 @@
             </div>
             <!-- form 시작 -->
             <div class="form-group w-100">
-                <form name="noticeWriteForm" method="post" action="noticeWriteAction" onsubmit="return nullChecker();">
-                    <!-- 히든 input -->
-                    <input type="hidden" name="notice_idx" value="notice_idx">
+                <form name="noticeWriteForm" method="post" action="noticeWriteAction" onsubmit="return changeValueOfCheckbox(); return nullChecker();">
+                    
                     <!-- 날짜 표시 -->
                     <div class="w-100 my-1">
                         <input class="form-control-plaintext text-right pr-4" disabled type="text" value="2022-02-11" style="font-size: 14px;">
@@ -157,11 +153,11 @@
                     </div>
                     <!-- 공지사항 내용 -->
                     <div class="col-11 mx-auto mt-1">
-                        <textarea class="form-control overflow-auto bg-white nullcheck" name="notice_content"cols="30" rows="10" placeholder="내용을 입력해 주세요." style="resize: none;"></textarea>
+                        <textarea class="form-control overflow-auto bg-white nullcheck" name="notice_contents"cols="30" rows="10" placeholder="내용을 입력해 주세요." style="resize: none;"></textarea>
                     </div>
                     <!-- 중요공지사항(관리자) -->
                     <div class="ml-4 my-2 pl-2">
-                        <label><input class="mr-2" type="checkbox" name="notice_show">중요공지사항</label>
+                        <label><input class="mr-2 checkbox" type="checkbox" name="notice_show">중요공지사항</label>
                     </div>
                     <!-- 확인버튼 -->
                     <div class="mx-auto" style="width: fit-content;">
