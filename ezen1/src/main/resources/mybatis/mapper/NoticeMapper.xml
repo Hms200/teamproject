@@ -17,7 +17,7 @@
 	
 	<select id="getNoticeLIst" resultType="com.ezen.dto.Notice">
 		SELECT * FROM ( 
-			SELECT ROWNUM AS rnum, mall_notice.* FROM mall_notice)
+			SELECT ROWNUM AS rnum, mall_notice.* FROM(SELECT * FROM mall_notice ORDER BY notice_idx DESC ) mall_notice)
 			WHERE rnum BETWEEN #{param1} AND #{param2} order by notice_idx
 	</select>
 	
