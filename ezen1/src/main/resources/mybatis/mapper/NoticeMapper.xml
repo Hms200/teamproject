@@ -21,10 +21,10 @@
 			WHERE rnum BETWEEN #{param1} AND #{param2} order by notice_idx
 	</select>
 	
-	<select id="getNotice" resultType="com.ezen.dto.Notice">
+	<select id="getNotice" parameterType="com.ezen.dto.Notice">
 		SELECT * FROM mall_notice WHERE notice_idx=#{notice_idx}
 	</select>
-	
+
 	<select id="getNoticeForMain" resultType="com.ezen.dto.Notice">
 		SELECT * FROM mall_notice WHERE notice_show = 1
 	</select>
@@ -36,4 +36,5 @@
 	<delete id="deleteNotice">
 		DELETE FROM mall_notice WHERE notice_idx=#{notice_idx}
 	</delete>
+
 </mapper>

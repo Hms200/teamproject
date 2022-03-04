@@ -11,8 +11,12 @@
 	
 	<insert id="insertQna" parameterType="com.ezen.dto.Question">
 		INSERT INTO mall_question VALUES
-		(mall_question_seq.nextval, #{user_idx}, #{goods_idx}, #{question_title},#{question_contents}, sysdate,
-		 #{question_isreplied})
+		(mall_question_seq.nextval, #{user_idx}, #{goods_idx}, #{question_title}, #{question_contents}, sysdate, 0, null, null)
 	</insert>
+	
+	<update id="updateQnaAnswer" parameterType="com.ezen.dto.Question">
+		UPDATE mall_question SET question_isreplied=#{question_isreplied}, question_reply=#{question_reply},
+		question_reply_date=sysdate WHERE question_idx=#{question_idx}
+	</update>
 	
 </mapper>
