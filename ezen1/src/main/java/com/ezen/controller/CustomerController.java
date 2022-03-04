@@ -35,7 +35,7 @@ public class CustomerController {
 	//고객센터 이동시 FAQ로 리다이렉트
 	@RequestMapping("/customer")
 	public String customer() {
-		return "redirect:/customer/faq";
+		return "redirect:customer/customer/faq";
 	}
 	
 	//자주묻는질문(FAQ List)
