@@ -1,5 +1,8 @@
 package com.ezen.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.dto.User;
@@ -25,4 +28,11 @@ public interface IuserDAO {
 	public User getMemberInfo(String user_id);
 	//회원정보수정. 유저를 받아 MALL_USER의 일치하는 아이디에 업데이트.
 	public int UpdateMemberInfo(User user);
+	//모든 회원의 정보를 가져옴
+	
+	// 회원 검색용
+	// Id
+	public ArrayList<User> searchUserById(String searchText);
+	// 구매총액으로 검색
+	
 }
