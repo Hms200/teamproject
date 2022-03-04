@@ -25,7 +25,7 @@ public interface IgoodsDAO {
 	public ArrayList<Goods> getGoodsListByOnEvent(String onEvent);
 	
 	// 등록된 모든 상품 정보 가져오기
-	public ArrayList<Goods> getGoodsList();
+	public ArrayList<Goods> getAllGoodsList();
 
 	public ArrayList<Goods> getGoodsList(int start, int end);
 
