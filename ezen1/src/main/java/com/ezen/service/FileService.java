@@ -21,19 +21,20 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService {
 
 	// 상품이미지 업로드 경로
-	@Value("{app.goods.img.dir}")
+	@Value("${app.goods.img.dir}")
 	private String goodsImgUploadDir;
 	
 	// 리뷰이미지 업로드 경로
-	@Value("{app.reviews.img.dir}")
+	@Value("${app.reviews.img.dir}")
 	private String reviewImgUploadDir;
 	
 	// thumbnail 이미지 업로드 경로
-	@Value("{app.thumb.img.dir}")
+	@Value("${app.thumb.img.dir}")
 	private String thumbImgUploadDir;
 	
 	
 	// img cat - goods, reviews, thumb
+	// fileUploader를 호출할 때 꼭 어떤 이미지파일인지 cat을 넣어주세요.
 	// 업로드에 성공하면 이미지가 저장된 서버상의 경로를 String으로 리턴 
 	// 리턴된 이미지 저장경로를 받아서 DB의 img 관련 테이블에 해당 idx와 함께 insert하면 됨.
 	// 파일 업로드에 실패했는지 여부는 리턴된 String의 charAt(0) 의 값이 f 이면 실패로 처리.
@@ -61,7 +62,7 @@ public class FileService {
 			System.out.println("업로드 실패 파일: " + multipartFile.getOriginalFilename());
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
-		return copyLoacation.toString();
+		return copyLoacation.toString().replace("src/main/resources/static/img/", "/img/");
 	}
 
 }
