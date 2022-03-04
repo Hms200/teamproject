@@ -4,21 +4,21 @@
 
 <div class="col-12 border rounded" style="max-width: 520px;">
         <!-- MD픽 타이틀 -->
-        <p class="text-start ml-4 my-3 font-weight-bold font-italic">MDpick</p>
+        <p class="text-start my-2 font-weight-bold font-italic">MDpick</p>
 
         <!-- 카드컨테이너 -->
-        <div class="container-fluid d-flex flex-wrap text-center">
+        <div class="container-fluid d-flex flex-nowrap text-center mb-2"  style="white-space:nowrap; overflow-x: auto;">
 
             <!-- 단일상품 -->
-            <div class="container-fluid col-4 my-auto py-3 border rounded">
-                <a href="">
+            <div class="container-fluid col-4 mb-2 py-3 mx-1 border rounded">
+                <a href="" class="text-dark text-decoration-none">
                 <img src="/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="추천1">
                 <p>상품명</p>
                 <p>가격</p>
                 </a>
             </div>
 
-            <div class="container-fluid col-4 my-auto py-3 border rounded">
+            <div class="container-fluid col-4 mb-2 py-3  mx-1 border rounded">
                 <a href="">
                 <img src="/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="추천2">
                 <p>상품명</p>
