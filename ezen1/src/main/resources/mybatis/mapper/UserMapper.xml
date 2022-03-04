@@ -6,12 +6,12 @@
 <mapper namespace="com.ezen.dao.IuserDAO">
 
 	<!-- MALL_USER에서 사용자 아이디를 조회해서 가져옴. -->
-	<select id="getUserID" resultType="com.ezen.dto.User">
+	<select id="getUserID" resultType="String">
 		SELECT * FROM MALL_USER WHERE user_id= #{user_id}
 	</select>
 	
 	<!-- MALL_USER에서 사용자 비밀번호를 조회해서 가져옴. -->
-	<select id="getUserPw" resultType="com.ezen.dto.User">
+	<select id="getUserPw" resultType="String">
 		SELECT user_pw FROM MALL_USER WHERE user_id= #{user_id}
 	</select>
 	
