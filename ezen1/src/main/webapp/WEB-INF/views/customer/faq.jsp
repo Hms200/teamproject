@@ -78,7 +78,9 @@
               </span>
               <!-- 삭제버튼(관리자) -->
               <div class="d-flex justify-content-end">
-                <button class="btn btn-secondary" style="width: 60px; height: 30px; cursor: pointer;">삭제</button>
+              	<a href="faqDeleteAction?faq_idx=${ dto.faq_idx }">
+                	<button class="btn btn-secondary" style="width: 60px; height: 30px; cursor: pointer;">삭제</button>
+                </a>
               </div>
             </div>
           </div>

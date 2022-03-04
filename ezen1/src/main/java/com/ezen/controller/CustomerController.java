@@ -11,12 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dao.IfaqDAO;
 import com.ezen.dto.FaQ;
 import com.ezen.service.CustomerService;
 
 @Controller
+@RequestMapping("customer")
 public class CustomerController {
 	
 	@Autowired
@@ -70,6 +72,20 @@ public class CustomerController {
 		}
 		else {
 			return "<script>alert('작성 실패');</script>";
+		}
+	}
+	
+	//FAQ 삭제
+	@RequestMapping("deleteAction")
+	@ResponseBody
+	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpServletRequest request) {
+		
+		int result = faqDao.faqDeleteByFaqIdx(faq_idx);
+		if(result == 1) {
+			return "<script>alert('삭제 성공');</script>";
+		}
+		else {
+			return "<script>alert('삭제 실패');</script>";
 		}
 	}
 	
