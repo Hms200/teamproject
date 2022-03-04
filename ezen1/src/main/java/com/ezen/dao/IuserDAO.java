@@ -18,7 +18,7 @@ public interface IuserDAO {
 	//MALL_USER에서 사용자 아이디를 받아 해당하는 아이디의 인덱스를 가져옴.
 	public int getUserIdx(String user_id);
 	//회원가입. 유저를 받아 MALL_USER에 인서트.
-	public int insertUser(User user);
+	public int insertUser(String user_id, String user_pw, String user_name, String user_phone, String user_address, String user_email);
 	//회원탈퇴. 유저 아이디를 받아 MALL_USER에서 일치하는 정보 딜리트.
 	public int deleteUser(String user_id);
 	//회원정보조회. 유저 아이디를 받아 MALL_USER에서 일치하는 회원의 모든 데이터를 가져옴.

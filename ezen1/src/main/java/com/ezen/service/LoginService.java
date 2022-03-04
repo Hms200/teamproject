@@ -2,9 +2,9 @@ package com.ezen.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.ui.Model;
 import com.ezen.dao.IuserDAO;
+import com.ezen.dto.User;
 
 @Service
 public class LoginService {
@@ -12,8 +12,34 @@ public class LoginService {
 	@Autowired
 	IuserDAO userDao;
 	
-	public String login(String user_id, String user_pw) {
+	public String login(String user_id, String user_pw, Model model) {
 		
+//		
+//		System.out.println("user_id:"+user_id);
+//		System.out.println("user_pw:"+user_pw);
+//		
+//		
+//		// 입력한 id가 있는지 조회
+//		String userID = userDao.getUserID(user_id);
+//		// 없으면 로그인 실패 로그인페이지 로딩
+//		if(userID == null) {
+//			
+//		}
+//		// 있으면 해당ID의 비밀번호 조회
+//		String userPw = userDao.getUserPw(user_id);
+//		// 입력한 id의 비밀번호와 DB의 비밀번호가 같은지 대조
+//		if(user_pw.equals(userPw)) {
+//			
+//			//유저 idx 불러오기 성공.
+//			String user_idx = userDao.getUserID(user_id);
+//			
+//			model.addAttribute("user_id", user_id);
+//			model.addAttribute("user_pw", user_pw);
+//			model.addAttribute("user_idx", user_idx);
+//			
+//			return model;
+//		}
+//		return model;
 		
 		System.out.println("user_id:"+user_id);
 		System.out.println("user_pw:"+user_pw);
@@ -32,38 +58,20 @@ public class LoginService {
 			
 			//유저 idx 불러오기 성공.
 			String user_idx = userDao.getUserID(user_id);
-			System.out.println("user_idx:"+user_idx);
 			
-			result = "<script>alert('로그인되었습니다.'); location.href='/main';</script>";
+			model.addAttribute("user_id", user_id);
+			model.addAttribute("user_idx", user_idx);
+			
+			result = "<script>alert('로그인되었습니다.'); location.href='test';</script>";
 			return result;
 		}
 		return result;
 		
 		
 	}
-	
-	
-	@ResponseBody
-	public String findId(String user_name, String user_email) {
-		
-		System.out.println("user_name:" + user_name);
-		System.out.println("user_email:" + user_email);
-		
-		String result ="";
-		
-		String user_id = userDao.getUserIdByFindId(user_name, user_email);
-		System.out.println("user_id:" + user_id);
-		
-		if( user_id == null ) {
-			result = "<script>alert('아이디를 찾을 수 없습니다.'); history.back(-1);</script>";
-		} else {
-			result = "<script>alert('고객님의 아이디는" + user_id + " 입니다.'); location.href='/login/login';</script>";
-		}		
-		return result;
-	}
 
-		//아이디 중복확인 구동
-		public int idCheckAjax( String user_id ) {
+	//아이디 중복확인 구동
+	public int idCheckAjax( String user_id ) {
 		
 		int result;	
 		String userID = userDao.getUserID( user_id );
@@ -75,5 +83,12 @@ public class LoginService {
 		}		
 		return result;
 		
+	}
+	
+	public int join( String user_id, String user_pw, String user_name, String user_phone, String user_address, String user_email) {
+		
+		int result= userDao.insertUser(user_id,  user_pw,  user_name,  user_phone,  user_address,  user_email);
+		System.out.println("result:"+result);
+		return result;
 	}
 }
