@@ -1,8 +1,20 @@
+/* Bootstrap css override */
+:root{
+    --primary : rgb(167, 130, 111);
+    --secondary : rgb(244,244,244);
+}
 .btn-primary{
     background-color: rgb(167, 130, 111) !important;
+    border-color: rgb(167, 130, 111) !important
+    
 }
 .btn-secondary{
     background-color: rgb(244, 244, 244) !important;
+    border-color: rgb(244, 244, 244) !important;
+    color: #4e5358;
+}
+.btn-secondary:active, .btn-secondary:hover, .btn-primary:focus{
+    color: black !important;
 }
 .text-primary{
     color: rgb(167, 130, 111) !important;
@@ -14,10 +26,192 @@
     background-color: rgb(167, 130, 111) !important;
 }
 .bg-secondary{
-    background-color: rgb(244, 244, 244) !important;
+    background-color: rgb(244, 244, 244)!important;
 }
 .btn-outline-primary{
     background-color: white !important;
     border: 2px solid rgb(167, 130, 111) !important;
     color: rgb(167, 130, 111) !important;
 }
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+select:focus,
+.btn-primary:focus,
+.uneditable-input:focus {   
+  border-color: rgba(167, 130, 111, 1) !important;
+  box-shadow: 0 0 0 1px rgba(167, 130, 111, 0.6) inset, 0 0 0 3px rgba(167, 130, 111, 0.8) !important;
+  outline-color: rgb(167, 130, 111);
+}
+.page-link{
+    color: black !important;
+}
+.page-link:hover{
+    color: black !important;
+}
+.page-item.active .page-link{
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+
+/* goodslist */
+body .dep {
+    display: none;
+  }
+
+  main.candle .dep._candle,
+  main.warmer .dep._warmer,
+  main.diffuser .dep._diffuser,
+  main.soap .dep._soap {
+    display: block;
+  }
+
+  div .on {
+    border-bottom: 2px solid rgb(161, 159, 159); 
+  }
+
+  nav div .candle:hover,
+  nav div .warmer:hover,
+  nav div .diffuser:hover,
+  nav div .soap:hover {
+    background-color: aliceblue;
+    transition: background-color .5s; 
+    cursor: pointer; 
+  }
+  
+  /* goodsDetail*/
+  body .dep {
+    display: none;
+  }
+  main.info .dep._info,
+  main.review .dep._review,
+  main.inquiry .dep._inquiry {
+    display: block;
+  }
+  div .on {
+    border-bottom: 2px solid rgb(161, 159, 159);
+  }
+  nav div .info:hover,
+  nav div .review:hover,
+  nav div .inquiry:hover {
+    background-color: aliceblue;
+    transition: background-color 0.7s;
+    cursor: pointer;
+  }
+  .accordionGoodsDetail {
+    width: 300px;
+  }
+  .cardHeaderGoodsDetail {
+    height: 55px;
+  }
+  .goodsDetailCrossIconImg {
+    cursor: pointer;
+  }
+  /*팝업의 위치설정css 설계서에는 t60 l10 이였는데 b30으로 지정 추후에 결정*/
+  #goodDetailInquiryPop {
+    position: absolute;
+    bottom: 30px;
+  }
+  .goodsDetailCartIcon {
+    cursor: pointer;
+  }
+  .goodsDetailOption{
+    width: 200px;
+  }
+  .goodsDeatailMenu{
+    width: 50px;
+  }
+  .goodsDetailDivisionLine{
+    height: 20px;
+  }
+  .goodsDeatailPurchaseButton{
+    width: 280px;
+  }
+  .goodsDetailReviewImgBox{
+    height: 150px;
+  }
+  .goodsDetailInquiryPop{
+    border-radius: 6px; width: 340px; height: 320px;
+  }
+  .goodsDetailCrossIconBox{
+    height: 30px;
+  }
+  .goodsDetailInquiryPopBox1{
+    width: 300px; height: 260px;
+  }
+  .goodsDetailInquiryPopBox2{
+    width: 300px; height: 25px;
+  }
+  .goodsDetailInquiryPopDate{
+    height: 20px;
+  }
+  .goodsDetailInquiryPopTitle{
+    border-radius: 6px; height: 40px;
+  }
+  .goodsDetailInquiryPopContent{
+    border-radius: 6px; height: 100px;
+  }
+  .goodsDetailInquiryPopCancle{
+    width: 100px; height: 40px;
+  }
+  .goodsDetailInquiryPopSubmit{
+    width: 185px; height: 40px;
+    background-color: dimgrey;
+  }
+
+  /*cart*/
+  .cartTopdivBox{
+    height: 60px;
+  }
+  .cartSelectAllBox{
+    width: 330px;
+    height: 40px;
+  }
+  .cartGoodsInfo{
+    width: 200px;
+    height: 100px;
+  }
+  .cartOrderButtonBox{
+    width: 320px;
+    height: 40px;
+  }
+  .cartGoToGoodsList{
+    width: 360px;
+    height: 40px;
+  } 
+
+  /*purchaseList*/
+  #pwCheckPop{
+    position: absolute;
+    top: 50%; left: 35%;
+  }
+  .purchaseListTopBox {
+    height: 60px;
+  }
+  .purchaseListTotalPriceBox{
+    height: 85px;
+  }
+  .purchaseListPay{
+    height: 100px;
+  }
+  .purchaseListPop{
+    width: 300px;
+    height: 60px;
+  }
+  .purchaseListPopInput{
+    width: 300px;
+    height: 40px;
+  }

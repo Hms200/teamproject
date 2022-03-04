@@ -5,5 +5,13 @@
     
 <mapper namespace="com.ezen.dao.IreviewDAO">
 
-
+	<!-- goods_idx를 받아 MALL_REVIEW에서 해당 idx를 가진 모든 data를 가져옴 -->
+	<select id="getReviewList">
+		SELECT * FROM MALL_REVIEW WHERE goods_idx = #{goods_idx}
+	</select>
+	
+	<insert id="insertReview" parameterType="com.ezen.dto.Review">
+		INSERT INTO MALL_REVIEW (review_idx, user_dix, goods_idx, review_contents, review_star, review_isreplied, review_reply, review_date, review_reply_date)
+			VALUES (MALL_REVIEW_seq.nextval, #{user_dix}, #{goods_idx}, #{review_contents},#{review_star} #{review_isreplied}, #{review_reply}, sysdate, sysdate)
+	</insert>
 </mapper>

@@ -5,5 +5,25 @@
     
 <mapper namespace="com.ezen.dao.InoticeDAO">
 
-
+	<insert id="insertNotice" parameterType="com.ezen.dto.Notice">
+		INSERT INTO mall_notice VALUES
+		(mall_notice_seq.nextval, #{notice_title}, #{notice_contents}, #{notice_show}, sysdate)
+	</insert>
+	
+	<update id="updateNotice" parameterType="com.ezen.dto.Notice">
+		UPDATE mall_notice SET notice_title=#{notice_title}, notice_contents=#{notice_contents}, notice_show=#{notice_show} notice_date=sysdate
+		WHERE notice_idx=#{notice_idx}
+	</update>
+	
+	<select id="getNoticeLIst" resultType="com.ezen.dto.Notice">
+		SELECT * FROM mall_notice ORDER BY notice_idx DESC
+	</select>
+	
+	<select id="getNotice" resultType="com.ezen.dto.Notice">
+		SELECT * FROM mall_notice WHERE notice_idx=#{notice_idx}
+	</select>
+	
+	<select id="getNoticeForMain" resultType="com.ezen.dto.Notice">
+		SELECT * FROM mall_notice WHERE notice_show = 1
+	</select>
 </mapper>
