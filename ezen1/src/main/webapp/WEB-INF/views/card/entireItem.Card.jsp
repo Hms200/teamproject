@@ -17,8 +17,22 @@
           가격
         </div>
       </div>
-      <div class="d-flex flex-column mx-3 my-2 border">
-        <a href=""><img src="/img/goods/candle/Candle01_01.jpeg" alt="" style="width: 150px; height: 150px;"></a>
+
+      </c:forEach>
+    
+    </c:if>
+    
+    <!-- 검색결과로 노출되는 경우 -->
+    <c:if test="${ searchResult == 1 }">
+    <div class="d-flex flex-row px-0">
+    <c:if test="${ searched.isEmpty() == true }">
+    	검색 결과가 존재하지 않습니다.
+    </c:if>
+    
+      <c:forEach var="goods" items="${ searched }">
+      <div class="d-flex flex-column mx-3 my-2 border rounded">
+        <a href=""><img src="${ goods.goods_thumb }" alt="${ goods.goods_name }" style="width: 150px; height: 150px;"></a>
+
         <div class="text-center py-2">
           이름
         </div>
@@ -26,6 +40,12 @@
           가격
         </div>
       </div>
+
+      </c:forEach>
+      
+      </c:if> 
+        
+
     </div>
 
     <!-- 페이지 표시기 jsp변환시 링크수정! -->
