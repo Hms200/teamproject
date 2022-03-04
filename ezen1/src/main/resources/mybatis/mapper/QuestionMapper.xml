@@ -12,7 +12,7 @@
 	<insert id="insertQna" parameterType="com.ezen.dto.Question">
 		INSERT INTO mall_question VALUES
 		(mall_question_seq.nextval, #{user_idx}, #{goods_idx}, #{question_title},#{question_contents}, sysdate,
-		 1, null, null)
+		 0, null, null)
 	</insert>
 	
 </mapper>

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dao.IfaqDAO;
+import com.ezen.dao.IquestionDAO;
 import com.ezen.dto.FaQ;
+import com.ezen.dto.OneToOne;
 import com.ezen.service.CustomerService;
 
 @Controller
@@ -25,6 +27,8 @@ public class CustomerController {
 	CustomerService customerService;
 	@Autowired
 	IfaqDAO faqDao;
+	@Autowired
+	IquestionDAO questionDao;
 	
 	//고객센터 이동시 FAQ로 리다이렉트
 	@RequestMapping("/customer")
@@ -95,12 +99,17 @@ public class CustomerController {
 		return "customer/myAsk";
 	}
 	
-	//문의하기(ask)
+	//내문의내역 카테고리 선택
+	
+	//문의하기 페이지(ask)
 	@RequestMapping("/customer/ask")
 	public String ask() {
 		return "customer/ask";
 	}
 	
-
-
+	//문의하기 액션
+	@RequestMapping("qnaQuestionAction")
+	public String qnaQuestionAction(@ResponseBody OneToOne onetoone) {
+		int result = insertQna
+	}
 }
