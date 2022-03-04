@@ -18,9 +18,6 @@
         </div>
       </div>
 
-      </c:forEach>
-    
-    </c:if>
     
     <!-- 검색결과로 노출되는 경우 -->
     <c:if test="${ searchResult == 1 }">
