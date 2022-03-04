@@ -15,5 +15,5 @@ public interface IfaqDAO {
 	//Faq를 받아 MALL_FAQ에 insert
 	public int FaqWrite(FaQ faq);
 	//받은 faq_idx와 MALL_FAQ에서 동일한 faq_idx를 가진 data를 delete
-	public int faqDeleteByFaqIdx(int faq_idx);
+	public int faqDeleteByFaqIdx(String faq_idx);
 }
