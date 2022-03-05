@@ -2,8 +2,8 @@ package com.ezen.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.ui.Model;
+
 import com.ezen.dao.IuserDAO;
 
 
@@ -39,11 +39,44 @@ public class LoginService {
 			model.addAttribute("user_id", user_id);
 			return model;
 		}
-		return null;
-		
-		
+		return null;		
 	}
 
+	public String findId( String user_name, String user_email) {
+		
+		System.out.println("서비스  user_name:"+user_name);
+		System.out.println("user_email:"+user_email);
+		
+		String result;
+		String user_id = userDao.getUserIdByFindId(user_name, user_email);
+		System.out.println("user_id:"+user_id);
+		if( user_id == null ) {
+			result = "<script>alert('아이디를 찾을 수 없습니다.'); history.back(-1);</script>";
+			
+		} else {
+			result = "<script>alert('고객님의 아이디는" + user_id + " 입니다.'); location.href='login';</script>";;
+		}
+		return result;	
+	}
+	
+	public String findPW( String user_id, String user_name, String user_email) {
+		
+		System.out.println("서비스  user_name:"+user_name);
+		System.out.println("user_id:"+user_id);
+		System.out.println("user_email:"+user_email);
+		
+		String result;
+		String user_pw = userDao.getUserPwByFindPw( user_id, user_name, user_email);
+		System.out.println("user_pw:"+user_pw);
+		if( user_pw == null ) {
+			result = "<script>alert('비밀번호를 찾을 수 없습니다.'); history.back(-1);</script>";
+			
+		} else {
+			result = "<script>alert('고객님의 비밀번호는 " + user_pw + " 입니다.'); location.href='login';</script>";;
+		}
+		return result;	
+	}
+	
 	//아이디 중복확인 구동
 	public int idCheckAjax( String user_id ) {
 		

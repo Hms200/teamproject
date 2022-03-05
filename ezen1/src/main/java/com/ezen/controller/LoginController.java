@@ -83,16 +83,34 @@ public class LoginController {
 	}
 	
 	//아이디찾기(미완성)
-//	@RequestMapping("idFindAction")
-//	@ResponseBody
-//	public String idFindAction( @RequestParam("user_name") String user_name,
-//								@RequestParam("user_email") String user_email) {
-//			
-//		String result = loginService.findId(user_name, user_email);
-//		System.out.println("user_name:" + user_name);
-//		System.out.println("user_email:" + user_email);
-//		return result;	
-//	}
+	@RequestMapping("idFindAction")
+	@ResponseBody
+	public String idFindAction( @RequestParam("user_name") String user_name,
+								@RequestParam("user_email") String user_email) {
+		
+		
+		String result = loginService.findId(user_name, user_email);
+		System.out.println("컨트롤러 user_name:" + user_name);
+		System.out.println("user_email:" + user_email);
+		System.out.println("result:" + result);
+		return result;	
+	}
+	
+	//비밀번호찾(미완성)
+		@RequestMapping("pwFindAction")
+		@ResponseBody
+		public String pwFindAction( 
+				@RequestParam("user_id") String user_id,
+				@RequestParam("user_name") String user_name,
+				@RequestParam("user_email") String user_email) {
+			
+			
+			String result = loginService.findPW(user_id, user_name, user_email);
+			System.out.println("컨트롤러 user_name:" + user_name);
+			System.out.println("user_email:" + user_email);
+			System.out.println("result:" + result);
+			return result;	
+		}
 	//회원가입
 	@RequestMapping("idCheckAjax")
 	@ResponseBody
@@ -134,4 +152,22 @@ public class LoginController {
 		}
 	}	
 
+	//회원탈퇴성공 / 겟 어트리뷰트 없이 동작되는지 다시 테스트해보기. 
+	@RequestMapping("quitAction")
+	@ResponseBody
+	public String quitAction(@RequestParam("user_id") String user_id,HttpSession session) {
+		
+		session.getAttribute(user_id);
+		
+		System.out.println("컨트롤러 user_id:" + user_id);
+		int result = userDao.deleteUser(user_id);
+		if( result == 1){
+			System.out.println("회원탈퇴");
+				
+			return "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";
+		}else {
+			
+			return "<script>alert('회원탈퇴 실패!'); history.back(-1);</script>";		
+		}		
+	}
 }
