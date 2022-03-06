@@ -1,5 +1,6 @@
 package com.ezen.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,9 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ezen.service.AdminService;
+
 @Controller
 @RequestMapping("admin")
 public class AdminContorller {
+	
+	@Autowired
+	AdminService adminService;
 	
 	
 	@RequestMapping("")
@@ -32,7 +38,9 @@ public class AdminContorller {
 	public String memberListFilter(@RequestParam(name = "cat")int cat,
 									@RequestParam(name = "searchText",required = false)String searchText,
 									Model model) {
-		
+		if(cat == 0) {
+			model = adminService.MemberListBySearch(searchText, model);
+		}
 		return "";
 	}
 	

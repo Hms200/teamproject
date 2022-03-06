@@ -34,7 +34,7 @@
 
           <div class="d-flex flex-row mt-4 mb-4">
           <div class="form-control" style="width: 90px;">
-            <select class="form-select " aria-label="문의종류" name="cat" style="border: none; background-color: white;">
+            <select class="form-select " name="cat" style="border: none; background-color: white;">
               <option value="0">id</option>
                <option value="1">구매량</option>
                <option value="2">금액</option>
@@ -44,7 +44,7 @@
             </div>
             
                 <div class="search">
-                <input type="text" name="searchText" placeholder="카테고리를 선택해주세요" aria-label="Search" class="border border-1 form-control" style="width: 230px;">
+                <input type="text" name="searchText" placeholder="카테고리를 선택해주세요" class="border border-1 form-control" style="width: 230px;">
               </div>
               <div>
                 <button class="btn" type="submit">
