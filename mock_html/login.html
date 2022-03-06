@@ -4,26 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>html 레퍼런스</title>
+  <title>login</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/custom.css">
 
-  <script>
-    function checkValue() {
-      if(!document.userInfo.user_id.value) { 
-         alert("입력된 아이디가 없습니다");
-          document.getElementById('user_id').focus();
-          return false; 
-         }
-        if(!document.userInfo.user_pw.value) { 
-        alert("입력된 비밀번호가 없습니다");
-        document.getElementById('user_pw').focus();
-        return false;
-      }
-      return true;
-    }
-  </script>    
 </head>
 <body>
   <!-- container -->
@@ -33,13 +18,13 @@
         <div class="font-weight-bold font-italic text-dark w-100 mb-1" style="font-size: 24px">LOGIN</div>
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
       
-        <div class="col-12 pl-0 pr-0  ml-0 mr-0 column">
-          <form action="loginAction" method="get" class="control mb-1" name="userInfo" onsubmit="return checkValue();">
+        <div class="col-12 pl-0 pr-0  ml-0 mr-0 column form-gruop">
+          <form action="loginAction" method="get" class="mb-1" name="userInfo" onsubmit="return nullChecker();">
             <!-- <div class="form-group"> -->
-            <input type="text" class="mb-1 p-2 w-100" style="font-size: 14px;" id="user_id" placeholder="아이디를 입력하세요.">
+            <input type="text" class="mb-1 p-2 w-100 nullcheck form-control" style="font-size: 14px;" id="user_id" placeholder="아이디를 입력하세요.">
             <!-- </div> -->
             <!-- <div class="form-group"> -->
-            <input type="password" class="mb-3 p-2 w-100" style="font-size: 14px;" id="user_pw" placeholder="비밀번호를 입력하세요.">
+            <input type="password" class="mb-3 p-2 w-100 nullcheck form-control" style="font-size: 14px;" id="user_pw" placeholder="비밀번호를 입력하세요.">
              <!-- </div> -->
             <input type="submit" class="btn btn-primary w-100 rouned-lg text-white mb-2" style="font-size: 16px;" value="로그인">
           </form>
@@ -68,12 +53,12 @@
           <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;">아이디 찾기</div>
           <!-- formDiv -->
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
-            <form action="idFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+            <form action="idFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;" >
               <div class="form-group">
-                <lable>이름 &nbsp;<input type="text" class="ml-2" placeholder="이름을 입력해주세요"></lable>
+                <lable>이름 &nbsp;<input type="text" class="ml-2 form-control" placeholder="이름을 입력해주세요"></lable>
               </div>
               <div class="form-group">
-                <lable>이메일 <input type="email" class="" placeholder="이메일을 입력해주세요"></lable>
+                <lable>이메일 <input type="email" class="ml-2 form-control" placeholder="이메일을 입력해주세요"></lable>
               </div>
               <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" style="font-size: 16px" height="40px">
             </form>
@@ -97,13 +82,13 @@
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
             <form action="pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
               <div class="form-group">
-                <lable>아이디 <input type="text" placeholder="아이디를 입력해주세요"></lable>
+                <lable>아이디 <input type="text" class="form-control" placeholder="아이디를 입력해주세요"></lable>
               </div>
               <div class="form-group">
-                <lable>이름 &nbsp;<input type="text" class="ml-2" placeholder="이름을 입력해주세요"></lable>
+                <lable>이름 &nbsp;<input type="text" class="form-control" placeholder="이름을 입력해주세요"></lable>
               </div>
               <div class="form-group">
-                <lable>이메일 <input type="email" class="" placeholder="이메일을 입력해주세요"></lable>
+                <lable>이메일 <input type="email" class="form-control" placeholder="이메일을 입력해주세요"></lable>
               </div>
               <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" style="font-size: 16px" height="40px">
             </form>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IcartListDAO">
+
+	<!-- 넘겨온 cart_idx에 맞는 cart_list_idx를 문자열로 반환 -->
+	<select id="getCartListidx" resultType="String">
+		SELECT CART_LIST_IDX FROM MALL_CART_LIST WHERE CART_IDX = #{cart_idx}
+	</select>
+	<!-- cart_list_idx자동생성 -->
+	<insert id="insertCartList">
+		INSERT INTO MALL_CART_LIST (CART_LIST_IDX) VALUES(MALL_CART_LIST_SEQ.NEXTVAL)
+	</insert>
+
+</mapper>

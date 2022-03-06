@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IuserDAO">
+
+	<!-- MALL_USER에서 사용자 아이디를 조회해서 가져옴. -->
+	<select id="getUserID" resultType="com.ezen.dto.User">
+		SELECT * FROM MALL_USER WHERE user_id= #{user_id}
+	</select>
+	
+	<!-- MALL_USER에서 사용자 비밀번호를 조회해서 가져옴. -->
+	<select id="getUserPw" resultType="com.ezen.dto.User">
+		SELECT user_pw FROM MALL_USER WHERE user_id= #{user_id}
+	</select>
+	
+	<!-- MALL_USER에서 사용자 아이디를 이름과 이메일을 받아서 가져옴. -->
+	<select id="getUserIdByFindId" resultType="com.ezen.dto.User">
+		SELECT * FROM MALL_USER WHERE user_name= #{ user_name } AND user_email= #{ user_email }
+	</select>
+	
+	<!-- MALL_USER에서 사용자 비밀번호를 이름 아이디, 이메일을 받아서 가져옴. -->
+	<select id="getUserPwByFindPw" resultType="com.ezen.dto.User">
+		SELECT * FROM MALL_USER WHERE user_name= #{ user_name } AND user_id= #{ user_id } AND user_email= #{ user_email }
+	</select>
+	
+	<!-- MALL_USER에서 사용자 아이디를 받아 해당하는 아이디의 인덱스를 가져옴 -->
+	<select id="getUserIdx" resultType="com.ezen.dto.User">
+		SELECT user_idx FROM MALL_USER WHERE user_id= #{user_id}
+	</select>
+	
+	<!-- 유저를 받아 MALL_USER에 인서트 -->
+	<insert id="insertUser" parameterType="com.ezen.dto.User">
+		INSERT INTO MALL_USER (user_idx, user_id, user_pw, user_name, user_phone, user_address, user_email, join_date)
+		VALUES (mall_user_seq.nextval, #{user_id}, #{user_pw}, #{user_name}, #{user_phone}, #{user_address}, #{user_email}, sysdate)
+	</insert>
+	
+	<!-- 유저 아이디를 받아 MALL_USER에서 일치하는 정보 딜리트. -->
+	<delete id="deleteUser">
+		DELETE FROM MALL_USER WHERE user_id= #{ user_id }
+	</delete>
+	
+	<!-- 유저 아이디를 받아 MALL_USER에서 일치하는 회원의 모든 데이터를 가져옴 -->
+	<select id="getMemberInfo" resultType="com.ezen.dto.User">
+	 SELECT * FROM MALL_USER WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 유저를 받아 MALL_USER의 일치하는 아이디에 업데이트 -->
+	<update id="UpdateMemberInfo">
+		UPDATE MALL_USER SET user_pw = #{user_pw}, user_name = #{user_name}, user_email = #{user_email}, user_phone = #{user_phone}, user_address = #{user_address} WHERE user_id = #{user_id}
+	</update>
+
+</mapper>

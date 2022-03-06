@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IpurchaseDAO">
+
+	<!-- cart_list_idx가 일치하는 정보를 가져옴 -->
+	<select id="getPurchaseInfoByCartListidx" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM MALL_PURCHASE WHERE CART_LIST_IDX = #{cart_list_idx}
+	</select>
+	<!-- purchase_idx가 일치하는 값의 purchase_statement 를 변경함 -->
+	<update id="updatePurchaseStatementByMyPage">
+		UPDATE MALL_PURCHASE SET PURCHASE_STATMENT = #{purchase_statement} WHERE PURCHASE_IDX = #{purchase_idx}
+	</update>
+	<!-- 모든 mall_purchase의 정보를 가져옴 -->
+	<select id="getPurchaseList" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM MALL_PURCHASE
+	</select>
+
+</mapper>

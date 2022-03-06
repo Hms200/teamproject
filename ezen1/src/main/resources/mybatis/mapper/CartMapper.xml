@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IcartDAO">
+
+	<!-- user_idx가 일치하고 cart_isdone가 0 인값을 반환 -->
+	<select id="getCartIsDone" resultType="com.ezen.dto.Cart">
+		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=0
+	</select>
+
+	<!-- user_idx가 일치하고 cart_isdone이 1인값의 갯수를 반환 -->
+	<select id="getNumberOfCartIsNotDone" resultType="_int">
+		SELECT COUNT(*) FROM MALL_CART WHERE USER_IDX = #{user_idx} AND CART_ISDONE = 1
+	</select>
+	
+	<!-- user_idx가 일치하고 cart_isdone이 1인 값을 반환 -->
+	<select id="getCartIsNotDone" resultType="com.ezen.dto.Cart">
+		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=1
+	</select>
+	
+	<!-- cart_idx가 일치하는 값의 cart_list_idx를 넘어온 값으로 변경하고 cart_isdone을 0으로 변경 -->
+	<update id="updateCartIsDone">
+		UPDATE MALL_CART SET CART_LIST_IDX = #{cart_list_idx} , CART_ISDONE = 0 WHERE CART_IDX = #{cart_idx}
+	</update>
+	<!-- 넘겨받은 값으로 데이터 추가 -->
+	<insert id="insertCart" parameterType="com.ezen.dto.Cart">
+		INSERT INTO MALL_CART(CART_IDX,CART_LIST_IDX,USER_IDX,GOODS_IDX,OPTION_IDX,CART_AMOUNT,CART_TOTAL_PRICE,CART_ISDONE)
+		VALUES (MALL_CART_SEQ.NEXTVAL,#{CART_LIST_IDX},#{USER_IDX},#{GOODS_IDX},#{OPTION_IDX},#{CART_AMOUNT},#{CART_TOTAL_PRICE})	
+	</insert>
+	
+</mapper>

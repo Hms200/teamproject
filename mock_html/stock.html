@@ -27,14 +27,14 @@
 
         <!-- 검색 바 -->
         <div class="container-fluid form-group col-11">
-            <form class="w-100 d-flex flex-row position-relative" name="adminStockForm" method="get" action="mainSearchAction">
+            <form class="w-100 d-flex flex-row position-relative" name="adminStockForm" method="get">
                 <select class="custom-select custom-select-lg col-3" name="stock_cat">
                     <option value="goods_name">이름</option>
                     <option value="goods_onsale">판매중여부</option>
                     <option value="goods_cat">카테고리</option>
                 </select>
-                <input class="form-control form-control-lg col-9" type="text" placeholder="검색">
-                <img class="position-absolute" src="/img/icon/search.png" alt="검색버튼" width="40px" height="40px" style="right: 10px; top:5px; cursor: pointer;" onclick="submit()">
+                <input class="form-control form-control-lg col-9 nullcheck" type="text" placeholder="검색어를 입력해주세요.">
+                <img class="position-absolute" src="/img/icon/search.png" alt="검색버튼" width="40px" height="40px" style="right: 10px; top:5px; cursor: pointer;" onclick="multiSubmit(formName = 'adminStockForm', formAction = 'mainSearchAction', onsubmit='return nullChecker();')">
             </form>
         </div>
 
