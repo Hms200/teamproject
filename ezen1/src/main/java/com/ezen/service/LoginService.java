@@ -1,9 +1,11 @@
 package com.ezen.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.ui.Model;
+
 import com.ezen.dao.IuserDAO;
 
 
@@ -14,7 +16,8 @@ public class LoginService {
 	@Autowired
 	IuserDAO userDao;
 	
-	public Model login(String user_id, String user_pw, Model model) {
+	//로그인
+	public Model login(String user_id, String user_pw, HttpSession session, Model model) {
 		
 		System.out.println("user_id:"+user_id);
 		System.out.println("user_pw:"+user_pw);
@@ -30,20 +33,55 @@ public class LoginService {
 		// 입력한 id의 비밀번호와 DB의 비밀번호가 같은지 대조
 		if(user_pw.equals(userPw)) {
 			
-			//유저 idx 불러오기 성공.s
-			//int user_idx = userDao.getUserIdx(user_id);
-			//String user_idx = userDao.getUserID(user_id);
-			//System.out.println("user_idx:"+user_idx);			
-			//model.addAttribute("user_idx", user_idx);			
-			//result = "<script>alert('로그인되었습니다.'); location.href='test';</script>";
+			//유저 idx 불러오기 성공.
+			int user_idx = userDao.getUserIdx(user_id);
+
+			System.out.println("user_idx:"+user_idx);
+			session.setAttribute("user_id", user_id);
+			session.setAttribute("user_idx", user_idx);	
+			
 			model.addAttribute("user_id", user_id);
+			//model.addAttribute("user_pw", user_pw);
 			return model;
 		}
-		return null;
-		
-		
+		return null;		
 	}
 
+	public String findId( String user_name, String user_email) {
+		
+		System.out.println("서비스  user_name:"+user_name);
+		System.out.println("user_email:"+user_email);
+		
+		String result;
+		String user_id = userDao.getUserIdByFindId(user_name, user_email);
+		System.out.println("user_id:"+user_id);
+		if( user_id == null ) {
+			result = "<script>alert('아이디를 찾을 수 없습니다.'); history.back(-1);</script>";
+			
+		} else {
+			result = "<script>alert('고객님의 아이디는" + user_id + " 입니다.'); location.href='login';</script>";;
+		}
+		return result;	
+	}
+	
+	public String findPW( String user_id, String user_name, String user_email) {
+		
+		System.out.println("서비스  user_name:"+user_name);
+		System.out.println("user_id:"+user_id);
+		System.out.println("user_email:"+user_email);
+		
+		String result;
+		String user_pw = userDao.getUserPwByFindPw( user_id, user_name, user_email);
+		System.out.println("user_pw:"+user_pw);
+		if( user_pw == null ) {
+			result = "<script>alert('비밀번호를 찾을 수 없습니다.'); history.back(-1);</script>";
+			
+		} else {
+			result = "<script>alert('고객님의 비밀번호는 " + user_pw + " 입니다.'); location.href='login';</script>";;
+		}
+		return result;	
+	}
+	
 	//아이디 중복확인 구동
 	public int idCheckAjax( String user_id ) {
 		

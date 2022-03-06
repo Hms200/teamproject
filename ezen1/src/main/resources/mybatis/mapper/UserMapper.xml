@@ -16,13 +16,13 @@
 	</select>
 	
 	<!-- MALL_USER에서 사용자 아이디를 이름과 이메일을 받아서 가져옴. -->
-	<select id="getUserIdByFindId" resultType="com.ezen.dto.User">
-		SELECT * FROM MALL_USER WHERE user_name= #{ user_name } AND user_email= #{ user_email }
+	<select id="getUserIdByFindId" resultType="String">
+		SELECT user_id FROM MALL_USER WHERE user_name= #{ param1 } AND user_email= #{ param2 }
 	</select>
 	
 	<!-- MALL_USER에서 사용자 비밀번호를 이름 아이디, 이메일을 받아서 가져옴. -->
-	<select id="getUserPwByFindPw" resultType="com.ezen.dto.User">
-		SELECT * FROM MALL_USER WHERE user_name= #{ user_name } AND user_id= #{ user_id } AND user_email= #{ user_email }
+	<select id="getUserPwByFindPw" resultType="String">
+		SELECT user_pw FROM MALL_USER WHERE user_id= #{ param1 } AND user_name= #{ param2 } AND user_email= #{ param3 }
 	</select>
 	
 	<!-- MALL_USER에서 사용자 아이디를 받아 해당하는 아이디의 인덱스를 가져옴 -->

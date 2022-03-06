@@ -14,6 +14,8 @@
 		${ user_id } <br>
 		${ user_idx }
 	    <span><a href="logoutAction">LOGOUT</a></span>
+	    <span><a href="quitAction?user_id=${ user_id }">quitAction</a></span>
+	    <span><a href="/main">main</a></span>
 	    </c:if>
 	    <c:if test="${ empty user_id }">
 	    	<span><a href="login">LOGIN</a></span>
