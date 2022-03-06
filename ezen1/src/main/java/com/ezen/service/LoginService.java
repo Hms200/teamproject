@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.ui.Model;
 import com.ezen.dao.IuserDAO;
-import com.ezen.dto.User;
 
 
 @Service
@@ -15,60 +14,32 @@ public class LoginService {
 	@Autowired
 	IuserDAO userDao;
 	
-	public String login(String user_id, String user_pw, Model model) {
-		
-//		
-//		System.out.println("user_id:"+user_id);
-//		System.out.println("user_pw:"+user_pw);
-//		
-//		
-//		// 입력한 id가 있는지 조회
-//		String userID = userDao.getUserID(user_id);
-//		// 없으면 로그인 실패 로그인페이지 로딩
-//		if(userID == null) {
-//			
-//		}
-//		// 있으면 해당ID의 비밀번호 조회
-//		String userPw = userDao.getUserPw(user_id);
-//		// 입력한 id의 비밀번호와 DB의 비밀번호가 같은지 대조
-//		if(user_pw.equals(userPw)) {
-//			
-//			//유저 idx 불러오기 성공.
-//			String user_idx = userDao.getUserID(user_id);
-//			
-//			model.addAttribute("user_id", user_id);
-//			model.addAttribute("user_pw", user_pw);
-//			model.addAttribute("user_idx", user_idx);
-//			
-//			return model;
-//		}
-//		return model;
+	public Model login(String user_id, String user_pw, Model model) {
 		
 		System.out.println("user_id:"+user_id);
 		System.out.println("user_pw:"+user_pw);
 		
-		String result = "<script>alert('유효한ID혹은 비밀번호가 아닙니다.'); history.back(-1);</script>";
 		// 입력한 id가 있는지 조회
 		String userID = userDao.getUserID(user_id);
 		// 없으면 로그인 실패 로그인페이지 로딩
 		if(userID == null) {
-			return result;
+			return null;
 		}
 		// 있으면 해당ID의 비밀번호 조회
 		String userPw = userDao.getUserPw(user_id);
 		// 입력한 id의 비밀번호와 DB의 비밀번호가 같은지 대조
 		if(user_pw.equals(userPw)) {
 			
-			//유저 idx 불러오기 성공.
-			String user_idx = userDao.getUserID(user_id);
-			
+			//유저 idx 불러오기 성공.s
+			//int user_idx = userDao.getUserIdx(user_id);
+			//String user_idx = userDao.getUserID(user_id);
+			//System.out.println("user_idx:"+user_idx);			
+			//model.addAttribute("user_idx", user_idx);			
+			//result = "<script>alert('로그인되었습니다.'); location.href='test';</script>";
 			model.addAttribute("user_id", user_id);
-			model.addAttribute("user_idx", user_idx);
-			
-			result = "<script>alert('로그인되었습니다.'); location.href='test';</script>";
-			return result;
+			return model;
 		}
-		return result;
+		return null;
 		
 		
 	}
