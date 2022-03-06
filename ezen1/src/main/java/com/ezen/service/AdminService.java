@@ -16,14 +16,10 @@ public class AdminService {
 	IuserDAO userDAO;
 	
 	// MemberList filter
-	public Model filteredMemberList(int cat, String searchText, Model model) {
-		ArrayList<User> userList;
-		// Id로 정렬
-		if(cat == 0) {
-			userList = userDAO.searchUserById("%"+searchText+"%");
-		}else if(cat == 1) {
-			userList = 
-		}
+	public Model MemberListBySearch(String searchText, Model model) {
+		ArrayList<User> userList = userDAO.searchUserById("%"+searchText+"%");
+		model.addAttribute("userlist", userList);
+		return model;
 		
 	}
 	
