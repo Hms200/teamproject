@@ -49,7 +49,6 @@ public class LoginController {
 	}
 	
 
-	//로그인_ 수정필요 현재 user_id정보만 불러와짐 RequestParam 외 정보(idx) or Model 이용으로 변경생각하기.
 	@RequestMapping("loginAction")
 	@ResponseBody
 	public String loginAction(
@@ -57,16 +56,13 @@ public class LoginController {
 				@RequestParam("user_pw") String user_pw,
 				HttpSession session, Model model) {
 			
-			Model result = loginService.login(user_id, user_pw, model);			
+			Model result = loginService.login(user_id, user_pw, session, model);			
+
 			
-			int user_idx = userDao.getUserIdx(user_id);
-	
 			if( result == null ) { 	
 				return "<script>alert('로그인 실패!'); history.back(-1);</script>";
 				}			
-			else {
-					session.setAttribute("user_id", user_id);
-					session.setAttribute("user_idx", user_idx);		
+			else {					
 					return "<script>alert('로그인 성공!'); location.href='test';</script>";	
 			}	
 		}

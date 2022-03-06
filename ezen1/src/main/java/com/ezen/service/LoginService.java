@@ -1,5 +1,7 @@
 package com.ezen.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -14,7 +16,8 @@ public class LoginService {
 	@Autowired
 	IuserDAO userDao;
 	
-	public Model login(String user_id, String user_pw, Model model) {
+	//로그인
+	public Model login(String user_id, String user_pw, HttpSession session, Model model) {
 		
 		System.out.println("user_id:"+user_id);
 		System.out.println("user_pw:"+user_pw);
@@ -30,13 +33,15 @@ public class LoginService {
 		// 입력한 id의 비밀번호와 DB의 비밀번호가 같은지 대조
 		if(user_pw.equals(userPw)) {
 			
-			//유저 idx 불러오기 성공.s
-			//int user_idx = userDao.getUserIdx(user_id);
-			//String user_idx = userDao.getUserID(user_id);
-			//System.out.println("user_idx:"+user_idx);			
-			//model.addAttribute("user_idx", user_idx);			
-			//result = "<script>alert('로그인되었습니다.'); location.href='test';</script>";
+			//유저 idx 불러오기 성공.
+			int user_idx = userDao.getUserIdx(user_id);
+
+			System.out.println("user_idx:"+user_idx);
+			session.setAttribute("user_id", user_id);
+			session.setAttribute("user_idx", user_idx);	
+			
 			model.addAttribute("user_id", user_id);
+			//model.addAttribute("user_pw", user_pw);
 			return model;
 		}
 		return null;		
