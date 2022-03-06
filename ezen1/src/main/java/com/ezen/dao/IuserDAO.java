@@ -17,7 +17,7 @@ public interface IuserDAO {
 	//아이디찾기. MALL_USER에서 사용자 아이디를 이름과 이메일을 받아서 가져옴.
 	public String getUserIdByFindId(String user_name, String user_email);
 	//비밀번호찾기. MALL_USER에서 사용자 비밀번호를 이름 아이디, 이메일을 받아서 가져옴.
-	public String getUserPwByFindPw(String user_name ,String user_id, String user_email);
+	public String getUserPwByFindPw (String user_id, String user_name, String user_email);
 	//MALL_USER에서 사용자 아이디를 받아 해당하는 아이디의 인덱스를 가져옴.
 	public int getUserIdx(String user_id);
 	//회원가입. 유저를 받아 MALL_USER에 인서트.
