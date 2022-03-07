@@ -1,9 +1,12 @@
 package com.ezen.service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 import com.ezen.dao.IuserDAO;
 
 
@@ -88,11 +91,25 @@ public class LoginService {
 		
 	}
 	
-	public int join( String user_id, String user_pw, String user_name, String user_phone, String user_address, String user_email) {
+	public String join( String user_id, String user_pw, String user_name, String user_phone, String user_address, String user_email, HttpServletRequest request) {
+		String sample6_address = request.getParameter("sample6_address");
+		String sample6_detailAddress = request.getParameter("sample6_detailAddress");
+		user_address = "";
+		if( StringUtils.hasText(sample6_address)) {
+			user_address += sample6_address;
+		}
+		if( StringUtils.hasText(sample6_detailAddress)) {
+			user_address += " " + sample6_detailAddress;
+		}
+		System.out.println("user_address:"+user_address);
 		
-		int result= userDao.insertUser(user_id,  user_pw,  user_name,  user_phone,  user_address,  user_email);
-		System.out.println("result:"+result);
-		return result;
+		int result = userDao.insertUser(user_id, user_pw, user_name, user_phone, user_address,  user_email);
+		if( result == 1 ) {
+			return "<script>alert('회원가입되었습니다.'); location.href='login';</script>";
+		}
+		else {
+			return "<script>alert('회원가입 실패'); history.back(-1);</script>";
+		}
 	}
 
 }

@@ -92,7 +92,8 @@ public class LoginController {
 			String result = loginService.findPW(user_id, user_name, user_email);			
 			return result;	
 		}
-	//회원가입
+		
+	//아이디 중복체크 
 	@RequestMapping("idCheckAjax")
 	@ResponseBody
 	public int idCheckAjax(@RequestParam("user_id") String user_id) {
@@ -102,7 +103,7 @@ public class LoginController {
 			
 		return result;
 	}
-	
+	//회원가입 
 	@RequestMapping("joinAction")
 	@ResponseBody
 	public String joinAction( 
@@ -111,26 +112,10 @@ public class LoginController {
 			@RequestParam("user_name") String user_name,
 			@RequestParam("user_phone") String user_phone,
 			@RequestParam("user_email") String user_email,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request) {
 		
-		String sample6_address = request.getParameter("sample6_address");
-		String sample6_detailAddress = request.getParameter("sample6_detailAddress");
-		String user_address = "";
-		if( StringUtils.hasText(sample6_address)) {
-			user_address += sample6_address;
-		}
-		if( StringUtils.hasText(sample6_detailAddress)) {
-			user_address += " " + sample6_detailAddress;
-		}
-		System.out.println("user_address:"+user_address);
-		
-		int result = loginService.join(user_id, user_pw, user_name, user_phone, user_address,  user_email);
-		if( result == 1 ) {
-			return "<script>alert('회원가입되었습니다.'); location.href='login';</script>";
-		}
-		else {
-			return "<script>alert('회원가입 실패'); history.back(-1);</script>";
-		}
+		String result = loginService.join(user_id, user_pw, user_name, user_phone, user_pw, user_email, request);
+		return result;		
 	}	
 
 	@RequestMapping("quitAction")
