@@ -65,7 +65,7 @@ public class MainService {
 	public String noticeWrite(Notice notice) {
 		
 		int result = noticeDAO.insertNotice(notice);
-		String returnString = "<script>alert('작성에 실패하였습니다.') location.href='notice'</script>";
+		String returnString = "<script>alert('작성에 실패하였습니다.'); location.href='notice'</script>";
 		if(result ==1) {
 			returnString = "<script>alert('작성되었습니다.'); location.href='notice'</script>";
 		}

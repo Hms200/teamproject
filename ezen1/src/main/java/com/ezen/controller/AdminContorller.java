@@ -118,7 +118,7 @@ public class AdminContorller {
 		int result1 = goodsImgsDAO.insertGoodsImgs(img1);
 		int result2 = goodsImgsDAO.insertGoodsImgs(img2);
 		int result3 = goodsImgsDAO.insertGoodsImgs(img3);
-		return "<script>alert('등록되었습니다.'); loacation.href='admin/goods';</script>";
+		return "<script>alert('등록되었습니다.'); location.href='admin/goods';</script>";
 	}
 	
 	@RequestMapping("review")
