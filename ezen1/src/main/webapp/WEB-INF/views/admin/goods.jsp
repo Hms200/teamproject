@@ -44,8 +44,8 @@
       </div>
       <div class="d-flex felx-row justify-content-between form-group mx-4 mb-4">
         <span class="font-weight-bold" style="font-size: 14px;">카테고리 선택</span>
-        <select class="text-dark form-control col-6" name="goods_option" id="goods_option" style="font-size: 14px;">
-          <option selected value="">카테고리 선택</option>
+        <select class="text-dark form-control col-6" name="goods_cat" id="goods_cat" style="font-size: 14px;">
+          <option selected>카테고리 선택</option>
           <option value="캔들">캔들</option>
           <option value="캔들워머">캔들워머</option>
           <option value="디퓨저">디퓨저</option>
@@ -120,7 +120,7 @@
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
-<script>
+<script type="text/javascript">
 /* thumbnail 이미지 등록 */
 
 function uploadThumbnail(){
@@ -173,10 +173,12 @@ function uploadThumbnail(){
 
 function registerGoods(){
 	const form = document.querySelectorAll('form[name="productRegisterForm"] > div > input, select');
-	const formData = new FormData();
+	let formData = {};
 	for(i=0; i<form.length; i++){
-		formData.append(form[i].name, form[i].value);
+		formData[form[i].name] = form[i].value;
 	}
+	formData = JSON.stringify(formData);
+	console.log(formData);
 	console.log('파일등록 폼 전송 시도');
 	jQuery.ajax({
 		url: "productRegisterAction",

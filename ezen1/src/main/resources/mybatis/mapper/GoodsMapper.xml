@@ -53,8 +53,8 @@
 	
 	<!-- 상품 신규 등록 -->
 	<insert id="insertGoods" parameterType="com.ezen.dto.Goods">
-		INSERT INTO MALL_GOODS (goods_idx, goods_name, goods_price, goods_thumb, goods_cat, goods_stock, goods_onevent, goods_purchased, goods_detail, goods_onsale)
-			VALUES (mall_goods_seq.nextval, ${goods_name}, ${goods_price}, ${goods_thumb}, ${goods_cat}, ${goods_stock}, ${goods_onevent}, ${goods_purchased}, ${goods_detail}, ${goods_onsale})
+		INSERT INTO MALL_GOODS (goods_idx, goods_name, goods_price, goods_thumb, goods_cat, goods_stock, goods_detail, goods_onsale)
+			VALUES (mall_goods_seq.nextval, #{goods_name}, ${goods_price}, #{goods_thumb}, #{goods_cat}, ${goods_stock}, #{goods_detail}, ${goods_onsale})
 	</insert>
 	
 	<!-- 가장 최근 등록한 상품의 goods_idx가져오 -->
