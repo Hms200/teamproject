@@ -54,17 +54,10 @@ public class LoginController {
 	public String loginAction(
 				@RequestParam("user_id") String user_id,
 				@RequestParam("user_pw") String user_pw,
-				HttpSession session, Model model) {
-			
-			Model result = loginService.login(user_id, user_pw, session, model);			
+				HttpSession session) {
 
-			
-			if( result == null ) { 	
-				return "<script>alert('로그인 실패!'); history.back(-1);</script>";
-				}			
-			else {					
-					return "<script>alert('로그인 성공!'); location.href='test';</script>";	
-			}	
+			String result = loginService.login(user_id, user_pw, session);			
+			return result;
 		}
 
 	//로그아웃 기능
@@ -83,12 +76,8 @@ public class LoginController {
 	@ResponseBody
 	public String idFindAction( @RequestParam("user_name") String user_name,
 								@RequestParam("user_email") String user_email) {
-		
-		
-		String result = loginService.findId(user_name, user_email);
-		System.out.println("컨트롤러 user_name:" + user_name);
-		System.out.println("user_email:" + user_email);
-		System.out.println("result:" + result);
+			
+		String result = loginService.findId(user_name, user_email);	
 		return result;	
 	}
 	
@@ -99,15 +88,12 @@ public class LoginController {
 				@RequestParam("user_id") String user_id,
 				@RequestParam("user_name") String user_name,
 				@RequestParam("user_email") String user_email) {
-			
-			
-			String result = loginService.findPW(user_id, user_name, user_email);
-			System.out.println("컨트롤러 user_name:" + user_name);
-			System.out.println("user_email:" + user_email);
-			System.out.println("result:" + result);
+						
+			String result = loginService.findPW(user_id, user_name, user_email);			
 			return result;	
 		}
-	//회원가입
+		
+	//아이디 중복체크 
 	@RequestMapping("idCheckAjax")
 	@ResponseBody
 	public int idCheckAjax(@RequestParam("user_id") String user_id) {
@@ -117,7 +103,7 @@ public class LoginController {
 			
 		return result;
 	}
-	
+	//회원가입 
 	@RequestMapping("joinAction")
 	@ResponseBody
 	public String joinAction( 
@@ -126,36 +112,16 @@ public class LoginController {
 			@RequestParam("user_name") String user_name,
 			@RequestParam("user_phone") String user_phone,
 			@RequestParam("user_email") String user_email,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request) {
 		
-		String sample6_address = request.getParameter("sample6_address");
-		String sample6_detailAddress = request.getParameter("sample6_detailAddress");
-		String user_address = "";
-		if( StringUtils.hasText(sample6_address)) {
-			user_address += sample6_address;
-		}
-		if( StringUtils.hasText(sample6_detailAddress)) {
-			user_address += " " + sample6_detailAddress;
-		}
-		System.out.println("user_address:"+user_address);
-		
-		int result = loginService.join(user_id, user_pw, user_name, user_phone, user_address,  user_email);
-		if( result == 1 ) {
-			return "<script>alert('회원가입되었습니다.'); location.href='login';</script>";
-		}
-		else {
-			return "<script>alert('회원가입 실패'); history.back(-1);</script>";
-		}
+		String result = loginService.join(user_id, user_pw, user_name, user_phone, user_pw, user_email, request);
+		return result;		
 	}	
 
-	//회원탈퇴성공 / 겟 어트리뷰트 없이 동작되는지 다시 테스트해보기. 
 	@RequestMapping("quitAction")
 	@ResponseBody
-	public String quitAction(@RequestParam("user_id") String user_id,HttpSession session) {
+	public String quitAction(@RequestParam("user_id") String user_id) {
 		
-		session.getAttribute(user_id);
-		
-		System.out.println("컨트롤러 user_id:" + user_id);
 		int result = userDao.deleteUser(user_id);
 		if( result == 1){
 			System.out.println("회원탈퇴");
