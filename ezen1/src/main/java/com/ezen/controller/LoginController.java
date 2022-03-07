@@ -54,17 +54,10 @@ public class LoginController {
 	public String loginAction(
 				@RequestParam("user_id") String user_id,
 				@RequestParam("user_pw") String user_pw,
-				HttpSession session, Model model) {
+				HttpSession session) {
 			
-			Model result = loginService.login(user_id, user_pw, session, model);			
-
-			
-			if( result == null ) { 	
-				return "<script>alert('로그인 실패!'); history.back(-1);</script>";
-				}			
-			else {					
-					return "<script>alert('로그인 성공!'); location.href='test';</script>";	
-			}	
+			String result = loginService.login(user_id, user_pw, session);			
+			return result;
 		}
 
 	//로그아웃 기능
