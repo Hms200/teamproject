@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<c:import url="header.jsp"></c:import>
+<c:import url="../header.jsp"></c:import>
 
 <!-- container -->
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
@@ -36,7 +36,8 @@
           </span>
           
             <!-- 히든 input -->
-            <input type="hidden" name="notice_idx" value="notice_idx">
+            <input type="hidden" name="onetoone_idx" value="onetoone_idx">
+            <input type="hidden" name="user_idx" value="user_idx">
             <input type="hidden" name="onetoone_date" value="onetoone_date">
             <!-- 제목 -->
             <span>
@@ -45,9 +46,9 @@
             <!-- 카테고리 -->
             <select name="onetoone_cat" style="width: 100px;height: 40px;">
               <option selected hidden>문의 종류</option>
-              <option value="1">상품 문의</option>
-              <option value="2">배송 문의</option>
-              <option value="3">결제 문의</option>
+              <option value="상품문의">상품문의</option>
+              <option value="배송문의">배송문의</option>
+              <option value="결제문의">결제문의</option>
             </select>
             <!-- 내용 -->
             <span>
@@ -56,7 +57,7 @@
         </div>
             <div class="container-sm container-fluid d-flex flex-row justify-content-center" style="height: 40px;">
                 <!-- 취소버튼 -->
-                <button class="btn btn-secondary mx-2" style="width: 100px; cursor: pointer;" onclick="location.href='customer'">취소</button>
+                <button class="btn btn-secondary mx-2" style="width: 100px; cursor: pointer;" onclick="location.href='/customer'">취소</button>
                 <!-- 작성버튼 -->
                 <button type="submit" class="btn btn-dark mx-2" style="width: 190px; cursor: pointer;">문의하기</button>
             </div>
@@ -64,8 +65,8 @@
       </form>
   </div>
     
-<c:import url="footer.jsp"></c:import>
-<c:import url="nav.jsp"></c:import>
+<c:import url="../footer.jsp"></c:import>
+<c:import url="../nav.jsp"></c:import>
 
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
