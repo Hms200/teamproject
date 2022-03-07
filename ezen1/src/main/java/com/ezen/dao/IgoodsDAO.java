@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.dto.Goods;
+import com.ezen.dto.Review;
 
 @Mapper
 public interface IgoodsDAO {
@@ -24,9 +25,12 @@ public interface IgoodsDAO {
 	// 해당 이벤트를 시행중인 모든 상품정보 가져오기
 	public ArrayList<Goods> getGoodsListByOnEvent(String onEvent);
 	
+	//해당 goods_idx를 가진 상품의 리뷰는 전부 가져옴
+	public ArrayList<Review> getGoodsReview(int goods_idx);
+	
 	// 등록된 모든 상품 정보 가져오기
-
 	public ArrayList<Goods> getGoodsList(int start, int end);
+	
 	// 해당 goods_idx를 가진 상품 정보 가져오기
 	public Goods getGoodsInfo(int goods_idx);
 	
@@ -53,7 +57,7 @@ public interface IgoodsDAO {
 	
 	// 해당 goods_idx를 가진 상품을 db에서 삭제
 	public int deleteGoods(int goods_idx);
-	
-
-	
+		
+	//모든 상품 정보 가져오기
+	public ArrayList<Goods> getAllGoodsList();
 }

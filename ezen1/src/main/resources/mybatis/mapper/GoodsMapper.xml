@@ -30,6 +30,10 @@
 		SELECT * FROM MALL_GOODS WHERE goods_onevent = #{onEvent}
 	</select>
 	
+	<!-- 해당 상품번호로등록된 리뷰를 가져온다 -->
+	<select id="getGoodsReview" resultType="com.ezen.dto.Review">
+		SELECT * FROM MALL_REVIEW WHERE GOODS_IDX = #{goods_idx}
+	</select>
 	<!-- 등록된 모든 상품 정보 가져오 -->
 	<select id="getAllGoodsList" resultType="com.ezen.dto.Goods">
 		select * from mall_goods
