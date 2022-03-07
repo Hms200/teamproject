@@ -151,3 +151,82 @@ function changeValueOfCheckbox(){
 	return true;
 }
 
+/* thumbnail 이미지 등록 */
+
+function uploadThumbnail(){
+	const thumb = document.getElementsByName('uploadthumb')[0].files[0];
+	const formData = new FormData();
+	formData.append("file", thumb);
+
+	jQuery.ajax({
+		url: "uploadGoodsThumbAction",
+		type: "POST",
+		processData: false,
+		contentType: false,
+		data: formData,
+		success: function(result){
+			if(result == false){
+			alert('등록에 실패하였습니다.');
+			thumb = null;
+		}
+		console.log('파일등록 성공 :' +result);
+		document.getElementsByName('goods_thumb')[0].value = result;
+		}
+	})
+};
+
+/* 상세이미지 등록 */
+ 
+ function uploadDetail(){
+	const detail = document.getElementsByName('uploadGoodsDetail')[0].files[0];
+	const formData = new FormData();
+	formData.append("file", detail);
+
+	jQuery.ajax({
+		url: "uploadGoodsDetailAction",
+		type: "POST",
+		processData: false,
+		contentType: false,
+		data: formData,
+		success: function(result){
+			if(result == false){
+				alert('등록에 실패하였습니다.');
+				detail = null;
+			}
+			console.log('파일등록 성공 : '+result);
+			document.getElementsByName('goods_detail')[0].value = result;
+		},
+	})
+};
+
+// 상품등록
+
+function registerGoods(){
+	const form = document.querySelectorAll('form[name="productRegisterForm"] > div > input, select');
+	let formData = {};
+	for(i=0; i<form.length; i++){
+		formData[form[i].name] = form[i].value;
+	}
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	console.log('파일등록 폼 전송 시도');
+	jQuery.ajax({
+		url: "productRegisterAction",
+		type: "POST",
+		dataType: "json",
+		contentType: "application/json",
+		processData: false,
+		data: formData,
+		success: function(result){
+			if(result == false){
+				alert('등록에 실패하였습니다.');
+				return false;
+			}
+			console.log('등록 성공 goods_idx = '+result);
+			document.getElementsByName('goods_idx')[0].value = result;
+			multiSubmit(formName = 'goodsimgs', formAction = 'uploadGoodsIMGSAction');
+		},
+		error: function(){return false},
+	})
+	
+};
