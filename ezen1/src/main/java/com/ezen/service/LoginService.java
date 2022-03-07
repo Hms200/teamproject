@@ -17,34 +17,34 @@ public class LoginService {
 	IuserDAO userDao;
 	
 	//로그인
-	public Model login(String user_id, String user_pw, HttpSession session, Model model) {
+	public String login(String user_id, String user_pw, HttpSession session) {
 		
 		System.out.println("user_id:"+user_id);
 		System.out.println("user_pw:"+user_pw);
-		
+			
+		String result = "<script>alert('로그인 실패!'); history.back(-1);</script>";
+			
 		// 입력한 id가 있는지 조회
 		String userID = userDao.getUserID(user_id);
 		// 없으면 로그인 실패 로그인페이지 로딩
 		if(userID == null) {
-			return null;
+			return result;
 		}
 		// 있으면 해당ID의 비밀번호 조회
 		String userPw = userDao.getUserPw(user_id);
 		// 입력한 id의 비밀번호와 DB의 비밀번호가 같은지 대조
 		if(user_pw.equals(userPw)) {
-			
+				
 			//유저 idx 불러오기 성공.
 			int user_idx = userDao.getUserIdx(user_id);
-
 			System.out.println("user_idx:"+user_idx);
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("user_idx", user_idx);	
-			
-			model.addAttribute("user_id", user_id);
-			//model.addAttribute("user_pw", user_pw);
-			return model;
+				
+			result = "<script>alert('로그인 성공!'); location.href='test';</script>";
+			return result;
 		}
-		return null;		
+		return result;									
 	}
 
 	public String findId( String user_name, String user_email) {
