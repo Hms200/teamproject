@@ -34,7 +34,7 @@
       <div class="dep d-flex flex-row flex-wrap justify-content-between my-5 mx-3" style="width:310px">
       <c:forEach var="dto" items="${ list }">
           <div class="border pt-3 my-3" id="val${dto.goods_cat}">
-            <a href="goodsList/goodsDetail?name="><img src="${dto.goods_thumb}" alt=""
+            <a href="goodsDetail?goods_idx=${dto.goods_idx}"><img src="${dto.goods_thumb}" alt=""
                 class="img-fluid" width="150px" height="150px"></a>
             <div class="font-weight-bold px-1" style="font-size: 14px;">${dto.goods_name}</div>
             <div class="font-weight-bold px-1 text-black-50" style="font-size: 10px;">${dto.goods_cat}</div>

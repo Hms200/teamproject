@@ -33,8 +33,11 @@ public class FileService {
 	@Value("${app.thumb.img.dir}")
 	private String thumbImgUploadDir;
 	
+	@Value("${app.goods.detail.dir}")
+	private String detailImgUploadDir;
 	
-	// img cat - goods, reviews, thumb
+	
+	// img cat - goods, reviews, thumb, detail
 	// fileUploader를 호출할 때 꼭 어떤 이미지파일인지 cat을 넣어주세요.
 	// 업로드에 성공하면 이미지가 저장된 서버상의 경로를 String으로 리턴 
 	// 리턴된 이미지 저장경로를 받아서 DB의 img 관련 테이블에 해당 idx와 함께 insert하면 됨.
@@ -48,6 +51,8 @@ public class FileService {
 			uploadDir = reviewImgUploadDir;
 		}else if(cat.equals("thumb")){
 			uploadDir = thumbImgUploadDir;
+		}else if(cat.equals("detail")){
+			uploadDir = detailImgUploadDir;
 		}else {
 			return "f 잘못된 이미지 카테고리 지정";
 		}
@@ -75,6 +80,7 @@ public class FileService {
 	public String fileNameGenerator(String originalFileName) {
 		Random random = new Random();
 		String randomNum = String.valueOf(random.nextInt(10000));
+		originalFileName = originalFileName.replaceAll("-", "_");
 		return randomNum + originalFileName;
 	}
 
