@@ -168,9 +168,9 @@
             <div>
               <select name="faq_cat" style="width: 100px; height: 40px; font-size: 14px;">
                 <option selected hidden>문의 종류</option>
-                <option value="1">상품문의</option>
-                <option value="2">배송문의</option>
-                <option value="3">결제문의</option>
+                <option value="상품문의">상품문의</option>
+                <option value="배송문의">배송문의</option>
+                <option value="결제문의">결제문의</option>
               </select>
             </div>
           </div>

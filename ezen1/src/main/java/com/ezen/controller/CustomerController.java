@@ -59,7 +59,7 @@ public class CustomerController {
 								  @RequestParam("faq_cat") String faq_cat,
 								  HttpServletRequest request, Model model) {
 		
-		int result = faqDao.FaqWrite(faq_title, faq_contents, faq_cat);
+		int result = customerService.FaqWrite(faq_title, faq_contents, faq_cat);
 		if(result == 1) {
 			return "<script>alert('작성 성공'); location.href='/customer/faq';</script>";
 		}
@@ -71,9 +71,7 @@ public class CustomerController {
 	//FAQ 삭제
 	@RequestMapping("deleteAction")
 	@ResponseBody
-	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpSession session) {
-		
-		session.getAttribute(faq_idx);
+	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpServletRequest reuqest) {
 		
 		int result = faqDao.faqDeleteByFaqIdx(faq_idx);
 		if(result == 1) {
@@ -105,8 +103,11 @@ public class CustomerController {
 	
 	//문의하기 액션
 	@RequestMapping("qnaQuestionAction")
-	public String qnaQuestionAction(@RequestBody OneToOne onetoone) {
-		int result = onetooneDao.insertOneToOne(onetoone);
+	public String qnaQuestionAction(@RequestParam("onetoone_title") String onetoone_title,
+								     @RequestParam("onetoone_cat") String onetoone_cat,
+								     @RequestParam("onetoone_contents") String onetoone_contents
+								     ) {
+		int result = customerService.insertOneToOne(onetoone_title, onetoone_cat, onetoone_contents);
 		if(result == 1) {
 			return "<script>alert('작성 성공'); location.href='/customer';</script>";
 		}
@@ -115,3 +116,4 @@ public class CustomerController {
 		}
 	}
 }
+
