@@ -36,6 +36,8 @@ public class GoodsListController {
 	public String goodsDetail(@RequestParam("goods_idx")int goods_idx,
 							  Model model) {
 		Goods goods = goodsDAO.getGoodsInfo(goods_idx);
+		String name = goods.getGoods_name();
+		model.addAttribute("name",name);
 		model.addAttribute("goods",goods);
 		return "goodsList/goodsDetail";
 	}

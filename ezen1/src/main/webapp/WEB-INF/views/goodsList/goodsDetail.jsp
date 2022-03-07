@@ -116,7 +116,6 @@
     <!--상품 상세보기 타이틀-->
     <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
       <!--부모클래스bg-primary 안넣었음 -->
-	네이쳐 소이캔들
     </div>
     <!--상품 상세보기 옵션 드롭다운-->
     <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px;">
