@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +33,12 @@
     </div>
     <!--상품 상세보기 이미지-->
     <div class=" mx-0 px-0">
-      <img src="/img//goods/candle/Candle01_01.jpeg" alt="" class="img-fluid" width="360px" height="240px">
+      <img src="${thumb}" alt="" class="img-fluid" width="360px" height="240px">
     </div>
     <!--상품 상세보기 타이틀-->
     <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
+    ${name}
       <!--부모클래스bg-primary 안넣었음 -->
-	네이쳐 소이캔들
     </div>
     <!--상품 상세보기 옵션 드롭다운-->
     <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px;">
@@ -59,7 +61,7 @@
         판매가
       </div>
       <div class="col-4" style="font-size: 14px;">
-        17.000원
+      <fmt:formatNumber value="${price}" type="number" />
       </div>
     </div>
     <div class="w-100 bg-primary goodsDetailDivisionLine">
@@ -81,7 +83,7 @@
     <main class="info">
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
-          <img src="/img/goods/candle/Candle_01.jpeg" alt="" class="img-fluid" style="width: 264px;">
+          <img src="${detail}" alt="" class="img-fluid" style="width: 264px;">
           <!--구매하기버튼/장바구니 아이콘-->
           <div class="col-12 my-2">
             <!--장바구니 버튼을 누르면 장바구니 페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
@@ -94,11 +96,12 @@
       </div>
       <!--해당네브:리뷰-->
       <div class="dep _review ">
-        <div class="d-flex flex-row justify-content-around mx-4 mt-5">
-          <div class="col-6 px-3 border">
+        <div class="d-flex flex-row flex-wrap mx-4 mt-5">
+        <c:forEach var = "dto" items="${reviewList}">
+          <div class="px-3 border">
             <!--날짜 div-->
             <div class="text-right" style="font-size: 8px;">
-              2022-00-00
+              ${dto.review_date}
             </div>
             <!--이미지 div-->
             <div class="goodsDetailReviewImgBox" style="height: 150px;">
@@ -106,31 +109,14 @@
             </div>
             <!--별점div-->
             <div style="font-size: 8px;">
-              ★(4.5)
+              ${dto.review_star}
             </div>
             <!--이름div-->
             <div class="font-weight-bold mb-2" style="font-size: 14px;">
-              네이쳐 소이캔들
+              ${name}
             </div>
           </div>
-          <div class="px-3 col-6 border">
-            <!--날짜 div-->
-            <div class="text-right" style="font-size: 8px;">
-              2022-00-00
-            </div>
-            <!--이미지 div-->
-            <div class="goodsDetailReviewImgBox" style="height: 150px;">
-              <img src="/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="" style="width: 150px;">
-            </div>
-            <!--별점div-->
-            <div style="font-size: 8px;">
-              ★(4.5)
-            </div>
-            <!--이름div-->
-            <div class="font-weight-bold mb-2" style="font-size: 14px;">
-              네이쳐 소이캔들
-            </div>
-          </div>
+          </c:forEach>
         </div>
       </div>
       <!--해당네브:문의/안내-->
@@ -181,8 +167,11 @@
             상품문의
           </div>
           <form action="productQnaWriteAction" method="post" name="productQnaWriteForm">
+          <%
+          Date date = new Date();
+          %>
             <p class="text-right text-black-50 d-block goodsDetailInquiryPopDate" name="question_date" style="font-size: 12px">
-              2022-00-00</p>
+              <%=date%></p>
             <div class="d-block mb-1">
               <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border w-100 text-dark py-1 px-3 goodsDetailInquiryPopTitle" name="question_title"
                 style="font-size: 14px; ">
