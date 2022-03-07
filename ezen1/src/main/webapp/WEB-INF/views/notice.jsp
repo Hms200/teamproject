@@ -55,12 +55,14 @@
             </table>
             
         </div>
-            <!-- 작성버튼 -->
+            
         <div class="d-flex flex-column justify-content-center mb-2">
+        	<!-- 작성버튼 admin에게만 보임 -->
+        	<c:if test="${ user_id eq 'admin' }">
             <button class="btn btn-secondary text-dark border-0 mx-auto font-weight-bold" style="width: 100px;font-size: 16px;" onclick="popupHideAndShow(target = 'notice_write_popup')">
                 작성
             </button>
-
+			</c:if>
             <!-- 페이지 표시기 -->
 			<c:if test="${ pages.beginPagenation != pages.endPagenation }">
 		    <div class="container row my-3 mx-auto">
@@ -122,10 +124,12 @@
                     <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
                     <div class="mx-auto" style="width: fit-content;">
                         <!-- 사용자용 확인버튼 -->
-                        <button class="btn btn-dark btn-lg d-none" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')">확인</button>
+                        <button class="btn btn-dark btn-lg <c:if test="${ user_id eq 'admin' }">d-none</c:if>>" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" type="button">확인</button>
                         <!-- 관리자용 확인버튼 -->
+                        <c:if test="${ user_id eq 'admin' }">
                         <input type="submit" class="btn btn-dark btn-lg" style="width: 140px;" value="확인">
                         <button class="btn btn-secondary" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction?${ notice.notice_idx}')">삭제</button>
+                        </c:if>
                     </div>
                 </form>
             </div>

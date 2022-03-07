@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>회원목록 조회</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -17,11 +17,11 @@
 <c:import url="../header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px;">
         <!-- 헤더 -->
         <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
             <div class="col-1 my-3">
-              <a href="/customer">
+              <a href="/main">
                 <img src="/img/icon/뒤로가기 (2).png" alt="" width="30px" height="30px">
               </a>
             </div>
@@ -30,28 +30,28 @@
             </div>
           </div>
           <!-- 검색바 -->
-          <form action="userSearchAction" name="userSearchForm">
+          <form action="admin/userSearchAction" name="userSearchForm">
 
           <div class="d-flex flex-row mt-4 mb-4">
           <div class="form-control" style="width: 90px;">
-            <select class="form-select " aria-label="문의종류"value="문의종류" style="border: none; background-color: white;">
-              <option value="0">전체</option>
+            <select class="form-select " name="cat" style="border: none; background-color: white;">
+              <option value="0">id</option>
                <option value="1">구매량</option>
                <option value="2">금액</option>
                <option value="3">가입일</option>
               
              </select>
             </div>
-            <form class="d-flex">
+            
                 <div class="search">
-                <input type="search" placeholder="Search" aria-label="Search" class="border border-1 form-control" style="width: 230px;">
+                <input type="text" name="searchText" placeholder="카테고리를 선택해주세요" class="border border-1 form-control" style="width: 230px;">
               </div>
               <div>
                 <button class="btn" type="submit">
                   <img src="/img/icon/search.png" alt="" style="width: 25px; height: 25px;">
                 </button>
               </div>
-              </form>
+              
            </div>
           </form> 
 
