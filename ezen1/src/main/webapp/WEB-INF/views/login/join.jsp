@@ -15,15 +15,15 @@
     // ajax 용도 : 화면 갱신(reload,redirect)가 없이
 	//            부분화면 갱신(통신)을 js에서 한다.
     function idCheck() {
-    	var member_id = $('#member_id').val();
-    	if(!member_id){
+    	var user_id = $('#user_id').val();
+    	if(!user_id){
 			alert("아이디를 입력하세요.");
 			return false;
 		}
     	// 아이디 유효성 검사(1보다 같거나 크면 중복 / 0 이면 중복안됨)
     	$.ajax(
     			{
-    				url: 'http://localhost:8090/login/idCheckAjax?member_id='+ member_id,	
+    				url: 'http://localhost:8085/login/idCheckAjax?user_id='+ user_id,	
     	    		type: 'get',
     	    		success: function(data) {
     	    			console.log('통신 성공, data:' + data);
@@ -32,12 +32,12 @@
     	    			if( data_num >= 1 ) {
     	    				//아이디가 중복됨.
     	    				alert("중복된 아이디입니다.");
-    						$('#member_id_check').val("no");
-    						$('#member_id').val('');
+    						$('#user_id_check').val("no");
+    						$('#user_id').val('');
     	    			}else{
     	    				//아이디가 중복 안됨. 사용 가능.
     	    				alert("사용가능한 아이디입니다.");
-    						$('#member_id_check').val("yes");
+    						$('#user_id_check').val("yes");
     	    			}
     	    			
     	    		},
@@ -63,29 +63,29 @@
         </div>
         <!-- joinMainDiv -->
         <div class="container-sm container-fluid col-11 d-flex flex-column mt-3 justify-content-center align-items-center" style="max-width:520px;">
-            <form action="/joinAction" method="get" onsubmit="return nullChecker();">
+            <form action="joinAction" method="get" onsubmit="return nullChecker();">
                 <div class="text-left font-weight-bold pl-2 mt-2">아이디</div>
                 <div class="form-group row mb-1 ml-0 mr-0 justify-content-between" style="font-size:14px;">
-                    <input type="text" class="col-8 form-control nullcheck" name="member_id" id="member_id" placeholder="아이디를 입력해주세요">
+                    <input type="text" class="col-8 form-control nullcheck" name="user_id" id="user_id" placeholder="아이디를 입력해주세요">
                     <input type="button" class="col-3 btn btn-secondary text-dark" value="중복체크" style="font-size: 14px;" onclick="idCheck();">
-                    <input type="hidden" name="member_id_check" id="member_id_check" value="no">
+                    <input type="hidden" name="user_id_check" id="user_id_check" value="no">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2" >비밀번호</div>
                 <div class="form-group mb-1" style="font-size:14px;">
-                    <input type="password" class="col-12 form-control mb-1 nullcheck" name="member_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
+                    <input type="password" class="col-12 form-control mb-1 nullcheck" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
                     <input type="password" class="col-12 form-control nullcheck" id="user_pw_check" placeholder="비밀번호를 한 번더 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2">이름</div>
                 <div class="form-group mb-1" style="font-size:14px;">
-                    <input type="text" class="col-12 form-control nullcheck" name="member_name" id="user_name" placeholder="이름을 입력해주세요">
+                    <input type="text" class="col-12 form-control nullcheck" name="user_name" id="user_name" placeholder="이름을 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2">이메일</div>
                 <div class="form-group mb-1" style="font-size:14px;">
-                    <input type="email" class="col-12 form-control nullcheck" name="member_email" id="user_email" placeholder="이메일을 입력해주세요">
+                    <input type="email" class="col-12 form-control nullcheck" name="user_email" id="user_email" placeholder="이메일을 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2 ">휴대폰</div>
                 <div class="form-group mb-1" style="font-size:14px;">
-                    <input type="text" class="col-12 form-control nullcheck" name="member_phone" id="user_phone" placeholder="전화번호를 입력해주세요">
+                    <input type="text" class="col-12 form-control nullcheck" name="user_phone" id="user_phone" placeholder="전화번호를 입력해주세요">
                 </div>
                 <!-- 자바스크립트 주소연결 성공 -->
                 <!-- child window로 열리게 설정하고 , child window 크기 설정해야 함 -->
