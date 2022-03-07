@@ -4,8 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
 import com.ezen.dao.IuserDAO;
 
 
@@ -41,16 +39,13 @@ public class LoginService {
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("user_idx", user_idx);	
 				
-			result = "<script>alert('로그인 성공!'); location.href='test';</script>";
+			result = "<script>alert('로그인 성공!'); location.href='/main';</script>";
 			return result;
 		}
 		return result;									
 	}
 
 	public String findId( String user_name, String user_email) {
-		
-		System.out.println("서비스  user_name:"+user_name);
-		System.out.println("user_email:"+user_email);
 		
 		String result;
 		String user_id = userDao.getUserIdByFindId(user_name, user_email);
@@ -65,10 +60,6 @@ public class LoginService {
 	}
 	
 	public String findPW( String user_id, String user_name, String user_email) {
-		
-		System.out.println("서비스  user_name:"+user_name);
-		System.out.println("user_id:"+user_id);
-		System.out.println("user_email:"+user_email);
 		
 		String result;
 		String user_pw = userDao.getUserPwByFindPw( user_id, user_name, user_email);

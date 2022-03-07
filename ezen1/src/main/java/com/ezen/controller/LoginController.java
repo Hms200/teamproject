@@ -76,12 +76,8 @@ public class LoginController {
 	@ResponseBody
 	public String idFindAction( @RequestParam("user_name") String user_name,
 								@RequestParam("user_email") String user_email) {
-		
-		
-		String result = loginService.findId(user_name, user_email);
-		System.out.println("컨트롤러 user_name:" + user_name);
-		System.out.println("user_email:" + user_email);
-		System.out.println("result:" + result);
+			
+		String result = loginService.findId(user_name, user_email);	
 		return result;	
 	}
 	
@@ -92,12 +88,8 @@ public class LoginController {
 				@RequestParam("user_id") String user_id,
 				@RequestParam("user_name") String user_name,
 				@RequestParam("user_email") String user_email) {
-			
-			
-			String result = loginService.findPW(user_id, user_name, user_email);
-			System.out.println("컨트롤러 user_name:" + user_name);
-			System.out.println("user_email:" + user_email);
-			System.out.println("result:" + result);
+						
+			String result = loginService.findPW(user_id, user_name, user_email);			
 			return result;	
 		}
 	//회원가입
