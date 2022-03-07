@@ -65,6 +65,18 @@ function setGoodsList(_type) {
     document.querySelector("div .goodsList div." + _type).classList.add("on");
 
     document.querySelector("main").className = _type;
+    var cat = document.querySelector('main').className;
+    $('#valcandle,#valwarmer,#valsoap,#valdiffuser').css('display','none');
+    if(cat == 'candle'){
+        document.getElementById('valcandle').style.display='block';
+    }else if(cat == 'warmer'){
+		document.getElementById('valwarmer').style.display='block';
+	}else if(cat == 'soap'){
+		document.getElementById('valsoap').style.display = 'block';
+	}else if(cat == 'diffuser'){
+		document.getElementById('valdiffuser').style.display = 'block';
+	}
+    console.log(cat);
   }
 
 // 모든 체크박스 체크

@@ -17,7 +17,7 @@
 	
 	<!-- 해당 검색어를 포함하는 모든 상품 정보 가져오기 -->
 	<select id="getGoodsListBySearch" resultType="com.ezen.dto.Goods">
-		SELECT * FROM MALL_GOODS WHERE goods_name = '%'||#{searchKeyword}||'%'
+		SELECT * FROM MALL_GOODS WHERE goods_name like '%'||#{searchKeyword}||'%'
 	</select>
 	
 	<!-- 해당 카테고리를 가진 모든 상품정보 가져오기 -->
@@ -37,7 +37,9 @@
 	
 	<!-- 등록된 상품중 처음과 끝범위 지정해서 가져오기 -->
 	<select id="getGoodsList" resultType="com.ezen.dto.Goods">
-		SELECT * FROM MALL_GOODS
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_goods.* FROM mall_goods)
+			WHERE rnum BETWEEN #{param1} AND #{param2}
 	</select>
 	
 	<!-- 해당 goods_idx를 가진 상품 정보 가져오 -->
@@ -80,5 +82,10 @@
 	<delete id="deleteGoods">
 		DELETE FROM MALL_GOODS WHERE goods_idx = #{goods_idx}
 	</delete>
+	
+	<!-- 등록된 모든 상품의 갯수 가져오기 -->
+	<select id="countOfGoods" resultType="int">
+		SELECT COUNT(*) FROM mall_goods
+	</select>
 	
 </mapper>

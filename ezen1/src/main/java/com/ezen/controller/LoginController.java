@@ -7,14 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ezen.dto.User;
-
+import com.ezen.dao.IuserDAO;
 import com.ezen.service.LoginService;
 
 @Controller
@@ -23,6 +20,9 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
+	
+	@Autowired
+	IuserDAO userDao;
 	
 	
 	@RequestMapping("login")
@@ -49,7 +49,6 @@ public class LoginController {
 	}
 	
 
-	//로그인_ 수정필요 현재 user_id정보만 불러와짐 RequestParam 외 정보(idx) or Model 이용으로 변경생각하기.
 	@RequestMapping("loginAction")
 	@ResponseBody
 	public String loginAction(
@@ -57,26 +56,57 @@ public class LoginController {
 				@RequestParam("user_pw") String user_pw,
 				HttpSession session, Model model) {
 			
-			String result = loginService.login(user_id, user_pw, model);
-			System.out.println("result:"+result);
+			Model result = loginService.login(user_id, user_pw, session, model);			
+
 			
-			session.setAttribute("user_id", user_id);
-			
-			return result;
-			
+			if( result == null ) { 	
+				return "<script>alert('로그인 실패!'); history.back(-1);</script>";
+				}			
+			else {					
+					return "<script>alert('로그인 성공!'); location.href='test';</script>";	
+			}	
 		}
 
+	//로그아웃 기능
+	@RequestMapping("logoutAction")
+	@ResponseBody
+	public String loginAction(HttpServletRequest request) {
+			
+		//세션객체 초기화
+		request.getSession().invalidate();
+		return "<script>alert('로그아웃 되었습니다.'); location.href='test';</script>";
+			
+	}
+	
 	//아이디찾기(미완성)
-//	@RequestMapping("idFindAction")
-//	@ResponseBody
-//	public String idFindAction( @RequestParam("user_name") String user_name,
-//								@RequestParam("user_email") String user_email) {
-//			
-//		String result = loginService.findId(user_name, user_email);
-//		System.out.println("user_name:" + user_name);
-//		System.out.println("user_email:" + user_email);
-//		return result;	
-//	}
+	@RequestMapping("idFindAction")
+	@ResponseBody
+	public String idFindAction( @RequestParam("user_name") String user_name,
+								@RequestParam("user_email") String user_email) {
+		
+		
+		String result = loginService.findId(user_name, user_email);
+		System.out.println("컨트롤러 user_name:" + user_name);
+		System.out.println("user_email:" + user_email);
+		System.out.println("result:" + result);
+		return result;	
+	}
+	
+	//비밀번호찾(미완성)
+		@RequestMapping("pwFindAction")
+		@ResponseBody
+		public String pwFindAction( 
+				@RequestParam("user_id") String user_id,
+				@RequestParam("user_name") String user_name,
+				@RequestParam("user_email") String user_email) {
+			
+			
+			String result = loginService.findPW(user_id, user_name, user_email);
+			System.out.println("컨트롤러 user_name:" + user_name);
+			System.out.println("user_email:" + user_email);
+			System.out.println("result:" + result);
+			return result;	
+		}
 	//회원가입
 	@RequestMapping("idCheckAjax")
 	@ResponseBody
@@ -118,4 +148,22 @@ public class LoginController {
 		}
 	}	
 
+	//회원탈퇴성공 / 겟 어트리뷰트 없이 동작되는지 다시 테스트해보기. 
+	@RequestMapping("quitAction")
+	@ResponseBody
+	public String quitAction(@RequestParam("user_id") String user_id,HttpSession session) {
+		
+		session.getAttribute(user_id);
+		
+		System.out.println("컨트롤러 user_id:" + user_id);
+		int result = userDao.deleteUser(user_id);
+		if( result == 1){
+			System.out.println("회원탈퇴");
+				
+			return "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";
+		}else {
+			
+			return "<script>alert('회원탈퇴 실패!'); history.back(-1);</script>";		
+		}		
+	}
 }

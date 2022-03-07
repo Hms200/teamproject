@@ -35,12 +35,12 @@
         <div class="container-sm container-fluid my-2 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <a href="admin/memberList">
+                    <a href="memberList">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">회원목록</button>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a href="admin/qnaList">
+                    <a href="qnaList">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">QnA</button>
                     </a>
                 </div>
@@ -54,17 +54,17 @@
         <div class="container-sm container-fluid my-2 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <a href="admin/goods">
+                    <a href="goods">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">상품등록</button>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a href="admin/stock">
+                    <a href="stock">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">재고관리</button>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a href="admin/review">
+                    <a href="review">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">리뷰관리</button>
                     </a>
                 </div>
@@ -72,12 +72,12 @@
 
                 <!-- 줄바꿈 -->
                 <div class="col-3">
-                    <a href="admin/transaction">
+                    <a href="transaction">
                     <button class="btn btn-primary mt-4" style="width: 70px; height: 70px; padding:0;">거래내역</button>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a href="admin/eventConfig">
+                    <a href="eventConfig">
                     <button class="btn btn-primary mt-4" style="width: 70px; height: 70px; padding:0; font-size: 12px;">할인/추천<br>이벤트관리</button>
                     </a>
                 </div>
@@ -90,12 +90,12 @@
         <div class="container-sm container-fluid my-2 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <a href="admin/notice">
+                    <a href="notice">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">공지사항 관리</button>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a href="admin/faq">
+                    <a href="faq">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">FAQ관리</button>
                     </a>
                 </div>
@@ -108,7 +108,7 @@
         <div class="container-sm container-fluid my-2 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <a href="admin/sales">
+                    <a href="sales">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">매출조회</button>
                     </a>
                 </div>
