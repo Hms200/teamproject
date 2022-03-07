@@ -55,7 +55,7 @@ public class LoginController {
 				@RequestParam("user_id") String user_id,
 				@RequestParam("user_pw") String user_pw,
 				HttpSession session) {
-			
+
 			String result = loginService.login(user_id, user_pw, session);			
 			return result;
 		}
@@ -133,14 +133,10 @@ public class LoginController {
 		}
 	}	
 
-	//회원탈퇴성공 / 겟 어트리뷰트 없이 동작되는지 다시 테스트해보기. 
 	@RequestMapping("quitAction")
 	@ResponseBody
-	public String quitAction(@RequestParam("user_id") String user_id,HttpSession session) {
+	public String quitAction(@RequestParam("user_id") String user_id) {
 		
-		session.getAttribute(user_id);
-		
-		System.out.println("컨트롤러 user_id:" + user_id);
 		int result = userDao.deleteUser(user_id);
 		if( result == 1){
 			System.out.println("회원탈퇴");
