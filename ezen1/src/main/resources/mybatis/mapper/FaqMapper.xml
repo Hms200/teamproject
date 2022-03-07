@@ -10,12 +10,12 @@
 	</select>
 	
 	<select id="getFaqListByCat" resultType="com.ezen.dto.FaQ">
-		SELECT * FROM mall_faq WHERE faq_cat DESC
+		SELECT * FROM mall_faq WHERE faq_cat LIKE #{faq_cat} ORDER BY faq_idx DESC
 	</select>
 	
 	<insert id="FaqWrite" parameterType="com.ezen.dto.FaQ">
-		INSERT INTO mall_faq VALUES
-		(mall_faq_seq.nextval, #{faq_title}, #{faq_contents}, #{faq_cat})
+		INSERT INTO mall_faq (faq_idx, faq_title, faq_contents, faq_cat)
+		VALUES (mall_faq_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
 	
 	<delete id="faqDeleteByFaqIdx">

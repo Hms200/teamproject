@@ -36,6 +36,9 @@
     <!-- 검색결과로 노출되는 경우 -->
     <c:if test="${ searchResult == 1 }">
     <div class="d-flex flex-row px-0">
+    <c:if test="${ searched.isEmpty() == true }">
+    	검색 결과가 존재하지 않습니다.
+    </c:if>
     
       <c:forEach var="goods" items="${ searched }">
       <div class="d-flex flex-column mx-3 my-2 border rounded">
@@ -47,9 +50,12 @@
           ${ goods.goods_price }
         </div>
       </div>
+
       </c:forEach>
+      
       </c:if> 
         
+
     </div>
     
     
