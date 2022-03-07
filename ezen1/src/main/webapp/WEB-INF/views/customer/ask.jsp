@@ -36,7 +36,8 @@
           </span>
           
             <!-- 히든 input -->
-            <input type="hidden" name="notice_idx" value="notice_idx">
+            <input type="hidden" name="onetoone_idx" value="onetoone_idx">
+            <input type="hidden" name="user_idx" value="user_idx">
             <input type="hidden" name="onetoone_date" value="onetoone_date">
             <!-- 제목 -->
             <span>
