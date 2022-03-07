@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 // application.properties에 다음과 같이 추가 해 주세요.
 //#File uploade service
-//app.goods.img.dir=/src/main/resources/static/img/uploadedGoodsImgs
-//app.reviews.img.dir=/src/main/resources/static/img/uploadedReviewImgs
-//app.thumb.img.dir=/src/main/resources/static/img/uploadedGoodsThumb
+//app.goods.img.dir=src/main/resources/static/img/uploadedGoodsImgs
+//app.reviews.img.dir=src/main/resources/static/img/uploadedReviewImgs
+//app.thumb.img.dir=src/main/resources/static/img/uploadedGoodsThumb
 @Service
 public class FileService {
 
@@ -48,21 +49,33 @@ public class FileService {
 		}else if(cat.equals("thumb")){
 			uploadDir = thumbImgUploadDir;
 		}else {
-			return "f 잘못된 경로 지정";
+			return "f 잘못된 이미지 카테고리 지정";
 		}
 		
-		// 파일 저장 경로 
-		Path copyLoacation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+		// 파일명 생성기
+		String newName = fileNameGenerator(multipartFile.getOriginalFilename());
 		
-		// input stream 으로 파일 가져와서 copyLoacation에 저장. 기존에 존재하는 파일이면 replace
+		// 파일 저장 경로 
+		// File.separator 는 os마다 다른 경로구분문자를 알아서 넣어줌. cleanPath는 파일명의 지저분한 값들을 다 지워줌
+		Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(newName));
+		
+		// input stream 으로 파일 가져와서 copyLocation에 저장. 기존에 존재하는 파일이면 replace
 		try {
-			Files.copy(multipartFile.getInputStream(), copyLoacation, StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(multipartFile.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("업로드 실패 파일: " + multipartFile.getOriginalFilename());
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
-		return copyLoacation.toString().replace("src/main/resources/static/img/", "/img/");
+		return copyLocation.toString().replace("src/main/resources/static/img/", "/img/");
+	}
+	
+	// 파일명 생성기. 같은 이름의 파일이 업로드되어 덮어쓰기 되는것 방지용
+	// original File Name 앞에 난수생성기로 4자리 숫자 생성하여 붙임
+	public String fileNameGenerator(String originalFileName) {
+		Random random = new Random();
+		String randomNum = String.valueOf(random.nextInt(10000));
+		return randomNum + originalFileName;
 	}
 
 }

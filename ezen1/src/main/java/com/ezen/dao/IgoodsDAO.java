@@ -25,10 +25,14 @@ public interface IgoodsDAO {
 	public ArrayList<Goods> getGoodsListByOnEvent(String onEvent);
 	
 	// 등록된 모든 상품 정보 가져오기
-	public ArrayList<Goods> getGoodsLsit();
-	
+
+
+	public ArrayList<Goods> getGoodsList(int start, int end);
 	// 해당 goods_idx를 가진 상품 정보 가져오기
 	public Goods getGoodsInfo(int goods_idx);
+	
+	// 전체 상품 갯수 가져오기
+	public int countOfGoods();
 	
 	// 상품 신규 등록 
 	public int insertGoods(Goods goods);
@@ -37,7 +41,7 @@ public interface IgoodsDAO {
 	public int getNewestGoodsIdx();
 	
 	// 해당 goods_idx를 가진 상품의 onEvent 값 변경
-	public int updateEvent(int goods_idx);
+	public int updateEvent(int goods_idx, int onEvent);
 	
 	// 해당 goods_idx를 가진 상품의 판매중 정보를 품절로 변경
 	public int updateGoodsStockSoldOut(int goods_idx);
@@ -46,10 +50,11 @@ public interface IgoodsDAO {
 	public int updateGoodsStockOrder(int stock);
 	
 	// 해당 goods_idx를 가진 상품의 goods_purchased를 증가시킴
-	public int updatePurchased(int goods_idx);
+	public int updatePurchased(int goods_idx, int cart_amount);
 	
 	// 해당 goods_idx를 가진 상품을 db에서 삭제
 	public int deleteGoods(int goods_idx);
 	
+
 	
 }

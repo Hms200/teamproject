@@ -7,7 +7,7 @@
         <div class="container-sm container-fluid px-3 py-2 d-flex flex-row justify-content-between align-items-center border-bottom border-dark-50 fixed-top bg-white" style="max-width: 520px; height: 60px; margin-bottom: 60px;">
             <!-- header logo img -->
             <div >
-                <a href="main">
+                <a href="../main">
                 <img width="100px" src="/img/logo.png" alt="사이트로고">
                 </a>
             </div>
@@ -15,7 +15,7 @@
             <div class="form-group my-auto d-none" id="searchbar">
                 <form method="get" action="mainsearchAction" onsubmit="return nullChecker();">
                     <div class="form-control border-0 px-0">
-                        <input class="border rounded border-dark-50 nullcheck" type="text" name="searchtext" placeholder="검색어를 입력해주세요" style="width: 150px !important;">
+                        <input class="border rounded border-dark-50" type="text" name="searchtext" placeholder="검색어를 입력해주세요" style="width: 150px !important;">
                     </div>
                 </form>
             </div>

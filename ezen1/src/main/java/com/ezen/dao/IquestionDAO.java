@@ -12,4 +12,6 @@ public interface IquestionDAO {
 	public ArrayList<Question> getQuestionList(String goods_idx);
 	//Question을 받아 MALL_QUESTION에 insert
 	public int insertQna(Question question);
+	//question_idx를 받아 MALL_QUESTION에서 값이 null인 question_reply에 입력받은 내용을 넣어줌. question_isreply값을 true로 변경.
+	public int updateQnaAnswer(int question_idx);
 }

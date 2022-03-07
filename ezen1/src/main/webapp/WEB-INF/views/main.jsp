@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>소향행 main</title>
+    <title>소향행</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -41,18 +41,40 @@
             </div>
 
             <!-- 공지사항 -->
-            <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3" onclick="location.href=notice" style="font-size: 14px;">
-                [공지] 공지내용입니다.
+            <div id="carouselNotice" class="carousel slide w-100" data-ride="carousel">
+                <div class="carousel-inner">
+	                <div class="carousel-item active" data-interval="4000">
+	                    <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3" onclick="location.href='notice'" style="font-size: 14px;">
+	                		[공지] ${ noticeList[0].notice_title }
+	            		</div>
+	                </div>
+	                
+	                <c:forEach var="notice" items="${noticeList}" begin="1" step="1">
+	                <div class="carousel-item" data-interval="4000">
+	                    <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3" onclick="location.href='notice'" style="font-size: 14px;">
+	              		  [공지] ${ notice.notice_title }
+	            		</div>
+	                </div>
+	                </c:forEach>
+                
+                </div>
             </div>
 
             <!-- 카드영역 -->
-            <div class="w-100" style="height: 700px;">
-                파일 업로드 서비스 테스트
-                <form method="post" action="fileuploadetest" enctype="multipart/form-data">
-                <input type="file" name="filetest">
-                <input type="text" name="dummy">
-               	<input type="submit" value="전송">
-                </form>
+            <div class="w-100">
+             <!-- main search결과를 노출할  -->
+             <c:if test="${ searchResult == 1 }">
+             <c:import url="card/entireItem.Card.jsp"></c:import>
+             </c:if>
+             
+             <c:import url="card/BestItems.Card.jsp"></c:import>
+             <c:import url="card/MDpick.Card.jsp"></c:import>
+             <c:import url="card/MonthDiscount.Card.jsp"></c:import>
+             <c:import url="card/Reviews.Card.jsp"></c:import>
+             <!-- main search결과를 노출하는 때가 아닌경우 -->
+             <c:if test="${ searchResult != 1 }">
+             <c:import url="card/entireItem.Card.jsp"></c:import>
+             </c:if>  
             </div>
         
         </div>
