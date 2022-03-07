@@ -56,11 +56,12 @@
       </form>
     </div>
     <!-- faq아코디언 -->
-    <c:forEach var="dto" items="${ getFaqList }">
+  
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 16px;">
+      <c:forEach var="dto" items="${ getFaqList }">
       <!-- 1번 -->
       <div class="card my-1">
-          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
+          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${dto.faq_idx}" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
             <div class="d-flex justify-content-between">
               <span>
                 ${dto.faq_title}
@@ -71,7 +72,7 @@
             </div>
           </button>
           <!-- 1번 답변 -->
-          <div class="collapse" id="collapse1" data-parent="#accordion">
+          <div class="collapse" id="collapse_${dto.faq_idx}" data-parent="#accordion">
             <div class="card-body">
               <span >
                 ${dto.faq_contents}
@@ -167,9 +168,9 @@
             <div>
               <select name="faq_cat" style="width: 100px; height: 40px; font-size: 14px;">
                 <option selected hidden>문의 종류</option>
-                <option value="1">상품 문의</option>
-                <option value="2">배송 문의</option>
-                <option value="3">결제 문의</option>
+                <option value="1">상품문의</option>
+                <option value="2">배송문의</option>
+                <option value="3">결제문의</option>
               </select>
             </div>
           </div>

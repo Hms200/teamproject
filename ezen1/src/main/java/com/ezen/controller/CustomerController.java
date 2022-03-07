@@ -3,6 +3,7 @@ package com.ezen.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,46 +34,32 @@ public class CustomerController {
 	IonetooneDAO onetooneDao;
 	
 	//고객센터 이동시 FAQ로 리다이렉트
-	@RequestMapping("/customer")
+	@RequestMapping("")
 	public String customer() {
-		return "redirect:customer/customer/faq";
+		return "redirect:customer/faq";
 	}
 	
 	//자주묻는질문(FAQ List)
-	@RequestMapping("/customer/faq")
+	@RequestMapping("faq")
 	public String faq(Model model, HttpServletRequest request) {
 		
 		ArrayList<FaQ> getFaqList = faqDao.getFaqList();
 		model.addAttribute("getFaqList", getFaqList);
 		
-		System.out.println(getFaqList);
-		
 		return "customer/faq";
 	}
 	
 	//FAQ 카테고리 선택
-	@RequestMapping("faqCatAction")
-	public String faqCatAction(@RequestParam(value="faq_cat", required=false) String faq_cat,
-								   HttpServletRequest request, Model model) {
-		
-		System.out.println(faq_cat);
-		
-		ArrayList<FaQ> getFaqList = null;
-		
-		if(StringUtils.hasText(faq_cat)) {
-			getFaqList = customerService.faqListByFaqCat(faq_cat);
-		}
-		
-		model.addAttribute("getFaqList", getFaqList);
-		
-		return "/customer/faq";
-	}
 	
 	//FAQ등록
 	@RequestMapping("faqWriteAction")
-	public String faqWriteAction(@RequestBody FaQ faQ) {
+	@ResponseBody
+	public String faqWriteAction(@RequestParam("faq_title") String faq_title,
+								  @RequestParam("faq_contents") String faq_contents,
+								  @RequestParam("faq_cat") String faq_cat,
+								  HttpServletRequest request, Model model) {
 		
-		int result = faqDao.FaqWrite(faQ);
+		int result = faqDao.FaqWrite(faq_title, faq_contents, faq_cat);
 		if(result == 1) {
 			return "<script>alert('작성 성공'); location.href='/customer/faq';</script>";
 		}
@@ -84,19 +71,21 @@ public class CustomerController {
 	//FAQ 삭제
 	@RequestMapping("deleteAction")
 	@ResponseBody
-	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpServletRequest request) {
+	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpSession session) {
+		
+		session.getAttribute(faq_idx);
 		
 		int result = faqDao.faqDeleteByFaqIdx(faq_idx);
 		if(result == 1) {
-			return "<script>alert('삭제 성공');</script>";
+			return "<script>alert('삭제 성공'); location.href='/customer/faq';</script>";
 		}
 		else {
-			return "<script>alert('삭제 실패');</script>";
+			return "<script>alert('삭제 실패'); location.href='/customer/faq';</script>";
 		}
 	}
 	
 	//내문의내역(myAsk)
-	@RequestMapping("/customer/myAsk")
+	@RequestMapping("/myAsk")
 	public String myAsk(Model model, HttpServletRequest request) {
 		
 		ArrayList<OneToOne> getOneToOneList = onetooneDao.getOneToOneList();
@@ -109,7 +98,7 @@ public class CustomerController {
 	//내문의내역 카테고리 선택
 	
 	//문의하기 페이지(ask)
-	@RequestMapping("/customer/ask")
+	@RequestMapping("ask")
 	public String ask() {
 		return "customer/ask";
 	}

@@ -17,13 +17,12 @@ public class CustomerService {
 	IfaqDAO faqDao;
 	
 	//FAQ카테고리 선택
-	public ArrayList<FaQ> faqListByFaqCat(String faq_cat) {
+	
+	//FAQ작성
+	public int faqWrite(String faq_title, String faq_contents, String faq_cat) {
 		
-		ArrayList<FaQ> faqListByFaqCat = null;
-		if(faqListByFaqCat.equals("faq_cat")) {
-			faqListByFaqCat = faqDao.getFaqListByCat(faq_cat);
-		}
-		return faqListByFaqCat;
+		int result = faqDao.FaqWrite(faq_title, faq_contents, faq_cat);
+		return result;
 	}
 	
 	
