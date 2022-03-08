@@ -1,16 +1,15 @@
 package com.ezen.controller;
 
-import java.io.File;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.ezen.dao.IreviewDAO;
+import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Review;
 import com.ezen.dto.User;
 import com.ezen.service.MyPageService;
@@ -21,9 +20,14 @@ public class MyPageController {
 	
 	@Autowired
 	MyPageService myPageService;
+	@Autowired
+	IuserDAO userDAO;
 	
 	@RequestMapping("/memberInfo")
-	public String memberInfo() {
+	public String memberInfo(HttpServletRequest request,Model model) {
+		String user_id = request.getParameter("user_id");
+		User user = userDAO.getMemberInfo(user_id);
+		model.addAttribute("user",user);
 		return "myPage/memberInfo";
 	}
 	@RequestMapping("/userUpdateAction")
