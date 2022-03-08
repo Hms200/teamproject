@@ -119,12 +119,22 @@ public class AdminService {
 		list.forEach((k,v) -> {
 			if(v.equals("on")) {
 				int result = goodsDAO.deleteGoods(Integer.parseInt(k));
-				System.out.println(k +" : " + String.valueOf(result));
+				System.out.println("goods_idx : " + k +" : result - " + String.valueOf(result));
 			}
 		});
 	}
 	// stock 상품 발주 = amount에 추가 + onsale 1로 변경
-	
+	public void orderGoods(HashMap<String, String> list) {
+		int amount = Integer.parseInt(list.get("amount"));
+		System.out.println(amount);
+		list.remove("amount");
+		list.forEach((k,v) -> {
+			if(v.equals("true")) {
+				goodsDAO.updateGoodsStockOrder(Integer.parseInt(k), amount);
+				goodsDAO.updateGoodsStockOnSale(Integer.parseInt(k));
+			}
+		});
+	}
 	
 	
 }

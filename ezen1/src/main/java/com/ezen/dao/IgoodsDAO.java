@@ -50,7 +50,7 @@ public interface IgoodsDAO {
 	public int updateGoodsStockSoldOut(int goods_idx);
 	
 	// 해당 goods_idx를 가진 상품의 재고량에 입력받은 수 만큼 더함.
-	public int updateGoodsStockOrder(int stock);
+	public int updateGoodsStockOrder(int goods_idx, int stock);
 	
 	// 해당 goods_idx를 가진 상품의 goods_purchased를 증가시킴
 	public int updatePurchased(int goods_idx, int cart_amount);
@@ -60,4 +60,7 @@ public interface IgoodsDAO {
 		
 	//모든 상품 정보 가져오기
 	public ArrayList<Goods> getAllGoodsList();
+	
+	// 상품을 판매중으로 변경
+	public void updateGoodsStockOnSale(int goods_idx);
 }

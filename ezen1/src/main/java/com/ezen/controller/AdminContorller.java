@@ -20,7 +20,6 @@ import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.service.AdminService;
 import com.ezen.service.FileService;
-import com.ezen.service.MainService;
 
 @Controller
 @RequestMapping("admin")
@@ -108,9 +107,9 @@ public class AdminContorller {
 	// stock 발주
 	@PostMapping("inventoryOrderAction")
 	@ResponseBody
-	public String orderGoods(@RequestBody HashMap<String, String> param) {
+	public void orderGoods(@RequestBody HashMap<String, String> param) {
 		System.out.println(param.toString());
-		return "";
+		adminService.orderGoods(param);
 	}
 	
 	@RequestMapping("goods")
