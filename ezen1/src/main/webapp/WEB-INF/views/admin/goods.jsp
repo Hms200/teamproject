@@ -44,12 +44,12 @@
       </div>
       <div class="d-flex felx-row justify-content-between form-group mx-4 mb-4">
         <span class="font-weight-bold" style="font-size: 14px;">카테고리 선택</span>
-        <select class="text-dark form-control col-6" name="goods_option" id="goods_option" style="font-size: 14px;">
-          <option selected value="">카테고리 선택</option>
-          <option value="캔들">캔들</option>
-          <option value="캔들워머">캔들워머</option>
-          <option value="디퓨저">디퓨저</option>
-          <option value="비누">비누</option>
+        <select class="text-dark form-control col-6" name="goods_cat" id="goods_cat" style="font-size: 14px;">
+          <option selected>카테고리 선택</option>
+          <option value="candle">캔들</option>
+          <option value="warmer">캔들워머</option>
+          <option value="diffuser">디퓨저</option>
+          <option value="soap">비누</option>
         </select>
       </div>
       <div class="d-none">
@@ -120,85 +120,6 @@
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
-<script>
-/* thumbnail 이미지 등록 */
 
-function uploadThumbnail(){
-	const thumb = document.getElementsByName('uploadthumb')[0].files[0];
-	const formData = new FormData();
-	formData.append("file", thumb);
-
-	jQuery.ajax({
-		url: "uploadGoodsThumbAction",
-		type: "POST",
-		processData: false,
-		contentType: false,
-		data: formData,
-		success: function(result){
-			if(result == false){
-			alert('등록에 실패하였습니다.');
-			thumb = null;
-		}
-		console.log('파일등록 성공 :' +result);
-		document.getElementsByName('goods_thumb')[0].value = result;
-		}
-	})
-};
-
-/* 상세이미지 등록 */
- 
- function uploadDetail(){
-	const detail = document.getElementsByName('uploadGoodsDetail')[0].files[0];
-	const formData = new FormData();
-	formData.append("file", detail);
-
-	jQuery.ajax({
-		url: "uploadGoodsDetailAction",
-		type: "POST",
-		processData: false,
-		contentType: false,
-		data: formData,
-		success: function(result){
-			if(result == false){
-				alert('등록에 실패하였습니다.');
-				detail = null;
-			}
-			console.log('파일등록 성공 : '+result);
-			document.getElementsByName('goods_detail')[0].value = result;
-		},
-	})
-};
-
-// 상품등록
-
-function registerGoods(){
-	const form = document.querySelectorAll('form[name="productRegisterForm"] > div > input, select');
-	const formData = new FormData();
-	for(i=0; i<form.length; i++){
-		formData.append(form[i].name, form[i].value);
-	}
-	console.log('파일등록 폼 전송 시도');
-	jQuery.ajax({
-		url: "productRegisterAction",
-		type: "POST",
-		dataType: "json",
-		contentType: "application/json",
-		processData: false,
-		data: formData,
-		success: function(result){
-			if(result == false){
-				alert('등록에 실패하였습니다.');
-				return false;
-			}
-			console.log('등록 성공 goods_idx = '+result);
-			document.getElementsByName('goods_idx')[0].value = result;
-			multiSubmit(formName = 'goodsimgs', formAction = 'uploadGoodsIMGSAction');
-		},
-		error: function(){return false},
-	})
-	
-};
-
-</script>
 </body>
 </html>
