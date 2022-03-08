@@ -10,7 +10,7 @@
          </div>
 
      <!-- icon container 4개 -->
-         <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='main'" style="cursor: pointer;">
+         <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='../main'" style="cursor: pointer;">
              <img class="mx-auto" src="/img/icon/home.png" alt="홈으로" width="25px" height="25px" >
              <span class="text-dark"style="font-size: 11px;">홈</span>
          </div>
@@ -20,22 +20,25 @@
              <span class="text-dark"style="font-size: 11px;">카테고리</span>
          </div>  
 
-         <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='siteMap'" style="cursor: pointer;">
+         <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='../siteMap'" style="cursor: pointer;">
              <img class="mx-auto" src="/img/icon/application.png" alt="사이트맵" width="25px" height="25px" >
              <span class="text-dark"style="font-size: 11px;">사이트맵</span>
          </div>  
 
-         <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='/myPage/myPage'" style="cursor: pointer;">
+         <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1"
+          <c:if test="${ user_id != 'admin' }">onclick="location.href='../myPage/myPage'"</c:if>
+          <c:if test="${ user_id eq 'admin' }">onclick="location.href='../admin/main'"</c:if>
+           style="cursor: pointer;">
              <img class="mx-auto" src="/img/icon/my.png" alt="마이페이지" width="25px" height="25px" >
              <span class="text-dark"style="font-size: 11px;">마이페이지</span>
          </div>  
      <!-- 카테고리버튼 슬라이드업 -->
-         <div class="border border-dark-50 position-absolute bg-white" id="cat_slideup" style="width: 80px; left: 28%; bottom: 60px;display: none;">
+         <div class="border border-dark-50 position-absolute bg-white" id="cat_slideup" style="width: 80px; left: 28%; bottom: 60px;display: none;cursor: pointer;">
 
-             <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href=캔들주소">캔들</div>
-             <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href=워머주소">캔들워머</div>
-             <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href=디퓨저주소">디퓨저</div>
-             <div class="text-center border-bottom border-dark-50"  style="height: 40px;line-height: 40px;" onclick="location.href=비누주소">비누</div>
+             <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href='../goodsList/goodsList?catval=candle'">캔들</div>
+             <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href='../goodsList/goodsList?catval=warmer'">캔들워머</div>
+             <div class="text-center border-bottom border-dark-50" style="height: 40px;line-height: 40px;" onclick="location.href='../goodsList/goodsList?catval=diffuser'">디퓨저</div>
+             <div class="text-center border-bottom border-dark-50"  style="height: 40px;line-height: 40px;" onclick="location.href='../goodsList/goodsList?catval=soap'">비누</div>
 
          </div>
      

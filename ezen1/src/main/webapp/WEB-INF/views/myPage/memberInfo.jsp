@@ -37,7 +37,7 @@
 				회원정보</div>
 		</div>
 
-		<form action="userUpdateAcrion" name="userUpdateForm"
+		<form action="userUpdateAction" name="userUpdateForm"
 			onsubmit="return nullChecker();">
 
 			<!-- 이름, 아이디 -->

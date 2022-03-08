@@ -69,21 +69,24 @@ public class CustomerController {
 	}
 	
 	//FAQ 삭제
-	@RequestMapping("deleteAction")
+	@RequestMapping("faqDeleteAction")
 	@ResponseBody
 	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpServletRequest reuqest) {
 		
 		int result = faqDao.faqDeleteByFaqIdx(faq_idx);
 		if(result == 1) {
+			System.out.println("삭제 성공");
 			return "<script>alert('삭제 성공'); location.href='/customer/faq';</script>";
 		}
 		else {
+			System.out.println("삭제 실패");
 			return "<script>alert('삭제 실패'); location.href='/customer/faq';</script>";
 		}
 	}
 	
-	//내문의내역(myAsk)
-	@RequestMapping("/myAsk")
+	//내문의내역(myAsk List)
+	//이건 전체 내역
+	@RequestMapping("myAsk")
 	public String myAsk(Model model, HttpServletRequest request) {
 		
 		ArrayList<OneToOne> getOneToOneList = onetooneDao.getOneToOneList();

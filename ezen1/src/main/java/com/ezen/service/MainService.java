@@ -65,7 +65,7 @@ public class MainService {
 	public String noticeWrite(Notice notice) {
 		
 		int result = noticeDAO.insertNotice(notice);
-		String returnString = "<script>alert('작성에 실패하였습니다.') location.href='notice'</script>";
+		String returnString = "<script>alert('작성에 실패하였습니다.'); location.href='notice'</script>";
 		if(result ==1) {
 			returnString = "<script>alert('작성되었습니다.'); location.href='notice'</script>";
 		}
@@ -88,7 +88,7 @@ public class MainService {
 		ArrayList<Goods> goodsListForMainSearch = goodsDAO.getGoodsListBySearch(searchtext);
 		
 		model.addAttribute("searched",goodsListForMainSearch);
-		model.addAttribute("searchResult", 1);
+		model.addAttribute("entireItemCardMode", 1);
 		return model;
 	}
 	
@@ -106,7 +106,7 @@ public class MainService {
 		ArrayList<Goods> goods = goodsDAO.getGoodsList(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		
 		model.addAttribute("goodsList", goods );
-		model.addAttribute("pagenation", pagenation);
+		model.addAttribute("page", pagenation);
 		return model;
 	}
 }

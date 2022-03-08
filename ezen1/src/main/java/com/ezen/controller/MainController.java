@@ -42,6 +42,9 @@ public class MainController {
 		// 카드 표시용 데이터 
 		// entireGoods card
 		model = mainService.entireItemCardData(currentPage, model);
+		if(model.getAttribute("entireItemCardMode") == null) {
+		model.addAttribute("entireItemCardMode", 0);
+		}
 		return "main";
 	}
 	
