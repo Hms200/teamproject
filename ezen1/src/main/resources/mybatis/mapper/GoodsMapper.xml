@@ -26,7 +26,7 @@
 	</select>
 	
 	<!-- 해당 이벤트를 시행중인 모든 상품정보 가져오 -->
-	<select id="getGoodsListByOnEvnet" resultType="com.ezen.dto.Goods">
+	<select id="getGoodsListByOnEvent" resultType="com.ezen.dto.Goods">
 		SELECT * FROM MALL_GOODS WHERE goods_onevent = #{onEvent}
 	</select>
 	
@@ -64,7 +64,7 @@
 	
 	<!-- 해당 goods_idx를 가진 상품의 OnEvent값을 변경 -->
 	<update id="updateEvent">
-		UPDATE MALL_GOODS SET goods_onevent = #{onEvent} WHERE goods_idx = #{goods_idx}
+		UPDATE MALL_GOODS SET goods_onevent = ${param2} WHERE goods_idx = ${param1}
 	</update>
 	
 	<!-- 해당 goods_idx를 가진 상품의 판매중 정보를 품절로 변경 -->

@@ -74,6 +74,9 @@ public class AdminContorller {
 		return "admin/memberListpopup";
 	}
 	
+	///////////////////////////////
+	// 재고관리 페이지
+	///////////////////////////////
 	@RequestMapping("stock")
 	public String stock(@RequestParam(required = false, defaultValue = "1") String currentPage, Model model) {
 		if(model.containsAttribute("goodslist") == false) {
@@ -82,13 +85,18 @@ public class AdminContorller {
 		model.addAttribute("entireItemCardMode", 2);
 		return "admin/stock";
 	}
-	// stock search
+	// stock search & onEvent search
 	@GetMapping("adminStockSearchAction")
 	public String stockSearch(@RequestParam(required = false) String searchText,
-							@RequestParam String stock_cat,
+							@RequestParam String search_cat,
+							@RequestParam String page,
 							Model model) {
-		model = adminService.stockSearch(searchText, stock_cat, model);
+		model = adminService.stockSearch(searchText, search_cat, model);
+		if(page.equals("stock")) {
 		return stock("1", model);
+		}else {
+			return eventConfig("1", model);
+		}
 	}
 	// stock 품절처리
 	@PostMapping("inventorySoldOutAction")
@@ -102,7 +110,7 @@ public class AdminContorller {
 	public String deleteGoods(@RequestParam HashMap<String, String> param) {
 		System.out.println(param.toString());
 		adminService.deleteGoodsOnDB(param);
-		return "<script>alert('삭제되었습니다.');loacation.href='admin/stock';</script>";
+		return "<script>alert('삭제되었습니다.');location.href='stock';</script>";
 	}
 	// stock 발주
 	@PostMapping("inventoryOrderAction")
@@ -112,6 +120,9 @@ public class AdminContorller {
 		adminService.orderGoods(param);
 	}
 	
+	/////////////////////////////
+	// 상품등록 페이지
+	/////////////////////////////
 	@RequestMapping("goods")
 	public String goods() {
 		return "admin/goods";
@@ -162,8 +173,10 @@ public class AdminContorller {
 		int result1 = goodsImgsDAO.insertGoodsImgs(img1);
 		int result2 = goodsImgsDAO.insertGoodsImgs(img2);
 		int result3 = goodsImgsDAO.insertGoodsImgs(img3);
-		return "<script>alert('등록되었습니다.'); location.href='admin/goods';</script>";
+		return "<script>alert('등록되었습니다.'); location.href='goods';</script>";
 	}
+	
+	
 	
 	@RequestMapping("review")
 	public String review() {
@@ -180,9 +193,37 @@ public class AdminContorller {
 		return "admin/transactionpop";
 	}
 	
+	////////////////////////////////
+	// 이벤트관리페이지
+	////////////////////////////////
 	@RequestMapping("eventConfig")
-	public String eventConfig() {
+	public String eventConfig(@RequestParam(required = false, defaultValue = "1") String currentPage, Model model) {
+		if(model.containsAttribute("goodslist") == false) {
+		model = adminService.getGoodsList(currentPage, model);
+		}
+		model.addAttribute("entireItemCardMode", 2);
 		return "admin/eventConfig";
+	}
+	// 할인상품등록
+	@PostMapping("discountProductAction")
+	@ResponseBody
+	public String registerEventDiscount(@RequestParam HashMap<String, String> list) {
+		adminService.registerEventDiscount(list);
+		return "<script>alert('변경되었습니다.'); location.href='eventConfig';</script>";
+	}
+	// 이벤트진행중 상품등록
+	@PostMapping("eventProductAction")
+	@ResponseBody
+	public String registerEventEvent(@RequestParam HashMap<String, String> list) {
+		adminService.registerEventEvent(list);
+		return "<script>alert('변경되었습니다.'); location.href='eventConfig';</script>";
+	}
+	// 추천상품등록
+	@PostMapping("recommendProductAction")
+	@ResponseBody
+	public String registerEventRecommend(@RequestParam HashMap<String, String> list) {
+		adminService.registerEventRecommend(list);
+		return "<script>alert('변경되었습니다.'); location.href='eventConfig';</script>";
 	}
 	
 }

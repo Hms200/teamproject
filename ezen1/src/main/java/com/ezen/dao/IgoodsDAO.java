@@ -23,7 +23,7 @@ public interface IgoodsDAO {
 	public ArrayList<Goods> getGoodsListByCat(String cat);
 	
 	// 해당 이벤트를 시행중인 모든 상품정보 가져오기
-	public ArrayList<Goods> getGoodsListByOnEvent(String onEvent);
+	public ArrayList<Goods> getGoodsListByOnEvent(int onEvent);
 	
 	//해당 goods_idx를 가진 상품의 리뷰는 전부 가져옴
 	public ArrayList<Review> getGoodsReview(int goods_idx);
