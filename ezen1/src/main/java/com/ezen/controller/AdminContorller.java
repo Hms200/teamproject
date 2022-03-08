@@ -105,6 +105,13 @@ public class AdminContorller {
 		adminService.deleteGoodsOnDB(param);
 		return "<script>alert('삭제되었습니다.');loacation.href='admin/stock';</script>";
 	}
+	// stock 발주
+	@PostMapping("inventoryOrderAction")
+	@ResponseBody
+	public String orderGoods(@RequestBody HashMap<String, String> param) {
+		System.out.println(param.toString());
+		return "";
+	}
 	
 	@RequestMapping("goods")
 	public String goods() {

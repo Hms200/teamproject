@@ -123,6 +123,8 @@ public class AdminService {
 			}
 		});
 	}
+	// stock 상품 발주 = amount에 추가 + onsale 1로 변경
+	
 	
 	
 }

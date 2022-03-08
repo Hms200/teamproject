@@ -52,7 +52,7 @@
             onclick="makeGoodsSoldOut();">
                 품절 처리하기
             </button>
-            <button class="btn btn-primary col-3" style="font-size: 12px;height: 30px;">
+            <button class="btn btn-primary col-3" style="font-size: 12px;height: 30px;" onclick="orderGoods();">
                 발주
             </button>
             <button class="btn btn-dark col-3" style="font-size: 12px;height: 30px;"
