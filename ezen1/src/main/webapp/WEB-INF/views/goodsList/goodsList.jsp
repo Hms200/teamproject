@@ -23,14 +23,15 @@
       <div
         class="goodsList w-100 d-flex flex-row justify-content-around font-weight-bold text-black-50 text-center my-5"
         style="font-size: 15px;">
-        <div class="col-3 candle on" onclick="setGoodsList('candle')">캔들</div>
+        <div class="col-3 candle " onclick="setGoodsList('candle')">캔들</div>
         <div class="col-3 warmer" onclick="setGoodsList('warmer')">캔들워머</div>
         <div class="col-3 diffuser" onclick="setGoodsList('diffuser')">디퓨저</div>
         <div class="col-3 soap" onclick="setGoodsList('soap')">수제비누</div>
       </div>
     </nav>
     <!-- 상품전체 리스트 -->
-    <main class="candle">
+    <%String catname = request.getParameter("catval"); %>
+    <main class="<%=catname%>">
       <div class="dep d-flex flex-row flex-wrap justify-content-between my-5 mx-3" style="width:310px">
       <c:forEach var="dto" items="${ list }">
           <div class="border pt-3 my-3" id="val${dto.goods_cat}">
@@ -55,12 +56,21 @@
 <script src="/js/main.js"></script>
   <script>
   $(function(){
-      $('#valcandle,#valwarmer,#valsoap,#valdiffuser').css('display','none');
       var cat = $('main').attr('class');
       if(cat == 'candle'){
           $('#valcandle').css('display','block');
+          $('#valwarmer,#valsoap,#valdiffuser').css('display','none');
+        }else if(cat=='warmer'){
+        	$('#valwarmer').css('display','block');
+        	$('#valcandle,#valsoap,#valdiffuser').css('display','none');
+        }else if(cat=='soap'){
+        	$('#valsoap').css('display','block');
+        	$('#valcandle,#valwarmer,#valdiffuser').css('display','none');
+        }else if(cat=='diffuser'){
+        	$('#valdiffuser').css('display','block');
+        	$('#valcandle,#valwarmer,#valsoap').css('display','none');
         }
-    })
+  })
   </script>
 </body>
 </html>

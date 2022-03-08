@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +60,6 @@
   
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 16px;">
       <c:forEach var="dto" items="${ getFaqList }">
-      <!-- 1번 -->
       <div class="card my-1">
           <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${dto.faq_idx}" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
             <div class="d-flex justify-content-between">
@@ -71,7 +71,7 @@
               </span>
             </div>
           </button>
-          <!-- 1번 답변 -->
+          <!-- 답변 -->
           <div class="collapse" id="collapse_${dto.faq_idx}" data-parent="#accordion">
             <div class="card-body">
               <span >
@@ -79,68 +79,22 @@
               </span>
               <!-- 삭제버튼(관리자) -->
               <div class="d-flex justify-content-end">
+              <%-- <c:if test="${ user_id eq 'admin' }"> --%>
               	<a href="faqDeleteAction?faq_idx=${ dto.faq_idx }">
                 	<button class="btn btn-secondary" style="width: 60px; height: 30px; cursor: pointer;">삭제</button>
                 </a>
+       		  <%-- </c:if> --%>
               </div>
             </div>
           </div>
       </div>
       </c:forEach>
-      <!-- 2번 -->
-      <!-- <div class="card my-1">
-        <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
-          <div class="d-flex justify-content-between">
-            <span>
-              상품문의 입니다.
-            </span>
-            <span>
-              <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
-            </span>
-          </div>
-        </button>
-        2번 답변
-        <div class="collapse" id="collapse2" data-parent="#accordion">
-          <div class="card-body">
-            <span >
-              답변입니다.
-            </span>
-            삭제버튼(관리자)
-            <div class="d-flex justify-content-end">
-              <button class="btn btn-secondary text-center" style="width: 60px; height: 30px; cursor: pointer;">삭제</button>
-            </div>
-          </div>
-        </div>
-    </div>
-    3번
-    <div class="card my-1">
-      <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
-        <div class="d-flex justify-content-between">
-          <span>
-            상품문의 입니다.
-          </span>
-          <span>
-            <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
-          </span>
-        </div>
-      </button>
-      3번 답변
-      <div class="collapse" id="collapse3" data-parent="#accordion">
-        <div class="card-body">
-          <span >
-            답변입니다.
-          </span>
-          삭제버튼(관리자)
-          <div class="d-flex justify-content-end">
-            <button class="btn btn-secondary" style="width: 60px; height: 30px; cursor: pointer;">삭제</button>
-          </div>
-        </div>
-      </div>
-      </div> -->
     </div>
     <!-- 등록 버튼(관리자) -->
     <div class="container-sm container-fluid d-flex justify-content-end">
+    <%-- <c:if test="${ user_id eq 'admin' }"> --%>
       <button class="btn btn-secondary mt-5" style="width: 100px; height: 40px; cursor: pointer;" onclick="popupHideAndShow(target = 'faq_write_popup')">등록</button>
+      <%-- </c:if> --%>
     </div>
 
     <!-- faq작성 팝업(관리자) -->
