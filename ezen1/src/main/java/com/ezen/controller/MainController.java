@@ -45,6 +45,8 @@ public class MainController {
 		if(model.getAttribute("entireItemCardMode") == null) {
 		model.addAttribute("entireItemCardMode", 0);
 		}
+		// bestItems card
+		model = mainService.bestItemsCardDate(model);
 		return "main";
 	}
 	

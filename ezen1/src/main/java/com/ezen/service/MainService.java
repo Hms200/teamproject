@@ -109,4 +109,10 @@ public class MainService {
 		model.addAttribute("page", pagenation);
 		return model;
 	}
+	// best item card
+	public Model bestItemsCardDate(Model model) {
+		ArrayList<Goods> goods = goodsDAO.getBestSellingGoods();
+		model.addAttribute("best", goods);
+		return model;
+	}
 }

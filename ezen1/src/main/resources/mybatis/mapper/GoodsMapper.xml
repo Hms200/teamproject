@@ -97,4 +97,13 @@
 		UPDATE MALL_GOODS SET goods_onsale = 1 WHERE goods_idx = ${goods_idx}
 	</update>
 	
+	<!-- goods_purchased를 기준으로 판매량 상위 10개 상품을 가져옴 -->
+	<select id="getBestSellingGoods" resultType="com.ezen.dto.Goods">
+		<![CDATA[
+		select * from (
+			select goods_idx, goods_name, goods_price, goods_thumb, goods_onsale, rank() over(order by goods_purchased desc) as rnk from mall_goods
+					) where rnk <11
+		]]>
+	</select>
+	
 </mapper>

@@ -63,4 +63,7 @@ public interface IgoodsDAO {
 	
 	// 상품을 판매중으로 변경
 	public void updateGoodsStockOnSale(int goods_idx);
+	
+	// goods_purchased 를 기준으로 판매량 상위 10개 상품 가져옴
+	public ArrayList<Goods> getBestSellingGoods();
 }
