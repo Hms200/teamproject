@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>사이트 관리</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -90,12 +90,12 @@
         <div class="container-sm container-fluid my-2 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <a href="notice">
+                    <a href="../notice">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">공지사항 관리</button>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a href="faq">
+                    <a href="../faq">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">FAQ관리</button>
                     </a>
                 </div>
