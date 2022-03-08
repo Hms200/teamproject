@@ -60,13 +60,18 @@
      
      <div class="d-flex flex-row flex-wrap justify-content-around px-0" >
     	<c:forEach var="goods" items="${ goodslist }">
-      <div class="d-flex flex-column mx-3 my-2 border rounded">
-        <a href=""><img src="${ goods.goods_thumb }" alt="${ goods.goods_name }" style="width: 150px; height: 150px;"></a>
+      <div class="d-flex flex-column mx-3 my-2 border rounded position-relative">
+        <input type="checkbox" class="position-absolute" name="${ goods.goods_idx }" id=${ goods.goods_idx } style="left: 0;top: 0; width: 15px;height: 15px;">
+        <label for="${ goods.goods_idx }">
+        <img src="${ goods.goods_thumb }" alt="${ goods.goods_name }" style="width: 150px; height: 150px;">
+        </label>
+        <div style="cursor: pointer">
         <div class="text-center py-2">
           ${ goods.goods_name }
         </div>
         <div class="text-center py2">
           ${ goods.goods_price }
+        </div>
         </div>
       </div>
       </c:forEach>

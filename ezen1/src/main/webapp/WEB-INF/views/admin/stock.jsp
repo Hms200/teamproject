@@ -49,17 +49,17 @@
         
         <div class="col-12 d-flex flex-row justify-content-around text-center align-middle">
             <button class="btn text-white col-3 " style="background-color: rgb(52, 152, 219); font-size: 12px; height: 30px;"
-            onclick="multiSubmit(formName = 'inventoryUpdateForm', formAction = 'admin/inventoryDeleteAction')">
+            onclick="makeGoodsSoldOut();">
                 품절 처리하기
             </button>
             <button class="btn btn-primary col-3" style="font-size: 12px;height: 30px;">
                 발주
             </button>
             <button class="btn btn-dark col-3" style="font-size: 12px;height: 30px;"
-            onclick="multiSubmit(formName = 'inventoryUpdateForm', formAction = 'admin/inventoryUpdateAction')">
+            onclick="multiSubmit(formName = 'inventoryUpdateForm', formAction = 'inventoryUpdateAction')">
                 리스트 삭제
             </button>
-        </div>
+        </div> 
 
         <!-- 상품목록 카드영역 -->
             <form name="inventoryUpdateForm" action="admin/inventoryUpdateAction">

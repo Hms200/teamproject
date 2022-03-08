@@ -69,7 +69,7 @@
 	
 	<!-- 해당 goods_idx를 가진 상품의 판매중 정보를 품절로 변경 -->
 	<update id="updateGoodsStockSoldOut">
-		UPDATE MALL_GOODS SET goods_onsale = 1 WHERE goods_idx = #{goods_idx}
+		UPDATE MALL_GOODS SET goods_onsale = 0 WHERE goods_idx = #{goods_idx}
 	</update>
 	
 	<!-- 해당 goods_idx를 가진 상품의 재고량을 입력받은 수 만큼 더함 -->

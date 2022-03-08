@@ -230,3 +230,29 @@ function registerGoods(){
 	})
 	
 };
+
+// admin/stock	상품품절처리
+
+function makeGoodsSoldOut(){
+	const form = document.forms[2].elements;
+	let formData = {};
+	for(i=0 ; i<form.length; i++){
+		formData[form[i].name] = form[i].checked;
+	}
+	formData = JSON.stringify(formData);
+	console.log(formData.toString())
+	jQuery.ajax({
+		url: "inventorySoldOutAction",
+		type: "POST",
+		dataType: "json",
+		contentType: "application/json",
+		processData: false,
+		data: formData,
+		success: function(result){
+			alert(result);
+			for(i=0; i<form.length; i++){
+				form[i].checked = false;
+			}
+		},
+	});
+}

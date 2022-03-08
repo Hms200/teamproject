@@ -1,6 +1,7 @@
 package com.ezen.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,4 +105,15 @@ public class AdminService {
 		}
 		
 	}
+	// stock 품절처리
+	public void makeGoodsSoldOut(HashMap<String, Boolean> list) {
+		list.forEach((k,v) -> { 
+			if(v == true) {
+				int result = goodsDAO.updateGoodsStockSoldOut(Integer.parseInt(k));
+				System.out.println(result);
+				}
+		});
+	}
+	
+	
 }

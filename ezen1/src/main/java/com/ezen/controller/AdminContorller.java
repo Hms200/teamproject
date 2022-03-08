@@ -1,5 +1,7 @@
 package com.ezen.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,13 +83,21 @@ public class AdminContorller {
 		model.addAttribute("entireItemCardMode", 2);
 		return "admin/stock";
 	}
-	// search
+	// stock search
 	@GetMapping("adminStockSearchAction")
 	public String stockSearch(@RequestParam(required = false) String searchText,
 							@RequestParam String stock_cat,
 							Model model) {
 		model = adminService.stockSearch(searchText, stock_cat, model);
 		return stock("1", model);
+	}
+	// stock 품절처리
+	@PostMapping("inventorySoldOutAction")
+	@ResponseBody
+	public String soldOutGoods(@RequestBody HashMap<String, Boolean> param) {
+		System.out.println(param.toString());
+		adminService.makeGoodsSoldOut(param);
+		return "품절처리되었습니다.";
 	}
 	
 	@RequestMapping("goods")
