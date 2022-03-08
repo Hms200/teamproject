@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>title</title>
+<title>reviewpopup</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -34,18 +34,18 @@
 			<div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4"
 				style="font-size: 16px;">고객님의 리뷰가 큰 힘이 됩니다!</div>
 		</div>
-		<form action="reviewWriteForm" name="reviewWriteForm">
+		<form action="reviewWriteAction" name="reviewWriteForm" method="post" enctype="mutipart/form-data">
 			<!-- 파일선택 -->
 			<div class="custom-flie flex-row p-2 "
 				style="float: left; font-size: 14px;">
-				<input type="file" class="custom-flie-input" id="리뷰 내용을 입력해 주세요">
+				<input type="file" class="custom-flie-input" name="file">
 			</div>
 			<!-- 셀렉트 -->
 			<div>
 				<div class="d-flex justify-content-end">
 					<select class="form-select form-control rounded text-dark"
 						style="font-size: 14px; height: 35px; width: 110px;"
-						aria-label="별점" name="star">
+						aria-label="별점" name="review_star">
 						<option value="" disabled selected>별점선택</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -56,7 +56,7 @@
 				</div>
 				<!-- 리뷰내용 -->
 				<div style="font-size: 14px;" class="container w-100">
-					<textarea name="review" id="review" cols="50" rows="10"
+					<textarea name="review_contents" id="review" cols="50" rows="10"
 						class="form-control form-control-lg border border-color col-12"
 						style="font-size: 14px; height: 150px;" placeholder="리뷰를 입력해 주세요"></textarea>
 				</div>
