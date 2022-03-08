@@ -21,6 +21,7 @@ public class CustomerService {
 	IonetooneDAO onetooneDao;
 	
 	//FAQ카테고리 선택
+	/* public ArrayList<Model> faqListByFaqCat */
 	
 	//FAQ작성
 	public int FaqWrite(String faq_title, String faq_contents, String faq_cat) {
@@ -28,6 +29,9 @@ public class CustomerService {
 		int result = faqDao.FaqWrite(faq_title, faq_contents, faq_cat);
 		return result;
 	}
+	
+	//내문의내역
+	/* public ArrayList<Model> byUserIdx */
 	
 	//onetoone작성
 	public int insertOneToOne(String onetoone_title, String onetoone_cat, String onetoone_contents) {

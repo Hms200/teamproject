@@ -11,6 +11,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
 	<script>
+	
+	function checkValue() {
+	
+		if( ! (document.user_pw.value == document.user_pw_check.value) ) {
+			alert("암호가 일치하지 않습니다. 다시 입력해주세요");
+			document.getElementById('member_pw').focus();
+			return false; //submit전송이 안됨
+		}
+		return true; //submit전송됨.
+    }
+		
 	//ajax으로 서버와 통신한다.
     // ajax 용도 : 화면 갱신(reload,redirect)가 없이
 	//            부분화면 갱신(통신)을 js에서 한다.

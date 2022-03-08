@@ -110,15 +110,15 @@
                     </div>
                     <!-- 공지사항 제목 -->
                     <div class="col-11 mx-auto">
-                        <input class="form-control bg-white nullcheck" readonly type="text" name="notice_title" value="${ notice.notice_title }">
+                        <input class="form-control bg-white nullcheck"<c:if test="${ user_id != 'admin' }"> readonly </c:if>type="text" name="notice_title" value="${ notice.notice_title }">
                     </div>
                     <!-- 공지사항 내용 -->
                     <div class="col-11 mx-auto mt-1">
-                        <textarea class="form-control overflow-auto bg-white nullcheck" readonly name="notice_contents"cols="30" rows="10" style="resize: none;">${ notice.notice_contents }</textarea>
+                        <textarea class="form-control overflow-auto bg-white nullcheck" <c:if test="${ user_id != 'admin' }"> readonly </c:if> name="notice_contents"cols="30" rows="10" style="resize: none;">${ notice.notice_contents }</textarea>
                     </div>
                     <!-- 중요공지사항(관리자) -->
                     <div class="ml-4 my-2 pl-2">
-                        <label><input class="mr-2 checkbox" type="checkbox" name="notice_show"<c:if test="${ notice.notice_show eq 1 }"> checked</c:if>
+                        <label><input class="mr-2 checkbox" type="checkbox" name="notice_show"<c:if test="${ user_id != 'admin' }"> disabled </c:if><c:if test="${ notice.notice_show eq 1 }"> checked</c:if>
                         	>중요공지사항</label>
                     </div>
                     <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
