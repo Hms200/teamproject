@@ -47,7 +47,7 @@
       <form name="myAskCatForm" method="post" action="myAskCatAction">
       <span>
         <select name="myAskCat" onchange="submit();" style="width: 100px; height: 50px; font-size: 14px;">
-          <option selected>문의종류</option>
+          <option selected hidden>문의종류</option>
           <option value="상품문의">상품문의</option>
           <option value="배송문의">배송문의</option>
           <option value="결제문의">결제문의</option>
@@ -58,25 +58,24 @@
     <!-- 문의내역 아코디언 -->
     <c:forEach var="dto" items="${ getOneToOneList }">
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 14px;">
-      <!-- 1번 -->
       <div class="card">
-          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
+          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse">
             <div class="d-flex flex-wrap justify-content-between">
-              <span>
+              <span class="col-7 text-left">
                 ${dto.onetoone_title}
               </span>
-              <span style="font-size: 12px;">
+              <span class="col-5 text-right" style="font-size: 12px;">
                 ${dto.onetoone_date}
               </span>
-              <span>
+              <span class="col-10 text-left">
                 ${dto.onetoone_contents}
               </span>
-              <span>
+              <span class="col-2 text-right">
                 <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
               </span>
             </div>
           </button>
-          <!-- 1번 답변 -->
+          <!--답변 -->
           <div class="collapse" id="collapse1" data-parent="#accordion">
             <div class="card-body">
               <span >
@@ -86,60 +85,6 @@
           </div>
       </div>
       </c:forEach>
-      <!-- 2번 -->
-      <!-- <div class="card">
-        <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
-          <div class="d-flex flex-wrap justify-content-between">
-            <span>
-              상품문의 제목 입니다.
-            </span>
-            <span style="font-size: 12px;">
-              2022-02-21
-            </span>
-            <span>
-              문의 내용 입니다.
-            </span>
-            <span>
-              <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
-            </span>
-        </button>
-        2번 답변
-        <div class="collapse" id="collapse2" data-parent="#accordion">
-          <div class="card-body">
-            <span >
-              답변입니다.
-            </span>
-          </div>
-        </div>
-    </div>
-    3번
-    <div class="card">
-      <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
-        <div class="d-flex flex-wrap justify-content-between">
-          <span>
-            상품문의 제목 입니다.
-          </span>
-          <span style="font-size: 12px;">
-            2022-02-21
-          </span>
-          <span>
-            문의 내용 입니다.
-          </span>
-          <span>
-            <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
-          </span>
-        </div>
-      </button>
-      3번 답변
-      <div class="collapse" id="collapse3" data-parent="#accordion">
-        <div class="card-body">
-          <span >
-            답변입니다.
-          </span>
-        </div>
-      </div>
-      </div>
-    </div> -->
   </div>
     
 <c:import url="../footer.jsp"></c:import>

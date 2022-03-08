@@ -57,7 +57,7 @@
         </div>
             <div class="container-sm container-fluid d-flex flex-row justify-content-center" style="height: 40px;">
                 <!-- 취소버튼 -->
-                <button class="btn btn-secondary mx-2" style="width: 100px; cursor: pointer;" onclick="location.href='/customer'">취소</button>
+                <button type="button" class="btn btn-secondary mx-2" style="width: 100px; cursor: pointer;" onclick="location.href='/customer'">취소</button>
                 <!-- 작성버튼 -->
                 <button type="submit" class="btn btn-dark mx-2" style="width: 190px; cursor: pointer;">문의하기</button>
             </div>

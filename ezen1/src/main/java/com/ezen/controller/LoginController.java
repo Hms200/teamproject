@@ -5,13 +5,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dao.IuserDAO;
+import com.ezen.dto.User;
 import com.ezen.service.LoginService;
 
 @Controller
@@ -103,6 +103,7 @@ public class LoginController {
 			
 		return result;
 	}
+	
 	//회원가입 
 	@RequestMapping("joinAction")
 	@ResponseBody
@@ -118,6 +119,14 @@ public class LoginController {
 		return result;		
 	}	
 
+//	@RequestMapping("joinAction")
+//	@ResponseBody
+//	public String joinAction(@ModelAttribute User user ,HttpServletRequest request) {
+//		
+//		String result = loginService.join(user, request);
+//		return result;		
+//	}
+	
 	@RequestMapping("quitAction")
 	@ResponseBody
 	public String quitAction(@RequestParam("user_id") String user_id) {
