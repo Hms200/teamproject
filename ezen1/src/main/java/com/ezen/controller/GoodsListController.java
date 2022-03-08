@@ -27,6 +27,7 @@ public class GoodsListController {
 	
 	@Autowired
 	GoodsListService goodsListService;
+	
     //전체상품 페이지
 	@RequestMapping("/goodsList")
 	public String goodsList(Model model) {

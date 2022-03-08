@@ -56,7 +56,7 @@
 				</div>
 				<!-- 리뷰내용 -->
 				<div style="font-size: 14px;" class="container w-100">
-					<textarea name="review_content" id="review" cols="50" rows="10"
+					<textarea name="review_contents" id="review" cols="50" rows="10"
 						class="form-control form-control-lg border border-color col-12"
 						style="font-size: 14px; height: 150px;" placeholder="리뷰를 입력해 주세요"></textarea>
 				</div>
