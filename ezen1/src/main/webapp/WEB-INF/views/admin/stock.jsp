@@ -56,13 +56,13 @@
                 발주
             </button>
             <button class="btn btn-dark col-3" style="font-size: 12px;height: 30px;"
-            onclick="multiSubmit(formName = 'inventoryUpdateForm', formAction = 'inventoryUpdateAction')">
+            onclick="multiSubmit(formName = 'inventoryUpdateForm', formAction = 'inventoryDeleteAction')">
                 리스트 삭제
             </button>
         </div> 
 
         <!-- 상품목록 카드영역 -->
-            <form name="inventoryUpdateForm" action="admin/inventoryUpdateAction">
+            <form name="inventoryUpdateForm" method="post">
             	<c:import url="../card/entireItem.Card.jsp"></c:import>
             </form>
     </div>

@@ -84,7 +84,7 @@
 	
 	<!-- 해당  goods_idx를 가진 상품을 mall_goods에서 삭제함 -->
 	<delete id="deleteGoods">
-		DELETE FROM MALL_GOODS WHERE goods_idx = #{goods_idx}
+		DELETE FROM MALL_GOODS where goods_idx = ${param1}
 	</delete>
 	
 	<!-- 등록된 모든 상품의 갯수 가져오기 -->

@@ -213,7 +213,6 @@ function registerGoods(){
 	jQuery.ajax({
 		url: "productRegisterAction",
 		type: "POST",
-		dataType: "json",
 		contentType: "application/json",
 		processData: false,
 		data: formData,
@@ -244,15 +243,19 @@ function makeGoodsSoldOut(){
 	jQuery.ajax({
 		url: "inventorySoldOutAction",
 		type: "POST",
-		dataType: "json",
 		contentType: "application/json",
 		processData: false,
+		async: false,
 		data: formData,
-		success: function(result){
-			alert(result);
+		success: function(){
+			alert('품절처리되었습니다.');
 			for(i=0; i<form.length; i++){
 				form[i].checked = false;
 			}
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
 		},
 	});
 }

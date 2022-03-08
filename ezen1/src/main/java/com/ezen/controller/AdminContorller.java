@@ -94,10 +94,16 @@ public class AdminContorller {
 	// stock 품절처리
 	@PostMapping("inventorySoldOutAction")
 	@ResponseBody
-	public String soldOutGoods(@RequestBody HashMap<String, Boolean> param) {
-		System.out.println(param.toString());
+	public void soldOutGoods(@RequestBody HashMap<String, Boolean> param) {
 		adminService.makeGoodsSoldOut(param);
-		return "품절처리되었습니다.";
+	}
+	// stock 상품 삭제
+	@PostMapping("inventoryDeleteAction")
+	@ResponseBody
+	public String deleteGoods(@RequestParam HashMap<String, String> param) {
+		System.out.println(param.toString());
+		adminService.deleteGoodsOnDB(param);
+		return "<script>alert('삭제되었습니다.');loacation.href='admin/stock';</script>";
 	}
 	
 	@RequestMapping("goods")

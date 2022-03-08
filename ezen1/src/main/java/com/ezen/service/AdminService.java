@@ -103,7 +103,7 @@ public class AdminService {
 			model.addAttribute("goodslist", goodsList);
 			return model;
 		}
-		
+	  	 
 	}
 	// stock 품절처리
 	public void makeGoodsSoldOut(HashMap<String, Boolean> list) {
@@ -112,6 +112,15 @@ public class AdminService {
 				int result = goodsDAO.updateGoodsStockSoldOut(Integer.parseInt(k));
 				System.out.println(result);
 				}
+		});
+	}
+	// stock 상품 삭제
+	public void deleteGoodsOnDB(HashMap<String, String> list) {
+		list.forEach((k,v) -> {
+			if(v.equals("on")) {
+				int result = goodsDAO.deleteGoods(Integer.parseInt(k));
+				System.out.println(k +" : " + String.valueOf(result));
+			}
 		});
 	}
 	
