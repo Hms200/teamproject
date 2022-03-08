@@ -33,14 +33,15 @@
 
         <!-- 검색 바 -->
         <div class="container-fluid form-group col-11">
-            <form class="w-100 d-flex flex-row position-relative" name="adminStockForm" method="get">
+            <form class="w-100 d-flex flex-row position-relative" name="adminStockForm" method="get" action="adminStockSearchAction">
                 <select class="custom-select custom-select-lg col-3" name="stock_cat">
                     <option value="goods_name">이름</option>
-                    <option value="goods_onsale">판매중여부</option>
+                    <option value="goods_onsale=1">판매중</option>
+                    <option value="goods_onsale=0">품절/판매중지</option>
                     <option value="goods_cat">카테고리</option>
                 </select>
-                <input class="form-control form-control-lg col-9 nullcheck" type="text" placeholder="검색어를 입력해주세요.">
-                <img class="position-absolute" src="/img/icon/search.png" alt="검색버튼" width="40px" height="40px" style="right: 10px; top:5px; cursor: pointer;" onclick="multiSubmit(formName = 'adminStockForm', formAction = 'mainSearchAction', onsubmit='return nullChecker();')">
+                <input class="form-control form-control-lg col-9" name="searchText" type="text" placeholder="검색어를 입력해주세요.">
+                <img class="position-absolute" src="/img/icon/search.png" alt="검색버튼" width="40px" height="40px" style="right: 10px; top:5px; cursor: pointer;" onclick="submit();">
             </form>
         </div>
 
@@ -62,7 +63,7 @@
 
         <!-- 상품목록 카드영역 -->
             <form name="inventoryUpdateForm" action="admin/inventoryUpdateAction">
-            	<c:import url="../card/goodsList.card"></c:import>
+            	<c:import url="../card/entireItem.Card.jsp"></c:import>
             </form>
     </div>
 

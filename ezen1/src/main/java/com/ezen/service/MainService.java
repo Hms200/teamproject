@@ -88,7 +88,7 @@ public class MainService {
 		ArrayList<Goods> goodsListForMainSearch = goodsDAO.getGoodsListBySearch(searchtext);
 		
 		model.addAttribute("searched",goodsListForMainSearch);
-		model.addAttribute("searchResult", 1);
+		model.addAttribute("entireItemCardMode", 1);
 		return model;
 	}
 	
@@ -106,7 +106,7 @@ public class MainService {
 		ArrayList<Goods> goods = goodsDAO.getGoodsList(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		
 		model.addAttribute("goodsList", goods );
-		model.addAttribute("pagenation", pagenation);
+		model.addAttribute("page", pagenation);
 		return model;
 	}
 }

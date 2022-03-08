@@ -46,10 +46,10 @@
         <span class="font-weight-bold" style="font-size: 14px;">카테고리 선택</span>
         <select class="text-dark form-control col-6" name="goods_cat" id="goods_cat" style="font-size: 14px;">
           <option selected>카테고리 선택</option>
-          <option value="캔들">캔들</option>
-          <option value="캔들워머">캔들워머</option>
-          <option value="디퓨저">디퓨저</option>
-          <option value="비누">비누</option>
+          <option value="candle">캔들</option>
+          <option value="warmer">캔들워머</option>
+          <option value="diffuser">디퓨저</option>
+          <option value="soap">비누</option>
         </select>
       </div>
       <div class="d-none">

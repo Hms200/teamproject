@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.service.AdminService;
 import com.ezen.service.FileService;
+import com.ezen.service.MainService;
 
 @Controller
 @RequestMapping("admin")
@@ -30,6 +32,9 @@ public class AdminContorller {
 	
 	@Autowired
 	IgoodsIMGSDAO goodsImgsDAO;
+	
+	@Autowired
+	IgoodsDAO goodsDAO;
 	
 	
 	@RequestMapping("")
@@ -45,6 +50,11 @@ public class AdminContorller {
 	@RequestMapping("memberList")
 	public String memberList(Model model) {
 		return "admin/memberList";
+	}
+	
+	@RequestMapping("qnaList")
+	public String qnaList() {
+		return "admin/qnaList";
 	}
 	
 	// memberList 상단 필터
@@ -64,8 +74,20 @@ public class AdminContorller {
 	}
 	
 	@RequestMapping("stock")
-	public String stock() {
+	public String stock(@RequestParam(required = false, defaultValue = "1") String currentPage, Model model) {
+		if(model.containsAttribute("goodslist") == false) {
+		model = adminService.getGoodsList(currentPage, model);
+		}
+		model.addAttribute("entireItemCardMode", 2);
 		return "admin/stock";
+	}
+	// search
+	@GetMapping("adminStockSearchAction")
+	public String stockSearch(@RequestParam(required = false) String searchText,
+							@RequestParam String stock_cat,
+							Model model) {
+		model = adminService.stockSearch(searchText, stock_cat, model);
+		return stock("1", model);
 	}
 	
 	@RequestMapping("goods")
