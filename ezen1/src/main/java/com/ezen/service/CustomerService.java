@@ -33,6 +33,9 @@ public class CustomerService {
 	//내문의내역
 	/* public ArrayList<Model> byUserIdx */
 	
+	//내문의내역 카테고리 선택
+	
+	
 	//onetoone작성
 	public int insertOneToOne(String onetoone_title, String onetoone_cat, String onetoone_contents) {
 		

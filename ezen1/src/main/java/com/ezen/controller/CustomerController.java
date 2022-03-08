@@ -39,7 +39,7 @@ public class CustomerController {
 		return "redirect:customer/faq";
 	}
 	
-	//자주묻는질문(FAQ List)
+	//자주묻는질문(FAQ List)(완)
 	@RequestMapping("faq")
 	public String faq(Model model, HttpServletRequest request) {
 		
@@ -51,7 +51,7 @@ public class CustomerController {
 	
 	//FAQ 카테고리 선택
 	
-	//FAQ등록
+	//FAQ등록(완)
 	@RequestMapping("faqWriteAction")
 	@ResponseBody
 	public String faqWriteAction(@RequestParam("faq_title") String faq_title,
@@ -68,7 +68,7 @@ public class CustomerController {
 		}
 	}
 	
-	//FAQ 삭제
+	//FAQ 삭제(완)
 	@RequestMapping("faqDeleteAction")
 	@ResponseBody
 	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpServletRequest reuqest) {
