@@ -147,7 +147,6 @@ public class AdminContorller {
 		}
 		return result;
 	}
-	
 	// 상품등록
 	@PostMapping("productRegisterAction")
 	@ResponseBody
@@ -155,7 +154,6 @@ public class AdminContorller {
 		String result = adminService.insertGoods(goods);
 		return result;
 	}
-	
 	// 상품이미지등록
 	@PostMapping("uploadGoodsIMGSAction")
 	@ResponseBody

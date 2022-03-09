@@ -115,4 +115,16 @@ public class MainService {
 		model.addAttribute("best", goods);
 		return model;
 	}
+	// Md Pick card
+	public Model mdPickCardData(Model model) {
+		ArrayList<Goods> goods = goodsDAO.getGoodsListByOnEvent(2);
+		model.addAttribute("mdPick", goods);
+		return model;
+	}
+	// 이달의 할인 card
+	public Model monthDiscountCardData(Model model) {
+		ArrayList<Goods> goods = goodsDAO.getGoodsListByOnEvent(1);
+		model.addAttribute("discount", goods);
+		return model;
+	}
 }
