@@ -14,9 +14,6 @@
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/custom.css">
-<script>
-	
-</script>
 </head>
 <body>
 
@@ -52,7 +49,7 @@
 						class="col font-weight-bold form-hroup text-dark">
 						아이디 <input type="text"
 							class="form-control-plaintext col-12 rounded font-weight-normal border"
-							style="font-size: 12px;" placeholder="${user_id}" readonly>
+							style="font-size: 12px;" placeholder="${user.user_id}" readonly>
 					</div>
 				</div>
 			</div>
@@ -77,7 +74,7 @@
 				</div>
 				<!-- 전화번호 -->
 				<div class="my-3 col-12 font-weight-bold form-group text-dark">
-					전화번호 <input type="email"
+					전화번호 <input type="text"
 						class="form-control col-12 rounded font-weight-nomal nullcheck"
 						name="user_phone"placeholder="전화번호를 입력해 주세요">
 						
@@ -124,6 +121,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
 		crossorigin="anonymous"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/js/main.js"></script>
 </body>
 </html>

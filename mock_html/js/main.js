@@ -66,7 +66,6 @@ function setGoodsList(_type) {
 
     document.querySelector("main").className = _type;
   }
-
 // 모든 체크박스 체크
 function checkAll() {
 //모든 체크박스를 checked 되게 한다.
