@@ -19,14 +19,14 @@ public class Goods {
 	private String goods_thumb;
 	private String goods_cat;
 	private int goods_stock;
-	private String goods_onevent;
+	private int goods_onevent;
 	private int goods_purchased;
 	private String goods_detail;
 	private int goods_onsale;
 	
 	@Builder
 	public Goods(int goods_idx, String goods_name, int goods_price, String goods_thumb, String goods_cat,
-			int goods_stock, String goods_onevent, int goods_purchased, String goods_detail, int goods_onsale) {
+			int goods_stock, int goods_onevent, int goods_purchased, String goods_detail, int goods_onsale) {
 		super();
 		this.goods_idx = goods_idx;
 		this.goods_name = goods_name;
