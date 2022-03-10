@@ -45,6 +45,12 @@ public class MainController {
 		if(model.getAttribute("entireItemCardMode") == null) {
 		model.addAttribute("entireItemCardMode", 0);
 		}
+		// bestItems card
+		model = mainService.bestItemsCardDate(model);
+		// MD Pick card
+		model = mainService.mdPickCardData(model);
+		// 이달의 할인 card
+		model = mainService.monthDiscountCardData(model);
 		return "main";
 	}
 	

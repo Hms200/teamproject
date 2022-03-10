@@ -23,7 +23,7 @@ public class FaQ {
 		super();
 		this.faq_idx = faq_idx;
 		this.faq_title = faq_title;
-		this.faq_contents = faq_contents;
+		this.faq_contents = faq_content;
 		this.faq_cat = faq_cat;
 	}
 	
