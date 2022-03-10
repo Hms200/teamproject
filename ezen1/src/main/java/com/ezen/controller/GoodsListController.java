@@ -41,15 +41,8 @@ public class GoodsListController {
 							  Model model) {
 		
 		Goods goods = goodsDAO.getGoodsInfo(goods_idx);
-		String name = goods.getGoods_name();
-		String thumb = goods.getGoods_thumb();
-		String detail = goods.getGoods_detail();
-		int price = goods.getGoods_price();
 		ArrayList<Review> reviewList = goodsDAO.getGoodsReview(goods_idx);
-		model.addAttribute("name",name);
-		model.addAttribute("thumb",thumb);
-		model.addAttribute("price", price);
-		model.addAttribute("detail", detail);
+		model.addAttribute("goods",goods);
 		model.addAttribute("reviewList", reviewList);
 		return "goodsList/goodsDetail";
 	}

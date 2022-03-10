@@ -33,11 +33,11 @@
     </div>
     <!--상품 상세보기 이미지-->
     <div class=" mx-0 px-0">
-      <img src="${thumb}" alt="" class="img-fluid" width="360px" height="240px">
+      <img src="${goods.goods_thumb}" alt="" class="img-fluid" width="360px" height="240px">
     </div>
     <!--상품 상세보기 타이틀-->
     <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
-    ${name}
+    ${goods.goods_name}
       <!--부모클래스bg-primary 안넣었음 -->
     </div>
     <!--상품 상세보기 옵션 드롭다운-->
@@ -61,7 +61,7 @@
         판매가
       </div>
       <div class="col-4" style="font-size: 14px;">
-      <fmt:formatNumber value="${price}" type="number" />
+      <fmt:formatNumber value="${goods.goods_price}" type="number" />
       </div>
     </div>
     <div class="w-100 bg-primary goodsDetailDivisionLine">
@@ -83,7 +83,7 @@
     <main class="info">
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
-          <img src="${detail}" alt="" class="img-fluid" style="width: 264px;">
+          <img src="${goods.goods_detail}" alt="" class="img-fluid" style="width: 264px;">
           <!--구매하기버튼/장바구니 아이콘-->
           <div class="col-12 my-2">
             <!--장바구니 버튼을 누르면 장바구니 페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
