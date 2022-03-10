@@ -12,23 +12,12 @@
     <link rel="stylesheet" href="/css/custom.css">
 	<script>
 	
-	function checkValue() {
-	
-		if( ! (document.user_pw.value == document.user_pw_check.value) ) {
-			alert("암호가 일치하지 않습니다. 다시 입력해주세요");
-			document.getElementById('member_pw').focus();
-			return false; //submit전송이 안됨
-		}
-		return true; //submit전송됨.
-    }
-		
 	//ajax으로 서버와 통신한다.
     // ajax 용도 : 화면 갱신(reload,redirect)가 없이
 	//            부분화면 갱신(통신)을 js에서 한다.
     function idCheck() {
     	var user_id = $('#user_id').val();
     	if(!user_id){
-			alert("아이디를 입력하세요.");
 			return false;
 		}
     	// 아이디 유효성 검사(1보다 같거나 크면 중복 / 0 이면 중복안됨)
@@ -74,7 +63,7 @@
         </div>
         <!-- joinMainDiv -->
         <div class="container-sm container-fluid col-11 d-flex flex-column mt-3 justify-content-center align-items-center" style="max-width:520px;">
-            <form action="joinAction" method="get" onsubmit="return nullChecker();">
+            <form action="joinAction" method="get" onsubmit="return !!(nullChecker() & idCheck());">
                 <div class="text-left font-weight-bold pl-2 mt-2">아이디</div>
                 <div class="form-group row mb-1 ml-0 mr-0 justify-content-between" style="font-size:14px;">
                     <input type="text" class="col-8 form-control nullcheck" name="user_id" id="user_id" placeholder="아이디를 입력해주세요">
@@ -134,6 +123,52 @@
             </form>
         </div>
     </div>
+    
+ <script>
+    /* 실패 */
+    function submitForm(){
+    	
+    	/* if(passCheck().value == true && nullChecker().value == true){
+    		return true;
+    	}
+    		return false;
+    	 */
+    	
+    	if(passCheck == null){
+    		return false;
+    	}
+    	if( javascript:nullChecker.value == true ){
+    		return true;
+    	}
+    	
+    	/* 
+    	if( !(document.user_pw.value == document.user_pw_check.value)) {
+			alert("암호가 일치하지 않습니다. 다시 입력해주세요");
+			document.getElementById('user_pw').focus();
+			return false; //submit전송이 안됨
+		}
+		
+    	return "javascript:nullChecker()"; //submit전송됨.
+    	}  */
+    	
+    	
+    	
+    	/* if(nullChecker.value == true ){
+    		return true;
+    	}
+    		
+    		return false; */
+    	
+    	/* var submitAction = true;
+    	submitAction &= passCheck();
+    	submitAction &= nullChecker();
+        if(submitAction == true){
+            return true;
+        }
+    	return false; */
+    	}
+  </script>   
+    
 <!-- 카카오 주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- bootstrap js -->
