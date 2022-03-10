@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>goodsDetail</title>
+    <title>${ goods.goods_name }</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -32,9 +32,27 @@
       </div>
     </div>
     <!--상품 상세보기 이미지-->
-    <div class=" mx-0 px-0">
-      <img src="${goods.goods_thumb}" alt="" class="img-fluid" width="360px" height="240px">
+    <div id="carouselImg" class="carousel slide mx-0 px-0" data-ride="carousel" style="width: 360px; height: 240px">
+        <ol class="carousel-indicators">
+        <li data-target="#carouselImg" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselImg" data-slide-to="1"></li>
+        <li data-target="#carouselImg" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="${ goodsImgs.get(0) }" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="${ goodsImgs.get(1) }" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="${ goodsImgs.get(2) }" class="d-block w-100" alt="...">
+        </div>
+        </div>
     </div>
+    <%-- <div class=" mx-0 px-0">
+      <img src="${goods.goods_thumb}" alt="" class="img-fluid" width="360px" height="240px">
+    </div> --%>
     <!--상품 상세보기 타이틀-->
     <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
     ${goods.goods_name}
@@ -50,9 +68,16 @@
           aria-expanded="false" style="font-size: 14px;">
           옵션
         </button>
+        
         <div class="dropdown-menu goodsDeatailMenu" aria-labelledby="dropdownMenuButton">
-          <option class="dropdown-item" value="선물포장" style="font-size: 14px;">선물포장+1000</option>
+          <button class="dropdown-item" id="option_name_and_price" type="button" style="font-size: 14px;" onclick="totalPrice();">선택안함</button>
+          <input type="hidden" name="goods_option" value="0">
+          <c:forEach var="option" items="${ goodsOptions }">
+          <button class="dropdown-item" id="option_name_and_price" type="button" style="font-size: 14px;" onclick="totalPrice();">${ option.option_name }+${ option.option_price }</button>
+          <input type="hidden" name="goods_option" value="${ option.option_price }">
+ 		  </c:forEach>      
         </div>
+       
       </div>
     </div>
     <!--판매가격-->
@@ -60,8 +85,10 @@
       <div class="col-3" style="font-size: 14px;">
         판매가
       </div>
+      <input type="hidden" name="goods_price" value="${ goods.goods_price }">
       <div class="col-4" style="font-size: 14px;">
-      <fmt:formatNumber value="${goods.goods_price}" type="number" />
+      <input type="text" class="form-control-plaintext" name="goods_total_price" value="">
+      <%-- <fmt:formatNumber value="${goods.goods_price}" type="number" /> --%>
       </div>
     </div>
     <div class="w-100 bg-primary goodsDetailDivisionLine">
@@ -83,7 +110,7 @@
     <main class="info">
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
-          <img src="${goods.goods_detail}" alt="" class="img-fluid" style="width: 264px;">
+          <img src="${goods.goods_detail}" alt="" class="img-fluid">
           <!--구매하기버튼/장바구니 아이콘-->
           <div class="col-12 my-2">
             <!--장바구니 버튼을 누르면 장바구니 페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
@@ -150,7 +177,7 @@
             <button type="button" class="btn btn-primary" onclick="popupHideAndShow('goodDetailInquiryPop')">
               상품 문의하기
             </button>
-          </div>
+          </div> 
         </div>
       </div>
     </main>
@@ -182,8 +209,8 @@
                 style="font-size: 14px;">
             </div>
             <!--자동으로 받음-->
-            <input type="hidden" name="user_id" value="{}">
-            <input type="hidden" name="goods_name" value="{}">
+            <input type="hidden" name="user_id" value="${ user_id }">
+            <input type="hidden" name="goods_name" value="${ goods.goods_name }">
             <!--input button 에서 button- button으로 변경-->
             <button type="button" class="btn btn-secondary text-dark goodsDetailInquiryPopCancle" onclick="popupHideAndShow('goodDetailInquiryPop')">취소 </button>
             <button class="btn text-light ml-2 goodsDetailInquiryPopSubmit">문의하기</button>
@@ -209,7 +236,10 @@
         });
         document.querySelector("div .navMenu div." + _type).classList.add("on");
         document.querySelector("main").className = _type;
-      }
+      };
+      
+      let total_Price = document.getElementsByName('goods_total_price')[0];
+      total_Price.value = document.getElementsByName('goods_price')[0].value;
     </script>
 </body>
 </html>
