@@ -45,7 +45,7 @@
     </div>
     <!-- 문의종류 -->
     <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
-      <form name="faqCatForm" method="post" action="faqCatAction">
+      <form name="faqCatForm" method="get" action="faqCatAction">
       <span>
         <select name="faq_Cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의종류</option>

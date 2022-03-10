@@ -32,9 +32,27 @@
       </div>
     </div>
     <!--상품 상세보기 이미지-->
-    <div class=" mx-0 px-0">
-      <img src="${goods.goods_thumb}" alt="" class="img-fluid" width="360px" height="240px">
+    <div id="carouselImg" class="carousel slide mx-0 px-0" data-ride="carousel" style="width: 360px; height: 240px">
+        <ol class="carousel-indicators">
+        <li data-target="#carouselImg" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselImg" data-slide-to="1"></li>
+        <li data-target="#carouselImg" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="${ goodsImgs.get(0) }" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="${ goodsImgs.get(1) }" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="${ goodsImgs.get(2) }" class="d-block w-100" alt="...">
+        </div>
+        </div>
     </div>
+    <%-- <div class=" mx-0 px-0">
+      <img src="${goods.goods_thumb}" alt="" class="img-fluid" width="360px" height="240px">
+    </div> --%>
     <!--상품 상세보기 타이틀-->
     <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
     ${goods.goods_name}
@@ -50,9 +68,12 @@
           aria-expanded="false" style="font-size: 14px;">
           옵션
         </button>
+        <c:forEach var="option" items="${ goodsOptions }">
         <div class="dropdown-menu goodsDeatailMenu" aria-labelledby="dropdownMenuButton">
-          <option class="dropdown-item" value="선물포장" style="font-size: 14px;">선물포장+1000</option>
+          <button class="dropdown-item" type="button" style="font-size: 14px;" onclick="totalPrice();">${ option.option_name }+${ option.option_price }</button>
+          <input type="hidden" name="goods_option" value="${ option.option_price }">
         </div>
+        </c:forEach>
       </div>
     </div>
     <!--판매가격-->
@@ -60,8 +81,10 @@
       <div class="col-3" style="font-size: 14px;">
         판매가
       </div>
+      <input type="hidden" name="goods_price" value="${ goods.goods_price }">
       <div class="col-4" style="font-size: 14px;">
-      <fmt:formatNumber value="${goods.goods_price}" type="number" />
+      <input type="text" class="form-control-plaintext" name="goods_total_price" value="${ goods.goods_price }">
+      <%-- <fmt:formatNumber value="${goods.goods_price}" type="number" /> --%>
       </div>
     </div>
     <div class="w-100 bg-primary goodsDetailDivisionLine">

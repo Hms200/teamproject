@@ -299,3 +299,14 @@ function orderGoods(){
 	});
 	
 }
+
+// goods Detail 페이지 최종가격 산정
+function totalPrice (){
+	let optionPrice = document.getElementsByName('goods_option')[0].value;
+	const originalGoodsPrice = document.getElementsByName('goods_price')[0].value;
+	let total_Price = document.getElementsByName('goods_total_price')[0].value;
+	
+	total_Price = Number(optionPrice) + Number(originalGoodsPrice);
+	
+	
+}
