@@ -14,7 +14,7 @@ public interface IfaqDAO {
 	//MALL_FAQ에서 해당 카테고리의 모든 data 가져옴
 	public ArrayList<FaQ> getFaqListByCat(String faq_cat);
 	//Faq를 받아 MALL_FAQ에 insert
-	public int FaqWrite(String faq_tltle, String faq_contents, String faq_cat);
+	public int FaqWrite(FaQ Faq);
 	//받은 faq_idx와 MALL_FAQ에서 동일한 faq_idx를 가진 data를 delete
 	public int faqDeleteByFaqIdx(String faq_idx);
 }

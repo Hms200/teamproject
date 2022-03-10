@@ -47,7 +47,7 @@
     <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
       <form name="faqCatForm" method="get" action="faqCatAction">
       <span>
-        <select name="faq_Cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
+        <select name="faq_cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의종류</option>
           <option value="상품문의">상품문의</option>
           <option value="배송문의">배송문의</option>
@@ -79,11 +79,11 @@
               </span>
               <!-- 삭제버튼(관리자) -->
               <div class="d-flex justify-content-end">
-              <%-- <c:if test="${ user_id eq 'admin' }"> --%>
+              <c:if test="${ user_id eq 'admin' }">
               	<a href="faqDeleteAction?faq_idx=${ dto.faq_idx }">
                 	<button class="btn btn-secondary" style="width: 60px; height: 30px; cursor: pointer;">삭제</button>
                 </a>
-       		  <%-- </c:if> --%>
+       		  </c:if>
               </div>
             </div>
           </div>
@@ -92,9 +92,9 @@
     </div>
     <!-- 등록 버튼(관리자) -->
     <div class="container-sm container-fluid d-flex justify-content-end">
-    <%-- <c:if test="${ user_id eq 'admin' }"> --%>
+    <c:if test="${ user_id eq 'admin' }">
       <button class="btn btn-secondary mt-5" style="width: 100px; height: 40px; cursor: pointer;" onclick="popupHideAndShow(target = 'faq_write_popup')">등록</button>
-      <%-- </c:if> --%>
+      </c:if>
     </div>
 
     <!-- faq작성 팝업(관리자) -->
@@ -112,7 +112,7 @@
         <!-- 작성폼 시작 -->
          <form action="faqWriteAction" method="post" name="faqWriteForm" onsubmit="return nullChecker();">
           <!-- 히든 input -->
-          <input type="hidden" name="faq_idx" value="faq_idx">
+          <!-- <input type="hidden" name="faq_idx" value="faq_idx"> -->
           <div class="d-flex">
             <!-- 제목 -->
             <div>
