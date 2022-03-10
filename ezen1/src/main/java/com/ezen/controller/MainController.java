@@ -3,6 +3,8 @@ package com.ezen.controller;
 
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,9 @@ public class MainController {
 	@Autowired
 	MainService mainService;
 	
+	@Autowired
+	HttpSession session;
+	
 
 	@RequestMapping("")
 	public String root() {
@@ -34,8 +39,8 @@ public class MainController {
 	
 	@RequestMapping("main")
 	public String main(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
-//		int cartBedgeNum = session.getAttribute(String(cart));	
-//		model.addAttribute("cartBedgeNum", cartBedgeNum);
+  		int cartBedgeNum = (int) session.getAttribute("cart");	
+		
 		
 		// 메인용 공지사항
 		model = mainService.noticeForMain(model);

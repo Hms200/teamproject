@@ -26,8 +26,8 @@
 	</update>
 	<!-- 넘겨받은 값으로 데이터 추가 -->
 	<insert id="insertCart" parameterType="com.ezen.dto.Cart">
-		INSERT INTO MALL_CART(CART_IDX,CART_LIST_IDX,USER_IDX,GOODS_IDX,OPTION_IDX,CART_AMOUNT,CART_TOTAL_PRICE,CART_ISDONE)
-		VALUES (MALL_CART_SEQ.NEXTVAL,#{CART_LIST_IDX},#{USER_IDX},#{GOODS_IDX},#{OPTION_IDX},#{CART_AMOUNT},#{CART_TOTAL_PRICE})	
+		INSERT INTO MALL_CART(cart_idx, user_idx, goods_idx, option_idx, cart_amount, cart_total_price, cart_isdone)
+		VALUES (MALL_CART_SEQ.NEXTVAL, ${user_idx}, ${goods_idx}, ${option_idx}, ${cart_amount},${cart_total_price}, ${cart_isdone})	
 	</insert>
 	
 </mapper>

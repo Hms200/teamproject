@@ -12,6 +12,7 @@ import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IgoodsOptionDAO;
 import com.ezen.dao.IpurchaseDAO;
+import com.ezen.dto.Cart;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.dto.GoodsOption;
@@ -59,6 +60,21 @@ public class GoodsListService {
 		model.addAttribute("goodsImgs", goodsImgs);
 		model.addAttribute("goodsOptions", goodsOptions);
 		return model;
+	}
+	
+	// 카트에 상품담기
+	public String addGoodsInCart(Cart cart) {
+		
+		int result = cartDAO.insertCart(cart);
+		String resultString;
+		if(result == 0) {
+			resultString = "false";
+		}else if(result == 1) {
+			resultString = "true";
+		}else {
+			resultString = "false";
+		}
+		return resultString;
 	}
 
 }

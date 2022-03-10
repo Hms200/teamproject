@@ -301,14 +301,61 @@ function orderGoods(){
 }
 
 // goods Detail 페이지 최종가격 산정
-function totalPrice (){
-	let optionPrice = document.getElementsByName('goods_option')[0].value;
+function totalPrice (event){
+	const optionInput = event.target.id;
+	let optionPrice = document.getElementsByName(optionInput)[0].value;
+	let optionIdx = document.getElementsByName(optionInput)[1].value;
 	const originalGoodsPrice = document.getElementsByName('goods_price')[0].value;
 	let total_Price = document.getElementsByName('goods_total_price')[0];
+	let optionIdxForm = document.getElementsByName('option_idx')[0];
 	
 	total_Price.value = Number(optionPrice) + Number(originalGoodsPrice);
+	optionIdxForm.value = optionIdx;
 	
-	let optionText = this.innerText;
-	document.querySelector("#dropdownMenuButton").innerText = optionText;
+	let optionText = event.target.innerText;
+	let optionTitle = document.querySelector("#dropdownMenuButton");
+	optionTitle.innerText = optionText.toString();
 	
+}
+
+// 	장바구니에 상품담기
+function addCart(){
+	// useridx
+	const userIdx = document.getElementsByName('user_idx')[0].value;
+	const goodsIdx = document.getElementsByName('goods_idx')[0].value;
+	const optionIdx = document.getElementsByName('option_idx')[0].value;
+	const totalPrice = document.getElementsByName('goods_total_price')[0].value;
+	
+	if(userIdx == 0){
+		alert('로그인하신 후 이용할 수 있습니다.');
+		location.href='../login/login';
+	}else{
+	
+		let formData = {};
+		
+		formData["user_idx"] = userIdx;
+		formData["goods_idx"] = goodsIdx;
+		formData["option_idx"] = optionIdx;
+		formData["cart_amount"] = 1;
+		formData["cart_total_price"] = totalPrice;
+		formData["cart_isdone"] = 0;
+		
+		formData = JSON.stringify(formData);
+		
+		jQuery.ajax({
+			url: "toShoppingCartAction",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			async: false,
+			data: formData,
+			success: function(){
+				alert('장바구니에 담겼습니다.');
+			},
+			error: function(e){
+				console.log(e);
+				alert('처리에 실패하였습니다. 다시 시도해 주세요');
+			},
+		});
+	}
 }

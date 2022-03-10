@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>장바구니</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -30,7 +30,7 @@
       </div>
     </div>
     <!--장바구니 내용-->
-    <!-- jsp파일로 만들때 서버에서 내려온값을 jstl로 eq cart가 !null null로 화면구분  -->
+    <c:if test="${ cart != 0 }">
     <!-- 전체선택/선택삭제 -->
     <main class="w-100">
     <div class="container-fluid d-flex felx-row justify-content-between mx-3 my-3 w-100 border-bottom cartSelectAllBox">
@@ -109,11 +109,13 @@
         가격
       </div>
     </div>
-    <div class="font-weight-bold w-100 mt-5 text-center cartOrderButtonBox" style="font-size: 16xp;">
+    <div class="font-weight-bold w-100 mt-5 text-center cartOrderButtonBox mb-5" style="font-size: 16xp;">
       <button type="submit" class="btn btn-primary" style="width: 300px; height: 40px;">주문하기</button>
       </div>
   </form>
   </main>
+  </c:if>
+  <c:if test="${ cart == 0 }">
     <!--장바구니 비어있는-->
     <div class="d-flex justify-content-center mb-0">
       <img src="/img/icon/bag.png" alt="" class="img-fluid " width="300px" height="300px">
@@ -125,7 +127,8 @@
       <a href="goodsList"><input type="button" class="btn btn-primary" value="상품보러가기" style="border-radius: 20px;"></a>
     </div>
   </div>
-
+	</c:if>
+</div>
     
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import>
