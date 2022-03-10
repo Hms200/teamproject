@@ -1,27 +1,18 @@
 package com.ezen.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ezen.dao.IgoodsDAO;
 import com.ezen.dto.Cart;
-import com.ezen.dto.Goods;
 import com.ezen.dto.Question;
-import com.ezen.dto.Review;
 import com.ezen.service.GoodsListService;
 
 @Controller
@@ -30,6 +21,12 @@ public class GoodsListController {
 
 	@Autowired
 	GoodsListService goodsListService;
+	
+	@Autowired
+	Model model;
+	
+	@Autowired
+	HttpSession session;
 	
     //전체상품 페이지
 	@RequestMapping("/goodsList")
@@ -47,7 +44,7 @@ public class GoodsListController {
 		model = goodsListService.goodsDetail(goods_idx, model);
 		return "goodsList/goodsDetail";
 	}
-	
+	// 상품문의 작성
 	@RequestMapping("/productQnaWriteAction")
 	public String productQnaWriteAction(Question question) {
 		
@@ -72,9 +69,18 @@ public class GoodsListController {
 		return result;
 	}
 	
+	///////////////////////////////////
     //장바구니 페이지
+	//////////////////////////////////
 	@RequestMapping("/cart")
 	public String cart() {
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			return "login/login";
+		}
+		model = goodsListService.getGoodsInCart(user_idx);
 		return "goodsList/cart";
 	}
     //구매 페이지

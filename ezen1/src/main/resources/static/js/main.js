@@ -325,6 +325,8 @@ function addCart(){
 	const goodsIdx = document.getElementsByName('goods_idx')[0].value;
 	const optionIdx = document.getElementsByName('option_idx')[0].value;
 	const totalPrice = document.getElementsByName('goods_total_price')[0].value;
+	const bedge = document.getElementById('bedgeNumber');
+	let bedgeNumber = Number(bedge.innerText);
 	
 	if(userIdx == 0){
 		alert('로그인하신 후 이용할 수 있습니다.');
@@ -351,6 +353,7 @@ function addCart(){
 			data: formData,
 			success: function(){
 				alert('장바구니에 담겼습니다.');
+				bedge.innerText = bedgeNumber + 1;
 			},
 			error: function(e){
 				console.log(e);

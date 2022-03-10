@@ -5,19 +5,19 @@
     
 <mapper namespace="com.ezen.dao.IcartDAO">
 
-	<!-- user_idx가 일치하고 cart_isdone가 0 인값을 반환 -->
+	<!-- user_idx가 일치하고 cart_isdone가 1 인값을 반환 -->
 	<select id="getCartIsDone" resultType="com.ezen.dto.Cart">
-		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=0
+		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=1
 	</select>
 
-	<!-- user_idx가 일치하고 cart_isdone이 1인값의 갯수를 반환 -->
+	<!-- user_idx가 일치하고 cart_isdone이 0인값의 갯수를 반환 -->
 	<select id="getNumberOfCartIsNotDone" resultType="_int">
-		SELECT COUNT(*) FROM MALL_CART WHERE USER_IDX = #{user_idx} AND CART_ISDONE = 1
+		SELECT COUNT(*) FROM MALL_CART WHERE USER_IDX = #{user_idx} AND CART_ISDONE = 0
 	</select>
 	
-	<!-- user_idx가 일치하고 cart_isdone이 1인 값을 반환 -->
+	<!-- user_idx가 일치하고 cart_isdone이 0인 값을 반환 -->
 	<select id="getCartIsNotDone" resultType="com.ezen.dto.Cart">
-		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=1
+		SELECT * FROM MALL_CART WHERE USER_IDX = ${user_idx) AND CART_ISDONE=0
 	</select>
 	
 	<!-- cart_idx가 일치하는 값의 cart_list_idx를 넘어온 값으로 변경하고 cart_isdone을 0으로 변경 -->

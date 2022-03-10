@@ -40,16 +40,16 @@
       </div>
       <!--서버에서 처리-->
       <div style="font-size: 13px;">
-        <input type="button" value="선택삭제">
+        <input type="button" value="선택삭제" onclick="">
       </div>
     </div>
     <!-- 상품내용 -->
     <div class="container d-flex flex-column py-1 px-3 mb-4 border-bottom">
       <form name="shoppingCartForm" action="" method="post"  onsubmit="return nullChecker();">
       <div class="row mt-4 mx-3 mb-3" style="font-size: 14px;">
-        <input type="hidden" name="cart_idx">
+        <input type="hidden" name="cart_idx" value="${ cartlist.cart_idx }">
         <input type="checkbox" name="IsGoodsCheck" class="mx-2 nullcheck" style="width: 16px; height: 16px;">
-        <div name="goods_name">네이쳐 소이캔들</div>
+        <div name="goods_name">${ goodslist.goods_name }</div>
       </div>
       <div class="d-flex flex-row justify-content-around">
         <img src="/img/goods/candle/Candle01_01.jpeg" alt="" class="img-fluid mx-3" width="100px"
