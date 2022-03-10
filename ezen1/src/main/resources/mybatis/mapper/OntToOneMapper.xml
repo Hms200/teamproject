@@ -22,8 +22,8 @@
 	
 	<!-- OneToOne을 받아 mall_onetoone에 insert -->
 	<insert id="insertOneToOne" parameterType="com.ezen.dto.OneToOne">
-		INSERT INTO MALL_ONETOONE (onetoone_idx, user_idx, onetoone_cat, onetoone_title, onetoone_contents, onetoone_date, onetoone_isreplied, onetoone_reply, onetoone_reply_date)
-			VALUES (mall_onetoone_seq.nextval, #{user_idx}, #{onetoone_cat}, #{onetoone_title}, #{onetoone_contents}, #{onetoone_date}, #{onetoone_isreplied}, #{onetoone_reply}, #{onetoone_reply_date})
+		INSERT INTO MALL_ONETOONE VALUES
+		(mall_onetoone_seq.nextval, #{user_idx}, #{onetoone_cat}, #{onetoone_title}, #{onetoone_contents}, sysdate, 0, null, null)
 	</insert>
 
 </mapper>
