@@ -304,9 +304,11 @@ function orderGoods(){
 function totalPrice (){
 	let optionPrice = document.getElementsByName('goods_option')[0].value;
 	const originalGoodsPrice = document.getElementsByName('goods_price')[0].value;
-	let total_Price = document.getElementsByName('goods_total_price')[0].value;
+	let total_Price = document.getElementsByName('goods_total_price')[0];
 	
-	total_Price = Number(optionPrice) + Number(originalGoodsPrice);
+	total_Price.value = Number(optionPrice) + Number(originalGoodsPrice);
 	
+	let optionText = this.innerText;
+	document.querySelector("#dropdownMenuButton").innerText = optionText;
 	
 }
