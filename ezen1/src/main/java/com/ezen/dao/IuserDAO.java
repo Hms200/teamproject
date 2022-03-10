@@ -1,8 +1,6 @@
 package com.ezen.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.dto.User;
