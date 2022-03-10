@@ -10,13 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
-	<script>
+	<script>		
 	
-	
-		
-	//ajax으로 서버와 통신한다.
-    // ajax 용도 : 화면 갱신(reload,redirect)가 없이
-	//            부분화면 갱신(통신)을 js에서 한다.
     function idCheck() {
     	var user_id = $('#user_id').val();
     	if(!user_id){
@@ -35,24 +30,39 @@
     	    			if( data_num >= 1 ) {
     	    				//아이디가 중복됨.
     	    				alert("중복된 아이디입니다.");
-    						$('#isIDChecked').val("false");
+    						$('#isIDChecked').val('no');
     						$('#user_id').val('');
     						$('#user_id').focus();
-    						
-    						/* document.getElementById('user_id').focus(); */
     	    			}else{
     	    				//아이디가 중복 안됨. 사용 가능.
     	    				alert("사용가능한 아이디입니다.");
-    						$('#isIDChecked').val("true");
+    						$('#isIDChecked').val('ok');
     	    			}    			
     	    		},
     	    		error: function(){
     	    			console.log('통신 실패');
     	    		}	
-    			}
-    		
+    			}    		
     	);
    	 }
+	
+    function pwCheck() {
+    	var user_pw = $('#user_pw').val();
+    	if(!user_pw){
+			alert("비밀번호 중복체크 후 회원가입이 가능합니다");
+			return false;
+			}
+    	if( $('#user_pw').val() == $('#user_pw_check').val() ){
+    		alert("비밀번호가 일치합니다");
+			$('#isPWChecked').val('ok');
+    	}else {
+    		alert("비밀번호가 다릅니다.");
+			$('#isPWChecked').val('no');
+			$('#user_pw_check').val('');
+			$('#user_pw_check').focus();
+    	}
+    	
+	}
     /* function pwCheck() {
     	
 		if( document.user_pw.value == document.user_pw_check) {		
@@ -63,38 +73,22 @@
 		alert("암호가 일치하지 않습니다. 다시 입력해주세요");
 		document.getElementById('user_pw').focus();
 		return false; //submit전송이 안됨
-    } 	
-	function idPwAll(){
+    } */		
+	function joinCheckAll(){
     	
-		let form = document.forms[0];
-		let ageElems = form.elements.pw_checkHidden;
-		alert(ageElems[0]); 	
-		
-		if( document.forms.isIDChecked.value == "true"){
-			alert("회원가입이 가능한 아이디입니다.");
-			
-		}
-		alert("아이디 중복확인 후 회원가입이 가능합니다.");
-		return false;	
-	}*/	
 	
-	function pwCheck() {
-    	var user_pw = $('#user_pw').val();
-    	if(!user_pw){
-			alert("비밀번호 중복체크 후 회원가입이 가능합니다");
-			return false;
-			}
-    	if($('#user_pw').val() == $('#user_pw_check').val()){
-    		alert("비밀번호가 일치합니다");
-			$('#isPWChecked').val("true");
-    	}else {
-    		alert("비밀번호가 다릅니다.");
-			$('#isPWChecked').val("false");
-			$('#user_pw_check').val('');
-			$('#user_pw_check').focus();
-    	}
-    	
+		var isIDChecked = $('#isIDChecked').val();
+		var isPWChecked = $('#isPWChecked').val();
+		alert(isIDChecked);
+		alert(isPWChecked);
+		
+		if( isIDChecked == 'ok' && isPWChecked == 'ok'){		
+			document.forms[0].submit();
+		} else {
+			alert("중복확인 후 회원가입이 가능합니다.");
+			}		
 	}
+
 </script>
 </head>
 <body>
@@ -115,7 +109,7 @@
                 <div class="form-group row mb-1 ml-0 mr-0 justify-content-between" style="font-size:14px;">
                     <input type="text" class="col-8 form-control nullcheck" name="user_id" id="user_id" placeholder="아이디를 입력해주세요">
                     <input type="button" class="col-3 btn btn-secondary text-dark" value="중복체크" style="font-size: 14px;" onclick="idCheck();">
-                    <input type="hidden" name="isIDChecked" id="isIDChecked" value=" ">
+                    <input type="hidden" name="isIDChecked" id="isIDChecked" value="no">
                 </div>
                 
                 <div class="text-left font-weight-bold pl-2 mt-2">비밀번호</div>
@@ -123,7 +117,7 @@
                     <input type="text" class="col-8 form-control mb-1 nullcheck" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
                     <input type="button" class="col-3 btn btn-secondary text-dark mb-1" value="중복체크" style="font-size: 14px;" onclick="pwCheck();">
                     <input type="text" class="col-12 form-control nullcheck" id="user_pw_check" placeholder="비밀번호를 한 번더 입력해주세요">
-                    <input type="hidden" name="isPWChecked" id="isPWChecked" value=" ">
+                    <input type="hidden" name="isPWChecked" id="isPWChecked" value="no">
                 </div>                
               
                 <!-- <div class="text-left font-weight-bold pl-2 mt-2" >비밀번호</div>
@@ -176,7 +170,7 @@
                         </textarea>
                     </div>
                 </div>
-                <input type="submit" class="input type submit btn btn-primary col-12 my-3 mb-5 text-white" height="40px" value="가입하기" style="font-size: 18px;">
+                <input type="button" class="input type submit btn btn-primary col-12 my-3 mb-5 text-white" height="40px" value="가입하기" style="font-size: 18px;" onclick="joinCheckAll();" >
             </form>
             
             <!-- <input type="hidden" name="isIDChecked" id="isIDChecked" value="false" />
