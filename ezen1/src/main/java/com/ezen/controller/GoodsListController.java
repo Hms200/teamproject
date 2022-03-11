@@ -65,7 +65,8 @@ public class GoodsListController {
 		}
 		cartNum += 1;
 		session.setAttribute("cart", cartNum);
-		return result; 
+		
+		return String.valueOf(cartNum); 
 	}
 	
 	///////////////////////////////////
@@ -91,10 +92,11 @@ public class GoodsListController {
 		goodsListService.changeValueOfCart(param);
 	}
 	// 장바구니에서 상품 삭제
-	@PostMapping("removeGoodsInCartAction")
+	@PostMapping("removeGoodsFromCartAction")
 	@ResponseBody
 	public void removeGoods(@RequestBody HashMap<String, String> param) {
 		System.out.println(param.toString());
+		goodsListService.removeGoodsFromCart(param);
 	}
 	
 	

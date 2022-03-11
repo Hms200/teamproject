@@ -35,4 +35,9 @@
 		UPDATE mall_cart SET option_idx = ${param2}, cart_amount = ${param3}, cart_total_price = ${param4} where cart_idx = ${param1}
 	</update>
 	
+	<!-- 장바구니에서 상품삭제 -->
+	<delete id="removeGoodsFromCart">
+		DELETE FROM mall_cart WHERE cart_idx = #{param1}
+	</delete>
+	
 </mapper>
