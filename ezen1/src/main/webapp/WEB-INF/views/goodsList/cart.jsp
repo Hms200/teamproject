@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>장바구니</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -19,7 +19,7 @@
 <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
   <div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
-    style="max-width: 520px;">
+    style="max-width: 520px; margin-top: 60px;">
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom cartTopdivBox">
       <div class="col-2 my-3">
         <a href="goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
@@ -30,7 +30,7 @@
       </div>
     </div>
     <!--장바구니 내용-->
-    <!-- jsp파일로 만들때 서버에서 내려온값을 jstl로 eq cart가 !null null로 화면구분  -->
+    <c:if test="${ cart != 0 }">
     <!-- 전체선택/선택삭제 -->
     <main class="w-100">
     <div class="container-fluid d-flex felx-row justify-content-between mx-3 my-3 w-100 border-bottom cartSelectAllBox">
@@ -40,48 +40,72 @@
       </div>
       <!--서버에서 처리-->
       <div style="font-size: 13px;">
-        <input type="button" value="선택삭제">
+        <input type="button" value="선택삭제" onclick="removeGoodsInCart();">
       </div>
     </div>
     <!-- 상품내용 -->
+    
+   
+    
     <div class="container d-flex flex-column py-1 px-3 mb-4 border-bottom">
-      <form name="shoppingCartForm" action="" method="post"  onsubmit="return nullChecker();">
+      
+      
+       <c:forEach var="cart" items="${ cartlist }" varStatus="status">
+       
       <div class="row mt-4 mx-3 mb-3" style="font-size: 14px;">
-        <input type="hidden" name="cart_idx">
-        <input type="checkbox" name="IsGoodsCheck" class="mx-2 nullcheck" style="width: 16px; height: 16px;">
-        <div name="goods_name">네이쳐 소이캔들</div>
+        <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
+        <input type="checkbox" name="${ cart.cart_idx }" class="mx-2" style="width: 16px; height: 16px;">
+        <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page" />
+        <div name="goods_name">${ goods.goods_name }</div>
+        <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ goods.goods_price }">
+        <c:remove var="goods" scope="page"/>
       </div>
+      
       <div class="d-flex flex-row justify-content-around">
         <img src="/img/goods/candle/Candle01_01.jpeg" alt="" class="img-fluid mx-3" width="100px"
           height="100px">
         <div class="d-flex flex-column cartGoodsInfo">
-          <div>
-            가격:
-          </div>
-          <div>
-            옵션:
+          <div class="d-flex flex-row justify-content-between">
+            <span>가격</span><span>${ cart.cart_total_price }</span> 
+            <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
           </div>
           <div class="d-flex flex-row justify-content-between">
-            옵션(수량,크기) 
+            <span>옵션</span>
+            <span><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
+            <c:forEach var="option" items="${ optionlist }">
+            	<c:if test="${ this_cart_option eq option.option_idx }">${ option.option_name }+${ option.option_price }</c:if>
+            </c:forEach>
+            
+            </span>
+          </div> 
+          <div class="d-flex flex-row justify-content-between">
+            옵션
             <!-- 서버에서 처리 -->
-            <input type="button" class="btn-block mt-1" value="옵션변경"
-              style="width: 60px;height: 20px; font-size: 11px;">
+            <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1" value="옵션/수량변경"
+              style="width: 80px;height: 20px; font-size: 11px;" onclick="changeValue(event);">
           </div>
           <div class="d-flex flex-row justify-content-between">
-            <select class="form-select text-center" aria-label="Default select example" style="width: 140px;">
-              <option selected name="option_name">----</option>
-              <option>선물포장+1000</option>
+            <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 140px;">
+              <c:forEach var="options" items="${ optionlist }">
+              <option <c:if test="${ this_cart_option eq options.option_idx }"> selected </c:if> value="${ options.option_idx }">${ options.option_name }+${ options.option_price }</option>
+              </c:forEach>
+              <c:remove var="this_cart_option" scope="page"/>
             </select>
-            <select class="form-select text-center" aria-label="Default select example"
+            <select class="form-select text-center" name="changeValue${ cart.cart_idx }"
               style="width: 60px; font-size: 12px;">
-              <option selected name="cart_amount">갯수</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
+              <option <c:if test="${ cart.cart_amount == 1 }"> selected </c:if> value="1" >1</option>
+              <option <c:if test="${ cart.cart_amount == 2 }"> selected </c:if> value="2">2</option>
+              <option <c:if test="${ cart.cart_amount == 3 }"> selected </c:if> value="3">3</option>
+              <option <c:if test="${ cart.cart_amount == 4 }"> selected </c:if> value="4">4</option>
+              <option <c:if test="${ cart.cart_amount == 5 }"> selected </c:if> value="5">5</option>
             </select>
+            
           </div>
         </div>
       </div>
+      
+      </c:forEach>
+      
       <div class="d-flex flex-row justify-content-between mx-2 mt-5" style="font-size: 14px;">
         <div>
           상품금액
@@ -109,11 +133,13 @@
         가격
       </div>
     </div>
-    <div class="font-weight-bold w-100 mt-5 text-center cartOrderButtonBox" style="font-size: 16xp;">
+    <div class="font-weight-bold w-100 mt-5 text-center cartOrderButtonBox mb-5" style="font-size: 16xp;">
       <button type="submit" class="btn btn-primary" style="width: 300px; height: 40px;">주문하기</button>
       </div>
-  </form>
+      
   </main>
+  </c:if>
+  <c:if test="${ cart == 0 }">
     <!--장바구니 비어있는-->
     <div class="d-flex justify-content-center mb-0">
       <img src="/img/icon/bag.png" alt="" class="img-fluid " width="300px" height="300px">
@@ -125,7 +151,8 @@
       <a href="goodsList"><input type="button" class="btn btn-primary" value="상품보러가기" style="border-radius: 20px;"></a>
     </div>
   </div>
-
+	</c:if>
+</div>
     
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import>

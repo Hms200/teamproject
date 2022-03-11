@@ -52,6 +52,8 @@ $(function(){
     $("#slide_toggle").click(function(){
             hideContainer.slideToggle(600);
         });
-})
+});
+    // 세션에 담긴 장바구니 뱃지 숫자 읽어옴
+    let cartBedgeNumberInSession = <%=session.getAttribute("cart")%>;
     
 </script>

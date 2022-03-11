@@ -21,5 +21,8 @@ public interface IcartDAO {
 	public Cart updateCartIsDone(int cart_idx, int cart_list_idx);
 	
 	//입력받은 값으로 카트 정보 추가
-	public int insertCart(Cart cartDTO);
+	public int insertCart(Cart cart);
+	
+	//옵션 수량 변경
+	public int updateValues(int cart_idx, int option_idx, int cart_amount, int cart_total_price);
 }

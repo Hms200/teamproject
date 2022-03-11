@@ -3,6 +3,9 @@ package com.ezen.controller;
 
 
 
+import javax.servlet.http.HttpSession;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.ezen.dto.Notice;
+import com.ezen.service.GoodsListService;
 import com.ezen.service.MainService;
 
 
@@ -26,6 +30,12 @@ public class MainController {
 	@Autowired
 	MainService mainService;
 	
+	@Autowired
+	HttpSession session;
+	
+	@Autowired
+	GoodsListService goodsListService;
+	
 
 	@RequestMapping("")
 	public String root() {
@@ -34,9 +44,22 @@ public class MainController {
 	
 	@RequestMapping("main")
 	public String main(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
-//		int cartBedgeNum = session.getAttribute(String(cart));	
-//		model.addAttribute("cartBedgeNum", cartBedgeNum);
-		
+  		// 장바구니 숫자뱃지
+		// session에서 로그인된 user_idx 불러옴. 비로그인이면 user_idx = 0
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		// 뱃지 숫자 설정. 
+		int cartBedgNum;
+		try {
+			cartBedgNum = (int) session.getAttribute("cart");
+		} catch (NullPointerException e) {
+			cartBedgNum = goodsListService.getCountOfGoodsInCart(user_idx);
+			session.setAttribute("cart", cartBedgNum);
+		}
 		// 메인용 공지사항
 		model = mainService.noticeForMain(model);
 		// 카드 표시용 데이터 

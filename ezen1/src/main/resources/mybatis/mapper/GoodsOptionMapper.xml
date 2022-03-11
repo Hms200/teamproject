@@ -9,4 +9,9 @@
 	<select id="getGoodsOptions" resultType="com.ezen.dto.GoodsOption">
 		SELECT * FROM MALL_GOODS_OPTION
 	</select>
+	
+	<!-- option_idx로 option_price 가져옴 -->
+	<select id="getOptionPrice" resultType="int">
+		SELECT option_price FROM mall_goods_option WHERE option_idx = ${param1}
+	</select>
 </mapper>
