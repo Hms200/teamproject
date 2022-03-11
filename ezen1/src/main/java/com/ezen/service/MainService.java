@@ -65,7 +65,7 @@ public class MainService {
 	public String noticeWrite(Notice notice) {
 		
 		int result = noticeDAO.insertNotice(notice);
-		String returnString = "<script>alert('작성에 실패하였습니다.') location.href='notice'</script>";
+		String returnString = "<script>alert('작성에 실패하였습니다.'); location.href='notice'</script>";
 		if(result ==1) {
 			returnString = "<script>alert('작성되었습니다.'); location.href='notice'</script>";
 		}
@@ -88,7 +88,7 @@ public class MainService {
 		ArrayList<Goods> goodsListForMainSearch = goodsDAO.getGoodsListBySearch(searchtext);
 		
 		model.addAttribute("searched",goodsListForMainSearch);
-		model.addAttribute("searchResult", 1);
+		model.addAttribute("entireItemCardMode", 1);
 		return model;
 	}
 	
@@ -106,7 +106,25 @@ public class MainService {
 		ArrayList<Goods> goods = goodsDAO.getGoodsList(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		
 		model.addAttribute("goodsList", goods );
-		model.addAttribute("pagenation", pagenation);
+		model.addAttribute("page", pagenation);
+		return model;
+	}
+	// best item card
+	public Model bestItemsCardDate(Model model) {
+		ArrayList<Goods> goods = goodsDAO.getBestSellingGoods();
+		model.addAttribute("best", goods);
+		return model;
+	}
+	// Md Pick card
+	public Model mdPickCardData(Model model) {
+		ArrayList<Goods> goods = goodsDAO.getGoodsListByOnEvent(2);
+		model.addAttribute("mdPick", goods);
+		return model;
+	}
+	// 이달의 할인 card
+	public Model monthDiscountCardData(Model model) {
+		ArrayList<Goods> goods = goodsDAO.getGoodsListByOnEvent(1);
+		model.addAttribute("discount", goods);
 		return model;
 	}
 }

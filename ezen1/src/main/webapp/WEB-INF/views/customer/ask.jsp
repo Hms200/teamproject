@@ -36,9 +36,9 @@
           </span>
           
             <!-- 히든 input -->
-            <input type="hidden" name="onetoone_idx" value="onetoone_idx">
+            <!-- <input type="hidden" name="onetoone_idx" value="onetoone_idx">
             <input type="hidden" name="user_idx" value="user_idx">
-            <input type="hidden" name="onetoone_date" value="onetoone_date">
+            <input type="hidden" name="onetoone_date" value="onetoone_date"> -->
             <!-- 제목 -->
             <span>
               <input type="text" name="onetoone_title" class="nullcheck" placeholder="제목을 입력해주세요" style="width: 200px; height: 40px;">
@@ -57,7 +57,7 @@
         </div>
             <div class="container-sm container-fluid d-flex flex-row justify-content-center" style="height: 40px;">
                 <!-- 취소버튼 -->
-                <button class="btn btn-secondary mx-2" style="width: 100px; cursor: pointer;" onclick="location.href='/customer'">취소</button>
+                <button type="button" class="btn btn-secondary mx-2" style="width: 100px; cursor: pointer;" onclick="location.href='/customer'">취소</button>
                 <!-- 작성버튼 -->
                 <button type="submit" class="btn btn-dark mx-2" style="width: 190px; cursor: pointer;">문의하기</button>
             </div>

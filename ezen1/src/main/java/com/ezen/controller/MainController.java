@@ -42,6 +42,15 @@ public class MainController {
 		// 카드 표시용 데이터 
 		// entireGoods card
 		model = mainService.entireItemCardData(currentPage, model);
+		if(model.getAttribute("entireItemCardMode") == null) {
+		model.addAttribute("entireItemCardMode", 0);
+		}
+		// bestItems card
+		model = mainService.bestItemsCardDate(model);
+		// MD Pick card
+		model = mainService.mdPickCardData(model);
+		// 이달의 할인 card
+		model = mainService.monthDiscountCardData(model);
 		return "main";
 	}
 	

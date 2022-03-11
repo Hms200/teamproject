@@ -63,7 +63,7 @@
             <!-- 카드영역 -->
             <div class="w-100">
              <!-- main search결과를 노출할  -->
-             <c:if test="${ searchResult == 1 }">
+             <c:if test="${ entireItemCardMode == 1 }">
              <c:import url="card/entireItem.Card.jsp"></c:import>
              </c:if>
              
@@ -72,7 +72,7 @@
              <c:import url="card/MonthDiscount.Card.jsp"></c:import>
              <c:import url="card/Reviews.Card.jsp"></c:import>
              <!-- main search결과를 노출하는 때가 아닌경우 -->
-             <c:if test="${ searchResult != 1 }">
+             <c:if test="${ entireItemCardMode == 0 }">
              <c:import url="card/entireItem.Card.jsp"></c:import>
              </c:if>  
             </div>
