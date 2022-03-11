@@ -16,7 +16,8 @@ window.onload = bedgeHideAndShow();
 
 function bedgeHideAndShow() {
     const bedge = document.getElementById('bedge');
-    const bedgeNumber = document.getElementById('bedgeNumber').innerText;
+    let bedgeNumber = document.getElementById('bedgeNumber').innerText;
+    bedgeNumber = cartBedgeNumberInSession;
     if(bedgeNumber == '0'){
         bedge.classList.remove("d-block");
         bedge.classList.add("d-none");
@@ -364,3 +365,72 @@ function addCart(){
 		});
 	}
 }
+	
+// 장바구니 옵션/수량 변경
+function changeValue(event){
+	const targetCartIdx = event.target.id;
+	const values = document.getElementsByName(targetCartIdx);
+	// [0] : cart_idx
+	// [1] : goods_price
+	// [2] : cart_total_price
+	// [3] : option_idx
+	// [4] : cart_amount
+	
+	let formData = {};
+	formData["cart_idx"] = values[0].value;
+	formData["option_idx"] = values[3].value;
+	formData["cart_amount"] = values[4].value;
+	formData["original_price"] = values[1].value;
+	
+	formData = JSON.stringify(formData);
+	console.log(formData.toString());
+	jQuery.ajax({
+		url: "changeValueAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(){
+			alert('변경되었습니다.');
+			location.href='cart'
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
+		},
+	});
+	
+}
+// 장바구니 삭제
+function removeGoodsInCart(){
+	const listOfCheckbox = document.querySelectorAll("input[type='checkbox']");
+	let formData = {}
+	
+	for(i=1; i<listOfCheckbox.length; i++){
+		formData[listOfCheckbox[i].name] = listOfCheckbox[i].checked;
+	}
+	
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	
+	jQuery.ajax({
+		url: "removeGoodsFromCartAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(){
+			alert('삭제되었습니다.');
+			location.href='cart'
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
+		},
+	});
+	
+}
+
+

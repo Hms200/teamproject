@@ -1,5 +1,7 @@
 package com.ezen.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +54,7 @@ public class GoodsListController {
 	@PostMapping("toShoppingCartAction")
 	@ResponseBody
 	public String toShoppingCart(@RequestBody Cart cart, HttpSession session) {
-		System.out.println(cart.toString());
+		
 		String result = goodsListService.addGoodsInCart(cart);
 		
 		int cartNum;
@@ -63,13 +65,13 @@ public class GoodsListController {
 		}
 		cartNum += 1;
 		session.setAttribute("cart", cartNum);
-		return result;
+		return result; 
 	}
 	
 	///////////////////////////////////
     //장바구니 페이지
 	//////////////////////////////////
-	@RequestMapping("/cart")
+	@RequestMapping("cart")
 	public String cart(Model model) {
 		// 로그인 되어있지 않으면 로그인페이지로 이동
 		int user_idx;
@@ -81,6 +83,21 @@ public class GoodsListController {
 		model = goodsListService.getGoodsInCart(user_idx, model);
 		return "goodsList/cart";
 	}
+	// 수량,옵션 변경
+	@PostMapping("changeValueAction")
+	@ResponseBody
+	public void changeValue(@RequestBody HashMap<String, String> param) {
+		System.out.println(param.toString());
+		goodsListService.changeValueOfCart(param);
+	}
+	// 장바구니에서 상품 삭제
+	@PostMapping("removeGoodsInCartAction")
+	@ResponseBody
+	public void removeGoods(@RequestBody HashMap<String, String> param) {
+		System.out.println(param.toString());
+	}
+	
+	
     //구매 페이지
 	@RequestMapping("/purchase")
 	public String purchase() {

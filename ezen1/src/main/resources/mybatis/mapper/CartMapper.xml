@@ -12,7 +12,7 @@
 
 	<!-- user_idx가 일치하고 cart_isdone이 0인값의 갯수를 반환 -->
 	<select id="getNumberOfCartIsNotDone" resultType="_int">
-		SELECT COUNT(*) FROM MALL_CART WHERE USER_IDX = #{user_idx} AND CART_ISDONE = 0
+		SELECT COUNT(*) FROM MALL_CART WHERE USER_IDX = ${user_idx} AND CART_ISDONE = 0
 	</select>
 	
 	<!-- user_idx가 일치하고 cart_isdone이 0인 값을 반환 -->
@@ -29,5 +29,10 @@
 		INSERT INTO MALL_CART(cart_idx, user_idx, goods_idx, option_idx, cart_amount, cart_total_price, cart_isdone)
 		VALUES (MALL_CART_SEQ.NEXTVAL, ${user_idx}, ${goods_idx}, ${option_idx}, ${cart_amount},${cart_total_price}, ${cart_isdone})	
 	</insert>
+	
+	<!-- 수량, 옵션 변경 -->
+	<update id="updateValues">
+		UPDATE mall_cart SET option_idx = ${param2}, cart_amount = ${param3}, cart_total_price = ${param4} where cart_idx = ${param1}
+	</update>
 	
 </mapper>

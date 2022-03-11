@@ -19,7 +19,7 @@
 <c:import url="../header.jsp"></c:import>
 
 <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
     style="max-width: 520px;">
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0">
@@ -32,7 +32,7 @@
       </div>
     </div>
     <!--상품 상세보기 이미지-->
-    <div id="carouselImg" class="carousel slide mx-0 px-0" data-ride="carousel" style="width: 360px; height: 240px">
+    <div id="carouselImg" class="carousel slide mx-0 px-0" data-ride="carousel" style="width: 360px;">
         <ol class="carousel-indicators">
         <li data-target="#carouselImg" data-slide-to="0" class="active"></li>
         <li data-target="#carouselImg" data-slide-to="1"></li>

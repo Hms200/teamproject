@@ -1,6 +1,7 @@
 package com.ezen.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,16 +84,29 @@ public class GoodsListService {
 		ArrayList<Cart> cartlist = cartDAO.getCartIsNotDone(user_idx);
 		ArrayList<Goods> goodslist = new ArrayList<>();
 		cartlist.forEach(cart -> {
-			Goods goods = goodsDAO.getGoodsInfo(cart.getOption_idx());
+			Goods goods = goodsDAO.getGoodsInfo(cart.getGoods_idx());
 			goodslist.add(goods);
 		});
+		ArrayList<GoodsOption> optionlist = goodsOptionDAO.getGoodsOptions();
 		model.addAttribute("cartlist", cartlist);
 		model.addAttribute("goodslist", goodslist);
+		model.addAttribute("optionlist", optionlist);
 		return model;
 	}
 	//카트에 담긴 상품 갯수 조회하기
 	public int getCountOfGoodsInCart(int user_idx) {
 		int count = cartDAO.getNumberOfCartIsNotDone(user_idx);
 		return count;
+	}
+	
+	// 카트페이지에서 옵션, 수량 변경
+	public void changeValueOfCart(HashMap<String, String> param) {
+		int originalPrice = Integer.parseInt(param.get("original_price"));
+		int cart_idx = Integer.parseInt(param.get("cart_idx"));
+		int cart_amount = Integer.parseInt(param.get("cart_amount"));
+		int option_idx = Integer.parseInt(param.get("option_idx"));
+		int option_price = goodsOptionDAO.getOptionPrice(option_idx);
+		int cart_total_price = (originalPrice+option_price)*cart_amount;
+		cartDAO.updateValues(cart_idx, option_idx, cart_amount, cart_total_price);
 	}
 }
