@@ -23,9 +23,6 @@ public class GoodsListController {
 	GoodsListService goodsListService;
 	
 	@Autowired
-	Model model;
-	
-	@Autowired
 	HttpSession session;
 	
     //전체상품 페이지
@@ -73,14 +70,15 @@ public class GoodsListController {
     //장바구니 페이지
 	//////////////////////////////////
 	@RequestMapping("/cart")
-	public String cart() {
+	public String cart(Model model) {
+		// 로그인 되어있지 않으면 로그인페이지로 이동
 		int user_idx;
 		try {
 			user_idx = (int) session.getAttribute("user_idx");
 		} catch (NullPointerException e) {
 			return "login/login";
 		}
-		model = goodsListService.getGoodsInCart(user_idx);
+		model = goodsListService.getGoodsInCart(user_idx, model);
 		return "goodsList/cart";
 	}
     //구매 페이지

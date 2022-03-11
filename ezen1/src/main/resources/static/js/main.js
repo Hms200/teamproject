@@ -11,8 +11,9 @@ function popupHideAndShow(target) {
 };
 
 // 장바구니 벳지 장바구니가 0이면 숨기기
-///로딩시.  ajax통신으로 실시간 반영될 경우 ajax 코드에서 해당 함수 호출되게 만들것.
-window.onload(bedgeHideAndShow());
+
+window.onload = bedgeHideAndShow();
+
 function bedgeHideAndShow() {
     const bedge = document.getElementById('bedge');
     const bedgeNumber = document.getElementById('bedgeNumber').innerText;
@@ -287,7 +288,7 @@ function orderGoods(){
 		async: false,
 		data: formData,
 		success: function(){
-			alert('발주처리되었습니다.');
+			alert('발주처리되었습니다. 상태를 판매중으로 변경합니다.');
 			for(i=0; i<form.length; i++){
 				form[i].checked = false;
 			}
@@ -354,6 +355,7 @@ function addCart(){
 			success: function(){
 				alert('장바구니에 담겼습니다.');
 				bedge.innerText = bedgeNumber + 1;
+				bedgeHideAndShow();
 			},
 			error: function(e){
 				console.log(e);

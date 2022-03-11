@@ -17,7 +17,7 @@
 	
 	<!-- user_idx가 일치하고 cart_isdone이 0인 값을 반환 -->
 	<select id="getCartIsNotDone" resultType="com.ezen.dto.Cart">
-		SELECT * FROM MALL_CART WHERE USER_IDX = ${user_idx) AND CART_ISDONE=0
+		SELECT * FROM MALL_CART WHERE USER_IDX = ${user_idx} AND CART_ISDONE=0
 	</select>
 	
 	<!-- cart_idx가 일치하는 값의 cart_list_idx를 넘어온 값으로 변경하고 cart_isdone을 0으로 변경 -->

@@ -42,8 +42,6 @@ public class GoodsListService {
 	@Autowired
 	Pagenation pagenation;
 	
-	@Autowired
-	Model model;
 	
 	// 전체상품 페이지
 	public Model goodsList(Model model) {
@@ -81,7 +79,7 @@ public class GoodsListService {
 	}
 	
 	// 카트에 담긴 상품불러오기
-	public Model getGoodsInCart(int user_idx) {
+	public Model getGoodsInCart(int user_idx, Model model) {
 		ArrayList<Cart> cartlist = cartDAO.getCartIsNotDone(user_idx);
 		ArrayList<Goods> goodslist = new ArrayList<>();
 		cartlist.forEach(cart -> {
@@ -92,5 +90,9 @@ public class GoodsListService {
 		model.addAttribute("goodslist", goodslist);
 		return model;
 	}
-
+	//카트에 담긴 상품 갯수 조회하기
+	public int getCountOfGoodsInCart(int user_idx) {
+		int count = cartDAO.getNumberOfCartIsNotDone(user_idx);
+		return count;
+	}
 }
