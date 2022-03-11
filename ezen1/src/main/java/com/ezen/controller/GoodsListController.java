@@ -27,29 +27,19 @@ public class GoodsListController {
 	
 	@Autowired
 	GoodsListService goodsListService;
+	
     //전체상품 페이지
 	@RequestMapping("/goodsList")
 	public String goodsList(Model model) {
-		ArrayList<Goods> list = goodsDAO.getAllGoodsList();
-		model.addAttribute("list",list);
+		model = goodsListService.goodsList(model);
 		return "goodsList/goodsList";
 	}
     //상품 상세 페이지
 	@RequestMapping("/goodsDetail")
 	public String goodsDetail(@RequestParam("goods_idx")int goods_idx,
 							  Model model) {
-		Goods goods = goodsDAO.getGoodsInfo(goods_idx);
-		ArrayList<Review> reviewList = goodsDAO.getGoodsReview(goods_idx);
-		String name = goods.getGoods_name();
-		String thumb = goods.getGoods_thumb();
-		String detail = goods.getGoods_detail();
-		int price = goods.getGoods_price();
-		model.addAttribute("name",name);
-		model.addAttribute("thumb",thumb);
-		model.addAttribute("price", price);
-		model.addAttribute("detail", detail);
-		model.addAttribute("goods",goods);
-		model.addAttribute("reviewList", reviewList);
+		model = goodsListService.goodsDetail(goods_idx, model);
+		System.out.println(model.toString());
 		return "goodsList/goodsDetail";
 	}
 	@RequestMapping("/productQnaWriteAction")
