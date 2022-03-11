@@ -120,6 +120,7 @@
                     <input type="text" class="col-12 form-control nullcheck" name="sample6_detailAddress" id="sample6_detailAddress"  placeholder="상세주소를 입력해주세요">
                     <!-- 지우면 버튼클릭 안됨 -->
                     <input type="hidden" class="inputStyle1" id="sample6_extraAddress" placeholder="참고항목">
+                    <input type="hidden" class="" id="user_address" name="user_address" value="" />
                 </div>
                 <!-- checkBox -->
                 <div class="mb-4">
@@ -152,7 +153,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <!-- main js -->
-
 <script src="/js/main.js"></script>
 <script>
 	function joinCheckAll(){
@@ -160,8 +160,6 @@
 		var isIDChecked = $('#isIDChecked').val();
 		var isPWChecked = $('#isPWChecked').val();			
 		var userNull = nullChecker();
-		
-		alert("isIDChecked : "+isIDChecked + " " + "isPWChecked : " + isPWChecked);
 		
 		if( isIDChecked == 'no'){
 			alert("아이디 중복확인 후 회원가입이 가능합니다.");
@@ -173,7 +171,12 @@
 		}
 		if( userNull == false) {
 			return false;
-		}  
+		}
+		
+		var address1 = $('#sample6_address').val();
+		var address2 = $('#sample6_detailAddress').val();
+		$('#user_address').val( address1 + " " + address2 ); 
+		
 		document.forms[0].submit();
 		return true;
 	}	
