@@ -37,13 +37,13 @@
       <div class="ml-3">
         <input type="checkbox" value="selectAll" class="ml-0" id="checkAll" onclick="selectAll(this)" style="width: 16px; height: 16px;"><label for="selectAll"
           class="ml-2" style="font-size: 14px;">전체선택</label>
-      </div>
+      </div> 
       <!--서버에서 처리-->
       <div style="font-size: 13px;">
         <input type="button" value="선택삭제" onclick="removeGoodsInCart();">
       </div>
     </div>
-    <!-- 상품내용 -->
+    <!-- 상품내용  -->
     
     <div class="container d-flex flex-column py-1 px-3 mb-4 border-bottom">
       
@@ -51,7 +51,7 @@
        <c:forEach var="cart" items="${ cartlist }" varStatus="status">
        
       <div class="row mt-4 mx-3 mb-3" style="font-size: 14px;">
-        <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
+        <input type="hidden" class="cartidx" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
         <input type="checkbox" name="${ cart.cart_idx }" class="mx-2" style="width: 16px; height: 16px;">
         <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page" />
         <div name="goods_name">${ goods.goods_name }</div>
@@ -109,7 +109,7 @@
           상품금액
         </div>
         <div id="total_price">
-          가격
+          
         </div>
       </div>
       <div class="d-flex flex-row justify-content-between mx-2 mb-3" style="font-size: 14px;">
@@ -127,12 +127,13 @@
         총 결제 금액
       </div>
       <div id="final_price">
-        <input type="hidden" name="cart_total_price" value="{}">
-   		
+        
       </div>
+      <input type="hidden" name="cart_total_price" value="">
+   		<input type="hidden" name="cart_list_idx" value="">
     </div>
     <div class="font-weight-bold w-100 mt-5 text-center cartOrderButtonBox mb-5" style="font-size: 16xp;">
-      <button type="submit" class="btn btn-primary" style="width: 300px; height: 40px;">주문하기</button>
+      <button type="button" class="btn btn-primary" style="width: 300px; height: 40px;" onclick="listingGoods();">주문하기</button>
       </div>
       
   </main>
@@ -153,14 +154,14 @@
 </div>
     
 <c:import url="../footer.jsp"></c:import>
-<c:import url="../nav.jsp"></c:import>
+<c:import url="../nav.jsp"></c:import> 
 
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
-    <!-- 전체선택 -->
-  <script>
+<script>
+/* 전체선택 */
     function selectAll(selectAll)  {
   const checkboxes 
      = document.querySelectorAll('input[type="checkbox"]');
@@ -168,21 +169,23 @@
   checkboxes.forEach((checkbox) => {
     checkbox.checked = selectAll.checked
   })
-}
-    //가격계산
-    window.onlode = function(){
-	const priceValues = document.getElementsByClassName('price');
-	let totalPrice;
-	for(i=0 ; i<priceValues.length; i++){
-		totalPrice += Number(priceValues.value);
-	}
-	const areaOfTotalPrice = document.getElementById('total_price');
-	areaOfTotalPrice.innerText = totalPrice;
-	
-	const shippingPrice = Number(document.getElementById('shipping_price').innerText);
-	const finalPrice = document.getElementById('final_price');
-	finalPrice.innerText = totalPrice + shippingPrice;
-	}
-  </script>
+};
+/* 가격계산 */
+    window.onlode = calculateTotalPrice();
+    function calculateTotalPrice(){
+    	const priceValues = document.getElementsByClassName('price');
+    	let totalPriceofGoods = 0;
+    	for(i=0 ; i<priceValues.length; i++){
+    		totalPriceofGoods += Number(priceValues[i].value);
+    	}
+    	const areaOfTotalPrice = document.getElementById('total_price');
+    	areaOfTotalPrice.innerText = totalPriceofGoods;
+    	
+    	const shippingPrice = Number(document.getElementById('shipping_price').innerText);
+    	const finalPrice = document.getElementById('final_price');
+    	finalPrice.innerText = Number(totalPriceofGoods) + shippingPrice;
+    	document.getElementsByName('cart_total_price')[0].value = Number(totalPriceofGoods) + shippingPrice;
+    }
+ </script>
 </body>
 </html>

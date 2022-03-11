@@ -20,9 +20,9 @@
 		SELECT * FROM MALL_CART WHERE USER_IDX = ${user_idx} AND CART_ISDONE=0
 	</select>
 	
-	<!-- cart_idx가 일치하는 값의 cart_list_idx를 넘어온 값으로 변경하고 cart_isdone을 0으로 변경 -->
-	<update id="updateCartIsDone">
-		UPDATE MALL_CART SET CART_LIST_IDX = #{cart_list_idx} , CART_ISDONE = 0 WHERE CART_IDX = #{cart_idx}
+	<!-- cart_idx가 일치하는 값의 cart_list_idx를 넘어온 값으로 변경-->
+	<update id="listingCart">
+		UPDATE MALL_CART SET CART_LIST_IDX = ${param2} WHERE CART_IDX = ${param1}
 	</update>
 	<!-- 넘겨받은 값으로 데이터 추가 -->
 	<insert id="insertCart" parameterType="com.ezen.dto.Cart">

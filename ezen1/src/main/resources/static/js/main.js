@@ -433,6 +433,35 @@ function removeGoodsInCart(){
 		},
 	});
 }
-
+// 장바구니 개별항목 리스트로 묶기
+function listingGoods(){
+	const checkboxes = document.querySelectorAll("input[type='checkbox']");
+	let targetCartIdx = {};
+	for(i=1; i<checkboxes.length; i++){
+		
+		targetCartIdx[checkboxes[i].name] = checkboxes[i].checked;
+		
+	}
+	console.log(typeof(targetCartIdx));
+	targetCartIdx = JSON.stringify(targetCartIdx);
+	console.log(targetCartIdx);
+	jQuery.ajax({
+		url: "listingGoodsAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: targetCartIdx,
+		success: function(result){
+			console.log('listing완료 cart_list_idx =' + result);
+			document.getElementsByName('cart_list_idx')[0].value = result;
+			location.href = 'purchase?cart_list_idx='+result;
+		},
+		error: function(e){
+			console.log(e);
+		},
+	});
+}
+ 
 
 

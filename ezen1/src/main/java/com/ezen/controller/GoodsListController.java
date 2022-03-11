@@ -1,5 +1,6 @@
 package com.ezen.controller;
 
+
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -7,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ezen.dto.Cart;
 import com.ezen.dto.Question;
 import com.ezen.service.GoodsListService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("goodsList")
@@ -98,11 +103,20 @@ public class GoodsListController {
 		System.out.println(param.toString());
 		goodsListService.removeGoodsFromCart(param);
 	}
+	// 장바구니 개별항목 리스트로 묶기 
+	@PostMapping("listingGoodsAction")
+	@ResponseBody
+	public String listingGoods(@RequestBody HashMap<String, String> list) {
+		System.out.println(list.toString());
+		String result = goodsListService.listingGoods(list);
+		return result;
+	}
 	
-	
+	/////////////////////////////
     //구매 페이지
-	@RequestMapping("/purchase")
-	public String purchase() {
+	/////////////////////////////
+	@GetMapping("purchase")
+	public String purchase(@RequestParam String cart_list_idx, Model model) {
 		return "goodsList/purchase";
 	}
 }

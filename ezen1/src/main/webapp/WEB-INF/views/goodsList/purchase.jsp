@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>title</title>
+    <title>구매</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
@@ -17,8 +17,8 @@
 <c:import url="../header.jsp"></c:import>
 
   <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
-    style="max-width: 520px;">
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
+    style="max-width: 520px; margin-top: 60px;">
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom purchaseListTopBox ">
       <div class="col-2 my-3">
         <a href="goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid" width="30px"

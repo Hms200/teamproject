@@ -17,8 +17,8 @@ public interface IcartDAO {
 	//해당 idx중에 구매여부가 false인 값을 가져옴
 	public ArrayList<Cart> getCartIsNotDone(int user_idx);
 	
-	//해당 idx를 mall_cart에서 값을 찾아서 cartList_idx에 넣고 구매여부를 0으로 변경
-	public Cart updateCartIsDone(int cart_idx, int cart_list_idx);
+	//해당 idx를 mall_cart에서 값을 찾아서 cart_List_idx를 추가
+	public int listingCart(int cart_idx, int cart_list_idx);
 	
 	//입력받은 값으로 카트 정보 추가
 	public int insertCart(Cart cart);

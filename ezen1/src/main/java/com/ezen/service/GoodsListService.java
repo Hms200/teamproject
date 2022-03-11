@@ -127,4 +127,16 @@ public class GoodsListService {
 		int countOfGoodsInCart = cartDAO.getNumberOfCartIsNotDone(userIdx);
 		session.setAttribute("cart", countOfGoodsInCart);
 	}
+	// 카트 개별항목 리스트로 묶기
+	public String listingGoods(HashMap<String, String> list) {
+		cartListDAO.generateCartListKey();
+		int cart_list_idx = cartListDAO.getNewestCartListKey();
+		System.out.println(cart_list_idx);
+		list.forEach((k,v) ->{
+			if(v.equals("true")) {
+				cartDAO.listingCart(Integer.parseInt(k), cart_list_idx);
+			}
+		});
+		return String.valueOf(cart_list_idx);
+	}
 }
