@@ -15,16 +15,6 @@
     "description": "A description for 'app.thumb.img.dir'"
   },
   {
-    "name": "\u200bapp.reviews.img.dir",
-    "type": "java.lang.String",
-    "description": "A description for '\u200bapp.reviews.img.dir'"
-  },
-  {
-    "name": "\u200bapp.thumb.img.dir",
-    "type": "java.lang.String",
-    "description": "A description for '\u200bapp.thumb.img.dir'"
-  },
-  {
     "name": "app.goods.detail.dir",
     "type": "java.lang.String",
     "description": "A description for 'app.goods.detail.dir'"
