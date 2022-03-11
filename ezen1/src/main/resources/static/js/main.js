@@ -11,11 +11,13 @@ function popupHideAndShow(target) {
 };
 
 // 장바구니 벳지 장바구니가 0이면 숨기기
-///로딩시.  ajax통신으로 실시간 반영될 경우 ajax 코드에서 해당 함수 호출되게 만들것.
-window.onload(bedgeHideAndShow());
+
+window.onload = bedgeHideAndShow();
+
 function bedgeHideAndShow() {
     const bedge = document.getElementById('bedge');
-    const bedgeNumber = document.getElementById('bedgeNumber').innerText;
+    let bedgeNumber = document.getElementById('bedgeNumber').innerText;
+    bedgeNumber = cartBedgeNumberInSession;
     if(bedgeNumber == '0'){
         bedge.classList.remove("d-block");
         bedge.classList.add("d-none");
@@ -287,7 +289,7 @@ function orderGoods(){
 		async: false,
 		data: formData,
 		success: function(){
-			alert('발주처리되었습니다.');
+			alert('발주처리되었습니다. 상태를 판매중으로 변경합니다.');
 			for(i=0; i<form.length; i++){
 				form[i].checked = false;
 			}
@@ -301,14 +303,134 @@ function orderGoods(){
 }
 
 // goods Detail 페이지 최종가격 산정
-function totalPrice (){
-	let optionPrice = document.getElementsByName('goods_option')[0].value;
+function totalPrice (event){
+	const optionInput = event.target.id;
+	let optionPrice = document.getElementsByName(optionInput)[0].value;
+	let optionIdx = document.getElementsByName(optionInput)[1].value;
 	const originalGoodsPrice = document.getElementsByName('goods_price')[0].value;
 	let total_Price = document.getElementsByName('goods_total_price')[0];
+	let optionIdxForm = document.getElementsByName('option_idx')[0];
 	
 	total_Price.value = Number(optionPrice) + Number(originalGoodsPrice);
+	optionIdxForm.value = optionIdx;
 	
-	let optionText = this.innerText;
-	document.querySelector("#dropdownMenuButton").innerText = optionText;
+	let optionText = event.target.innerText;
+	let optionTitle = document.querySelector("#dropdownMenuButton");
+	optionTitle.innerText = optionText.toString();
 	
 }
+
+// 	장바구니에 상품담기
+function addCart(){
+	// useridx
+	const userIdx = document.getElementsByName('user_idx')[0].value;
+	const goodsIdx = document.getElementsByName('goods_idx')[0].value;
+	const optionIdx = document.getElementsByName('option_idx')[0].value;
+	const totalPrice = document.getElementsByName('goods_total_price')[0].value;
+	const bedge = document.getElementById('bedgeNumber');
+	let bedgeNumber = Number(bedge.innerText);
+	
+	if(userIdx == 0){
+		alert('로그인하신 후 이용할 수 있습니다.');
+		location.href='../login/login';
+	}else{
+	
+		let formData = {};
+		
+		formData["user_idx"] = userIdx;
+		formData["goods_idx"] = goodsIdx;
+		formData["option_idx"] = optionIdx;
+		formData["cart_amount"] = 1;
+		formData["cart_total_price"] = totalPrice;
+		formData["cart_isdone"] = 0;
+		
+		formData = JSON.stringify(formData);
+		
+		jQuery.ajax({
+			url: "toShoppingCartAction",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			async: false,
+			data: formData,
+			success: function(){
+				alert('장바구니에 담겼습니다.');
+				bedge.innerText = bedgeNumber + 1;
+				bedgeHideAndShow();
+			},
+			error: function(e){
+				console.log(e);
+				alert('처리에 실패하였습니다. 다시 시도해 주세요');
+			},
+		});
+	}
+}
+	
+// 장바구니 옵션/수량 변경
+function changeValue(event){
+	const targetCartIdx = event.target.id;
+	const values = document.getElementsByName(targetCartIdx);
+	// [0] : cart_idx
+	// [1] : goods_price
+	// [2] : cart_total_price
+	// [3] : option_idx
+	// [4] : cart_amount
+	
+	let formData = {};
+	formData["cart_idx"] = values[0].value;
+	formData["option_idx"] = values[3].value;
+	formData["cart_amount"] = values[4].value;
+	formData["original_price"] = values[1].value;
+	
+	formData = JSON.stringify(formData);
+	console.log(formData.toString());
+	jQuery.ajax({
+		url: "changeValueAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(){
+			alert('변경되었습니다.');
+			location.href='cart'
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
+		},
+	});
+	
+}
+// 장바구니 삭제
+function removeGoodsInCart(){
+	const listOfCheckbox = document.querySelectorAll("input[type='checkbox']");
+	let formData = {}
+	
+	for(i=1; i<listOfCheckbox.length; i++){
+		formData[listOfCheckbox[i].name] = listOfCheckbox[i].checked;
+	}
+	
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	
+	jQuery.ajax({
+		url: "removeGoodsFromCartAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(){
+			alert('삭제되었습니다.');
+			location.href='cart'
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
+		},
+	});
+	
+}
+
+

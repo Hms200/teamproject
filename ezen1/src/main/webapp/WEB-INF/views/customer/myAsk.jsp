@@ -44,9 +44,9 @@
     </div>
     <!-- 문의종류 -->
     <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
-      <form name="myAskCatForm" method="post" action="myAskCatAction">
+      <form name="myAskCatForm" method="get" action="myAskCatAction">
       <span>
-        <select name="myAskCat" onchange="submit();" style="width: 100px; height: 50px; font-size: 14px;">
+        <select name="onetoone_cat" onchange="this.form.submit();" style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의종류</option>
           <option value="상품문의">상품문의</option>
           <option value="배송문의">배송문의</option>
@@ -56,10 +56,11 @@
     </form>
     </div>
     <!-- 문의내역 아코디언 -->
-    <c:forEach var="dto" items="${ getOneToOneList }">
+   
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 14px;">
+     <c:forEach var="dto" items="${ getOneToOneList }">
       <div class="card">
-          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse">
+          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${dto.onetoone_idx}" aria-expanded="false" aria-controls="collapse">
             <div class="d-flex flex-wrap justify-content-between">
               <span class="col-7 text-left">
                 ${dto.onetoone_title}
@@ -76,7 +77,7 @@
             </div>
           </button>
           <!--답변 -->
-          <div class="collapse" id="collapse1" data-parent="#accordion">
+          <div class="collapse" id="collapse_${dto.onetoone_idx}" data-parent="#accordion">
             <div class="card-body">
               <span >
                 ${dto.onetoone_reply}

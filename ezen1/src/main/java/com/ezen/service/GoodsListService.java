@@ -1,6 +1,7 @@
 package com.ezen.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IgoodsOptionDAO;
 import com.ezen.dao.IpurchaseDAO;
+import com.ezen.dto.Cart;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.dto.GoodsOption;
@@ -41,6 +43,7 @@ public class GoodsListService {
 	@Autowired
 	Pagenation pagenation;
 	
+	
 	// 전체상품 페이지
 	public Model goodsList(Model model) {
 		ArrayList<Goods> list = goodsDAO.getAllGoodsList();
@@ -60,5 +63,50 @@ public class GoodsListService {
 		model.addAttribute("goodsOptions", goodsOptions);
 		return model;
 	}
-
+	
+	// 카트에 상품담기
+	public String addGoodsInCart(Cart cart) {
+		
+		int result = cartDAO.insertCart(cart);
+		String resultString;
+		if(result == 0) {
+			resultString = "false";
+		}else if(result == 1) {
+			resultString = "true";
+		}else {
+			resultString = "false";
+		}
+		return resultString;
+	}
+	
+	// 카트에 담긴 상품불러오기
+	public Model getGoodsInCart(int user_idx, Model model) {
+		ArrayList<Cart> cartlist = cartDAO.getCartIsNotDone(user_idx);
+		ArrayList<Goods> goodslist = new ArrayList<>();
+		cartlist.forEach(cart -> {
+			Goods goods = goodsDAO.getGoodsInfo(cart.getGoods_idx());
+			goodslist.add(goods);
+		});
+		ArrayList<GoodsOption> optionlist = goodsOptionDAO.getGoodsOptions();
+		model.addAttribute("cartlist", cartlist);
+		model.addAttribute("goodslist", goodslist);
+		model.addAttribute("optionlist", optionlist);
+		return model;
+	}
+	//카트에 담긴 상품 갯수 조회하기
+	public int getCountOfGoodsInCart(int user_idx) {
+		int count = cartDAO.getNumberOfCartIsNotDone(user_idx);
+		return count;
+	}
+	
+	// 카트페이지에서 옵션, 수량 변경
+	public void changeValueOfCart(HashMap<String, String> param) {
+		int originalPrice = Integer.parseInt(param.get("original_price"));
+		int cart_idx = Integer.parseInt(param.get("cart_idx"));
+		int cart_amount = Integer.parseInt(param.get("cart_amount"));
+		int option_idx = Integer.parseInt(param.get("option_idx"));
+		int option_price = goodsOptionDAO.getOptionPrice(option_idx);
+		int cart_total_price = (originalPrice+option_price)*cart_amount;
+		cartDAO.updateValues(cart_idx, option_idx, cart_amount, cart_total_price);
+	}
 }

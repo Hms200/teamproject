@@ -3,7 +3,7 @@ package com.ezen.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.Session;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,18 +48,17 @@ public class CustomerController {
 		return "customer/faq";
 	}
 	
-	//FAQ 카테고리 선택
+	//FAQ 카테고리 선택(완)
 	@GetMapping("faqCatAction")
 	public String faqCatAction(@RequestParam String faq_cat, Model model) {
 		model = customerService.faqListByFaqCat(faq_cat, model);
 		return "customer/faq";
 	}
 	
-	//FAQ등록(완)
+	//FAQ 등록(완)
 	@PostMapping("faqWriteAction")
 	@ResponseBody
 	public String faqWriteAction(@ModelAttribute FaQ Faq) {
-		
 		String result = customerService.FaqWrite(Faq);
 		return result;
 	}
@@ -80,15 +79,31 @@ public class CustomerController {
 		}
 	}
 	
-	//내문의내역(myAsk List)
-	//이건 전체 내역
+	//내 문의 내역(myAsk List)(완)
 	@RequestMapping("myAsk")
-	public String myAsk() {
-		
+	public String myAsk(Model model, HttpServletRequest request, HttpSession session) {
+		int user_idx;
+		try {
+			user_idx = (int)session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			return "redirect:../login/login";
+		}	
+		model = customerService.byUserIdx(user_idx, model, session);
 		return "customer/myAsk";
 	}
 	
-	//내문의내역 카테고리 선택
+	//내 문의 내역 카테고리 선택(완)
+	@GetMapping("myAskCatAction")
+	public String myAskCatAction(@RequestParam String onetoone_cat, Model model, HttpSession session) {
+		int user_idx;
+		try {
+			user_idx = (int)session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			return "redirect:../login/login";
+		}
+		model = customerService.onetooneByCat(user_idx, onetoone_cat, model, session);
+		return "customer/myAsk";
+		}
 	
 	//문의하기 페이지(ask)
 	@RequestMapping("ask")
@@ -96,10 +111,16 @@ public class CustomerController {
 		return "customer/ask";
 	}
 	
-	//문의하기 액션
+	//문의하기 액션(완)
 	@PostMapping("qnaQuestionAction")
 	@ResponseBody
-	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone) {
+	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone, HttpSession session) {
+		int user_idx;
+		try {
+			user_idx = (int)session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			return "../redirect:login/login";
+		}
 		String result = customerService.insertOneToOne(onetoone);
 		return result;
 	}

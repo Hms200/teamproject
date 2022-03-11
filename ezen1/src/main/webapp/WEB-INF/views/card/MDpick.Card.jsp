@@ -10,7 +10,7 @@
         <!-- 단일상품 -->
         <c:forEach var="list" items="${ mdPick }">
         <div class="col-5 inline-block mx-1 my-2 px-0 border rounded ">
-            <a href="">
+            <a href="../goodsList/goodsDetail?goods_idx=${ list.goods_idx }">
             	<img src="${ list.goods_thumb }" class="card-img-top" alt="goods_idx:${ list.goods_idx }_img">
 	            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
 	            	<h5 class="card-title font-weight-bold" style="font-size: 14px;">${ list.goods_name }</h5>

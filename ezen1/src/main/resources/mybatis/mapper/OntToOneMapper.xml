@@ -20,6 +20,10 @@
 		SELECT * FROM MALL_ONETOONE WHERE user_idx = #{user_idx}
 	</select>
 	
+	<select id="myOnetoOneByCat" resultType="com.ezen.dto.OneToOne">
+		SELECT * FROM mall_onetoone where user_idx = #{user_idx} AND onetoone_cat like #{onetoone_cat}
+	</select>
+	
 	<!-- OneToOne을 받아 mall_onetoone에 insert -->
 	<insert id="insertOneToOne" parameterType="com.ezen.dto.OneToOne">
 		INSERT INTO MALL_ONETOONE VALUES
