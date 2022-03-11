@@ -58,11 +58,11 @@
         <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page" />
         <div name="goods_name">${ goods.goods_name }</div>
         <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ goods.goods_price }">
-        <c:remove var="goods" scope="page"/>
+        
       </div>
       
       <div class="d-flex flex-row justify-content-around">
-        <img src="/img/goods/candle/Candle01_01.jpeg" alt="" class="img-fluid mx-3" width="100px"
+        <img src="${ goods.goods_thumb }" alt="" class="img-fluid mx-3" width="100px"
           height="100px">
         <div class="d-flex flex-column cartGoodsInfo">
           <div class="d-flex flex-row justify-content-between">
@@ -75,7 +75,7 @@
             <c:forEach var="option" items="${ optionlist }">
             	<c:if test="${ this_cart_option eq option.option_idx }">${ option.option_name }+${ option.option_price }</c:if>
             </c:forEach>
-            
+          <c:remove var="goods" scope="page"/>  
             </span>
           </div> 
           <div class="d-flex flex-row justify-content-between">
