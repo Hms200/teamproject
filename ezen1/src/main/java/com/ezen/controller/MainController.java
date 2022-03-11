@@ -46,6 +46,7 @@ public class MainController {
 	public String main(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
   		// 장바구니 숫자뱃지
 		// session에서 로그인된 user_idx 불러옴. 비로그인이면 user_idx = 0
+		
 		int user_idx;
 		try {
 			user_idx = (int) session.getAttribute("user_idx");
