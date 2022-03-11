@@ -45,8 +45,6 @@
     </div>
     <!-- 상품내용 -->
     
-   
-    
     <div class="container d-flex flex-column py-1 px-3 mb-4 border-bottom">
       
       
@@ -67,7 +65,7 @@
         <div class="d-flex flex-column cartGoodsInfo">
           <div class="d-flex flex-row justify-content-between">
             <span>가격</span><span>${ cart.cart_total_price }</span> 
-            <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
+            <input type="hidden" class="price" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
           </div>
           <div class="d-flex flex-row justify-content-between">
             <span>옵션</span>
@@ -110,7 +108,7 @@
         <div>
           상품금액
         </div>
-        <div>
+        <div id="total_price">
           가격
         </div>
       </div>
@@ -118,19 +116,19 @@
         <div>
           배송비
         </div>
-        <div>
-          가격
+        <div id="shipping_price">
+          2500
         </div>
       </div>
     </div>
     <div class="container d-flex flex-row justify-content-between my-4 mx-0 w-100 font-weight-bold"
       style="font-size: 16px;">
-      <div class="">
+      <div>
         총 결제 금액
       </div>
-      <div class="">
+      <div id="final_price">
         <input type="hidden" name="cart_total_price" value="{}">
-        가격
+   		
       </div>
     </div>
     <div class="font-weight-bold w-100 mt-5 text-center cartOrderButtonBox mb-5" style="font-size: 16xp;">
@@ -171,6 +169,20 @@
     checkbox.checked = selectAll.checked
   })
 }
+    //가격계산
+    window.onlode = function(){
+	const priceValues = document.getElementsByClassName('price');
+	let totalPrice;
+	for(i=0 ; i<priceValues.length; i++){
+		totalPrice += Number(priceValues.value);
+	}
+	const areaOfTotalPrice = document.getElementById('total_price');
+	areaOfTotalPrice.innerText = totalPrice;
+	
+	const shippingPrice = Number(document.getElementById('shipping_price').innerText);
+	const finalPrice = document.getElementById('final_price');
+	finalPrice.innerText = totalPrice + shippingPrice;
+	}
   </script>
 </body>
 </html>

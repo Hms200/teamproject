@@ -25,4 +25,7 @@ public interface IcartDAO {
 	
 	//옵션 수량 변경
 	public int updateValues(int cart_idx, int option_idx, int cart_amount, int cart_total_price);
+	
+	//카트에서 상품 삭제
+	public int removeGoodsFromCart(int cart_idx);
 }

@@ -3,6 +3,8 @@ package com.ezen.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -43,6 +45,9 @@ public class GoodsListService {
 	@Autowired
 	Pagenation pagenation;
 	
+	@Autowired
+	HttpSession session;
+	
 	
 	// 전체상품 페이지
 	public Model goodsList(Model model) {
@@ -76,6 +81,7 @@ public class GoodsListService {
 		}else {
 			resultString = "false";
 		}
+
 		return resultString;
 	}
 	
@@ -108,5 +114,17 @@ public class GoodsListService {
 		int option_price = goodsOptionDAO.getOptionPrice(option_idx);
 		int cart_total_price = (originalPrice+option_price)*cart_amount;
 		cartDAO.updateValues(cart_idx, option_idx, cart_amount, cart_total_price);
+	}
+	// 카트에서 상품 삭제
+	public void removeGoodsFromCart(HashMap<String, String> list) {
+		list.forEach((k, v) -> {
+			if(v.equals("true")) {
+				cartDAO.removeGoodsFromCart(Integer.parseInt(k));
+				System.out.println(k+"삭제됨");
+			}
+		});
+		int userIdx = (int) session.getAttribute("user_idx");
+		int countOfGoodsInCart = cartDAO.getNumberOfCartIsNotDone(userIdx);
+		session.setAttribute("cart", countOfGoodsInCart);
 	}
 }
