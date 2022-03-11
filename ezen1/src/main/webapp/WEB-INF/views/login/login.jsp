@@ -19,7 +19,7 @@
         <div class="font-weight-bold font-italic text-dark w-100 mb-1" style="font-size: 24px">LOGIN</div>
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
         <div class="col-12 pl-0 pr-0  ml-0 mr-0 column">
-          <form action="loginAction" method="post" class="control mb-1" name="userInfo" onsubmit="return nullChecker();">
+          <form action="../login/loginAction" method="post" class="control mb-1" name="userInfo" onsubmit="return nullChecker();">
             <input type="text" class="mb-1 p-2 w-100 nullcheck" style="font-size: 14px;" name="user_id" id="user_id" placeholder="아이디를 입력하세요.">
             <input type="password" class="mb-3 p-2 w-100 nullcheck" style="font-size: 14px;" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요.">
             <input type="submit" class="btn btn-primary w-100 rouned-lg text-white mb-2" style="font-size: 16px;" value="로그인">
@@ -42,7 +42,7 @@
         <div class="w-100 d-flex flex-column justify-content-center align-items-center mb-4" >
           <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;">아이디 찾기</div>
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
-            <form action="idFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+            <form action="../login/idFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
               <div class="form-group">
                 <lable>이름 &nbsp;<input type="text" class="ml-2" name="user_name" placeholder="이름을 입력해주세요"></lable>
               </div>
@@ -66,7 +66,7 @@
           <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;">비밀번호찾기</div>
           <!-- formDiv -->
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
-            <form action="pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+            <form action="../login/pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
               <div class="form-group">
                 <lable>아이디 <input type="text" name="user_id" placeholder="아이디를 입력해주세요" /></lable>
               </div>

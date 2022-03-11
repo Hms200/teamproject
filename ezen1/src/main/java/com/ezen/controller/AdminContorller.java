@@ -108,7 +108,6 @@ public class AdminContorller {
 	@PostMapping("inventoryDeleteAction")
 	@ResponseBody
 	public String deleteGoods(@RequestParam HashMap<String, String> param) {
-		System.out.println(param.toString());
 		adminService.deleteGoodsOnDB(param);
 		return "<script>alert('삭제되었습니다.');location.href='stock';</script>";
 	}

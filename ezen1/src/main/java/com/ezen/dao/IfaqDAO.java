@@ -3,8 +3,6 @@ package com.ezen.dao;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.core.type.filter.AbstractClassTestingTypeFilter;
-
 import com.ezen.dto.FaQ;
 
 @Mapper

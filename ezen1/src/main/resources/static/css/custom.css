@@ -65,7 +65,9 @@ select:focus,
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
 }
-
+.form-control-plaintext{
+	border: none;
+}
 
 /* goodslist */
 body .dep {
