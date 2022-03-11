@@ -19,7 +19,7 @@
         <div class="font-weight-bold font-italic text-dark w-100 mb-1" style="font-size: 24px">LOGIN</div>
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
         <div class="col-12 pl-0 pr-0  ml-0 mr-0 column">
-          <form action="loginAction" method="post" class="control mb-1" name="userInfo" onsubmit="return nullChecker();">
+          <form action="../login/loginAction" method="post" class="control mb-1" name="userInfo" onsubmit="return nullChecker();">
             <input type="text" class="mb-1 p-2 w-100 nullcheck" style="font-size: 14px;" name="user_id" id="user_id" placeholder="아이디를 입력하세요.">
             <input type="password" class="mb-3 p-2 w-100 nullcheck" style="font-size: 14px;" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요.">
             <input type="submit" class="btn btn-primary w-100 rouned-lg text-white mb-2" style="font-size: 16px;" value="로그인">
