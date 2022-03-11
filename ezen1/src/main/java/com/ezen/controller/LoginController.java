@@ -65,7 +65,7 @@ public class LoginController {
 			
 		//세션객체 초기화
 		request.getSession().invalidate();
-		return "<script>alert('로그아웃 되었습니다.'); location.href='test';</script>";
+		return "<script>alert('로그아웃 되었습니다.'); location.href='/main';</script>";
 			
 	}
 	
