@@ -18,7 +18,7 @@ function bedgeHideAndShow() {
     const bedge = document.getElementById('bedge');
     let bedgeNumber = document.getElementById('bedgeNumber').innerText;
     bedgeNumber = cartBedgeNumberInSession;
-    if(bedgeNumber == '0'){
+    if(bedgeNumber == '0' || bedgeNumber == '' || bedgeNumber == null){
         bedge.classList.remove("d-block");
         bedge.classList.add("d-none");
 
@@ -353,10 +353,11 @@ function addCart(){
 			processData: false,
 			async: false,
 			data: formData,
-			success: function(){
+			success: function(num){
 				alert('장바구니에 담겼습니다.');
-				bedge.innerText = bedgeNumber + 1;
+				document.getElementById('bedgeNumber').innerText = num;
 				bedgeHideAndShow();
+				location.reload;
 			},
 			error: function(e){
 				console.log(e);
@@ -423,6 +424,7 @@ function removeGoodsInCart(){
 		data: formData,
 		success: function(){
 			alert('삭제되었습니다.');
+			bedgeHideAndShow();
 			location.href='cart'
 		},
 		error: function(e){
@@ -430,7 +432,7 @@ function removeGoodsInCart(){
 			alert('처리에 실패하였습니다. 다시 시도해 주세요');
 		},
 	});
-	
 }
+
 
 
