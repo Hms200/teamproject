@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/custom.css">
 	<script>		
 	
+	//ajak을 이용한 id 중복체크 여부기능 
     function idCheck() {
     	var user_id = $('#user_id').val();
     	if(!user_id){
@@ -45,7 +46,7 @@
     			}    		
     	);
    	 }
-	
+	//비밀번호 일치 여부확인 
     function pwCheck() {
     	var user_pw = $('#user_pw').val();
     	if(!user_pw){
@@ -63,30 +64,33 @@
     	}
     	
 	}
-    /* function pwCheck() {
-    	
-		if( document.user_pw.value == document.user_pw_check) {		
-			alert("암호가 일치합니다.");
-			$('#pw_checkHidden').val("yes");		
-			return true;
-		} 
-		alert("암호가 일치하지 않습니다. 다시 입력해주세요");
-		document.getElementById('user_pw').focus();
-		return false; //submit전송이 안됨
-    } */		
+    
 	function joinCheckAll(){
     	
-	
 		var isIDChecked = $('#isIDChecked').val();
-		var isPWChecked = $('#isPWChecked').val();
-		alert(isIDChecked);
-		alert(isPWChecked);
+		var isPWChecked = $('#isPWChecked').val();	
 		
-		if( isIDChecked == 'ok' && isPWChecked == 'ok'){		
-			document.forms[0].submit();
-		} else {
-			alert("중복확인 후 회원가입이 가능합니다.");
-			}		
+		if( isIDChecked == 'no'){
+			alert("아이디 중복확인 후 회원가입이 가능합니다.");
+		}	    
+		if(isPWChecked == 'no') {	
+		   	alert("비밀번호 일치여부 후 회원가입이 가능합니다.");				
+		}
+		
+		const target = document.getElementsByClassName('nullcheck');
+
+	    for(i=0; i<target.length; i++){
+	        if(target[i].value == ''){
+	            alert(target[i].placeholder);
+	            target[i].focus();
+	            return false;
+	        }else if(target[i].type == 'checkbox' && target[i].checked == false){
+	            alert('채크사항을 확인 해 주세요');
+	            return false;
+	        }
+	    }			   
+	    document.forms[0].submit();
+	    return true;	    	
 	}
 
 </script>
@@ -103,13 +107,13 @@
         </div>
         <!-- joinMainDiv -->
         <div class="container-sm container-fluid col-11 d-flex flex-column mt-3 justify-content-center align-items-center" style="max-width:520px;">
-            <form action="joinAction" method="post" onsubmit="return nullChecker();">
+            <form action="../login/joinAction" method="post">
             
                 <div class="text-left font-weight-bold pl-2 mt-2">아이디</div>
                 <div class="form-group row mb-1 ml-0 mr-0 justify-content-between" style="font-size:14px;">
                     <input type="text" class="col-8 form-control nullcheck" name="user_id" id="user_id" placeholder="아이디를 입력해주세요">
                     <input type="button" class="col-3 btn btn-secondary text-dark" value="중복체크" style="font-size: 14px;" onclick="idCheck();">
-                    <input type="hidden" name="isIDChecked" id="isIDChecked" value="no">
+                    <input type="hidden" name="isIDChecked" id="isIDChecked" value='no'>
                 </div>
                 
                 <div class="text-left font-weight-bold pl-2 mt-2">비밀번호</div>
@@ -117,15 +121,9 @@
                     <input type="text" class="col-8 form-control mb-1 nullcheck" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
                     <input type="button" class="col-3 btn btn-secondary text-dark mb-1" value="중복체크" style="font-size: 14px;" onclick="pwCheck();">
                     <input type="text" class="col-12 form-control nullcheck" id="user_pw_check" placeholder="비밀번호를 한 번더 입력해주세요">
-                    <input type="hidden" name="isPWChecked" id="isPWChecked" value="no">
+                    <input type="hidden" name="isPWChecked" id="isPWChecked" value='no'>
                 </div>                
               
-                <!-- <div class="text-left font-weight-bold pl-2 mt-2" >비밀번호</div>
-                <div class="form-group mb-1" style="font-size:14px;">
-                    <input type="password" class="col-12 form-control mb-1 nullcheck" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
-                    <input type="password" class="col-12 form-control nullcheck" id="user_pw_check" placeholder="비밀번호를 한 번더 입력해주세요">
-                </div> -->
-                
                 <div class="text-left font-weight-bold pl-2 mt-2">이름</div>
                 <div class="form-group mb-1" style="font-size:14px;">
                     <input type="text" class="col-12 form-control nullcheck" name="user_name" id="user_name" placeholder="이름을 입력해주세요">
@@ -171,11 +169,7 @@
                     </div>
                 </div>
                 <input type="button" class="input type submit btn btn-primary col-12 my-3 mb-5 text-white" height="40px" value="가입하기" style="font-size: 18px;" onclick="joinCheckAll();" >
-            </form>
-            
-            <!-- <input type="hidden" name="isIDChecked" id="isIDChecked" value="false" />
-            <input type="hidden" name="isPWChecked" id="isPWChecked" value="false" /> -->
-        
+            </form>           
         </div>
     </div>
 <!-- 카카오 주소 API -->
