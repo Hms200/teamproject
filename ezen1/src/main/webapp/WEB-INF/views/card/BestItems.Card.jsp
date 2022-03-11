@@ -8,35 +8,17 @@
         <!-- 상품박스 -->
     <div class="container-fluid px-0 mt-2 mb-1 col-12 d-flex justify-content-start text-center" style="white-space:nowrap; overflow-x: auto;">
         <!-- 단일상품 -->
+        <c:forEach var="list" items="${ best }">
         <div class="col-5 inline-block mx-1 my-2 px-0 border rounded ">
             <a href="">
-            <img src="/img/goods/candle/Candle01_01.jpeg" class="card-img-top" alt="임시이미지사용">
-            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
-            <h5 class="card-title font-weight-bold" style="font-size: 14px;">네이처 소이캔들</h5>
-            <p class="card-text" style="font-size:12px;">17,000원</p>              
-            </div>
+            	<img src="${ list.goods_thumb }" class="card-img-top" alt="goods_idx:${ list.goods_idx }_img">
+	            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
+	            	<h5 class="card-title font-weight-bold" style="font-size: 14px;">${ list.goods_name }</h5>
+	            	<p class="card-text" style="font-size:12px;">${ list.goods_price }원</p>              
+	            </div>
             </a>
         </div>
-            
-        <div class="col-5 inline-block mx-1 my-2 px-0 border rounded">
-            <a href="">
-            <img src="/img/goods/candle/Candle01_01.jpeg" class="card-img-top" alt="임시이미지사용">
-            <div class="card-body py-2 pl-3 pr-3"> 
-            <h5 class="card-title font-weight-bold" style="font-size: 14px;">네이처 소이캔들</h5>
-            <p class="card-text" style="font-size:12px;">17,000원</p>              
-            </div>
-            </a>
-        </div>
-
-        <div class="col-5 inline-block mx-1 my-2 px-0 border rounded">
-            <a href="">
-            <img src="/img/goods/candle/Candle01_01.jpeg" class="card-img-top" alt="임시이미지사용">
-            <div class="card-body py-2 pl-3 pr-3"> 
-            <h5 class="card-title font-weight-bold" style="font-size: 14px;">네이처 소이캔들</h5>
-            <p class="card-text" style="font-size:12px;">17,000원</p>              
-            </div>
-            </a>
-        </div>
+        </c:forEach>   
 
     </div>
  </div>

@@ -36,9 +36,9 @@
           </span>
           
             <!-- 히든 input -->
-            <input type="hidden" name="onetoone_idx" value="onetoone_idx">
+            <!-- <input type="hidden" name="onetoone_idx" value="onetoone_idx">
             <input type="hidden" name="user_idx" value="user_idx">
-            <input type="hidden" name="onetoone_date" value="onetoone_date">
+            <input type="hidden" name="onetoone_date" value="onetoone_date"> -->
             <!-- 제목 -->
             <span>
               <input type="text" name="onetoone_title" class="nullcheck" placeholder="제목을 입력해주세요" style="width: 200px; height: 40px;">

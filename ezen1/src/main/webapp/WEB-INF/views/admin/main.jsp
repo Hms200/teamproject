@@ -95,7 +95,7 @@
                     </a>
                 </div>
                 <div class="col-3">
-                    <a href="../faq">
+                    <a href="../customer/faq">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">FAQ관리</button>
                     </a>
                 </div>
