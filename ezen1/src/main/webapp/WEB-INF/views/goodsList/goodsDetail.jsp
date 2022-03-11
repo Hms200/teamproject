@@ -19,7 +19,7 @@
 <c:import url="../header.jsp"></c:import>
 
 <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
     style="max-width: 520px;">
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0">
@@ -32,7 +32,7 @@
       </div>
     </div>
     <!--상품 상세보기 이미지-->
-    <div id="carouselImg" class="carousel slide mx-0 px-0" data-ride="carousel" style="width: 360px; height: 240px">
+    <div id="carouselImg" class="carousel slide mx-0 px-0" data-ride="carousel" style="width: 360px;">
         <ol class="carousel-indicators">
         <li data-target="#carouselImg" data-slide-to="0" class="active"></li>
         <li data-target="#carouselImg" data-slide-to="1"></li>
@@ -56,11 +56,13 @@
     <!--상품 상세보기 타이틀-->
     <div class="my-3 font-weight-bold text-center" style="font-size: 18px;">
     ${goods.goods_name}
+    <input type="hidden" name="goods_idx" value="${ goods.goods_idx }">
+    <input type="hidden" name="user_idx" value="${ user_idx }">
       <!--부모클래스bg-primary 안넣었음 -->
     </div>
     <!--상품 상세보기 옵션 드롭다운-->
     <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px;">
-      <div class="clo-6 py-2">
+      <div class="clo-6 py-2"> 
         상품 옵션
       </div>
       <div class="col-6 dropdown border ">
@@ -70,20 +72,20 @@
         </button>
         
         <div class="dropdown-menu goodsDeatailMenu" aria-labelledby="dropdownMenuButton">
-          <button class="dropdown-item" id="option_name_and_price" type="button" style="font-size: 14px;" onclick="totalPrice();">선택안함</button>
-          <input type="hidden" name="goods_option" value="0">
-          <c:forEach var="option" items="${ goodsOptions }">
-          <button class="dropdown-item" id="option_name_and_price" type="button" style="font-size: 14px;" onclick="totalPrice();">${ option.option_name }+${ option.option_price }</button>
-          <input type="hidden" name="goods_option" value="${ option.option_price }">
- 		  </c:forEach>      
+          <c:forEach var="option" items="${ goodsOptions }"> 
+          <button class="dropdown-item" id="${ option.option_idx }" type="button" style="font-size: 14px;" onclick="totalPrice(event);">${ option.option_name }+${ option.option_price }</button>
+          <input type="hidden" name="${ option.option_idx }" value="${ option.option_price }">
+          <input type="hidden" name="${ option.option_idx }" value="${ option.option_idx }">
+ 		  </c:forEach>     
         </div>
-       
+        <input type="hidden" name="option_idx" value="">
+        
       </div>
     </div>
     <!--판매가격-->
     <div class="mx-2 my-2 d-flex flex-row justify-content-between w-75" style="font-size: 14px;">
       <div class="col-3" style="font-size: 14px;">
-        판매가
+        판매가 
       </div>
       <input type="hidden" name="goods_price" value="${ goods.goods_price }">
       <div class="col-4" style="font-size: 14px;">
@@ -115,7 +117,7 @@
           <div class="col-12 my-2">
             <!--장바구니 버튼을 누르면 장바구니 페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
             <img src="/img/icon/장바구니_큰아이콘.png" class="goodsDetailCartIcon"
-              onclick="location.href='toShoppingCartAction?goods_name={}' " style="width: 40px; height: 40px;">
+              onclick="addCart();" style="width: 40px; height: 40px;">
             <!--구매하기 버튼을 누르면 구매 페이지로 이동하고 구매페이지에서 해당상품 페이지에 보고있던 상품이 추가된다-->
             <button type="submit" class="btn btn-primary goodsDeatailPurchaseButton" onclick="location.href='purchaseList?goodsname={}' ">구매하기</button>
           </div>

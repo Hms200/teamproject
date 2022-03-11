@@ -23,14 +23,14 @@
             <div class="bg-transparent">
                 <!-- 검색아이콘 -->
                 <img id="search-icon" src="/img/icon/search.png" alt="검색아이콘" width="25px" height="25px" style="cursor: pointer;" onclick="popupHideAndShow(target = 'searchbar');">  
-                <!-- 장바구니아이콘 jsp로 변환시 링크 수정해야함-->
-                <a href="cart">  
+                <!-- 장바구니아이콘-->
+                <a href="../goodsList/cart">  
                     <img src="/img/icon/bag.png" alt="장바구니아이콘" width="25px" height="25px">
                 </a>
             </div>
             <!-- 장바구니 뱃지 -->
-            <div class="position-absolute rounded-circle bg-danger text-light" id="bedge" width="20px" height="10px" style="font-size: 10px;right:5px; top:5px;">
-                <span class="p-1" id="bedgeNumber">1</span>
+            <div class="position-absolute rounded-circle bg-danger text-light d-block" id="bedge" width="20px" height="10px" style="font-size: 10px;right:5px; top:5px;">
+                <span class="p-1" id="bedgeNumber">${ cart }</span>
             </div>
         </div>
     </header>
