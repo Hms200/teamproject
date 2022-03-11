@@ -42,7 +42,7 @@
         <div class="w-100 d-flex flex-column justify-content-center align-items-center mb-4" >
           <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;">아이디 찾기</div>
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
-            <form action="idFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+            <form action="../login/idFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
               <div class="form-group">
                 <lable>이름 &nbsp;<input type="text" class="ml-2" name="user_name" placeholder="이름을 입력해주세요"></lable>
               </div>
@@ -66,7 +66,7 @@
           <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;">비밀번호찾기</div>
           <!-- formDiv -->
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
-            <form action="pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+            <form action="../login/pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
               <div class="form-group">
                 <lable>아이디 <input type="text" name="user_id" placeholder="아이디를 입력해주세요" /></lable>
               </div>
