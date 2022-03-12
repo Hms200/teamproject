@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,6 @@ import com.ezen.dto.Purchase;
 import com.ezen.dto.Question;
 import com.ezen.service.GoodsListService;
 
-import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("goodsList")
@@ -36,7 +34,7 @@ public class GoodsListController {
 	////////////////////////
     //전체상품 페이지
 	////////////////////////
-	@RequestMapping("/goodsList")
+	@RequestMapping("goodsList")
 	public String goodsList(Model model) {
 		model = goodsListService.goodsList(model);
 		return "goodsList/goodsList";
@@ -45,7 +43,7 @@ public class GoodsListController {
 	////////////////////////
     //상품 상세 페이지
 	///////////////////////
-	@RequestMapping("/goodsDetail")
+	@RequestMapping("goodsDetail")
 	public String goodsDetail(@RequestParam("goods_idx")int goods_idx,
 							  Model model) {
 		model = goodsListService.goodsDetail(goods_idx, model);

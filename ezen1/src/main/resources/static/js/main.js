@@ -17,7 +17,6 @@ window.onload = bedgeHideAndShow();
 function bedgeHideAndShow() {
     const bedge = document.getElementById('bedge');
     let bedgeNumber = document.getElementById('bedgeNumber').innerText;
-    bedgeNumber = cartBedgeNumberInSession;
     if(bedgeNumber == '0' || bedgeNumber == '' || bedgeNumber == null){
         bedge.classList.remove("d-block");
         bedge.classList.add("d-none");
@@ -447,7 +446,8 @@ function addCart(){
 			data: formData,
 			success: function(num){
 				alert('장바구니에 담겼습니다.');
-				document.getElementById('bedgeNumber').innerText = num;
+				bedge.innerText = Number(num);
+				
 				bedgeHideAndShow();
 				location.reload;
 			},
