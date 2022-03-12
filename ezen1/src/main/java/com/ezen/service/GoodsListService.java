@@ -20,6 +20,7 @@ import com.ezen.dto.Cart;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.dto.GoodsOption;
+import com.ezen.dto.Purchase;
 import com.ezen.dto.Review;
 import com.ezen.dto.User;
 
@@ -174,6 +175,16 @@ public class GoodsListService {
 		}else {
 			return "false";
 		}
+	}
+	// 구매기록 저장
+	public String makePurchase(Purchase purchase) {
+		int result = purchaseDAO.insertPurchase(purchase);
+		String returnString = result == 1 ? "true" : "false";
+		return returnString;
+	}
+	// cart 항목 구매됨으로 변경
+	public void makeCartIsDone(int cart_list_idx) {
+		cartDAO.updateCartIsDone(cart_list_idx);
 	}
 	
 	

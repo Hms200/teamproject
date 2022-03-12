@@ -17,5 +17,17 @@
 	<select id="getPurchaseList" resultType="com.ezen.dto.Purchase">
 		SELECT * FROM MALL_PURCHASE
 	</select>
+	
+	<!-- insert purchase -->
+	<insert id="insertPurchase" parameterType="com.ezen.dto.Purchase">
+		INSERT INTO mall_purchase 
+			(purchase_idx, cart_list_idx, user_idx, purchase_total_price, purchase_buyer_name,
+			 purchase_buyer_phone, purchase_buyer_address, purchase_payment, purchase_buyer_request,
+			 purchase_date, purchase_statement)
+			 VALUES
+			 (mall_purchase_seq.nextval, ${cart_list_idx}, ${user_idx}, ${purchase_total_price},
+			  #{purchase_buyer_name}, #{purchase_buyer_phone}, #{purchase_buyer_address},
+			  #{purchase_payment}, #{purchase_buyer_request}, sysdate, '주문접수')
+	</insert>
 
 </mapper>
