@@ -51,6 +51,11 @@
 		UPDATE MALL_USER SET user_pw = #{user_pw}, user_name = #{user_name}, user_email = #{user_email}, user_phone = #{user_phone}, user_address = #{user_address} WHERE user_id = #{user_id}
 	</update>
 	
+	<!-- user_idx로 user 정보 가져오기 -->
+	<select id="getMemberInfoByUserIdx" resultType="com.ezen.dto.User">
+		SELECT * FROM mall_user WHERE user_idx = ${param1}
+	</select>
+	
 	<!-- 검색용 쿼리들-->
 	<!-- Id로 검색 -->
 	<select id="searchUserById" resultType="com.ezen.dto.User">

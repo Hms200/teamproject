@@ -65,8 +65,11 @@ select:focus,
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
 }
-.form-control-plaintext{
-	border: none;
+input[type="text"]:focus.form-control-plaintext{
+	border: none !important;
+	box-shadow: none !important;
+	outline-color: transparent !important;
+	cursor: default !important;
 }
 
 /* goodslist */
@@ -195,25 +198,3 @@ body .dep {
     height: 40px;
   } 
 
-  /*purchaseList*/
-  #pwCheckPop{
-    position: absolute;
-    top: 50%; left: 35%;
-  }
-  .purchaseListTopBox {
-    height: 60px;
-  }
-  .purchaseListTotalPriceBox{
-    height: 85px;
-  }
-  .purchaseListPay{
-    height: 100px;
-  }
-  .purchaseListPop{
-    width: 300px;
-    height: 60px;
-  }
-  .purchaseListPopInput{
-    width: 300px;
-    height: 40px;
-  }

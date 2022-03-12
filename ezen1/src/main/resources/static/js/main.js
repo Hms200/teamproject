@@ -153,6 +153,86 @@ function changeValueOfCheckbox(){
 	return true;
 }
 
+//ajax을 이용한 id 중복체크 여부기능 
+function idCheck() {
+	var user_id = $('#user_id').val();
+	if(!user_id){
+		alert("아이디 중복체크 후 회원가입이 가능합니다");
+		return false;
+		}
+	
+	// 아이디 유효성 검사(1보다 같거나 크면 중복 / 0 이면 중복안됨)
+	$.ajax(
+			{
+				url: 'http://localhost:8085/login/idCheckAjax?user_id='+ user_id,	
+	    		type: 'get',
+	    		success: function(data) {
+	    			console.log('통신 성공, data:' + data);
+	    			
+	    			var data_num = Number( data );
+	    			if( data_num >= 1 ) {
+	    				//아이디가 중복됨.
+	    				alert("중복된 아이디입니다.");
+						$('#isIDChecked').val('no');
+						$('#user_id').val('');
+						$('#user_id').focus();
+	    			}else{
+	    				//아이디가 중복 안됨. 사용 가능.
+	    				alert("사용가능한 아이디입니다.");
+						$('#isIDChecked').val('ok');
+	    			}    			
+	    		},
+	    		error: function(){
+	    			console.log('통신 실패');
+	    		}	
+			}    		
+	);
+ }
+
+//비밀번호 일치 여부확인 
+function pwCheck() {
+	var user_pw = $('#user_pw').val();
+	if(!user_pw){
+		alert("비밀번호 중복체크 후 회원가입이 가능합니다");
+		return false;
+		}
+	if( $('#user_pw').val() == $('#user_pw_check').val() ){
+		alert("비밀번호가 일치합니다");
+		$('#isPWChecked').val('ok');
+	}else {
+		alert("비밀번호가 다릅니다.");
+		$('#isPWChecked').val('no');
+		$('#user_pw_check').val('');
+		$('#user_pw_check').focus();
+	}
+	
+}
+
+function joinCheckAll(){
+    	
+		var isIDChecked = $('#isIDChecked').val();
+		var isPWChecked = $('#isPWChecked').val();			
+		var userNull = nullChecker();
+		
+		if( isIDChecked == 'no'){
+			alert("아이디 중복확인 후 회원가입이 가능합니다.");
+			return false;
+		}
+		if(isPWChecked == 'no') {
+			alert("비밀번호 일치여부 후 회원가입이 가능합니다.");
+			return false;
+		}
+		if( userNull == false) {
+			return false;
+		}
+		
+		var address1 = $('#sample6_address').val();
+		var address2 = $('#sample6_detailAddress').val();
+		$('#user_address').val( address1 + " " + address2 ); 
+		
+		document.forms[0].submit();
+		return true;
+	}	
 /* thumbnail 이미지 등록 */
 
 function uploadThumbnail(){
@@ -267,7 +347,7 @@ function makeGoodsSoldOut(){
 function orderGoods(){
 	let amount = prompt('발주 수량을 입력해 주세요.');
 	while(true){
-		if(amount == null || amount == 0 || amount < 0){
+		if(amount == null || amount == 0 || amount < 0 || typeof(amount) != 'number'){
 			amount = prompt('발주 수량을 입력해 주세요');
 		}else{
 			break;
@@ -302,7 +382,7 @@ function orderGoods(){
 	
 }
 
-// goods Detail 페이지 최종가격 산정
+// 장바구니 개별상품 최종가격 산정
 function totalPrice (event){
 	const optionInput = event.target.id;
 	let optionPrice = document.getElementsByName(optionInput)[0].value;
@@ -433,6 +513,109 @@ function removeGoodsInCart(){
 		},
 	});
 }
-
+// 장바구니 개별항목 리스트로 묶기
+function listingGoods(){
+	const checkboxes = document.querySelectorAll("input[type='checkbox']");
+	let targetCartIdx = {};
+	for(i=1; i<checkboxes.length; i++){
+		
+		targetCartIdx[checkboxes[i].name] = checkboxes[i].checked;
+		
+	}
+	console.log(typeof(targetCartIdx));
+	targetCartIdx = JSON.stringify(targetCartIdx);
+	console.log(targetCartIdx);
+	jQuery.ajax({
+		url: "listingGoodsAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: targetCartIdx,
+		success: function(result){
+			console.log('listing완료 cart_list_idx =' + result);
+		//	document.getElementsByName('cart_list_idx')[0].value = result;
+			location.href = 'purchase?cart_list_idx='+result;
+		},
+		error: function(e){
+			console.log(e);
+		},
+	});
+}
+// 구매패이지 수령인정보 변경
+function changeBuyerInfo(){
+	const newName = document.getElementById('adjustBuyerName').value;
+	const newPhone = document.getElementById('adjustBuyerPhone').value;
+	const newPostCode = document.getElementById('sample6_postcode').value;
+	const newAddressHead = document.getElementById('sample6_address').value;
+	const newAddressTail = document.getElementById('sample6_detailAddress').value;
+	let newFullAddress = newPostCode.toString() + newAddressHead.toString() + newAddressTail.toString();
+	
+	console.log(newName);
+	console.log(newPhone);
+	console.log(newFullAddress);
+	
+	const nameAndPhoneArea = document.getElementById('nameAndPhone');
+	const addressArea = document.getElementById('originalAddress');
+	const hiddenInputForName = document.getElementsByName('purchase_buyer_name')[0];
+	const hiddenInputForPhone = document.getElementsByName('purchase_buyer_phone')[0];
+	const hiddenInputForAddress = document.getElementsByName('purchase_buyer_address')[0];
+	
+	nameAndPhoneArea.innerText = newName + "<br>" + newPhone;
+	addressArea.innerText = newFullAddress;
+	hiddenInputForName.value = newName;
+	hiddenInputForPhone.value = newPhone;
+	hiddenInputForAddress.value = newFullAddress;
+	
+	popupHideAndShow('changeAddress');
+	
+}
+// 가격계산
+function calculateTotalPrice(){
+	const priceValues = document.getElementsByClassName('price');
+	let totalPriceofGoods = 0;
+	for(i=0 ; i<priceValues.length; i++){
+		totalPriceofGoods += Number(priceValues[i].value);
+	}
+	const areaOfTotalPrice = document.getElementById('total_price');
+	areaOfTotalPrice.innerText = totalPriceofGoods;
+	
+	const shippingPrice = Number(document.getElementById('shipping_price').innerText);
+	const finalPrice = document.getElementById('final_price');
+	finalPrice.innerText = Number(totalPriceofGoods) + shippingPrice;
+	document.getElementsByName('cart_total_price')[0].value = Number(totalPriceofGoods) + shippingPrice;
+}
+// 구매페이지 비밀번호 확인
+function checkPw(){
+	const inputtedPw = document.getElementById('inputtedPw').value;
+	if(inputtedPw == null || inputtedPw === ''){
+		alert('비밀번호를 입력해주세요');
+		return false;
+	}
+	let data = { "inputtedPw": inputtedPw};
+	data = JSON.stringify(data);
+	console.log(data.toString());
+	jQuery.ajax({
+		url: "checkPwAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: data,
+		success: function(result){
+			if(result !== 'true'){
+				alert('비밀번호를 재확인 해주세요');
+				inputtedPw = '';
+				}else{
+					/// bootpay 연결 후 수정해야할 부분
+					console.log('결제 프로세스 진행');
+					return true;
+				}
+		},
+		error: function(e){
+			console.log(e);
+		},
+	});
+}
 
 
