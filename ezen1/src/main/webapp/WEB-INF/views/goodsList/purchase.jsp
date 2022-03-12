@@ -78,7 +78,7 @@
         ${ userinfo.user_address }
       </span>
       <input type="hidden" name="purchase_buyer_address" value="${ userinfo.user_address }">
-        <select class="form-select form-control w-100" name="putchase_buyer_request" style="font-size: 14px;">
+        <select class="form-select form-control w-100" name="purchase_buyer_request" style="font-size: 14px;">
           <option selected>배송시 요청사항</option>
           <option value="문앞에 두고가주세요">문앞에 두고가주세요</option>
           <option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
@@ -147,12 +147,12 @@
       </span>
       <div class="d-flex flex-row justify-content-between">
         <div class="d-flex flex-column align-items-center">
-          <input type="radio" class="btn-check my-4" name="purchase_payment" value="카드" autocomplete="off" checked>
+          <input type="radio" class="btn-check my-4" name="purchase_buyer_payment" value="카드" checked>
           <label class="btn btn-primary" for="option1">카드결제</label>
         </div>
         <div class="d-flex flex-row justify-content-between">
           <div class="d-flex flex-column align-items-center">
-            <input type="radio" class="btn-check my-4" name="purchase_payment" value="무통장결제" autocomplete="off">
+            <input type="radio" class="btn-check my-4" name="purchase_buyer_payment" value="무통장결제">
             <label class="btn btn-primary" for="option2">무통장결제</label>
           </div>
         </div>
