@@ -32,14 +32,15 @@
     <!-- 상품전체 리스트 -->
     <%String catname = request.getParameter("catval"); %>
     <main class="<%=catname%>">
-      <div class="dep d-flex flex-row flex-wrap justify-content-between my-5 mx-3" style="width:310px">
+      <div class="dep container-fluid px-auto mt-2 mb-1 col-12 d-flex flex-wrap justify-content-start text-center">
       <c:forEach var="dto" items="${ list }">
-          <div class="border pt-3 my-3" id="val${dto.goods_cat}">
-            <a href="goodsDetail?goods_idx=${dto.goods_idx}"><img src="${dto.goods_thumb}" alt=""
-                class="img-fluid" width="150px" height="150px"></a>
-            <div class="font-weight-bold px-1" style="font-size: 14px;">${dto.goods_name}</div>
-            <div class="font-weight-bold px-1 text-black-50" style="font-size: 10px;">${dto.goods_cat}</div>
-            <div class="font-weight-bold px-1" style="font-size: 12px;">￦${dto.goods_price }</div>
+          <div class="col-5 inline-block mx-auto my-2 px-0 border rounded val${ dto.goods_cat }">
+            <a href="goodsDetail?goods_idx=${dto.goods_idx}">
+            <img src="${dto.goods_thumb}" alt="" class="card-img-top img-fluid"></a>
+            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"></div>
+            <h5 class="card-title font-weight-bold" style="font-size:14px;">${dto.goods_name}</h5>
+            <p class="card-text" style="font-size: 10px;">${dto.goods_cat}</p>
+            <p class="card-text mb-2" style="font-size: 12px;">￦${dto.goods_price }</p>
        	  </div>
        	  </c:forEach>
       </div>

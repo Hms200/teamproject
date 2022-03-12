@@ -68,15 +68,27 @@ function setGoodsList(_type) {
 
     document.querySelector("main").className = _type;
     var cat = document.querySelector('main').className;
-    $('#valcandle,#valwarmer,#valsoap,#valdiffuser').css('display','none');
+    $('.valcandle,.valwarmer,.valsoap,.valdiffuser').css('display','none');
     if(cat == 'candle'){
-        document.getElementById('valcandle').style.display='block';
+        let target = document.getElementsByClassName('valcandle');
+        for(let item of target){
+			item.style.display='block';
+		};
     }else if(cat == 'warmer'){
-		document.getElementById('valwarmer').style.display='block';
+		let target = document.getElementsByClassName('valwarmer');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}else if(cat == 'soap'){
-		document.getElementById('valsoap').style.display = 'block';
+		let target = document.getElementsByClassName('valsoap');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}else if(cat == 'diffuser'){
-		document.getElementById('valdiffuser').style.display = 'block';
+		let target = document.getElementsByClassName('valdiffuser');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}
     console.log(cat);
   }
