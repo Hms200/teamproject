@@ -19,225 +19,184 @@
   <div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
     style="max-width: 520px; margin-top: 60px;">
-    <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom purchaseListTopBox ">
+    <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom" style="height: 60px;">
       <div class="col-2 my-3">
-        <a href="goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid" width="30px"
+        <a href="../goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid" width="30px"
             height="30px"></a>
       </div>
       <div class="col-10 my-3 py-1 pr-5 text-center font-weight-bold">
         주문/결제
       </div>
     </div>
-    <!--장바구니 내용-->
-    <!-- 전체선택/선택삭제 -->
-    <div class="container-fluid d-flex felx-row justify-content-between mx-3 my-3 w-100 border-bottom"
-      style="width: 330px; height: 40px;">
-      <div class="ml-3">
-        <input type="checkbox" value="selectAll" class="ml-0" onclick="selectAll(this)"
-          style="width: 16px; height: 16px;"><label for="selectAll" class="ml-2" style="font-size: 14px;">전체선택</label>
-      </div>
-      <div style="font-size: 13px;">
-        <input type="button" value="선택삭제">
-      </div>
-    </div>
+
     <!-- 상품내용 -->
-    <div class="container d-flex flex-column py-1 px-3 mb-4 border-bottom">
-      <div class="row mt-4 mx-3">
-        <input type="checkbox" value="name" class="ml-2" style="width: 16px; height: 16px;"><label for="name"
-          class="ml-1" style="font-size: 14px;">네이쳐 소이캔들</label>
+    <c:forEach var="cart" items="${ cartlist }" varStatus="status">
+    <div class="container d-flex flex-column py-1 px-3 mb-2 border-bottom">
+      <div class="row my-2 mx-3">
+          <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page"/>
+          <span id="goods_name">${ goods.goods_name }</span>
       </div>
-      <div class="d-flex flex-row justify-content-around">
-        <img src="/img/goods/candle/Candle01_01.jpeg" alt="" class="img-fluid ml-3" width="100px" height="100px">
-        <div class="d-flex flex-column" style="width: 200px;height: 100px;">
-          <div>
-            가격:
-          </div>
-          <div>
-            옵션:
-          </div>
-          <div class="d-flex flex-row justify-content-between">
-            옵션(수량,크기) <input type="button" class="btn-block mt-1" value="옵션변경"
-              style="width: 60px;height: 20px; font-size: 11px;">
-          </div>
-          <div class="d-flex flex-row justify-content-between">
-            <select class="form-select text-center" aria-label="Default select example" style="width: 140px;">
-              <option selected>----</option>
-              <option>선물포장+1000</option>
-            </select>
-            <select class="form-select text-center" aria-label="Default select example"
-              style="width: 60px; font-size: 12px;">
-              <option selected>갯수</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
-        </div>
+      <div class="d-flex flex-row justify-content-around mb-2">
+	        <a href="goodsDetail?goods_idx=${ goods.goods_idx }"><img src="${ goods.goods_thumb }" alt="Thumbnail of ${ goods.goods_name }" class="img-fluid ml-3" width="100px" height="100px"></a>
+	        <div class="d-flex flex-column" style="width: 200px;height: 100px;">
+		          <div class="d-flex flex-row justify-content-between my-auto">
+		            <span style="width: max-contents;">가격</span>
+		            <input type="text" class="form-control-plaintext text-right col-6 price" readonly value="${ cart.cart_total_price }">
+		          </div>
+		         <div class="d-flex flex-row justify-content-between my-auto">
+		            <span>옵션</span>
+		            <span><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
+		            <c:forEach var="option" items="${ optionlist }">
+		            	<c:if test="${ this_cart_option eq option.option_idx }">${ option.option_name }+${ option.option_price }</c:if>
+		            </c:forEach> 
+		          <c:remove var="goods" scope="page"/>  
+		            </span>
+		        </div>
+	       </div>
+	      </div>
       </div>
-      <div class="d-flex flex-row justify-content-between mx-2 mt-5" style="font-size: 14px;">
-        <div>
-          상품금액
-        </div>
-        <div>
-          가격
-        </div>
-      </div>
-      <div class="d-flex flex-row justify-content-between mx-2 mb-3" style="font-size: 14px;">
-        <div>
-          배송비
-        </div>
-        <div>
-          가격
-        </div>
-      </div>
-    </div>
+      <c:remove var="goods" scope="page"/>
+      </c:forEach>
+      
+      
+  <div
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
+    style="max-width: 520px; ">
+      
     <!-- 배송지 정보 -->
-    <div class="container d-flex flex-column ">
-      <span class="font-weight-bold" style="font-size: 16px;">
+    <div class="container d-flex flex-column mt-2">
+      <span class="font-weight-bold mb-2">
         배송지 정보
       </span>
-      <span style="font-size: 12px;">
-        홍길동 010-0000-0000
+      <span id="nameAndPhone">
+        ${ userinfo.user_name } <br>
+        ${ userinfo.user_phone }
+        <input type="hidden" name="purchase_buyer_name" value="${ userinfo.user_name }">
+        <input type="hidden" name="purchase_buyer_phone" value="${ userinfo.user_phone }">
       </span>
-      <span style="font-size: 12px;">
-        서울 노원구
+      <span class="mb-2" id="originalAddress">
+        ${ userinfo.user_address }
       </span>
-      <span style="font-size: 12px;">
-        아파트 1동1호
-      </span>
-      <span style="width: 320px; height: 35px;">
-        <select class="form-select w-100" aria-label="Default select example" style="font-size: 14px;">
+      <input type="hidden" name="purchase_buyer_address" value="${ userinfo.user_address }">
+        <select class="form-select form-control w-100" name="putchase_buyer_request" style="font-size: 14px;">
           <option selected>배송시 요청사항</option>
-          <option value="1">문앞에 두고가주세요</option>
-          <option value="2">부재시 경비실에 맡겨주세요</option>
+          <option value="문앞에 두고가주세요">문앞에 두고가주세요</option>
+          <option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
         </select>
-      </span>
+      
       <!-- 주소 변경하기 -->
       <div class="d-flex flex-row justify-content-end" style=" margin-bottom: 20px">
-        <span onclick="popupHideAndShow('changeAddress')" style="font-size: 12px; padding: 5px; cursor: pointer;">
+        <span onclick="popupHideAndShow('changeAddress')" style="padding: 5px; cursor: pointer;">
           주소 변경하기<img src="/img/icon/down.png" alt="" class="img-fluid" style="width: 12px;height: 12px;">
         </span>
       </div>
     </div>
     <!-- 주소 변경하기 배송시 요청사항 -->
-    <div class="d-none mb-5" id="changeAddress">
-      <form action="userUpdateFormInner
-      PayFormPageAction">
+    <div class="d-none mb-5 w-100" id="changeAddress">
       <div class="w-100 d-flex flex-column align-self-between border-top border"
-        style="padding: 50px 30px; height: 300px;">
-        <div class="d-flex flex-row justify-content-between">
-          <span style="font-size: 12px;">수령인</span>
-          <input type="text" placeholder="내용을 입력해주세요" style="width: 200px; height: 20px; font-size: 12px;">
+        style="padding: 50px 30px;">
+        <div class="d-flex flex-row justify-content-between form-group">
+          <span class="col-4">수령인</span>
+          <input class="form-control col-8" id="adjustBuyerName" type="text" placeholder="수령인을 입력해주세요">
         </div>
-        <div class="d-flex flex-row justify-content-between">
-          <span style="font-size: 12px;">휴대폰</span>
-          <input type="text" placeholder="내용을 입력해주세요" style="width: 200px; height: 20px; font-size: 12px;">
+        <div class="d-flex flex-row justify-content-between form-group">
+          <span class="col-4">휴대폰</span>
+          <input class="form-control col-8" id="adjustBuyerPhone" type="text" placeholder="휴대폰번호를 입력해주세요">
         </div>
         <div class="address">
           <div class="d-flex flex-row justify-content-between">
-            <span style="font-size: 12px;">주소</span>
-            <div>
-              <input type="text" placeholder="우편주소" style="width: 130px; height: 20px; font-size: 12px;"><button
-                style="width: 70px; height: 20px; font-size: 11px;">주소찾기</button>
+            <span class="col-4">주소</span>
+            <div class="form-group w-95 row mx-0">
+              <input class="form-control col-9" type="text" name="sample6_postcode" id="sample6_postcode" placeholder="우편주소">
+              <button class="btn btn-primary col-3 px-0" style="height: 38px; font-size: 12px; text-align: center; line-height: 24px;" onclick="sample6_execDaumPostcode();">주소찾기</button>
             </div>
           </div>
-          <div class="d-flex flex-row justify-content-end">
-            <input type="text" placeholder="주소" style="width: 200px; height: 20px; font-size: 12px;">
+          <div class="d-flex flex-row justify-content-end form-group">
+            <input class="form-control col-8" type="text" name="sample6_address" id="sample6_address" placeholder="주소" style="width: 200px;">
           </div>
-          <div class="d-flex flex-row justify-content-end">
-            <input type="text" placeholder="상세주소" style="width: 200px; height: 20px; font-size: 12px;">
+          <div class="d-flex flex-row justify-content-end form-group">
+            <input class="form-control col-8" type="text" placeholder="상세주소" name="sample6_detailAddress" id="sample6_detailAddress" style="width: 200px;">
           </div>
+          <input type="hidden" class="inputStyle1" id="sample6_extraAddress" placeholder="참고항목">
         </div>
-        <div class="d-flex flex-row justify-content-center mt-3">
-          <span style="width: 320px; height: 35px;">
-            <select class="form-select w-100" aria-label="Default select example">
-              <option selected>배송시 요청사항</option>
-              <option value="1">문앞에 두고가주세요</option>
-              <option value="2">부재시 경비실에 맡겨주세요</option>
-            </select>
-          </span>
-        </div>
-        <button class="btn btn-primary">저장</button>
+        <button class="btn btn-primary" type="button" onclick="changeBuyerInfo();">저장</button>
       </div>
-    </form>
     </div>
-    <div class="d-flex flex-row justify-content-between w-100 font-weight-bold border-top border-bottom py-4 px-3 purchaseListTotalPriceBox" 
-      style="font-size: 16px">
-      <span>총결제금액</span>
-      <span>가격</span>
-    </div>
-    <hr>
-    <div class="d-flex flex-column w-100 border-bottom" style="padding: 50px 20px; font-size: 12px;">
-      <div class="d-flex flex-row justify-content-between w-100">
+    
+    <div class="d-flex flex-column w-100 border-bottom pb-2">
+      <div class="d-flex flex-row justify-content-between w-100 mb-2">
         <span>상품금액</span>
-        <span>가격</span>
+        <span id="total_price"></span>
       </div>
       <div class="d-flex flex-row justify-content-between">
         <span>배송비</span>
-        <span>가격</span>
+        <span id="shipping_price">2500</span>
       </div>
     </div>
-    <div class="w-75 d-flex flex-column my-5 purchaseListPay">
+    <div class="d-flex flex-row justify-content-between w-100 font-weight-bold border-top border-bottom py-4 px-3" 
+      style="font-size: 16px; height: 85px;">
+      <span>총결제금액</span>
+      <span id="final_price"></span>
+      <input type="hidden" name="cart_total_price" value="">
+    </div>
+    <hr>
+    
+    <div class="w-75 d-flex flex-column my-3">
       <span class="font-weight-bold text-center " style="font-size: 16px;">
         결제방법
       </span>
       <div class="d-flex flex-row justify-content-between">
         <div class="d-flex flex-column align-items-center">
-          <input type="radio" class="btn-check my-4" name="options" id="option1" autocomplete="off" checked>
+          <input type="radio" class="btn-check my-4" name="purchase_payment" value="카드" autocomplete="off" checked>
           <label class="btn btn-primary" for="option1">카드결제</label>
         </div>
         <div class="d-flex flex-row justify-content-between">
           <div class="d-flex flex-column align-items-center">
-            <input type="radio" class="btn-check my-4" name="options" id="option2" autocomplete="off">
+            <input type="radio" class="btn-check my-4" name="purchase_payment" value="무통장결제" autocomplete="off">
             <label class="btn btn-primary" for="option2">무통장결제</label>
           </div>
         </div>
       </div>
+      <input type="hidden" name="user_idx" value="${ user_idx }">
+      <input type="hidden" name="cart_list_idx" value="${ cartlistidx }">
       <div class="w-100 font-weight-bold text-center"
         style="width: 300px; height: 40px; margin-top: 30px; margin-bottom: 50px; font-size: 16xp;">
         <span><button class="btn btn-primary" onclick=" popupHideAndShow('pwCheckPop')" style="width: 300px; height: 40px;">결제하기</button></span>
       </div>
       <!-- 비밀번호 확인 팝업창 -->
-      <!--ajax으로 처리-->
-      <div class="d-none" id="pwCheckPop">
-      <div class="border bg-white" style="width: 450px; height: auto;">
+      <div class="d-none col-12 position-absolute" id="pwCheckPop" style="left: 0; bottom: 100px;">
+      <div class="border bg-white" >
         <div class="d-flex justify-content-end">
           <img src="/img/icon/cross.png" alt="" onclick="popupHideAndShow('pwCheckPop')" style="cursor: pointer;" width="30px" height="30px">
         </div>
-        <div class="mx-auto text-center font-weight-bold my-5 purchaseListPop" style="width: 300px; height: 60px;">
+        <div class="mx-auto text-center font-weight-bold my-5 " style="width: 300px; height: 60px;">
           개인정보 보호를 위해<br>
           비밀번호를 다시 입력해주세요
         </div>
-        <div class="mx-auto purchaseListPopInput mb-2 py-1 px-2"
-          style="font-size: 14px; ">
-          <input type="text" placeholder="비밀번호를 입력해주세요" class="text-center text-dark w-100 border border-dark-50"
+        <div class="mx-auto mb-2 py-1 px-2"
+          style="font-size: 14px; width: 300px; height: 40px;">
+          <input type="text" id="inputtedPw" placeholder="비밀번호를 입력해주세요" class="text-center text-dark w-100 border border-dark-50 form-control"
             style="border-radius: 6px;">
         </div>
         <div class="d-flex flex-row justify-content-center my-5">
-          <button class="btn btn-dark" style="width: 140px; height: 40px; border-radius: 6px;">확인</button>
+          <button class="btn btn-dark" style="width: 140px; height: 40px; border-radius: 6px;" onclick="checkPw();">확인</button>
         </div>
       </div>
     </div>
     </div>
   </div>
-
+</div>
     
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import>
 
-
+<!-- 카카오 주소 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
-  <script>
-    function selectAll(selectAll) {
-      const checkboxes
-        = document.querySelectorAll('input[type="checkbox"]');
-
-      checkboxes.forEach((checkbox) => {
-        checkbox.checked = selectAll.checked
-      })
-    }
-  </script>
+<script>
+window.onloade = calculateTotalPrice();
+</script>
 </body>
 </html>

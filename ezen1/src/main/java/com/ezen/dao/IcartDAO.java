@@ -8,7 +8,7 @@ import com.ezen.dto.Cart;
 
 @Mapper
 public interface IcartDAO {
-	//해당 idx중에 구매여부가 ture인 값을 가져옴
+	//해당 idx중에 구매여부가 true인 값을 가져옴
 	public ArrayList<Cart> getCartIsDone(int user_idx);
 	
 	//해당 id중에 구매여부가 false인 값의 갯수를 가져옴
@@ -28,4 +28,7 @@ public interface IcartDAO {
 	
 	//카트에서 상품 삭제
 	public int removeGoodsFromCart(int cart_idx);
+	
+	// 해당 cart_list_idx를 가진 cart 를 받아옴
+	public ArrayList<Cart> getCartIsListed(int cart_list_idx);
 }

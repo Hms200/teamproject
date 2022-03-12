@@ -26,7 +26,8 @@ public interface IuserDAO {
 	public User getMemberInfo(String user_id);
 	//회원정보수정. 유저를 받아 MALL_USER의 일치하는 아이디에 업데이트.
 	public int UpdateMemberInfo(User user);
-	//모든 회원의 정보를 가져옴
+	//user_idx를 받아 해당 user 정보 가져옴
+	public User getMemberInfoByUserIdx(int user_idx);
 	
 	// 회원 검색용
 	// Id

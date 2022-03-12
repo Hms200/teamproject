@@ -172,20 +172,7 @@
 };
 /* 가격계산 */
     window.onlode = calculateTotalPrice();
-    function calculateTotalPrice(){
-    	const priceValues = document.getElementsByClassName('price');
-    	let totalPriceofGoods = 0;
-    	for(i=0 ; i<priceValues.length; i++){
-    		totalPriceofGoods += Number(priceValues[i].value);
-    	}
-    	const areaOfTotalPrice = document.getElementById('total_price');
-    	areaOfTotalPrice.innerText = totalPriceofGoods;
-    	
-    	const shippingPrice = Number(document.getElementById('shipping_price').innerText);
-    	const finalPrice = document.getElementById('final_price');
-    	finalPrice.innerText = Number(totalPriceofGoods) + shippingPrice;
-    	document.getElementsByName('cart_total_price')[0].value = Number(totalPriceofGoods) + shippingPrice;
-    }
+
  </script>
 </body>
 </html>

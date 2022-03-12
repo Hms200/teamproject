@@ -40,4 +40,9 @@
 		DELETE FROM mall_cart WHERE cart_idx = #{param1}
 	</delete>
 	
+	<!-- 해당 cart_list_idx를 가진 장바구니 품목들을 반환 -->
+	<select id="getCartIsListed" resultType="com.ezen.dto.Cart">
+		SELECT * FROM mall_cart WHERE cart_list_idx = ${param1}
+	</select>
+	
 </mapper>

@@ -32,7 +32,9 @@ public class GoodsListController {
 	@Autowired
 	HttpSession session;
 	
+	////////////////////////
     //전체상품 페이지
+	////////////////////////
 	@RequestMapping("/goodsList")
 	public String goodsList(Model model) {
 		model = goodsListService.goodsList(model);
@@ -117,6 +119,16 @@ public class GoodsListController {
 	/////////////////////////////
 	@GetMapping("purchase")
 	public String purchase(@RequestParam String cart_list_idx, Model model) {
+		//넘어온 장바구니 리스트 번호로 장바구니 리스트 아이탬 꺼내오기
+		model = goodsListService.getListedGoods(Integer.parseInt(cart_list_idx), model);
 		return "goodsList/purchase";
+	}
+	// 구매 전 비밀번호 재확인
+	@PostMapping("checkPwAction")
+	@ResponseBody
+	public String checkPw(@RequestBody HashMap<String, String> pw) {
+		String password = pw.get("inputtedPw");
+		String result = goodsListService.checkPw(password);
+		return result;
 	}
 }
