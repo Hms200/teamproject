@@ -3,7 +3,7 @@ application.properties
 .DS_Store
 
 ### Eclipse ###
-.metadata
+
 bin/
 tmp/
 *.tmp

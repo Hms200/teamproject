@@ -1,5 +1,7 @@
 package com.ezen.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,7 +110,6 @@ public class AdminContorller {
 	@PostMapping("inventoryDeleteAction")
 	@ResponseBody
 	public String deleteGoods(@RequestParam HashMap<String, String> param) {
-		System.out.println(param.toString());
 		adminService.deleteGoodsOnDB(param);
 		return "<script>alert('삭제되었습니다.');location.href='stock';</script>";
 	}
@@ -130,7 +131,7 @@ public class AdminContorller {
 	// 섬네일 등록
 	@PostMapping("uploadGoodsThumbAction")
 	@ResponseBody
-	public String uploadeThumb(@RequestParam("file") MultipartFile multipartFile) {
+	public String uploadeThumb(@RequestParam("file") MultipartFile multipartFile) throws IOException {
 		String result = fileService.fileUploader("thumb", multipartFile);
 		if(result.charAt(0) == 'f') {
 			result = "false";
@@ -140,7 +141,7 @@ public class AdminContorller {
 	// 상세이미지 등록
 	@PostMapping("uploadGoodsDetailAction")
 	@ResponseBody
-	public String uploadDetail(@RequestParam("file") MultipartFile multipartFile) {
+	public String uploadDetail(@RequestParam("file") MultipartFile multipartFile) throws IOException {
 		String result = fileService.fileUploader("detail", multipartFile);
 		if(result.charAt(0) == 'f') {
 			result = "false";
@@ -160,7 +161,7 @@ public class AdminContorller {
 	public String uploadGoodsImgs(@RequestParam("img1")MultipartFile fileOne,
 								@RequestParam("img2")MultipartFile fileTow,
 								@RequestParam("img3")MultipartFile fileThree,
-								@RequestParam("goods_idx")String idx) {
+								@RequestParam("goods_idx")String idx) throws IOException {
 		int goods_idx = Integer.parseInt(idx);
 		String goods_img1 = fileService.fileUploader("goods", fileOne);
 		String goods_img2 = fileService.fileUploader("goods", fileTow);

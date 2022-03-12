@@ -5,11 +5,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dao.IuserDAO;
+import com.ezen.dto.User;
 import com.ezen.service.LoginService;
 
 @Controller
@@ -65,7 +68,7 @@ public class LoginController {
 			
 		//세션객체 초기화
 		request.getSession().invalidate();
-		return "<script>alert('로그아웃 되었습니다.'); location.href='test';</script>";
+		return "<script>alert('로그아웃 되었습니다.'); location.href='/main';</script>";
 			
 	}
 	
@@ -103,28 +106,14 @@ public class LoginController {
 	}
 	
 	//회원가입 
-	@RequestMapping("joinAction")
+	@PostMapping("joinAction")
 	@ResponseBody
-	public String joinAction( 
-			@RequestParam("user_id") String user_id,
-			@RequestParam("user_pw") String user_pw,
-			@RequestParam("user_name") String user_name,
-			@RequestParam("user_phone") String user_phone,
-			@RequestParam("user_email") String user_email,
-			HttpServletRequest request) {
-		
-		String result = loginService.join(user_id, user_pw, user_name, user_phone, user_pw, user_email, request);
+	public String joinAction(@ModelAttribute User user) {
+				
+		String result = loginService.join(user);		
 		return result;		
-	}	
-
-//	@RequestMapping("joinAction")
-//	@ResponseBody
-//	public String joinAction(@ModelAttribute User user ,HttpServletRequest request) {
-//		
-//		String result = loginService.join(user, request);
-//		return result;		
-//	}
-	
+	}
+	//회원탈퇴 
 	@RequestMapping("quitAction")
 	@ResponseBody
 	public String quitAction(@RequestParam("user_id") String user_id) {

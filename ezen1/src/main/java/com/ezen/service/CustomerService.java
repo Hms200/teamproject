@@ -2,9 +2,11 @@ package com.ezen.service;
 
 import java.util.ArrayList;
 
-import javax.websocket.Session;
+import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -13,6 +15,8 @@ import com.ezen.dao.IonetooneDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.FaQ;
 import com.ezen.dto.OneToOne;
+
+import oracle.net.aso.c;
 
 @Service
 public class CustomerService {
@@ -63,15 +67,44 @@ public class CustomerService {
 	}
 	
 	//내문의내역
-	/*
-	 * public ArrayList<Model> byUserIdx(int user_idx, Model model) {
-	 * 
-	 * }
-	 */
-		
-	
-	//내문의내역 카테고리 선택
-	
+	public Model byUserIdx(int user_idx, Model model, HttpSession session) {
+		ArrayList<OneToOne> allOneToOne = onetooneDao.getOneToOneList();
+		ArrayList<OneToOne> myOneToOne = new ArrayList<>();
+			allOneToOne.forEach(OnetoOne -> {
+				if(session.getAttribute("user_idx").equals(user_idx)) {
+					myOneToOne.add(OnetoOne);
+				}
+			});
+		model.addAttribute("getOneToOneList", myOneToOne);
+		return model;
+	}
+	  
+	//내 문의 내역 카테고리 선택
+	public Model onetooneByCat(int user_idx, String onetoone_cat, Model model, HttpSession session) {
+		ArrayList<OneToOne> myOneToOne = onetooneDao.getOnetoOneByUserIdx(user_idx);
+		ArrayList<OneToOne> oneToOneByCat = new ArrayList<>();
+		if(onetoone_cat.equals("상품문의")) {
+			myOneToOne.forEach(OnetoOne -> {
+				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
+					oneToOneByCat.add(OnetoOne);
+				}
+			});
+		}else if(onetoone_cat.equals("배송문의")) {
+			myOneToOne.forEach(OnetoOne -> {
+				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
+					oneToOneByCat.add(OnetoOne);
+				}
+			});
+		}else if(onetoone_cat.equals("결제문의")) {
+			myOneToOne.forEach(OnetoOne -> {
+				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
+					oneToOneByCat.add(OnetoOne);
+				}
+			});
+		}
+		model.addAttribute("getOneToOneList", oneToOneByCat);
+		return model;
+	}
 	
 	//onetoone작성
 	public String insertOneToOne(OneToOne onetoone) {

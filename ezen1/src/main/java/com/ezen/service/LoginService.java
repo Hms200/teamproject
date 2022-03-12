@@ -5,7 +5,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.ezen.dao.IuserDAO;
+import com.ezen.dto.User;
 
 
 @Service
@@ -89,14 +91,10 @@ public class LoginService {
 		
 	}
 	
-	//회원가입_mapper를 param 으로 설정한 경우_주소값 전달됨 
-	public String join( String user_id, String user_pw, String user_name, String user_phone, String user_address, String user_email, HttpServletRequest request) {
-
-		user_address = request.getParameter("sample6_address") + " " + request.getParameter("sample6_detailAddress");
-		
-		System.out.println("user_address:"+user_address);
-		
-		int result = userDao.insertUser(user_id, user_pw, user_name, user_phone, user_address, user_email);
+	//회원가입 
+	public String join(User user) {
+					
+		int result = userDao.insertUser(user);
 		if( result == 1 ) {
 			return "<script>alert('회원가입되었습니다.'); location.href='login';</script>";
 		}
@@ -104,17 +102,4 @@ public class LoginService {
 			return "<script>alert('회원가입 실패'); history.back(-1);</script>";
 		}
 	}
-
-		//dao 를 user로 넣었을 경우_주소값 미전달되는 문제 아직 해결못함.
-//		public String join(User user, HttpServletRequest request) {
-//		
-//			
-//		int result = userDao.insertUser(user);
-//		if( result == 1 ) {
-//			return "<script>alert('회원가입되었습니다.'); location.href='login';</script>";
-//		}
-//		else {
-//			return "<script>alert('회원가입 실패'); history.back(-1);</script>";
-//		}
-//	}
 }
