@@ -10,8 +10,12 @@
 		SELECT CART_LIST_IDX FROM MALL_CART_LIST WHERE CART_IDX = #{cart_idx}
 	</select>
 	<!-- cart_list_idx자동생성 -->
-	<insert id="insertCartList">
+	<insert id="generateCartListKey">
 		INSERT INTO MALL_CART_LIST (CART_LIST_IDX) VALUES(MALL_CART_LIST_SEQ.NEXTVAL)
 	</insert>
+	<!-- 최신 cart_list_idx값 가져오기 -->
+	<select id="getNewestCartListKey" resultType="int">
+		SELECT max(cart_list_idx) from mall_cart_list
+	</select>
 
 </mapper>
