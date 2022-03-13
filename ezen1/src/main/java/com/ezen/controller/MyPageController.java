@@ -1,13 +1,19 @@
 package com.ezen.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Review;
@@ -30,29 +36,23 @@ public class MyPageController {
 		model.addAttribute("user",user);
 		return "myPage/memberInfo";
 	}
-	@RequestMapping("/userUpdateAction")
-	public String userUpdateAction(@RequestBody User user) {
-		return"";
-	}
-	
-	
-	@RequestMapping("/memberList")
-	public String memberList() {
-		return "myPage/memberList";
-	}
-	
-	@RequestMapping("/memberListpopup")
-	public String memberListpopup() {
-		return "myPage/memberListpopup";
+	@PostMapping("/userUpdateAction")
+	public @ResponseBody String userUpdateAction(User user) {
+		System.out.println(user.toString());
+		String result = myPageService.updateUserInfo(user);
+		return result;
 	}
 	
 	@RequestMapping("/myPage")
-	public String myPage() {
+	public String myPage(HttpSession session,Model model) {
+		
 		return "myPage/myPage";
 	}
 	
 	@RequestMapping("/purchaseList")
-	public String purchaseList() {
+	public String purchaseList(HttpServletRequest request) {
+		String user_id =request.getParameter("user_id");
+		ArrayList<Model> pu = myPageService.purchaseList(user_id);
 		return "myPage/purchaseList";
 	}
 	
