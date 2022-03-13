@@ -6,8 +6,8 @@
 <mapper namespace="com.ezen.dao.IreviewIMGSDAO">
 
 	<!-- 해당 review_idx를 가진 모든 행의 review_img를 가져옴 -->
-	<select id="getReviewImgList" resultType="String">
-		SELECT review_img FROM MALL_REVIEW_IMGS WHERE review_idx = #{review_idx}
+	<select id="getReviewImgList" resultType="com.ezen.dto.ReviewIMGS">
+		SELECT * FROM MALL_REVIEW_IMGS WHERE review_idx = ${param1}
 	</select>
 	
 	<!-- review_idx와 review_img를 insert -->

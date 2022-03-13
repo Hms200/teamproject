@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,6 @@ import com.ezen.dto.Purchase;
 import com.ezen.dto.Question;
 import com.ezen.service.GoodsListService;
 
-import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("goodsList")
@@ -36,7 +35,7 @@ public class GoodsListController {
 	////////////////////////
     //전체상품 페이지
 	////////////////////////
-	@RequestMapping("/goodsList")
+	@RequestMapping("goodsList")
 	public String goodsList(Model model) {
 		model = goodsListService.goodsList(model);
 		return "goodsList/goodsList";
@@ -45,25 +44,32 @@ public class GoodsListController {
 	////////////////////////
     //상품 상세 페이지
 	///////////////////////
-	@RequestMapping("/goodsDetail")
+	@RequestMapping("goodsDetail")
 	public String goodsDetail(@RequestParam("goods_idx")int goods_idx,
 							  Model model) {
 		model = goodsListService.goodsDetail(goods_idx, model);
 		return "goodsList/goodsDetail";
 	}
 	// 상품문의 작성
-	@RequestMapping("/productQnaWriteAction")
-	public String productQnaWriteAction(Question question) {
-		
-		
-		return"";
+	@PostMapping("/productQnaWriteAction")
+	@ResponseBody
+	public String productQnaWriteAction(@ModelAttribute Question question) {
+		String resultOfInsert = goodsListService.writeQna(question);
+		String returnString;
+		String goods_idx = String.valueOf(question.getGoods_idx());
+		if(resultOfInsert.equals("true")) {
+			returnString = "<script>alert('등록되었습니다.'); location.href = 'goodsDetail?goods_idx="+goods_idx+"';</script>";
+		}else {
+			returnString = "<script>alert('등록에 실패하였습니다. 다시 시도해주세요.'); location.href = 'goodsDetail?goods_idx="+goods_idx+"';</script>";
+		}
+		return returnString;
 	}
 	// 장바구니에 추가
 	@PostMapping("toShoppingCartAction")
 	@ResponseBody
 	public String toShoppingCart(@RequestBody Cart cart, HttpSession session) {
 		
-		String result = goodsListService.addGoodsInCart(cart);
+		goodsListService.addGoodsInCart(cart);
 		
 		int cartNum;
 		try {

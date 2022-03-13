@@ -31,7 +31,7 @@
             <!-- 장바구니 뱃지 -->
             <div class="position-absolute rounded-circle bg-danger text-light d-block" id="bedge" width="20px" height="10px" style="font-size: 10px;right:5px; top:5px;">
                 <span class="p-1" id="bedgeNumber">${ cart }</span>
-            </div>
+            </div> 
         </div>
     </header>
  

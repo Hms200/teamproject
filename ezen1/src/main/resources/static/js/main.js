@@ -17,7 +17,6 @@ window.onload = bedgeHideAndShow();
 function bedgeHideAndShow() {
     const bedge = document.getElementById('bedge');
     let bedgeNumber = document.getElementById('bedgeNumber').innerText;
-    bedgeNumber = cartBedgeNumberInSession;
     if(bedgeNumber == '0' || bedgeNumber == '' || bedgeNumber == null){
         bedge.classList.remove("d-block");
         bedge.classList.add("d-none");
@@ -60,37 +59,41 @@ function multiSubmit(formName, formAction, onsubmit){
 
 // 상품리스트 노출
 function setGoodsList(_type) {
-    var types = document.querySelectorAll("div .goodsList div");
+    const types = document.querySelectorAll("div .goodsList div");
     types.forEach(function (type) {
       type.classList.remove('on');
     });
     document.querySelector("div .goodsList div." + _type).classList.add("on");
 
-    document.querySelector("main").className = _type;
-    var cat = document.querySelector('main').className;
+    const container = document.querySelector("main")
+    container.classList.remove('candle');
+    container.classList.remove('warmer');
+    container.classList.remove('diffuser');
+    container.classList.remove('soap');
+    container.classList.add(_type);
+    
     $('.valcandle,.valwarmer,.valsoap,.valdiffuser').css('display','none');
-    if(cat == 'candle'){
+    if(container.classList.contains('candle')){
         let target = document.getElementsByClassName('valcandle');
         for(let item of target){
 			item.style.display='block';
 		};
-    }else if(cat == 'warmer'){
+    }else if(container.classList.contains('warmer')){
 		let target = document.getElementsByClassName('valwarmer');
         for(let item of target){
 			item.style.display='block';
 		};
-	}else if(cat == 'soap'){
+	}else if(container.classList.contains('soap')){
 		let target = document.getElementsByClassName('valsoap');
         for(let item of target){
 			item.style.display='block';
 		};
-	}else if(cat == 'diffuser'){
+	}else if(container.classList.contains('diffuser')){
 		let target = document.getElementsByClassName('valdiffuser');
         for(let item of target){
 			item.style.display='block';
 		};
 	}
-    console.log(cat);
   }
 
 // 모든 체크박스 체크
@@ -393,6 +396,17 @@ function orderGoods(){
 	});
 	
 }
+// 상품상세페이지 상품문의글 작성 전 로그인여부 체크
+function checkLogin(){
+	
+	const userIdx = document.getElementsByName('user_idx')[1].value;
+	if(userIdx == '0' || userIdx == 0 || userIdx == null || userIdx == ''){
+		alert('로그인해주세요.');
+		location.href = '../login/login';
+	}else{
+		return true;
+	}
+}
 
 // 장바구니 개별상품 최종가격 산정
 function totalPrice (event){
@@ -420,7 +434,7 @@ function addCart(){
 	const optionIdx = document.getElementsByName('option_idx')[0].value;
 	const totalPrice = document.getElementsByName('goods_total_price')[0].value;
 	const bedge = document.getElementById('bedgeNumber');
-	let bedgeNumber = Number(bedge.innerText);
+	const btnClicked = event.target.id;
 	
 	if(userIdx == 0){
 		alert('로그인하신 후 이용할 수 있습니다.');
@@ -446,10 +460,15 @@ function addCart(){
 			async: false,
 			data: formData,
 			success: function(num){
+				if(btnClicked === 'justAdd'){
 				alert('장바구니에 담겼습니다.');
-				document.getElementById('bedgeNumber').innerText = num;
+				bedge.innerText = Number(num);
+				
 				bedgeHideAndShow();
 				location.reload;
+				}else{
+					location.href = '../goodsList/cart';
+				}
 			},
 			error: function(e){
 				console.log(e);
