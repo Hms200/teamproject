@@ -185,7 +185,7 @@
       <div class="dep _inquiry">
         <div class="py-3 mb-4">
         
-        <!--아코디언 제목-->
+        <!--아코디언-->
         
           <div class="accordion" id="accordion">
          
@@ -211,9 +211,9 @@
                 </div>
                 <!-- 답변이 달려있으면 답변도 같이 노출 -->
                 <c:if test="${ question.question_isreplied == 1 }">
-                	<div class="card-body">
-                		<h5 class="card-title">답변 드립니다.</h5>
-                		<p class="cart-text my-1">${ qestion.question_reply }</p>
+                	<div class="card-body pt-1 border-top">
+                		<h6 class="card-title mt-1 mb-2">답변 드립니다.</h6>
+                		<p class="cart-text my-1">${ question.question_reply }</p>
                 		 <p class="card-text my-1 float-right"><small class="text-muted">${ question.question_reply_date }</small></p>
                 	</div>
                 </c:if>
