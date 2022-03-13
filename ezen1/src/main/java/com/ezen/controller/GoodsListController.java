@@ -102,21 +102,18 @@ public class GoodsListController {
 	@PostMapping("changeValueAction")
 	@ResponseBody
 	public void changeValue(@RequestBody HashMap<String, String> param) {
-		System.out.println(param.toString());
 		goodsListService.changeValueOfCart(param);
 	}
 	// 장바구니에서 상품 삭제
 	@PostMapping("removeGoodsFromCartAction")
 	@ResponseBody
 	public void removeGoods(@RequestBody HashMap<String, String> param) {
-		System.out.println(param.toString());
 		goodsListService.removeGoodsFromCart(param);
 	}
 	// 장바구니 개별항목 리스트로 묶기 
 	@PostMapping("listingGoodsAction")
 	@ResponseBody
 	public String listingGoods(@RequestBody HashMap<String, String> list) {
-		System.out.println(list.toString());
 		String result = goodsListService.listingGoods(list);
 		return result;
 	}
