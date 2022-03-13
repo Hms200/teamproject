@@ -37,15 +37,13 @@
       <div class="ml-3">
         <input type="checkbox" value="selectAll" class="ml-0" id="checkAll" onclick="selectAll(this)" style="width: 16px; height: 16px;"><label for="selectAll"
           class="ml-2" style="font-size: 14px;">전체선택</label>
-      </div>
+      </div> 
       <!--서버에서 처리-->
       <div style="font-size: 13px;">
         <input type="button" value="선택삭제" onclick="removeGoodsInCart();">
       </div>
     </div>
-    <!-- 상품내용 -->
-    
-   
+    <!-- 상품내용  -->
     
     <div class="container d-flex flex-column py-1 px-3 mb-4 border-bottom">
       
@@ -53,7 +51,7 @@
        <c:forEach var="cart" items="${ cartlist }" varStatus="status">
        
       <div class="row mt-4 mx-3 mb-3" style="font-size: 14px;">
-        <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
+        <input type="hidden" class="cartidx" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
         <input type="checkbox" name="${ cart.cart_idx }" class="mx-2" style="width: 16px; height: 16px;">
         <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page" />
         <div name="goods_name">${ goods.goods_name }</div>
@@ -67,7 +65,7 @@
         <div class="d-flex flex-column cartGoodsInfo">
           <div class="d-flex flex-row justify-content-between">
             <span>가격</span><span>${ cart.cart_total_price }</span> 
-            <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
+            <input type="hidden" class="price" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
           </div>
           <div class="d-flex flex-row justify-content-between">
             <span>옵션</span>
@@ -110,31 +108,32 @@
         <div>
           상품금액
         </div>
-        <div>
-          가격
+        <div id="total_price">
+          
         </div>
       </div>
       <div class="d-flex flex-row justify-content-between mx-2 mb-3" style="font-size: 14px;">
         <div>
           배송비
         </div>
-        <div>
-          가격
+        <div id="shipping_price">
+          2500
         </div>
       </div>
     </div>
     <div class="container d-flex flex-row justify-content-between my-4 mx-0 w-100 font-weight-bold"
       style="font-size: 16px;">
-      <div class="">
+      <div>
         총 결제 금액
       </div>
-      <div class="">
-        <input type="hidden" name="cart_total_price" value="{}">
-        가격
+      <div id="final_price">
+        
       </div>
+      <input type="hidden" name="cart_total_price" value="">
+   		<input type="hidden" name="cart_list_idx" value="">
     </div>
     <div class="font-weight-bold w-100 mt-5 text-center cartOrderButtonBox mb-5" style="font-size: 16xp;">
-      <button type="submit" class="btn btn-primary" style="width: 300px; height: 40px;">주문하기</button>
+      <button type="button" class="btn btn-primary" style="width: 300px; height: 40px;" onclick="listingGoods();">주문하기</button>
       </div>
       
   </main>
@@ -155,14 +154,14 @@
 </div>
     
 <c:import url="../footer.jsp"></c:import>
-<c:import url="../nav.jsp"></c:import>
+<c:import url="../nav.jsp"></c:import> 
 
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
-    <!-- 전체선택 -->
-  <script>
+<script>
+/* 전체선택 */
     function selectAll(selectAll)  {
   const checkboxes 
      = document.querySelectorAll('input[type="checkbox"]');
@@ -170,7 +169,10 @@
   checkboxes.forEach((checkbox) => {
     checkbox.checked = selectAll.checked
   })
-}
-  </script>
+};
+/* 가격계산 */
+    window.onlode = calculateTotalPrice();
+
+ </script>
 </body>
 </html>
