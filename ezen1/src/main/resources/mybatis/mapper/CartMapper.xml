@@ -45,4 +45,9 @@
 		SELECT * FROM mall_cart WHERE cart_list_idx = ${param1}
 	</select>
 	
+	<!-- 해당 cart_list_idx를 가진 cart의 isdone을 1로 변경 -->
+	<update id="updateCartIsDone">
+		UPDATE mall_cart SET cart_isdone = 1 WHERE cart_list_idx = ${param1}
+	</update>
+	
 </mapper>

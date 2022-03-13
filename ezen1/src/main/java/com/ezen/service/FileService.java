@@ -35,6 +35,7 @@ public class FileService {
 	@Value("${app.thumb.img.dir}")
 	private String thumbImgUploadDir;
 	
+	// detail 이미지 업로드 경
 	@Value("${app.goods.detail.dir}")
 	private String detailImgUploadDir;
 	
