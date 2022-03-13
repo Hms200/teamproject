@@ -43,12 +43,16 @@
         <div class="carousel-item active">
             <img src="${ goodsImgs.get(0) }" class="d-block w-100" alt="...">
         </div>
+        <c:if test="${ goodsImgs.size() >= 2 }">
         <div class="carousel-item">
             <img src="${ goodsImgs.get(1) }" class="d-block w-100" alt="...">
         </div>
+        </c:if>
+        <c:if test="${ goodsImgs.size() == 3 }">
         <div class="carousel-item">
             <img src="${ goodsImgs.get(2) }" class="d-block w-100" alt="...">
         </div>
+        </c:if>
         </div>
     </div>
     </c:if>
@@ -113,42 +117,55 @@
 
 
     <!--해당 페이지 네브 선택된 화면만 보여지기-->
-    <main class="info">
+    <main class="info w-100">
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
           <img src="${goods.goods_detail}" alt="" class="img-fluid">
           <!--구매하기버튼/장바구니 아이콘-->
           <div class="col-12 my-2">
-            <!--장바구니 버튼을 누르면 장바구니 페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <img src="/img/icon/장바구니_큰아이콘.png" class="goodsDetailCartIcon"
-              onclick="addCart();" style="width: 40px; height: 40px;">
-            <!--구매하기 버튼을 누르면 구매 페이지로 이동하고 구매페이지에서 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <button type="submit" class="btn btn-primary goodsDeatailPurchaseButton" onclick="location.href='purchaseList?goodsname={}' ">구매하기</button>
+            <!--장바구니 버튼을 누르면 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
+            <img src="/img/icon/장바구니_큰아이콘.png" class="goodsDetailCartIcon" id="justAdd"
+              onclick="addCart(event);" style="width: 40px; height: 40px;">
+            <!--구매하기 버튼을 누르면 장바구니페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
+            <button type="submit" class="btn btn-primary col-8" id="addAndBuy" onclick="addCart(event);">구매하기</button>
           </div>
         </div>
       </div>
       <!--해당네브:리뷰-->
       <div class="dep _review ">
-        <div class="d-flex flex-row flex-wrap mx-4 mt-5">
+        <div class="d-flex flex-column justify-content-start my-3">
         <c:forEach var = "dto" items="${reviewList}">
-          <div class="px-3 border">
-            <!--날짜 div-->
-            <div class="text-right" style="font-size: 8px;">
-              ${dto.review_date}
-            </div>
-            <!--이미지 div-->
-            <div class="goodsDetailReviewImgBox" style="height: 150px;">
-              <img src="/img/goods/candle/Candle01_01.jpeg" class="img-fluid" alt="" style="width: 150px;">
-            </div>
-            <!--별점div-->
-            <div style="font-size: 8px;">
-              ${dto.review_star}
-            </div>
-            <!--이름div-->
-            <div class="font-weight-bold mb-2" style="font-size: 14px;">
-              ${name}
-            </div>
-          </div>
+          
+          <div class="card mb-3 col-11" style="max-width: 520px;">
+			  <div class="row no-gutters">
+			  <!-- 등록된 리뷰이미지가 있으면 표시하고, 없으면 공란으로 둠 -->
+			  <c:forEach var="reviewimg" items="${ reviewImgList }">
+			      <c:if test="${ dto.review_idx == reviewimg.review_idx }">
+			      	<c:set var="imgsrc" value="${ reviewimg.review_img }" />
+			    		<div class="col-4 border rounded my-2">
+			     		 	<img class="img-fluid" src="${ imgsrc }" alt="유저등록 리뷰이미지">
+			    		</div>
+			      </c:if>
+			      <c:if test="${ imgsrc == null }">
+			      	<div class="col-4 d-flex flex-column border rounded text-center my-2 justify-content-center">
+			      		<p class="cart-text">등록된<br>이미지가<br>없습니다.</p>
+			      	</div>
+			      </c:if>	
+			      <c:remove var="imgsrc"/>
+	          </c:forEach>
+			    <div class="col-md-8">
+			      <div class="card-body">
+			        <h5 class="card-title">★ ${ dto.review_star }</h5>
+			        <p class="card-text">${ dto.review_contents }</p>
+			        <p class="card-text"><small class="text-muted">${ dto.review_date }</small></p>
+			        <c:if test="${ dto.review_isreplied == 1 }">
+			        <p class="card-text"><small class="text-muted">답글보기</small></p>
+			        </c:if>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+          
           </c:forEach>
         </div>
       </div>
@@ -236,12 +253,16 @@
 <script src="/js/main.js"></script>
     <script>
       function setMenu(_type) {
-        var types = document.querySelectorAll("div .navMenu div");
+        let types = document.querySelectorAll("div .navMenu div");
+        let container = document.querySelector("main");
         types.forEach(function (type) {
           type.classList.remove('on');
         });
         document.querySelector("div .navMenu div." + _type).classList.add("on");
-        document.querySelector("main").className = _type;
+        container.classList.remove('info');
+        container.classList.remove('review');
+        container.classList.remove('inquiry');
+        container.classList.add(_type);
       };
       
       let total_Price = document.getElementsByName('goods_total_price')[0];
