@@ -92,6 +92,11 @@ public class GoodsListService {
 		model.addAttribute("questionList", questionList);
 		return model;
 	}
+	// 상품 상세페이지 문의작성
+	public String writeQna(Question question) {
+		int result = questionDAO.insertQna(question);
+		return result == 1 ? "true" : "false";
+	}
 	
 	// 카트에 상품담기
 	public String addGoodsInCart(Cart cart) {

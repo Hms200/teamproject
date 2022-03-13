@@ -196,14 +196,14 @@
                 <h2 class="mb-0">
                   <button class="btn btn-block text-left d-flex flex-row justify-content-between" type="button"
                     data-toggle="collapse" data-target="#collapse${ question.question_idx }" aria-expanded="true" aria-controls="collapse${ question.question_idx }"
-                    style="font-size: 14px; height: 30px">
+                    style="font-size: 14px; height: 40px">
                     <span>${ question.question_title }</span><img src="/img/icon/down.png" alt="" class="img-fluid"
                       style="width: 25px; height: 25px;">
                   </button>
                 </h2>
               </div>
               <!--아코디언 내용-->
-              <div id="collapse${ question.question_idx }" class="collapse show" aria-labelledby="heading${ question.question_idx }" data-parent="#accordion"
+              <div id="collapse${ question.question_idx }" class="collapse" aria-labelledby="heading${ question.question_idx }" data-parent="#accordion"
                 style="font-size: 14px;">
                 <div class="card-body">
                   <p class="card-text my-1">${ question.question_contents }</p>
@@ -247,7 +247,7 @@
           </div>
           <form action="productQnaWriteAction" method="post" name="productQnaWriteForm">
             <div class="d-block mb-1">
-              <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 goodsDetailInquiryPopTitle" name="question_title"
+              <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 " name="question_title"
                 style="font-size: 14px; ">
             </div>
             <div class="d-block">
@@ -260,7 +260,7 @@
             <input type="hidden" name="goods_idx" value="${ goods.goods_idx }">
             
             <button type="button" class="btn btn-secondary text-dark col-3" onclick="popupHideAndShow('goodDetailInquiryPop')">취소 </button>
-            <input type="submit" class="btn btn-dark text-light ml-2 col-6" onsubmit="return checkLogin();" value="문의하">
+            <input type="submit" class="btn btn-dark text-light ml-2 col-6" onsubmit="return checkLogin();" value="문의하기">
           </form>
         </div>
       </div>

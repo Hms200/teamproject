@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,11 +51,18 @@ public class GoodsListController {
 		return "goodsList/goodsDetail";
 	}
 	// 상품문의 작성
-	@RequestMapping("/productQnaWriteAction")
-	public String productQnaWriteAction(Question question) {
-		
-		
-		return"";
+	@PostMapping("/productQnaWriteAction")
+	@ResponseBody
+	public String productQnaWriteAction(@ModelAttribute Question question) {
+		String resultOfInsert = goodsListService.writeQna(question);
+		String returnString;
+		String goods_idx = String.valueOf(question.getGoods_idx());
+		if(resultOfInsert.equals("true")) {
+			returnString = "<script>alert('등록되었습니다.'); location.href = 'goodsDetail?goods_idx="+goods_idx+"';</script>";
+		}else {
+			returnString = "<script>alert('등록에 실패하였습니다. 다시 시도해주세요.'); location.href = 'goodsDetail?goods_idx="+goods_idx+"';</script>";
+		}
+		return returnString;
 	}
 	// 장바구니에 추가
 	@PostMapping("toShoppingCartAction")
