@@ -31,4 +31,7 @@ public interface IcartDAO {
 	
 	// 해당 cart_list_idx를 가진 cart 를 받아옴
 	public ArrayList<Cart> getCartIsListed(int cart_list_idx);
+	
+	// 해당 cart_list_idx를 가진 cart의 isdone을 1로 변경
+	public int updateCartIsDone(int cart_list_idx);
 }

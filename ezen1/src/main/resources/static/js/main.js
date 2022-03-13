@@ -68,15 +68,27 @@ function setGoodsList(_type) {
 
     document.querySelector("main").className = _type;
     var cat = document.querySelector('main').className;
-    $('#valcandle,#valwarmer,#valsoap,#valdiffuser').css('display','none');
+    $('.valcandle,.valwarmer,.valsoap,.valdiffuser').css('display','none');
     if(cat == 'candle'){
-        document.getElementById('valcandle').style.display='block';
+        let target = document.getElementsByClassName('valcandle');
+        for(let item of target){
+			item.style.display='block';
+		};
     }else if(cat == 'warmer'){
-		document.getElementById('valwarmer').style.display='block';
+		let target = document.getElementsByClassName('valwarmer');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}else if(cat == 'soap'){
-		document.getElementById('valsoap').style.display = 'block';
+		let target = document.getElementsByClassName('valsoap');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}else if(cat == 'diffuser'){
-		document.getElementById('valdiffuser').style.display = 'block';
+		let target = document.getElementsByClassName('valdiffuser');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}
     console.log(cat);
   }
@@ -607,9 +619,10 @@ function checkPw(){
 				alert('비밀번호를 재확인 해주세요');
 				inputtedPw = '';
 				}else{
-					/// bootpay 연결 후 수정해야할 부분
+					/// bootpay 연결 후 수정해야할 부분, bootpay연결로 결제프로세스진행되면
+					// makingPurchase를 그 함수 안으로 옮길것.
 					console.log('결제 프로세스 진행');
-					return true;
+					makingPurchase();
 				}
 		},
 		error: function(e){
@@ -617,5 +630,53 @@ function checkPw(){
 		},
 	});
 }
+// 결재완료 후 db 처리(구매기록 저장)를 위한 데이터 전송
+function makingPurchase(){
+	const cartListIdx = document.getElementsByName('cart_list_idx')[0].value;
+	const userIdx = document.getElementsByName('user_idx')[0].value;
+	const totalPrice = document.getElementsByName('cart_total_price')[0].value;
+	const buyerName = document.getElementsByName('purchase_buyer_name')[0].value;
+	const buyerPhone = document.getElementsByName('purchase_buyer_phone')[0].value;
+	const buyerAddress = document.getElementsByName('purchase_buyer_address')[0].value;
+	const payment = function(){
+						const radios = document.querySelectorAll("input[type='radio']");
+						const value = radios[0].checked ? radios[0].value : radios[1].value;
+						return value;
+					};
+	const buyerRequest = document.getElementsByName('purchase_buyer_request')[0].value;
+	
+	let formData = {};
+	
+	formData.cart_list_idx = cartListIdx;
+	formData.user_idx = userIdx;
+	formData.purchase_total_price = totalPrice;
+	formData.purchase_buyer_name = buyerName;
+	formData.purchase_buyer_phone = buyerPhone;
+	formData.purchase_buyer_address = buyerAddress;
+	formData.purchase_payment = payment();
+	formData.purchase_buyer_request = buyerRequest;
+	
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	
+	jQuery.ajax({
+		url: "makePurchaseAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(result){
+			console.log(result);
+			console.log('구매프로세스 완료');
+			// mypage 구매기록 페이지로 보내기. result로 purchase_idx를 받을 예정
+			//location.href = '../myPage'
+		},
+		error: function(e){
+			console.log(e);
+		},
+	})
+}
+
 
 
