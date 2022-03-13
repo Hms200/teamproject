@@ -396,6 +396,11 @@ function orderGoods(){
 	});
 	
 }
+// 상품상세페이지 상품문의글 작성 전 로그인여부 체크
+function checkLogin(){
+	const userIdx = document.getElementsByName('user_idx')[0].value;
+	return userIdx != 0 ? true : location.href='../login/login';
+}
 
 // 장바구니 개별상품 최종가격 산정
 function totalPrice (event){

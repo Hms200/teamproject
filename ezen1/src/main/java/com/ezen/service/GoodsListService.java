@@ -15,6 +15,7 @@ import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IgoodsOptionDAO;
 import com.ezen.dao.IpurchaseDAO;
+import com.ezen.dao.IquestionDAO;
 import com.ezen.dao.IreviewIMGSDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Cart;
@@ -22,6 +23,7 @@ import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.dto.GoodsOption;
 import com.ezen.dto.Purchase;
+import com.ezen.dto.Question;
 import com.ezen.dto.Review;
 import com.ezen.dto.ReviewIMGS;
 import com.ezen.dto.User;
@@ -59,6 +61,9 @@ public class GoodsListService {
 	@Autowired
 	IreviewIMGSDAO reviewImgsDAO;
 	
+	@Autowired
+	IquestionDAO questionDAO;
+	
 	
 	// 전체상품 페이지
 	public Model goodsList(Model model) {
@@ -78,11 +83,13 @@ public class GoodsListService {
 		});
 		ArrayList<String> goodsImgs = goodsIMGDAO.getGoodsImgs(goods_idx);
 		ArrayList<GoodsOption> goodsOptions = goodsOptionDAO.getGoodsOptions();
+		ArrayList<Question> questionList = questionDAO.getQuestionList(goods_idx);
 		model.addAttribute("goods", goods);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("reviewImgList", reviewImgList);
 		model.addAttribute("goodsImgs", goodsImgs);
 		model.addAttribute("goodsOptions", goodsOptions);
+		model.addAttribute("questionList", questionList);
 		return model;
 	}
 	

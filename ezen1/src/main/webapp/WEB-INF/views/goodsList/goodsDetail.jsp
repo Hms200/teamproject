@@ -124,8 +124,8 @@
           <!--구매하기버튼/장바구니 아이콘-->
           <div class="col-12 my-2">
             <!--장바구니 버튼을 누르면 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <img src="/img/icon/장바구니_큰아이콘.png" class="goodsDetailCartIcon" id="justAdd"
-              onclick="addCart(event);" style="width: 40px; height: 40px;">
+            <img src="/img/icon/장바구니_큰아이콘.png" id="justAdd"
+              onclick="addCart(event);" style="width: 40px; height: 40px; cursor: pointer;">
             <!--구매하기 버튼을 누르면 장바구니페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
             <button type="submit" class="btn btn-primary col-8" id="addAndBuy" onclick="addCart(event);">구매하기</button>
           </div>
@@ -153,6 +153,7 @@
 			      </c:if>	
 			      <c:remove var="imgsrc"/>
 	          </c:forEach>
+	          
 			    <div class="col-8">
 			      <div class="card-body">
 			        <h5 class="card-title">★ ${ dto.review_star }</h5>
@@ -180,30 +181,47 @@
         </div>
       </div>
       <!--해당네브:문의/안내-->
-      <!--아코디언 제목-->
+      
       <div class="dep _inquiry">
         <div class="py-3 mb-4">
-          <div class="accordion accordionGoodsDetail" id="accordionExample">
+        
+        <!--아코디언 제목-->
+        
+          <div class="accordion" id="accordion">
+         
+          <c:forEach var="question" items="${ questionList }">
             <div class="card">
-              <div class="card-header cardHeaderGoodsDetail" id="headingOne">
+            	<!-- 질문 제목 -->
+              <div class="card-header p-0" id="heading${ question.question_idx }">
                 <h2 class="mb-0">
-                  <button class="btn btn-block text-left d-flex flex-row justify-content-between mb-3" type="button"
-                    data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
-                    style="font-size: 14px;">
-                    <span>제목</span><img src="/img/icon/down.png" alt="" class="img-fluid"
+                  <button class="btn btn-block text-left d-flex flex-row justify-content-between" type="button"
+                    data-toggle="collapse" data-target="#collapse${ question.question_idx }" aria-expanded="true" aria-controls="collapse${ question.question_idx }"
+                    style="font-size: 14px; height: 30px">
+                    <span>${ question.question_title }</span><img src="/img/icon/down.png" alt="" class="img-fluid"
                       style="width: 25px; height: 25px;">
                   </button>
                 </h2>
               </div>
               <!--아코디언 내용-->
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"
+              <div id="collapse${ question.question_idx }" class="collapse show" aria-labelledby="heading${ question.question_idx }" data-parent="#accordion"
                 style="font-size: 14px;">
                 <div class="card-body">
-                  2022-01-01<br>
-                  문의내용
+                  <p class="card-text my-1">${ question.question_contents }</p>
+                  <p class="card-text my-1 float-right"><small class="text-muted">${ question.question_date }</small></p>
                 </div>
+                <!-- 답변이 달려있으면 답변도 같이 노출 -->
+                <c:if test="${ question.question_isreplied == 1 }">
+                	<div class="card-body">
+                		<h5 class="card-title">답변 드립니다.</h5>
+                		<p class="cart-text my-1">${ qestion.question_reply }</p>
+                		 <p class="card-text my-1 float-right"><small class="text-muted">${ question.question_reply_date }</small></p>
+                	</div>
+                </c:if>
               </div>
             </div>
+            
+            </c:forEach>
+            
           </div>
           <!--상품 문의하기 버튼-->
           <div class="container w-100 my-5 d-flex justify-content-center">
@@ -214,39 +232,35 @@
         </div>
       </div>
     </main>
+    
     <!--상품문의 작성팝업-->
-    <div class="d-none" id="goodDetailInquiryPop">
-      <div class="d-flex flex-column border bg-white mx-auto goodsDetailInquiryPop">
+    <div class="d-none position-absolute" id="goodDetailInquiryPop" style="bottom: 30px">
+      <div class="d-flex flex-column border rounded bg-white mx-auto">
         <!--X아이콘-->
-        <div class="d-flex justify-content-end goodsDetailCrossIconBox">
-          <img src="/img/icon/cross.png" alt="" class="goodsDetailCrossIconImg"
-            onclick="popupHideAndShow('goodDetailInquiryPop')" style="width:30px; height: 30px;">
+        <div class="d-flex justify-content-end">
+          <img src="/img/icon/cross.png" alt=""
+            onclick="popupHideAndShow('goodDetailInquiryPop')" style="width:30px; height: 30px; cursor: pointer;">
         </div>
-        <div class="goodsDetailInquiryPopBox1 mr-3 mb-4 ml-3">
-          <div class="text-center font-weight-bold text-dark goodsDetailInquiryPopBox2" style="font-size: 16px;">
+        <div class="mr-3 mb-4 ml-3">
+          <div class="text-center font-weight-bold text-dark mb-2" style="font-size: 16px;">
             상품문의
           </div>
           <form action="productQnaWriteAction" method="post" name="productQnaWriteForm">
-          <%
-          Date date = new Date();
-          %>
-            <p class="text-right text-black-50 d-block goodsDetailInquiryPopDate" name="question_date" style="font-size: 12px">
-              <%=date%></p>
             <div class="d-block mb-1">
-              <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border w-100 text-dark py-1 px-3 goodsDetailInquiryPopTitle" name="question_title"
+              <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 goodsDetailInquiryPopTitle" name="question_title"
                 style="font-size: 14px; ">
             </div>
             <div class="d-block">
-              <input type="textarea" placeholder="상품문의 내용을 입력해주세요." class="border w-100 text-dark py-1 px-3 mb-4 goodsDetailInquiryPopContent"
+              <textarea cols="50" rows="10" placeholder="상품문의 내용을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 mb-4"
                 name="question_contents"
-                style="font-size: 14px;">
+                style="font-size: 14px; resize: none;"></textarea>
             </div>
             <!--자동으로 받음-->
-            <input type="hidden" name="user_id" value="${ user_id }">
-            <input type="hidden" name="goods_name" value="${ goods.goods_name }">
-            <!--input button 에서 button- button으로 변경-->
-            <button type="button" class="btn btn-secondary text-dark goodsDetailInquiryPopCancle" onclick="popupHideAndShow('goodDetailInquiryPop')">취소 </button>
-            <button class="btn text-light ml-2 goodsDetailInquiryPopSubmit">문의하기</button>
+            <input type="hidden" name="user_idx" value="${ user_idx }">
+            <input type="hidden" name="goods_idx" value="${ goods.goods_idx }">
+            
+            <button type="button" class="btn btn-secondary text-dark col-3" onclick="popupHideAndShow('goodDetailInquiryPop')">취소 </button>
+            <input type="submit" class="btn btn-dark text-light ml-2 col-6" onsubmit="return checkLogin();" value="문의하">
           </form>
         </div>
       </div>
