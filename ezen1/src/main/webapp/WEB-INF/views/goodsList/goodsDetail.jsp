@@ -136,7 +136,7 @@
         <div class="d-flex flex-column justify-content-start my-3">
         <c:forEach var = "dto" items="${reviewList}">
           
-          <div class="card mb-3 col-11" style="max-width: 520px;">
+          <div class="card mb-3 col-11 position-relative" style="max-width: 520px;">
 			  <div class="row no-gutters">
 			  <!-- 등록된 리뷰이미지가 있으면 표시하고, 없으면 공란으로 둠 -->
 			  <c:forEach var="reviewimg" items="${ reviewImgList }">
@@ -153,20 +153,30 @@
 			      </c:if>	
 			      <c:remove var="imgsrc"/>
 	          </c:forEach>
-			    <div class="col-md-8">
+			    <div class="col-8">
 			      <div class="card-body">
 			        <h5 class="card-title">★ ${ dto.review_star }</h5>
-			        <p class="card-text">${ dto.review_contents }</p>
-			        <p class="card-text"><small class="text-muted">${ dto.review_date }</small></p>
+			        <p class="card-text my-2">${ dto.review_contents }</p>
+			        <p class="card-text my-1"><small class="text-muted">${ dto.review_date }</small></p>
+			        <!-- 등록된 답글이 있으면 답글보기 버튼이 노출됨 -->
 			        <c:if test="${ dto.review_isreplied == 1 }">
-			        <p class="card-text"><small class="text-muted">답글보기</small></p>
+			        	<p class="card-text" onclick="popupHideAndShow('reply${ dto.review_idx}')"><small class="text-muted" style="cursor: pointer;">답글보기</small></p>
 			        </c:if>
 			      </div>
 			    </div>
 			  </div>
 			</div>
+			<!-- 답글팝업 -->
+			<div class="card col-11 position-absolute d-none justify-contents-center" id="reply${ dto.review_idx }" style="top: 96%; right: 4%;">
+			  <div class="card-body">
+			    <p class="card-text my-1">${ dto.review_reply }</p>
+			    <p class="card-text my-1"><small class="text-muted">${ dto.review_reply_date }</small></p>
+			    <button class="btn btn-primary float-right mb-2" type="button" onclick="popupHideAndShow('reply${ dto.review_idx}')">닫기</button>
+			  </div>
+			</div>
           
           </c:forEach>
+          
         </div>
       </div>
       <!--해당네브:문의/안내-->
