@@ -15,13 +15,17 @@ import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IgoodsOptionDAO;
 import com.ezen.dao.IpurchaseDAO;
+import com.ezen.dao.IquestionDAO;
+import com.ezen.dao.IreviewIMGSDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Cart;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.dto.GoodsOption;
 import com.ezen.dto.Purchase;
+import com.ezen.dto.Question;
 import com.ezen.dto.Review;
+import com.ezen.dto.ReviewIMGS;
 import com.ezen.dto.User;
 
 @Service
@@ -54,6 +58,12 @@ public class GoodsListService {
 	@Autowired
 	IuserDAO userDAO;
 	
+	@Autowired
+	IreviewIMGSDAO reviewImgsDAO;
+	
+	@Autowired
+	IquestionDAO questionDAO;
+	
 	
 	// 전체상품 페이지
 	public Model goodsList(Model model) {
@@ -66,13 +76,26 @@ public class GoodsListService {
 	public Model goodsDetail(int goods_idx, Model model) {
 		Goods goods = goodsDAO.getGoodsInfo(goods_idx);
 		ArrayList<Review> reviewList = goodsDAO.getGoodsReview(goods_idx);
+		ArrayList<ReviewIMGS> reviewImgList = new ArrayList<>();
+		reviewList.forEach(review -> {
+			ReviewIMGS reviewImg = reviewImgsDAO.getReviewImgList(review.getReview_idx());
+			reviewImgList.add(reviewImg);
+		});
 		ArrayList<String> goodsImgs = goodsIMGDAO.getGoodsImgs(goods_idx);
 		ArrayList<GoodsOption> goodsOptions = goodsOptionDAO.getGoodsOptions();
+		ArrayList<Question> questionList = questionDAO.getQuestionList(goods_idx);
 		model.addAttribute("goods", goods);
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewImgList", reviewImgList);
 		model.addAttribute("goodsImgs", goodsImgs);
 		model.addAttribute("goodsOptions", goodsOptions);
+		model.addAttribute("questionList", questionList);
 		return model;
+	}
+	// 상품 상세페이지 문의작성
+	public String writeQna(Question question) {
+		int result = questionDAO.insertQna(question);
+		return result == 1 ? "true" : "false";
 	}
 	
 	// 카트에 상품담기
