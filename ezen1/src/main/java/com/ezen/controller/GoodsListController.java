@@ -69,7 +69,7 @@ public class GoodsListController {
 	@ResponseBody
 	public String toShoppingCart(@RequestBody Cart cart, HttpSession session) {
 		
-		String result = goodsListService.addGoodsInCart(cart);
+		goodsListService.addGoodsInCart(cart);
 		
 		int cartNum;
 		try {
