@@ -351,4 +351,12 @@ public class AdminService {
 			return "실패하였습니다.";
 		}
 	}
+	
+	// 회원관리 유저리스트 받기
+	public Model getUserListForAdmin(Model model) {
+		ArrayList<HashMap<String, String>> userList = cartDAO.getCartSumOfPriceAndAmount();
+		model.addAttribute("userlist", userList);
+		System.out.println(model.toString());
+		return model;
+	}
 }
