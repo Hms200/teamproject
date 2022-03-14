@@ -350,6 +350,7 @@ public class AdminService {
 		}else {
 			return "실패하였습니다.";
 		}
+		
 	}
 	
 	// 회원관리 유저리스트 받기

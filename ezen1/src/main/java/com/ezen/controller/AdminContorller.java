@@ -64,6 +64,7 @@ public class AdminContorller {
 	@RequestMapping("memberList")
 	public String memberList(Model model) {
 		model = adminService.getUserListForAdmin(model);
+		System.out.println(model.toString());
 		return "admin/memberList";
 	}
 	
