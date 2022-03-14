@@ -57,32 +57,27 @@ public class MyPageService {
 		}
 	}
 
-	public ArrayList<Model> purchaseList(String user_id,Model model) {
+	public Model purchaseList(String user_id,Model model) {
 		int user_idx = userDAO.getUserIdx(user_id);
 		ArrayList<Cart> isDoneList = cartDAO.getCartIsDone(user_idx);
-		model.addAttribute("purchaseList",isDoneList);
+		HashMap<Object, Object> thumbList = new HashMap<>();
+		HashMap<Object, Object> nameList = new HashMap<>();
+		HashMap<Object, Object> priceList = new HashMap<>();
 
-		ArrayList<Model> modelList = new ArrayList<>();
 		
 		isDoneList.forEach(list -> {
-			int goods_idx = list.getGoods_idx();
-			model.addAttribute("goods_idx", goods_idx);
-			
-			String Thumb = goodsDAO.getGoodsThumb(goods_idx);
-			model.addAttribute("goods_thumb",Thumb);
-			
-			String Name = goodsDAO.getGoodsName(goods_idx);
-			model.addAttribute("goods_name", Name);
-			
-			int cart_list_idx = list.getCart_list_idx();
-			Purchase purchase = purchaseDAO.getPurchaseInfoByCartListidx(cart_list_idx);
-			model.addAttribute("purchase", purchase);
-			modelList.add(model);
+			thumbList.put(list.getGoods_idx(), goodsDAO.getGoodsThumb(list.getGoods_idx()));
+			nameList.put(list.getGoods_idx(), goodsDAO.getGoodsName(list.getGoods_idx()));
+			priceList.put(list.getGoods_idx(), goodsDAO.getGoodsPrice(list.getGoods_idx()));
 		});
-		System.out.println(modelList);
-		model.addAttribute("list",modelList);
 		
-		return modelList;
+		model.addAttribute("thumbList",thumbList);
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("priceList",priceList);
+		model.addAttribute("isDoneList",isDoneList);
+		
+		
+		return model;
 	}
 
 
