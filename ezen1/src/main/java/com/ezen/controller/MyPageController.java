@@ -1,6 +1,7 @@
 package com.ezen.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,9 +51,9 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/purchaseList")
-	public String purchaseList(HttpServletRequest request) {
+	public String purchaseList(HttpServletRequest request,Model model) {
 		String user_id =request.getParameter("user_id");
-		ArrayList<Model> pu = myPageService.purchaseList(user_id);
+		myPageService.purchaseList(user_id, model);
 		return "myPage/purchaseList";
 	}
 	
