@@ -17,14 +17,18 @@ import com.ezen.dao.IcartDAO;
 import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IgoodsOptionDAO;
+import com.ezen.dao.IonetooneDAO;
 import com.ezen.dao.IpurchaseDAO;
+import com.ezen.dao.IquestionDAO;
 import com.ezen.dao.IreviewDAO;
 import com.ezen.dao.IreviewIMGSDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Cart;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsOption;
+import com.ezen.dto.OneToOne;
 import com.ezen.dto.Purchase;
+import com.ezen.dto.Question;
 import com.ezen.dto.Review;
 import com.ezen.dto.ReviewIMGS;
 import com.ezen.dto.User;
@@ -61,6 +65,12 @@ public class AdminService {
 	
 	@Autowired
 	IreviewIMGSDAO reviewImgsDAO;
+	
+	@Autowired
+	IquestionDAO questionDAO;
+	
+	@Autowired
+	IonetooneDAO onetooneDAO;
 	
 	// MemberList filter
 	public Model MemberListBySearch(String searchText, Model model) {
@@ -291,6 +301,41 @@ public class AdminService {
 		}
 	}
 	
+	// 문의관리/ 상품상세정보에 올라온 질문 받기
+	public Model getQuestionsFromGoodsDetail(Model model) {
+		ArrayList<Question> questionList = questionDAO.getAllQuestions();
+		HashMap<Integer, String> userList = new HashMap<>();
+		HashMap<Integer, String> goodsList = new HashMap<>();
+		questionList.forEach(item -> {
+			userList.put(item.getUser_idx(), userDAO.getUserIdByUserIdx(item.getUser_idx()));
+			goodsList.put(item.getGoods_idx(), goodsDAO.getGoodsName(item.getGoods_idx()));
+		});
+		model.addAttribute("questionlist", questionList);
+		model.addAttribute("userlist", userList);
+		model.addAttribute("goodslist", goodsList);
+		return model;
+	}
+	// 1:1문의로 올라온 질문 받기
+	public Model getOneToOneList(Model model) {
+		ArrayList<OneToOne> OneToOneList = onetooneDAO.getOneToOneList();
+		HashMap<Integer, String> userList = new HashMap<>();
+		OneToOneList.forEach(item -> {
+			userList.put(item.getUser_idx(), userDAO.getUserIdByUserIdx(item.getUser_idx()));
+		});
+		model.addAttribute("questionlist", OneToOneList);
+		
+	}
 	
+	// 상품상세 문의글에 답글달기
+	public String registQuestionReply(HashMap<String, String> param) {
+		int question_idx = Integer.parseInt(param.get("question_idx"));
+		String question_reply = param.get("qustion_reply");
+		int result = questionDAO.updateQnaAnswer(question_idx, question_reply);
+		if(result == 1) {
+			return "등록되었습니다.";
+		}else {
+			return "실패하였습니다.";
+		}
+	}
 	
 }

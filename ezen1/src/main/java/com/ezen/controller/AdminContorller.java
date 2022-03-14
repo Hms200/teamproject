@@ -70,9 +70,30 @@ public class AdminContorller {
 		}
 		return "";
 	}
+	
+	/////////////////////////////////////////
+	// 문의관리 페이지
+	/////////////////////////////////////////
 	@RequestMapping("qnaList")
-	public String qnaList() {
+	public String qnaList(@RequestParam(required = false) String cat,Model model) {
+		try {
+			if(cat.equals("Qna")) {
+				model = adminService.getQuestionsFromGoodsDetail(model);
+				return "admin/qnaList";
+			}else {
+				
+			}
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+		}
+		model = adminService.getQuestionsFromGoodsDetail(model);
 		return "admin/qnaList";
+	}
+	// 상품상세문의 답글등록
+	@PostMapping("registerQuestionReplyAction")
+	@ResponseBody
+	public String registerQuestionReply(@RequestBody HashMap<String, String> param) {
+		return adminService.registQuestionReply(param);
 	}
 	
 	

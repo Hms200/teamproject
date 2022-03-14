@@ -783,5 +783,32 @@ function registReviewReply(){
 		});
 }
 
+// admin.qnaList 질문답글달기
+function registerQuestionReply(){
+	const replyContents = document.getElementsByName('question_reply')[0].value;
+	const questionIdx = document.getElementById('targetIdx').value;
+	
+	let formData = {};
+	formData.question_idx = questionIdx;
+	formData.question_reply = replyContents;
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	jQuery.ajax({
+			url: "registerQuestionReplyAction",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			async: false,
+			data: formData,
+			success: function(result){
+				console.log(result);
+				alert(result);
+				popupHideAndShow('qna_reply_popup');
+			},
+			error: function(e){
+				console.log(e);
+			},
+		});
+}
 
 
