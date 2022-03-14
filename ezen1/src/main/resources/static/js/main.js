@@ -697,5 +697,63 @@ function makingPurchase(){
 	})
 }
 
+// admin stransActionPop 주문상태변경
+function updateTransactionStatement(event){
+	const targetId = event.target.id;
+	const selectValue = document.getElementsByName('purchase_statement')[1].value;
+	const purchaseIdx = document.getElementById('purchase_idx').value;
+	console.log(targetId);
+	let data = {};
+	
+	if(targetId == '확인'){
+		if(selectValue == '#'){
+			location.href = 'transaction';
+		}else{
+			data.purchase_idx = purchaseIdx;
+			data.purchase_statement = selectValue;
+			data = JSON.stringify(data);
+			console.log(data);
+			jQuery.ajax({
+			url: "changeStatementAction",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			async: false,
+			data: data,
+			success: function(result){
+				console.log(result);
+				alert(result);
+				location.href = 'transactionpop?purchase_idx='+purchaseIdx;
+			},
+			error: function(e){
+				console.log(e);
+			},
+		});
+		}
+	}else{
+		data.purchase_idx = purchaseIdx;
+		data.purchase_statement = targetId;
+		data = JSON.stringify(data);
+		console.log(data);
+		jQuery.ajax({
+		url: "changeStatementAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: data,
+		success: function(result){
+			console.log(result);
+			alert(result);
+			location.href = 'transactionpop?purchase_idx='+purchaseIdx;
+		},
+		error: function(e){
+			console.log(e);
+		},
+	});
+	}
+	
+}
+
 
 

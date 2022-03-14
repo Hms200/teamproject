@@ -11,11 +11,16 @@
 	</select>
 	<!-- purchase_idx가 일치하는 값의 purchase_statement 를 변경함 -->
 	<update id="updatePurchaseStatementByMyPage">
-		UPDATE MALL_PURCHASE SET PURCHASE_STATMENT = #{purchase_statement} WHERE PURCHASE_IDX = #{purchase_idx}
+		UPDATE MALL_PURCHASE SET PURCHASE_STATEMENT = #{param2} WHERE PURCHASE_IDX = ${param1}
 	</update>
 	<!-- 모든 mall_purchase의 정보를 가져옴 -->
 	<select id="getPurchaseList" resultType="com.ezen.dto.Purchase">
 		SELECT * FROM MALL_PURCHASE
+	</select>
+	
+	<!-- purchase 단건 가저옴 -->
+	<select id="getPurchaseByPurchaseIdx" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM mall_purchase WHERE purchase_idx = ${param1}
 	</select>
 	
 	<!-- insert purchase -->
@@ -29,5 +34,19 @@
 			  #{purchase_buyer_name}, #{purchase_buyer_phone}, #{purchase_buyer_address},
 			  #{purchase_payment}, #{purchase_buyer_request}, sysdate, '주문접수')
 	</insert>
+	
+	<!-- 해당 purchase_statement를 가진 모든 row 가져옴 -->
+	<select id="getPurchaseListByStatement" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM mall_purchase WHERE purchase_statement = #{param1}
+	</select>
+	
+	<!-- 모든 mall_purchase의 정보를 최신순으로 정렬하여 가져옴 -->
+	<select id="getPurchaseListDesc" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM MALL_PURCHASE ORDER BY purchase_date DESC
+	</select>
 
+	<!-- 모든 mall_purchase의 정보를 오래된 순으로 정렬하여  가져옴 -->
+	<select id="getPurchaseListAsc" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM MALL_PURCHASE ORDER BY purchase_date ASC
+	</select>
 </mapper>
