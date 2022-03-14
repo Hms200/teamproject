@@ -81,19 +81,26 @@ public class AdminContorller {
 				model = adminService.getQuestionsFromGoodsDetail(model);
 				return "admin/qnaList";
 			}else {
-				
+				model = adminService.getOneToOneList(model);
+				return "admin/qnaList";
 			}
 		} catch (NullPointerException e) {
-			// TODO: handle exception
+			model = adminService.getQuestionsFromGoodsDetail(model);
 		}
-		model = adminService.getQuestionsFromGoodsDetail(model);
+		
 		return "admin/qnaList";
 	}
-	// 상품상세문의 답글등록
+	// 상품상세문의 답글등록 qna
 	@PostMapping("registerQuestionReplyAction")
 	@ResponseBody
 	public String registerQuestionReply(@RequestBody HashMap<String, String> param) {
 		return adminService.registQuestionReply(param);
+	}
+	// 상품상세문의 답글등록 1:1문의
+	@PostMapping("registerOneToOneReplyAction")
+	@ResponseBody
+	public String registerOneToOneReply(@RequestBody HashMap<String, String> param) {
+		return adminService.registOneToOneReply(param);
 	}
 	
 	

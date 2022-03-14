@@ -787,28 +787,48 @@ function registReviewReply(){
 function registerQuestionReply(){
 	const replyContents = document.getElementsByName('question_reply')[0].value;
 	const questionIdx = document.getElementById('targetIdx').value;
+	const mode = document.getElementById('mode').value;
 	
 	let formData = {};
 	formData.question_idx = questionIdx;
 	formData.question_reply = replyContents;
 	formData = JSON.stringify(formData);
 	console.log(formData);
-	jQuery.ajax({
-			url: "registerQuestionReplyAction",
-			type: "POST",
-			contentType: "application/json",
-			processData: false,
-			async: false,
-			data: formData,
-			success: function(result){
-				console.log(result);
-				alert(result);
-				popupHideAndShow('qna_reply_popup');
-			},
-			error: function(e){
-				console.log(e);
-			},
-		});
+	if(mode == 'Qna'){
+		jQuery.ajax({
+				url: "registerQuestionReplyAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				async: false,
+				data: formData,
+				success: function(result){
+					console.log(result);
+					alert(result);
+					popupHideAndShow('qna_reply_popup');
+				},
+				error: function(e){
+					console.log(e);
+				},
+			});
+		}else{
+			jQuery.ajax({
+				url: "registerOneToOneReplyAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				async: false,
+				data: formData,
+				success: function(result){
+					console.log(result);
+					alert(result);
+					popupHideAndShow('qna_reply_popup');
+				},
+				error: function(e){
+					console.log(e);
+				},
+			});
+		}
 }
 
 
