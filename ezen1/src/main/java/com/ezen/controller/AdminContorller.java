@@ -181,12 +181,22 @@ public class AdminContorller {
 		return "<script>alert('등록되었습니다.'); location.href='goods';</script>";
 	}
 	
-	
-	
+	///////////////////////////////
+	//  리뷰관리 페이지
+	///////////////////////////////
 	@RequestMapping("review")
-	public String review() {
+	public String review(Model model) {
+		model = adminService.reviewList(model);
 		return "admin/review";
 	}
+	// 리뷰 답글 등록
+	@PostMapping("registReviewReplyAction")
+	@ResponseBody
+	public String registReviewReply(@RequestBody HashMap<String, String> param) {
+		return adminService.registReviewReply(param);
+	}
+	
+	
 	//////////////////////////////
 	// 주문목록 페이지
 	//////////////////////////////

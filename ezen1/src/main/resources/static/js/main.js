@@ -714,6 +714,28 @@ function updateTransactionStatement(event){
 			data = JSON.stringify(data);
 			console.log(data);
 			jQuery.ajax({
+				url: "changeStatementAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				async: false,
+				data: data,
+				success: function(result){
+					console.log(result);
+					alert(result);
+					location.href = 'transactionpop?purchase_idx='+purchaseIdx;
+				},
+				error: function(e){
+					console.log(e);
+				},
+			});
+		}
+	}else{
+		data.purchase_idx = purchaseIdx;
+		data.purchase_statement = targetId;
+		data = JSON.stringify(data);
+		console.log(data);
+		jQuery.ajax({
 			url: "changeStatementAction",
 			type: "POST",
 			contentType: "application/json",
@@ -729,30 +751,36 @@ function updateTransactionStatement(event){
 				console.log(e);
 			},
 		});
-		}
-	}else{
-		data.purchase_idx = purchaseIdx;
-		data.purchase_statement = targetId;
-		data = JSON.stringify(data);
-		console.log(data);
-		jQuery.ajax({
-		url: "changeStatementAction",
-		type: "POST",
-		contentType: "application/json",
-		processData: false,
-		async: false,
-		data: data,
-		success: function(result){
-			console.log(result);
-			alert(result);
-			location.href = 'transactionpop?purchase_idx='+purchaseIdx;
-		},
-		error: function(e){
-			console.log(e);
-		},
-	});
 	}
 	
+}
+
+// admin.review 리뷰답글달기
+function registReviewReply(){
+	const replyContents = document.getElementsByName('review_reply')[0].value;
+	const reviewIdx = document.getElementById('targetIdx').value;
+	
+	let formData = {};
+	formData.review_idx = reviewIdx;
+	formData.review_reply = replyContents;
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	jQuery.ajax({
+			url: "registReviewReplyAction",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			async: false,
+			data: formData,
+			success: function(result){
+				console.log(result);
+				alert(result);
+				popupHideAndShow('reviewReplyWriteForm');
+			},
+			error: function(e){
+				console.log(e);
+			},
+		});
 }
 
 

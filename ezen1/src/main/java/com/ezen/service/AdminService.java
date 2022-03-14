@@ -18,11 +18,15 @@ import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IgoodsOptionDAO;
 import com.ezen.dao.IpurchaseDAO;
+import com.ezen.dao.IreviewDAO;
+import com.ezen.dao.IreviewIMGSDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Cart;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsOption;
 import com.ezen.dto.Purchase;
+import com.ezen.dto.Review;
+import com.ezen.dto.ReviewIMGS;
 import com.ezen.dto.User;
 
 @Service
@@ -51,6 +55,12 @@ public class AdminService {
 	
 	@Autowired
 	IgoodsOptionDAO optionDAO;
+	
+	@Autowired
+	IreviewDAO reviewDAO;
+	
+	@Autowired
+	IreviewIMGSDAO reviewImgsDAO;
 	
 	// MemberList filter
 	public Model MemberListBySearch(String searchText, Model model) {
@@ -255,4 +265,32 @@ public class AdminService {
 		}
 		return returnString;
 	}
+	
+	// 리뷰목록
+	public Model reviewList(Model model) {
+		ArrayList<Review> reviewList = reviewDAO.getAllReviews();
+		ArrayList<ReviewIMGS> reviewImgsList = reviewImgsDAO.getAllReviewImgs();
+		HashMap<Integer, String> goodsnameList = new HashMap<>();
+		reviewList.forEach(item -> {
+			goodsnameList.put(item.getGoods_idx(), goodsDAO.getGoodsName(item.getGoods_idx()));
+		});
+		model.addAttribute("reviewlist", reviewList);
+		model.addAttribute("reviewimgslist", reviewImgsList);
+		model.addAttribute("goodsnamelist", goodsnameList);
+		return model;
+	}
+	// 리뷰 답글달기
+	public String registReviewReply(HashMap<String, String> param) {
+		int review_idx = Integer.parseInt(param.get("review_idx"));
+		String review_reply = param.get("review_reply");
+		int result = reviewDAO.updateReviewReply(review_idx, review_reply);
+		if(result == 1) {
+			return "등록되었습니다.";
+		}else {
+			return "실패하였습니다.";
+		}
+	}
+	
+	
+	
 }

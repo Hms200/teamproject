@@ -15,5 +15,10 @@
 		INSERT INTO MALL_REVIEW_IMGS (review_idx, review_img)
 			values (#{review_idx}, #{review_img})
 	</insert>
+	
+	<!-- 모든 정보를 가져옴 -->
+	<select id="getAllReviewImgs" resultType="com.ezen.dto.ReviewIMGS">
+		SELECT * FROM mall_review_imgs
+	</select>
 
 </mapper>
