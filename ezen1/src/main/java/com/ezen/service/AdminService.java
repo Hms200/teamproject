@@ -313,6 +313,7 @@ public class AdminService {
 		model.addAttribute("questionlist", questionList);
 		model.addAttribute("userlist", userList);
 		model.addAttribute("goodslist", goodsList);
+		model.addAttribute("mode", "Qna");
 		return model;
 	}
 	// 1:1문의로 올라온 질문 받기
@@ -323,10 +324,12 @@ public class AdminService {
 			userList.put(item.getUser_idx(), userDAO.getUserIdByUserIdx(item.getUser_idx()));
 		});
 		model.addAttribute("questionlist", OneToOneList);
-		
+		model.addAttribute("userlist", userList);
+		model.addAttribute("mode", "OneToOne");
+		return model;
 	}
 	
-	// 상품상세 문의글에 답글달기
+	// 상품상세 문의글에 답글달기 qna
 	public String registQuestionReply(HashMap<String, String> param) {
 		int question_idx = Integer.parseInt(param.get("question_idx"));
 		String question_reply = param.get("qustion_reply");
@@ -337,5 +340,24 @@ public class AdminService {
 			return "실패하였습니다.";
 		}
 	}
+	// 1:1문의글에 답글달기
+	public String registOneToOneReply(HashMap<String, String> param) {
+		int question_idx = Integer.parseInt(param.get("question_idx"));
+		String question_reply = param.get("qustion_reply");
+		int result = onetooneDAO.updateQnaAnswerByReplyAndContent(question_idx, question_reply);
+		if(result == 1) {
+			return "등록되었습니다.";
+		}else {
+			return "실패하였습니다.";
+		}
+		
+	}
 	
+	// 회원관리 유저리스트 받기
+	public Model getUserListForAdmin(Model model) {
+		ArrayList<HashMap<String, String>> userList = cartDAO.getCartSumOfPriceAndAmount();
+		model.addAttribute("userlist", userList);
+		System.out.println(model.toString());
+		return model;
+	}
 }

@@ -1,6 +1,7 @@
 package com.ezen.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +10,12 @@ import org.springframework.ui.Model;
 import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.InoticeDAO;
+import com.ezen.dao.IreviewDAO;
+import com.ezen.dao.IreviewIMGSDAO;
 import com.ezen.dto.Goods;
 import com.ezen.dto.Notice;
+import com.ezen.dto.Review;
+import com.ezen.dto.ReviewIMGS;
 
 @Service
 public class MainService {
@@ -29,6 +34,12 @@ public class MainService {
 	
 	@Autowired
 	Pagenation pagenation;
+	
+	@Autowired
+	IreviewDAO reviewDAO;
+	
+	@Autowired
+	IreviewIMGSDAO reviewIMGSDAO;
 	
 	// 공지사항 관련
 	
@@ -125,6 +136,19 @@ public class MainService {
 	public Model monthDiscountCardData(Model model) {
 		ArrayList<Goods> goods = goodsDAO.getGoodsListByOnEvent(1);
 		model.addAttribute("discount", goods);
+		return model;
+	}
+	// best review cart
+	public Model BestReviewCard(Model model) {
+		ArrayList<Review> reviewList = reviewDAO.getAllReviews();
+		ArrayList<ReviewIMGS> reviewImgsList = reviewIMGSDAO.getAllReviewImgs();
+		HashMap<Integer, String> goodsnameList = new HashMap<>();
+		reviewList.forEach(item -> {
+			goodsnameList.put(item.getGoods_idx(), goodsDAO.getGoodsName(item.getGoods_idx()));
+		});
+		model.addAttribute("reviewlist", reviewList);
+		model.addAttribute("reviewimgslist", reviewImgsList);
+		model.addAttribute("goodsnamelist", goodsnameList);
 		return model;
 	}
 }
