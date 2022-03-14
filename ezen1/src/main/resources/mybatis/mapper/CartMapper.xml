@@ -7,7 +7,7 @@
 
 	<!-- user_idx가 일치하고 cart_isdone가 1 인값을 반환 -->
 	<select id="getCartIsDone" resultType="com.ezen.dto.Cart">
-		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=1
+		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx} AND CART_ISDONE=1
 	</select>
 
 	<!-- user_idx가 일치하고 cart_isdone이 0인값의 갯수를 반환 -->
@@ -20,9 +20,9 @@
 		SELECT * FROM MALL_CART WHERE USER_IDX = ${user_idx} AND CART_ISDONE=0
 	</select>
 	
-	<!-- cart_idx가 일치하는 값의 cart_list_idx를 넘어온 값으로 변경하고 cart_isdone을 0으로 변경 -->
-	<update id="updateCartIsDone">
-		UPDATE MALL_CART SET CART_LIST_IDX = #{cart_list_idx} , CART_ISDONE = 0 WHERE CART_IDX = #{cart_idx}
+	<!-- cart_idx가 일치하는 값의 cart_list_idx를 넘어온 값으로 변경-->
+	<update id="listingCart">
+		UPDATE MALL_CART SET CART_LIST_IDX = ${param2} WHERE CART_IDX = ${param1}
 	</update>
 	<!-- 넘겨받은 값으로 데이터 추가 -->
 	<insert id="insertCart" parameterType="com.ezen.dto.Cart">
@@ -33,6 +33,21 @@
 	<!-- 수량, 옵션 변경 -->
 	<update id="updateValues">
 		UPDATE mall_cart SET option_idx = ${param2}, cart_amount = ${param3}, cart_total_price = ${param4} where cart_idx = ${param1}
+	</update>
+	
+	<!-- 장바구니에서 상품삭제 -->
+	<delete id="removeGoodsFromCart">
+		DELETE FROM mall_cart WHERE cart_idx = #{param1}
+	</delete>
+	
+	<!-- 해당 cart_list_idx를 가진 장바구니 품목들을 반환 -->
+	<select id="getCartIsListed" resultType="com.ezen.dto.Cart">
+		SELECT * FROM mall_cart WHERE cart_list_idx = ${param1}
+	</select>
+	
+	<!-- 해당 cart_list_idx를 가진 cart의 isdone을 1로 변경 -->
+	<update id="updateCartIsDone">
+		UPDATE mall_cart SET cart_isdone = 1 WHERE cart_list_idx = ${param1}
 	</update>
 	
 </mapper>

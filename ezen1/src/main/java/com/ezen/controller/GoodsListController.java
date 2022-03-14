@@ -1,5 +1,6 @@
 package com.ezen.controller;
 
+
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -7,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.dto.Cart;
+import com.ezen.dto.Purchase;
 import com.ezen.dto.Question;
 import com.ezen.service.GoodsListService;
+
 
 @Controller
 @RequestMapping("goodsList")
@@ -27,8 +32,10 @@ public class GoodsListController {
 	@Autowired
 	HttpSession session;
 	
+	////////////////////////
     //전체상품 페이지
-	@RequestMapping("/goodsList")
+	////////////////////////
+	@RequestMapping("goodsList")
 	public String goodsList(Model model) {
 		model = goodsListService.goodsList(model);
 		return "goodsList/goodsList";
@@ -37,25 +44,32 @@ public class GoodsListController {
 	////////////////////////
     //상품 상세 페이지
 	///////////////////////
-	@RequestMapping("/goodsDetail")
+	@RequestMapping("goodsDetail")
 	public String goodsDetail(@RequestParam("goods_idx")int goods_idx,
 							  Model model) {
 		model = goodsListService.goodsDetail(goods_idx, model);
 		return "goodsList/goodsDetail";
 	}
 	// 상품문의 작성
-	@RequestMapping("/productQnaWriteAction")
-	public String productQnaWriteAction(Question question) {
-		
-		
-		return"";
+	@PostMapping("/productQnaWriteAction")
+	@ResponseBody
+	public String productQnaWriteAction(@ModelAttribute Question question) {
+		String resultOfInsert = goodsListService.writeQna(question);
+		String returnString;
+		String goods_idx = String.valueOf(question.getGoods_idx());
+		if(resultOfInsert.equals("true")) {
+			returnString = "<script>alert('등록되었습니다.'); location.href = 'goodsDetail?goods_idx="+goods_idx+"';</script>";
+		}else {
+			returnString = "<script>alert('등록에 실패하였습니다. 다시 시도해주세요.'); location.href = 'goodsDetail?goods_idx="+goods_idx+"';</script>";
+		}
+		return returnString;
 	}
 	// 장바구니에 추가
 	@PostMapping("toShoppingCartAction")
 	@ResponseBody
 	public String toShoppingCart(@RequestBody Cart cart, HttpSession session) {
 		
-		String result = goodsListService.addGoodsInCart(cart);
+		goodsListService.addGoodsInCart(cart);
 		
 		int cartNum;
 		try {
@@ -65,7 +79,8 @@ public class GoodsListController {
 		}
 		cartNum += 1;
 		session.setAttribute("cart", cartNum);
-		return result; 
+		
+		return String.valueOf(cartNum); 
 	}
 	
 	///////////////////////////////////
@@ -87,20 +102,48 @@ public class GoodsListController {
 	@PostMapping("changeValueAction")
 	@ResponseBody
 	public void changeValue(@RequestBody HashMap<String, String> param) {
-		System.out.println(param.toString());
 		goodsListService.changeValueOfCart(param);
 	}
 	// 장바구니에서 상품 삭제
-	@PostMapping("removeGoodsInCartAction")
+	@PostMapping("removeGoodsFromCartAction")
 	@ResponseBody
 	public void removeGoods(@RequestBody HashMap<String, String> param) {
-		System.out.println(param.toString());
+		goodsListService.removeGoodsFromCart(param);
+	}
+	// 장바구니 개별항목 리스트로 묶기 
+	@PostMapping("listingGoodsAction")
+	@ResponseBody
+	public String listingGoods(@RequestBody HashMap<String, String> list) {
+		String result = goodsListService.listingGoods(list);
+		return result;
 	}
 	
-	
+	/////////////////////////////
     //구매 페이지
-	@RequestMapping("/purchase")
-	public String purchase() {
+	/////////////////////////////
+	@GetMapping("purchase")
+	public String purchase(@RequestParam String cart_list_idx, Model model) {
+		//넘어온 장바구니 리스트 번호로 장바구니 리스트 아이탬 꺼내오기
+		model = goodsListService.getListedGoods(Integer.parseInt(cart_list_idx), model);
 		return "goodsList/purchase";
 	}
+	// 구매 전 비밀번호 재확인
+	@PostMapping("checkPwAction")
+	@ResponseBody
+	public String checkPw(@RequestBody HashMap<String, String> pw) {
+		String password = pw.get("inputtedPw");
+		String result = goodsListService.checkPw(password);
+		return result;
+	}
+	// 구매 프로세스 진행 완료 후 구매기록 저장 & 장바구니항목 구매됨으로 변경
+	@PostMapping("makePurchaseAction")
+	@ResponseBody
+	public String makePurchase(@RequestBody Purchase purchase) {
+		String returnString = goodsListService.makePurchase(purchase);
+		System.out.println(returnString);
+		int cart_list_idx = purchase.getCart_list_idx();
+		goodsListService.makeCartIsDone(cart_list_idx);
+		return returnString;
+	}
+	
 }
