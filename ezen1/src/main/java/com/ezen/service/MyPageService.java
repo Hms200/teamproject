@@ -2,8 +2,10 @@ package com.ezen.service;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.devtools.tunnel.client.TunnelClient;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -17,6 +19,7 @@ import com.ezen.dto.Cart;
 import com.ezen.dto.Purchase;
 import com.ezen.dto.Review;
 import com.ezen.dto.User;
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 @Service
 public class MyPageService {
@@ -54,22 +57,32 @@ public class MyPageService {
 		}
 	}
 
-	public ArrayList<Model> purchaseList(String user_id) {
+	public ArrayList<Model> purchaseList(String user_id,Model model) {
 		int user_idx = userDAO.getUserIdx(user_id);
 		ArrayList<Cart> isDoneList = cartDAO.getCartIsDone(user_idx);
+		model.addAttribute("purchaseList",isDoneList);
+
+		ArrayList<Model> modelList = new ArrayList<>();
 		
-		//인덱스마다 db에서 데이터를 가져와야함
-		for(int i=0;i<isDoneList.size();i++) {
-			int goods_idx = isDoneList.get(i).getGoods_idx();
-			String Thumb = goodsDAO.getGoodsThumb(goods_idx);
-			String name = goodsDAO.getGoodsName(goods_idx);
-			int cart_idx = isDoneList.get(i).getCart_idx();
+		isDoneList.forEach(list -> {
+			int goods_idx = list.getGoods_idx();
+			model.addAttribute("goods_idx", goods_idx);
 			
-			int cartList_idx = cartListDAO.getCartListidx(cart_idx);
-			//Purchase purchase = purchaseDAO.getPurchaseInfoByCartListidx(cart_idx);
-			//System.out.println(purchase);
-		}
-		return null;
+			String Thumb = goodsDAO.getGoodsThumb(goods_idx);
+			model.addAttribute("goods_thumb",Thumb);
+			
+			String Name = goodsDAO.getGoodsName(goods_idx);
+			model.addAttribute("goods_name", Name);
+			
+			int cart_list_idx = list.getCart_list_idx();
+			Purchase purchase = purchaseDAO.getPurchaseInfoByCartListidx(cart_list_idx);
+			model.addAttribute("purchase", purchase);
+			modelList.add(model);
+		});
+		System.out.println(modelList);
+		model.addAttribute("list",modelList);
+		
+		return modelList;
 	}
 
 

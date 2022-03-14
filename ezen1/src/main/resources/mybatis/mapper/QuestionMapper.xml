@@ -15,8 +15,12 @@
 	</insert>
 	
 	<update id="updateQnaAnswer" parameterType="com.ezen.dto.Question">
-		UPDATE mall_question SET question_isreplied=#{question_isreplied}, question_reply=#{question_reply},
-		question_reply_date=sysdate WHERE question_idx=#{question_idx}
+		UPDATE mall_question SET question_isreplied= 1, question_reply=#{parma2},
+		question_reply_date=sysdate WHERE question_idx=${parma1}
 	</update>
+	
+	<select id="getAllQuestions" resultType="com.ezen.dto.Question">
+		SELECT * FROM mall_question
+	</select>
 	
 </mapper>
