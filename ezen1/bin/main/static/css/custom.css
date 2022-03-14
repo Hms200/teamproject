@@ -115,34 +115,3 @@ body .dep {
     cursor: pointer;
   }
 
-  .goodsDetailOption{
-    width: 200px;
-  }
-  .goodsDeatailMenu{
-    width: 50px;
-  }
-  .goodsDetailDivisionLine{
-    height: 20px;
-  }
-
-  /*cart*/
-  .cartTopdivBox{
-    height: 60px;
-  }
-  .cartSelectAllBox{
-    width: 330px;
-    height: 40px;
-  }
-  .cartGoodsInfo{
-    width: 200px;
-    height: 100px;
-  }
-  .cartOrderButtonBox{
-    width: 320px;
-    height: 40px;
-  }
-  .cartGoToGoodsList{
-    width: 360px;
-    height: 40px;
-  } 
-

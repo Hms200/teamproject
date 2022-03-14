@@ -74,12 +74,12 @@
         상품 옵션
       </div>
       <div class="col-6 dropdown border ">
-        <button class="col-12 btn dropdown-toggle goodsDetailOption" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        <button class="col-12 btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           aria-expanded="false" style="font-size: 14px;">
           옵션
         </button>
         
-        <div class="dropdown-menu goodsDeatailMenu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <c:forEach var="option" items="${ goodsOptions }"> 
           <button class="dropdown-item" id="${ option.option_idx }" type="button" style="font-size: 14px;" onclick="totalPrice(event);">${ option.option_name }+${ option.option_price }</button>
           <input type="hidden" name="${ option.option_idx }" value="${ option.option_price }">
@@ -101,7 +101,7 @@
       <%-- <fmt:formatNumber value="${goods.goods_price}" type="number" /> --%>
       </div>
     </div>
-    <div class="w-100 bg-primary goodsDetailDivisionLine">
+    <div class="w-100 bg-primary" style="height: 20px">
       <!--bg-dark-50-->
     </div>
     <!--상품정보 리뷰 문의/안내 네브-->
@@ -127,7 +127,7 @@
             <img src="/img/icon/장바구니_큰아이콘.png" id="justAdd"
               onclick="addCart(event);" style="width: 40px; height: 40px; cursor: pointer;">
             <!--구매하기 버튼을 누르면 장바구니페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <button type="submit" class="btn btn-primary col-8" id="addAndBuy" onclick="addCart(event);">구매하기</button>
+            <button type="submit" class="btn btn-primary col-8 ml-4" id="addAndBuy" onclick="addCart(event);">구매하기</button>
           </div>
         </div>
       </div>

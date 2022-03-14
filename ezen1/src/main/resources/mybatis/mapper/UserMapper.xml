@@ -68,5 +68,10 @@
 			select user_idx, sum(purchase_total_price) over(order by user_idx) as total_sum
 				 from mall_purchase)as user_total where mall_user.user_idx = user_total.user_idx order by user_total.total_sum
 	</select>
+	
+	<!-- user_idx로 user_id 가져오기 -->
+	<select id="getUserIdByUserIdx" resultType="String">
+		SELECT user_id FROM mall_user WHERE user_idx = ${param1}
+	</select>
 
 </mapper>

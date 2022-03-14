@@ -17,13 +17,13 @@
 <c:import url="../header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative px-0" style="max-width: 520px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative px-0" style="max-width: 520px; margin-top: 60px;">
 
 
         <!-- title container -->
         <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
             <!-- title back btn -->
-                <div class="col-1 my-3" onclick="location.href='admin'" style="cursor: pointer;">
+                <div class="col-1 my-3" onclick="location.href='admin/transaction'" style="cursor: pointer;">
                     <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
                 </div>
             <!-- title -->
@@ -37,124 +37,107 @@
 
             <!-- 구매일 -->
             <div class="w-100 text-right" style="font-size: 14px; height: 40px;">
-                2022-02-11
+                ${ purchase.purchase_date }
             </div>
             <!-- 구매번호 -->
             <div class="w-100 text-left border-bottom border-dark-50" style="font-size: 14px; height: 40px;">
-                구매번호 - 0000001
+                구매번호 - ${ purchase.purchase_idx }
             </div>
 
             <!-- 상품정보 반복-->
+            <c:forEach var="cart" items="${ cartlist }">
             <div class="w-100 border-bottom border-dark-50 d-flex flex-row justifiy-content-start align-items-center py-1">
-
+				
+				
                 <!-- thumbnail -->
                 <div class="col-4">
-                    <img class="img-fluid" src="/img/goods/candle/Candle01_01.jpeg" alt="">
+                	<c:forEach var="goods" items="${ goodslist }">
+                		<c:if test="${ cart.goods_idx == goods.goods_idx }">
+                		<c:set var="thumb" value="${ goods.goods_thumb }" />
+                		<c:set var="name" value="${ goods.goods_name }" />
+                		</c:if>
+                	</c:forEach>
+                    <img class="img-fluid" src="${ thumb }" alt="">
                 </div>
                 <!-- 정보 -->
                 <div class="col-8 d-flex flex-column text-left">
                     <div class="my-1">
-                        이름
+                        ${ name }
+                    </div>
+                    <c:forEach var="options" items="${ optionlist }">
+                    	<c:if test="${ cart.option_idx == options.option_idx }">
+                   		<c:set var="option" value="${ options.option_name }+${ options.option_price }" />
+                    	</c:if>
+                    </c:forEach>
+                    <div class="my-1">
+                        ${ option }
                     </div>
                     <div class="my-1">
-                        옵션
+                        ${ cart.cart_total_price }
                     </div>
-                    <div class="my-1">
-                        가격
-                    </div>
-
                 </div>
+                
             </div>
-            <div class="w-100 border-bottom border-dark-50 d-flex flex-row justifiy-content-start align-items-center py-1">
-                <!-- thumbnail -->
-                <div class="col-4">
-                    <img class="img-fluid" src="/img/goods/candle/Candle01_01.jpeg" alt="">
-                </div>
-                <!-- 정보 -->
-                <div class="col-8 d-flex flex-column text-left">
-                    <div class="my-1">
-                        이름
-                    </div>
-                    <div class="my-1">
-                        옵션
-                    </div>
-                    <div class="my-1">
-                        가격
-                    </div>
-
-                </div>
-            </div>
-            <div class="w-100 border-bottom border-dark-50 d-flex flex-row justifiy-content-start align-items-center py-1">
-                <!-- thumbnail -->
-                <div class="col-4">
-                    <img class="img-fluid" src="/img/goods/candle/Candle01_01.jpeg" alt="">
-                </div>
-                <!-- 정보 -->
-                <div class="col-8 d-flex flex-column text-left">
-                    <div class="my-1">
-                        이름
-                    </div>
-                    <div class="my-1">
-                        옵션
-                    </div>
-                    <div class="my-1">
-                        가격
-                    </div>
-
-                </div>
-            </div>
+            <c:remove var="thumb"/>
+                <c:remove var="name"/>
+                <c:remove var="option"/>
+                </c:forEach>
         </div>
 
         <!-- 구매자 or 수령인 정보표시 -->
         
         <div class="container-fluid d-flex flex-column mb-4  pb-2 form-group">
-            <form name="transactionDetailForm" method="get">
+            
                 <label class="row text-center w-100 ml-2 font-weight-bold" style="line-height: 38px;">
                     수 &numsp;&numsp; 령 &numsp;&numsp; 인
-                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_name" value="수령인" readonly>
+                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_name" value="${ purchase.purchase_buyer_name }" readonly>
                 </label>
                 <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
                     연 &numsp;&numsp; 락 &numsp;&numsp;  처 
-                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_phone" value="010-0000-0000" readonly>
+                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_phone" value="${ purchase.purchase_buyer_phone }" readonly>
                 </label>
                 <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
                     주   &numsp;&numsp;&numsp;&numsp;&numsp;&numsp;  소 
-                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_address" value="경기도 의정부시" readonly>
+                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_address" value="${ purchase.purchase_buyer_address }" readonly>
                 </label>
                 <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50 mb-4" style="line-height: 38px;">
                     배 &numsp;송 &numsp;매 &numsp;모 
-                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_request" value="문 앞에 두고 가 주세요" readonly>
+                    <input class="form-control-plaintext text-right col-7 mx-auto font-weight-normal" type="text" name="purchase_buyer_request" value="${ purchase.purchase_buyer_request }" readonly>
                 </label>
 
                 <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
                     총 &numsp;결제 &numsp;금액 &numsp;&numsp;&numsp;&numsp;&numsp;
-                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_total_price" value="12,000" readonly>
+                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_total_price" value="${ purchase.purchase_total_price }" readonly>
                 </label>
                 <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
                     &numsp;결제 &numsp;&numsp;수단 &numsp;&numsp;&numsp;&numsp;&numsp;&numsp;
-                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_total_price" value="카드" readonly>
+                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_total_price" value="${ purchase.purchase_payment }" readonly>
                 </label>
                 <label class="row text-center w-100 ml-2 font-weight-bold text-dark-50" style="line-height: 38px;">
                     &numsp;현재 &numsp;&numsp;상태 &numsp;&numsp;&numsp;&numsp;&numsp;&numsp;
-                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_statement" value="배송 준비중" readonly>
+                    <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_statement" value="${ purchase.purchase_statement }" readonly>
                 </label>
                 <!-- 주문상태별 value값 정해야함. -->
                 <select class="form-control col-6 mx-auto" name="purchase_statement">
                     <option value="#" selected>주문상태 변경</option>
-                    <option value="">주문접수</option>
-                    <option value="">발송준비중</option>
-                    <option value="">배송중</option>
-                    <option value="">완료</option>
+                    <option value="주문접수">주문접수</option>
+                    <option value="발송준비중">발송준비중</option>
+                    <option value="배송중">배송중</option>
+                    <option value="완료">완료</option>
+                    <option value="반품신청">반품신청</option>
+                    <option value="교환신청">교환신청</option>
+                    
+                    
                 </select>
-
+				<input type="hidden" id="purchase_idx" value="${ purchase.purchase_idx }">
                 <!-- 버튼 그룹 -->
                 <div class="w-100 d-flex flex-wrap flex-row justify-content-around mt-4" style="height: 125px;">
-                    <button class="btn btn-secondary col-5 my-auto" onclick="multiSubmit(formName = 'transactionDetailForm', formAction = 'transactionExchangeAction')">교환접수</button>
-                    <button class="btn btn-secondary col-5 my-auto" onclick="multiSubmit(formName = 'transactionDetailForm', formAction = 'transactionRefundAction')">반품접수</button>
-                    <button class="btn btn-secondary col-5 my-auto" onclick="multiSubmit(formName = 'transactionDetailForm', formActio = 'transactionCancleAction')">주문취소</button>
-                    <button class="btn btn-secondary col-5 my-auto" onclick="multiSubmit(formName = 'transactionDetailForm', formAction = 'transactionDetailUpdateAction')">확인</button>
+                    <button class="btn btn-secondary col-5 my-auto" id="교환접수" onclick="updateTransactionStatement(event)">교환접수</button>
+                    <button class="btn btn-secondary col-5 my-auto" id="반품접수" onclick="updateTransactionStatement(event)">반품접수</button>
+                    <button class="btn btn-secondary col-5 my-auto" id="주문취소" onclick="updateTransactionStatement(event)">주문취소</button>
+                    <button class="btn btn-secondary col-5 my-auto" id="확인" onclick="updateTransactionStatement(event)">확인</button>
                 </div>
-            </form>
+            
         </div>
 
     </div>

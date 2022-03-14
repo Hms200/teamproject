@@ -32,6 +32,7 @@ public interface IuserDAO {
 	// 회원 검색용
 	// Id
 	public ArrayList<User> searchUserById(String searchText);
-	// 구매총액으로 검색
+	// user_idx로 user_id 가져옴
+	public String getUserIdByUserIdx(int user_idx);
 	
 }

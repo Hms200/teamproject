@@ -2,6 +2,7 @@ package com.ezen.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
+import com.ezen.dao.IpurchaseDAO;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
+import com.ezen.dto.Purchase;
 import com.ezen.service.AdminService;
 import com.ezen.service.FileService;
 
@@ -39,6 +42,9 @@ public class AdminContorller {
 	@Autowired
 	IgoodsDAO goodsDAO;
 	
+	@Autowired
+	IpurchaseDAO purchaseDAO;
+	
 	
 	@RequestMapping("")
 	public String adminRoot() {
@@ -54,12 +60,6 @@ public class AdminContorller {
 	public String memberList(Model model) {
 		return "admin/memberList";
 	}
-	
-	@RequestMapping("qnaList")
-	public String qnaList() {
-		return "admin/qnaList";
-	}
-	
 	// memberList 상단 필터
 	@GetMapping("userSearchAction")
 	public String memberListFilter(@RequestParam(name = "cat")int cat,
@@ -70,6 +70,33 @@ public class AdminContorller {
 		}
 		return "";
 	}
+	
+	/////////////////////////////////////////
+	// 문의관리 페이지
+	/////////////////////////////////////////
+	@RequestMapping("qnaList")
+	public String qnaList(@RequestParam(required = false) String cat,Model model) {
+		try {
+			if(cat.equals("Qna")) {
+				model = adminService.getQuestionsFromGoodsDetail(model);
+				return "admin/qnaList";
+			}else {
+				
+			}
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+		}
+		model = adminService.getQuestionsFromGoodsDetail(model);
+		return "admin/qnaList";
+	}
+	// 상품상세문의 답글등록
+	@PostMapping("registerQuestionReplyAction")
+	@ResponseBody
+	public String registerQuestionReply(@RequestBody HashMap<String, String> param) {
+		return adminService.registQuestionReply(param);
+	}
+	
+	
 	
 	@RequestMapping("memberListpopup")
 	public String memberListpopup() {
@@ -175,21 +202,52 @@ public class AdminContorller {
 		return "<script>alert('등록되었습니다.'); location.href='goods';</script>";
 	}
 	
-	
-	
+	///////////////////////////////
+	//  리뷰관리 페이지
+	///////////////////////////////
 	@RequestMapping("review")
-	public String review() {
+	public String review(Model model) {
+		model = adminService.reviewList(model);
 		return "admin/review";
 	}
-	
-	@RequestMapping("transaction")
-	public String transaction() {
-		return "admin/transaction";
+	// 리뷰 답글 등록
+	@PostMapping("registReviewReplyAction")
+	@ResponseBody
+	public String registReviewReply(@RequestBody HashMap<String, String> param) {
+		return adminService.registReviewReply(param);
 	}
 	
-	@RequestMapping("transactionpop")
-	public String transactionpop() {
+	
+	//////////////////////////////
+	// 주문목록 페이지
+	//////////////////////////////
+	@GetMapping("transaction")
+	public String transaction(@RequestParam(required = false) String statement, Model model) {
+		try {
+			model = adminService.transactionFiltered(statement, model);
+		} catch (NullPointerException e) {
+			model = adminService.transaction(model);
+		}
+		System.out.println(model.toString());
+		return "admin/transaction";
+	}
+	////////////////////////////
+	// 주문목록 상세페이지
+	////////////////////////////
+	@GetMapping("transactionpop")
+	public String transactionpop(@RequestParam String purchase_idx, Model model) {
+		int purchaseIdx = Integer.parseInt(purchase_idx);
+		model = adminService.transactionDetail(purchaseIdx, model);
 		return "admin/transactionpop";
+	}
+	// 주문상태 변경
+	@PostMapping("changeStatementAction")
+	@ResponseBody
+	public String changeStatement(@RequestBody HashMap<String, String> param) {
+		int purchase_idx = Integer.parseInt(param.get("purchase_idx"));
+		String purchase_statement = param.get("purchase_statement");
+		String returnString = adminService.changeStatement(purchase_idx, purchase_statement);
+		return returnString;
 	}
 	
 	////////////////////////////////
