@@ -14,8 +14,7 @@
 	</select>
 	
 	<insert id="FaqWrite" parameterType="com.ezen.dto.FaQ">
-		INSERT INTO mall_faq (faq_idx, faq_title, faq_contents, faq_cat)
-		VALUES (mall_faq_seq.nextval, #{param1}, #{param2}, #{param3})
+		INSERT INTO mall_faq VALUES (mall_faq_seq.nextval, #{faq_title}, #{faq_contents}, #{faq_cat})
 	</insert>
 	
 	<delete id="faqDeleteByFaqIdx">

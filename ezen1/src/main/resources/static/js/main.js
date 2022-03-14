@@ -11,12 +11,14 @@ function popupHideAndShow(target) {
 };
 
 // 장바구니 벳지 장바구니가 0이면 숨기기
-///로딩시.  ajax통신으로 실시간 반영될 경우 ajax 코드에서 해당 함수 호출되게 만들것.
-window.onload(bedgeHideAndShow());
+
+window.onload = bedgeHideAndShow();
+
 function bedgeHideAndShow() {
     const bedge = document.getElementById('bedge');
-    const bedgeNumber = document.getElementById('bedgeNumber').innerText;
-    if(bedgeNumber == '0'){
+    let bedgeNumber = document.getElementById('bedgeNumber').innerText;
+    bedgeNumber = cartBedgeNumberInSession;
+    if(bedgeNumber == '0' || bedgeNumber == '' || bedgeNumber == null){
         bedge.classList.remove("d-block");
         bedge.classList.add("d-none");
 
@@ -66,15 +68,27 @@ function setGoodsList(_type) {
 
     document.querySelector("main").className = _type;
     var cat = document.querySelector('main').className;
-    $('#valcandle,#valwarmer,#valsoap,#valdiffuser').css('display','none');
+    $('.valcandle,.valwarmer,.valsoap,.valdiffuser').css('display','none');
     if(cat == 'candle'){
-        document.getElementById('valcandle').style.display='block';
+        let target = document.getElementsByClassName('valcandle');
+        for(let item of target){
+			item.style.display='block';
+		};
     }else if(cat == 'warmer'){
-		document.getElementById('valwarmer').style.display='block';
+		let target = document.getElementsByClassName('valwarmer');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}else if(cat == 'soap'){
-		document.getElementById('valsoap').style.display = 'block';
+		let target = document.getElementsByClassName('valsoap');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}else if(cat == 'diffuser'){
-		document.getElementById('valdiffuser').style.display = 'block';
+		let target = document.getElementsByClassName('valdiffuser');
+        for(let item of target){
+			item.style.display='block';
+		};
 	}
     console.log(cat);
   }
@@ -151,6 +165,86 @@ function changeValueOfCheckbox(){
 	return true;
 }
 
+//ajax을 이용한 id 중복체크 여부기능 
+function idCheck() {
+	var user_id = $('#user_id').val();
+	if(!user_id){
+		alert("아이디 중복체크 후 회원가입이 가능합니다");
+		return false;
+		}
+	
+	// 아이디 유효성 검사(1보다 같거나 크면 중복 / 0 이면 중복안됨)
+	$.ajax(
+			{
+				url: 'http://localhost:8085/login/idCheckAjax?user_id='+ user_id,	
+	    		type: 'get',
+	    		success: function(data) {
+	    			console.log('통신 성공, data:' + data);
+	    			
+	    			var data_num = Number( data );
+	    			if( data_num >= 1 ) {
+	    				//아이디가 중복됨.
+	    				alert("중복된 아이디입니다.");
+						$('#isIDChecked').val('no');
+						$('#user_id').val('');
+						$('#user_id').focus();
+	    			}else{
+	    				//아이디가 중복 안됨. 사용 가능.
+	    				alert("사용가능한 아이디입니다.");
+						$('#isIDChecked').val('ok');
+	    			}    			
+	    		},
+	    		error: function(){
+	    			console.log('통신 실패');
+	    		}	
+			}    		
+	);
+ }
+
+//비밀번호 일치 여부확인 
+function pwCheck() {
+	var user_pw = $('#user_pw').val();
+	if(!user_pw){
+		alert("비밀번호 중복체크 후 회원가입이 가능합니다");
+		return false;
+		}
+	if( $('#user_pw').val() == $('#user_pw_check').val() ){
+		alert("비밀번호가 일치합니다");
+		$('#isPWChecked').val('ok');
+	}else {
+		alert("비밀번호가 다릅니다.");
+		$('#isPWChecked').val('no');
+		$('#user_pw_check').val('');
+		$('#user_pw_check').focus();
+	}
+	
+}
+
+function joinCheckAll(){
+    	
+		var isIDChecked = $('#isIDChecked').val();
+		var isPWChecked = $('#isPWChecked').val();			
+		var userNull = nullChecker();
+		
+		if( isIDChecked == 'no'){
+			alert("아이디 중복확인 후 회원가입이 가능합니다.");
+			return false;
+		}
+		if(isPWChecked == 'no') {
+			alert("비밀번호 일치여부 후 회원가입이 가능합니다.");
+			return false;
+		}
+		if( userNull == false) {
+			return false;
+		}
+		
+		var address1 = $('#sample6_address').val();
+		var address2 = $('#sample6_detailAddress').val();
+		$('#user_address').val( address1 + " " + address2 ); 
+		
+		document.forms[0].submit();
+		return true;
+	}	
 /* thumbnail 이미지 등록 */
 
 function uploadThumbnail(){
@@ -265,7 +359,7 @@ function makeGoodsSoldOut(){
 function orderGoods(){
 	let amount = prompt('발주 수량을 입력해 주세요.');
 	while(true){
-		if(amount == null || amount == 0 || amount < 0){
+		if(amount == null || amount == 0 || amount < 0 || typeof(amount) != 'number'){
 			amount = prompt('발주 수량을 입력해 주세요');
 		}else{
 			break;
@@ -287,7 +381,7 @@ function orderGoods(){
 		async: false,
 		data: formData,
 		success: function(){
-			alert('발주처리되었습니다.');
+			alert('발주처리되었습니다. 상태를 판매중으로 변경합니다.');
 			for(i=0; i<form.length; i++){
 				form[i].checked = false;
 			}
@@ -299,3 +393,290 @@ function orderGoods(){
 	});
 	
 }
+
+// 장바구니 개별상품 최종가격 산정
+function totalPrice (event){
+	const optionInput = event.target.id;
+	let optionPrice = document.getElementsByName(optionInput)[0].value;
+	let optionIdx = document.getElementsByName(optionInput)[1].value;
+	const originalGoodsPrice = document.getElementsByName('goods_price')[0].value;
+	let total_Price = document.getElementsByName('goods_total_price')[0];
+	let optionIdxForm = document.getElementsByName('option_idx')[0];
+	
+	total_Price.value = Number(optionPrice) + Number(originalGoodsPrice);
+	optionIdxForm.value = optionIdx;
+	
+	let optionText = event.target.innerText;
+	let optionTitle = document.querySelector("#dropdownMenuButton");
+	optionTitle.innerText = optionText.toString();
+	
+}
+
+// 	장바구니에 상품담기
+function addCart(){
+	// useridx
+	const userIdx = document.getElementsByName('user_idx')[0].value;
+	const goodsIdx = document.getElementsByName('goods_idx')[0].value;
+	const optionIdx = document.getElementsByName('option_idx')[0].value;
+	const totalPrice = document.getElementsByName('goods_total_price')[0].value;
+	const bedge = document.getElementById('bedgeNumber');
+	let bedgeNumber = Number(bedge.innerText);
+	
+	if(userIdx == 0){
+		alert('로그인하신 후 이용할 수 있습니다.');
+		location.href='../login/login';
+	}else{
+	
+		let formData = {};
+		
+		formData["user_idx"] = userIdx;
+		formData["goods_idx"] = goodsIdx;
+		formData["option_idx"] = optionIdx;
+		formData["cart_amount"] = 1;
+		formData["cart_total_price"] = totalPrice;
+		formData["cart_isdone"] = 0;
+		
+		formData = JSON.stringify(formData);
+		
+		jQuery.ajax({
+			url: "toShoppingCartAction",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			async: false,
+			data: formData,
+			success: function(num){
+				alert('장바구니에 담겼습니다.');
+				document.getElementById('bedgeNumber').innerText = num;
+				bedgeHideAndShow();
+				location.reload;
+			},
+			error: function(e){
+				console.log(e);
+				alert('처리에 실패하였습니다. 다시 시도해 주세요');
+			},
+		});
+	}
+}
+	
+// 장바구니 옵션/수량 변경
+function changeValue(event){
+	const targetCartIdx = event.target.id;
+	const values = document.getElementsByName(targetCartIdx);
+	// [0] : cart_idx
+	// [1] : goods_price
+	// [2] : cart_total_price
+	// [3] : option_idx
+	// [4] : cart_amount
+	
+	let formData = {};
+	formData["cart_idx"] = values[0].value;
+	formData["option_idx"] = values[3].value;
+	formData["cart_amount"] = values[4].value;
+	formData["original_price"] = values[1].value;
+	
+	formData = JSON.stringify(formData);
+	console.log(formData.toString());
+	jQuery.ajax({
+		url: "changeValueAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(){
+			alert('변경되었습니다.');
+			location.href='cart'
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
+		},
+	});
+	
+}
+// 장바구니 삭제
+function removeGoodsInCart(){
+	const listOfCheckbox = document.querySelectorAll("input[type='checkbox']");
+	let formData = {}
+	
+	for(i=1; i<listOfCheckbox.length; i++){
+		formData[listOfCheckbox[i].name] = listOfCheckbox[i].checked;
+	}
+	
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	
+	jQuery.ajax({
+		url: "removeGoodsFromCartAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(){
+			alert('삭제되었습니다.');
+			bedgeHideAndShow();
+			location.href='cart'
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
+		},
+	});
+}
+// 장바구니 개별항목 리스트로 묶기
+function listingGoods(){
+	const checkboxes = document.querySelectorAll("input[type='checkbox']");
+	let targetCartIdx = {};
+	for(i=1; i<checkboxes.length; i++){
+		
+		targetCartIdx[checkboxes[i].name] = checkboxes[i].checked;
+		
+	}
+	console.log(typeof(targetCartIdx));
+	targetCartIdx = JSON.stringify(targetCartIdx);
+	console.log(targetCartIdx);
+	jQuery.ajax({
+		url: "listingGoodsAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: targetCartIdx,
+		success: function(result){
+			console.log('listing완료 cart_list_idx =' + result);
+		//	document.getElementsByName('cart_list_idx')[0].value = result;
+			location.href = 'purchase?cart_list_idx='+result;
+		},
+		error: function(e){
+			console.log(e);
+		},
+	});
+}
+// 구매패이지 수령인정보 변경
+function changeBuyerInfo(){
+	const newName = document.getElementById('adjustBuyerName').value;
+	const newPhone = document.getElementById('adjustBuyerPhone').value;
+	const newPostCode = document.getElementById('sample6_postcode').value;
+	const newAddressHead = document.getElementById('sample6_address').value;
+	const newAddressTail = document.getElementById('sample6_detailAddress').value;
+	let newFullAddress = newPostCode.toString() + newAddressHead.toString() + newAddressTail.toString();
+	
+	console.log(newName);
+	console.log(newPhone);
+	console.log(newFullAddress);
+	
+	const nameAndPhoneArea = document.getElementById('nameAndPhone');
+	const addressArea = document.getElementById('originalAddress');
+	const hiddenInputForName = document.getElementsByName('purchase_buyer_name')[0];
+	const hiddenInputForPhone = document.getElementsByName('purchase_buyer_phone')[0];
+	const hiddenInputForAddress = document.getElementsByName('purchase_buyer_address')[0];
+	
+	nameAndPhoneArea.innerText = newName + "<br>" + newPhone;
+	addressArea.innerText = newFullAddress;
+	hiddenInputForName.value = newName;
+	hiddenInputForPhone.value = newPhone;
+	hiddenInputForAddress.value = newFullAddress;
+	
+	popupHideAndShow('changeAddress');
+	
+}
+// 가격계산
+function calculateTotalPrice(){
+	const priceValues = document.getElementsByClassName('price');
+	let totalPriceofGoods = 0;
+	for(i=0 ; i<priceValues.length; i++){
+		totalPriceofGoods += Number(priceValues[i].value);
+	}
+	const areaOfTotalPrice = document.getElementById('total_price');
+	areaOfTotalPrice.innerText = totalPriceofGoods;
+	
+	const shippingPrice = Number(document.getElementById('shipping_price').innerText);
+	const finalPrice = document.getElementById('final_price');
+	finalPrice.innerText = Number(totalPriceofGoods) + shippingPrice;
+	document.getElementsByName('cart_total_price')[0].value = Number(totalPriceofGoods) + shippingPrice;
+}
+// 구매페이지 비밀번호 확인
+function checkPw(){
+	const inputtedPw = document.getElementById('inputtedPw').value;
+	if(inputtedPw == null || inputtedPw === ''){
+		alert('비밀번호를 입력해주세요');
+		return false;
+	}
+	let data = { "inputtedPw": inputtedPw};
+	data = JSON.stringify(data);
+	console.log(data.toString());
+	jQuery.ajax({
+		url: "checkPwAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: data,
+		success: function(result){
+			if(result !== 'true'){
+				alert('비밀번호를 재확인 해주세요');
+				inputtedPw = '';
+				}else{
+					/// bootpay 연결 후 수정해야할 부분, bootpay연결로 결제프로세스진행되면
+					// makingPurchase를 그 함수 안으로 옮길것.
+					console.log('결제 프로세스 진행');
+					makingPurchase();
+				}
+		},
+		error: function(e){
+			console.log(e);
+		},
+	});
+}
+// 결재완료 후 db 처리(구매기록 저장)를 위한 데이터 전송
+function makingPurchase(){
+	const cartListIdx = document.getElementsByName('cart_list_idx')[0].value;
+	const userIdx = document.getElementsByName('user_idx')[0].value;
+	const totalPrice = document.getElementsByName('cart_total_price')[0].value;
+	const buyerName = document.getElementsByName('purchase_buyer_name')[0].value;
+	const buyerPhone = document.getElementsByName('purchase_buyer_phone')[0].value;
+	const buyerAddress = document.getElementsByName('purchase_buyer_address')[0].value;
+	const payment = function(){
+						const radios = document.querySelectorAll("input[type='radio']");
+						const value = radios[0].checked ? radios[0].value : radios[1].value;
+						return value;
+					};
+	const buyerRequest = document.getElementsByName('purchase_buyer_request')[0].value;
+	
+	let formData = {};
+	
+	formData.cart_list_idx = cartListIdx;
+	formData.user_idx = userIdx;
+	formData.purchase_total_price = totalPrice;
+	formData.purchase_buyer_name = buyerName;
+	formData.purchase_buyer_phone = buyerPhone;
+	formData.purchase_buyer_address = buyerAddress;
+	formData.purchase_payment = payment();
+	formData.purchase_buyer_request = buyerRequest;
+	
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	
+	jQuery.ajax({
+		url: "makePurchaseAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(result){
+			console.log(result);
+			console.log('구매프로세스 완료');
+			// mypage 구매기록 페이지로 보내기. result로 purchase_idx를 받을 예정
+			//location.href = '../myPage'
+		},
+		error: function(e){
+			console.log(e);
+		},
+	})
+}
+
+
+

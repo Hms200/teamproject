@@ -25,7 +25,7 @@ public class Purchase {
 	private String purchase_payment;
 	private String purchase_buyer_request;
 	private Date purchase_date;
-	private String purchase_statemnet;
+	private String purchase_statement;
 	
 	@Builder
 	public Purchase(int purchase_idx, int cart_list_idx, int user_idx, int purchase_total_price,
@@ -42,7 +42,7 @@ public class Purchase {
 		this.purchase_payment = purchase_payment;
 		this.purchase_buyer_request = purchase_buyer_request;
 		this.purchase_date = purchase_date;
-		this.purchase_statemnet = purchase_statemnet;
+		this.purchase_statement = purchase_statemnet;
 	}
 	
 	

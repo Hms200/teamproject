@@ -17,4 +17,7 @@ public interface IpurchaseDAO {
 	
 	//모든 값을 가져옴
 	public ArrayList<Purchase> getPurchaseList();
+	
+	//insert purchase
+	public int insertPurchase(Purchase purchase);
 }

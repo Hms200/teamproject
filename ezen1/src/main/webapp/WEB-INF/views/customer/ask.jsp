@@ -32,13 +32,13 @@
     <form action="qnaQuestionAction" method="post" name="qnaQuestionForm" onsubmit="return nullChecker();">
       <div class="container-sm contaier-fluid d-flex flex-wrap justify-content-center my-5" style="font-size: 14px;">
           <span class="col-12 font-weight-bold mb-2 pl-5" style="font-size: 16px;">
-            [아이디]님
+            [${user_id}]님
           </span>
           
             <!-- 히든 input -->
-            <input type="hidden" name="onetoone_idx" value="onetoone_idx">
-            <input type="hidden" name="user_idx" value="user_idx">
-            <input type="hidden" name="onetoone_date" value="onetoone_date">
+            <!-- <input type="hidden" name="onetoone_idx" value="onetoone_idx"> -->
+            <input type="hidden" name="user_idx" value="${user_idx}">
+            <!-- <input type="hidden" name="onetoone_date" value="onetoone_date"> -->
             <!-- 제목 -->
             <span>
               <input type="text" name="onetoone_title" class="nullcheck" placeholder="제목을 입력해주세요" style="width: 200px; height: 40px;">

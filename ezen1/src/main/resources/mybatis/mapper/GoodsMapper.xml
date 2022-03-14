@@ -26,8 +26,8 @@
 	</select>
 	
 	<!-- 해당 이벤트를 시행중인 모든 상품정보 가져오 -->
-	<select id="getGoodsListByOnEvnet" resultType="com.ezen.dto.Goods">
-		SELECT * FROM MALL_GOODS WHERE goods_onevent = #{onEvent}
+	<select id="getGoodsListByOnEvent" resultType="com.ezen.dto.Goods">
+		SELECT * FROM MALL_GOODS WHERE goods_onevent = ${onEvent}
 	</select>
 	
 	<!-- 해당 상품번호로등록된 리뷰를 가져온다 -->
@@ -64,17 +64,17 @@
 	
 	<!-- 해당 goods_idx를 가진 상품의 OnEvent값을 변경 -->
 	<update id="updateEvent">
-		UPDATE MALL_GOODS SET goods_onevent = #{onEvent} WHERE goods_idx = #{goods_idx}
+		UPDATE MALL_GOODS SET goods_onevent = ${param2} WHERE goods_idx = ${param1}
 	</update>
 	
 	<!-- 해당 goods_idx를 가진 상품의 판매중 정보를 품절로 변경 -->
 	<update id="updateGoodsStockSoldOut">
-		UPDATE MALL_GOODS SET goods_onsale = 0 WHERE goods_idx = #{goods_idx}
+		UPDATE MALL_GOODS SET goods_onsale = 0 WHERE goods_idx = ${goods_idx}
 	</update>
 	
 	<!-- 해당 goods_idx를 가진 상품의 재고량을 입력받은 수 만큼 더함 -->
 	<update id="updateGoodsStockOrder">
-		UPDATE MALL_GOODS SET goods_stock = goods_stock + #{stock} WHERE goods_idx = #{goods_idx}
+		UPDATE MALL_GOODS SET goods_stock = goods_stock + ${param2} WHERE goods_idx = ${param1}
 	</update>
 	
 	<!-- 해당 goods_idx를 가진 상품의 goods_purchased를 cart_amount 만큼 증가시킴 -->
@@ -90,6 +90,20 @@
 	<!-- 등록된 모든 상품의 갯수 가져오기 -->
 	<select id="countOfGoods" resultType="int">
 		SELECT COUNT(*) FROM mall_goods
+	</select>
+	
+	<!-- goods_idx를 받아 해당 상품의 onsale을 1(판매중)으로 변경 -->
+	<update id="updateGoodsStockOnSale">
+		UPDATE MALL_GOODS SET goods_onsale = 1 WHERE goods_idx = ${goods_idx}
+	</update>
+	
+	<!-- goods_purchased를 기준으로 판매량 상위 10개 상품을 가져옴 -->
+	<select id="getBestSellingGoods" resultType="com.ezen.dto.Goods">
+		<![CDATA[
+		select * from (
+			select goods_idx, goods_name, goods_price, goods_thumb, goods_onsale, rank() over(order by goods_purchased desc) as rnk from mall_goods
+					) where rnk <11
+		]]>
 	</select>
 	
 </mapper>
