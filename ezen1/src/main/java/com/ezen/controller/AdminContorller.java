@@ -50,16 +50,29 @@ public class AdminContorller {
 	public String adminRoot() {
 		return "redirect:admin/main";
 	}
-
+	/////////////////////////////////////////
+	// 메인
+	/////////////////////////////////////////
 	@RequestMapping("main")
 	public String adminMain() {
 		return "admin/main";
 	}
 	
+	////////////////////////////////////////
+	// 회원관리
+	////////////////////////////////////////
 	@RequestMapping("memberList")
 	public String memberList(Model model) {
+		model = adminService.getUserListForAdmin(model);
+		System.out.println(model.toString());
 		return "admin/memberList";
 	}
+	
+	@RequestMapping("memberListpopup")
+	public String memberListpopup() {
+		return "admin/memberListpopup";
+	}
+	
 	// memberList 상단 필터
 	@GetMapping("userSearchAction")
 	public String memberListFilter(@RequestParam(name = "cat")int cat,
@@ -81,27 +94,30 @@ public class AdminContorller {
 				model = adminService.getQuestionsFromGoodsDetail(model);
 				return "admin/qnaList";
 			}else {
-				
+				model = adminService.getOneToOneList(model);
+				return "admin/qnaList";
 			}
 		} catch (NullPointerException e) {
-			// TODO: handle exception
+			model = adminService.getQuestionsFromGoodsDetail(model);
 		}
-		model = adminService.getQuestionsFromGoodsDetail(model);
+		
 		return "admin/qnaList";
 	}
-	// 상품상세문의 답글등록
+	// 상품상세문의 답글등록 qna
 	@PostMapping("registerQuestionReplyAction")
 	@ResponseBody
 	public String registerQuestionReply(@RequestBody HashMap<String, String> param) {
 		return adminService.registQuestionReply(param);
 	}
-	
-	
-	
-	@RequestMapping("memberListpopup")
-	public String memberListpopup() {
-		return "admin/memberListpopup";
+	// 상품상세문의 답글등록 1:1문의
+	@PostMapping("registerOneToOneReplyAction")
+	@ResponseBody
+	public String registerOneToOneReply(@RequestBody HashMap<String, String> param) {
+		return adminService.registOneToOneReply(param);
 	}
+	
+	
+	
 	
 	///////////////////////////////
 	// 재고관리 페이지

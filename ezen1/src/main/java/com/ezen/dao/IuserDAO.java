@@ -1,6 +1,8 @@
 package com.ezen.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.dto.User;
@@ -34,5 +36,7 @@ public interface IuserDAO {
 	public ArrayList<User> searchUserById(String searchText);
 	// user_idx로 user_id 가져옴
 	public String getUserIdByUserIdx(int user_idx);
+	
+	public ArrayList<HashMap<String, String>> getAllUserInfoForAdmin();
 	
 }

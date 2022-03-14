@@ -62,11 +62,9 @@
 		SELECT * FROM mall_user WHERE user_id LIKE #{param1}
 	</select>
 	
-	<!-- 구매총액으로 정렬하여 회원정보 조회 -->
-	<select id="">
-		select * from mall_user, (
-			select user_idx, sum(purchase_total_price) over(order by user_idx) as total_sum
-				 from mall_purchase)as user_total where mall_user.user_idx = user_total.user_idx order by user_total.total_sum
+	<!-- admin userlist 용 회원정보 조회 -->
+	<select id="getAllUserInfoForAdmin" resultType="hashmap">
+		SELECT user_idx, user_id, user_name FROM mall_user
 	</select>
 	
 	<!-- user_idx로 user_id 가져오기 -->

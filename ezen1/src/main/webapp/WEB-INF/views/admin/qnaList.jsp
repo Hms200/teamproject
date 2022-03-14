@@ -22,7 +22,7 @@
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
       <!-- 뒤로가기 버튼 -->
       <div class="col-1 my-3">
-          <img src="/img/icon/left.png" alt="뒤로가기" onclick="location.href='admin'" width="30px" height="30px" style="cursor: pointer;">
+          <img src="/img/icon/left.png" alt="뒤로가기" onclick="location.href='../admin'" width="30px" height="30px" style="cursor: pointer;">
       </div>
       <div class="col-11 my-3 py-1 text-center font-weight-bold">
         <a class="text-decoration-none text-dark" href="qnaList?cat=Qna">Qna</a>  /  <a class="text-decoration-none text-dark" href="qnaList?cat=OneToOne">1:1문의</a>
@@ -38,6 +38,7 @@
         </tr>
         </thead>
         <tbody>
+        <c:if test="${ mode == 'Qna' }">
         <c:forEach var="question" items="${ questionlist }">
             <tr data-toggle="collapse" data-target="#q${ question.question_idx }" aria-expanded="false" aria-controls="collapse" data-parent="#questionTable" style="cursor: pointer;">
               <th style="font-size: 10px;">${ goodslist.get(question.goods_idx) }</th>
@@ -55,11 +56,32 @@
             </tr>
           
          </c:forEach>
+         </c:if>
+         
+         <c:if test="${ mode == 'OneToOne' }">
+         	<c:forEach var="question" items="${ questionlist }">
+            <tr data-toggle="collapse" data-target="#q${ question.onetoone_idx }" aria-expanded="false" aria-controls="collapse" data-parent="#questionTable" style="cursor: pointer;">
+              <th style="font-size: 10px;">${ question.onetoone_cat }</th>
+              <td class="text-right font-weight-light">${ userlist.get(question.user_idx) } &numsp;&numsp;&numsp;&numsp;<small> ${ question.onetoone_date }</small></td>
+              <td colspan="2">
+              <div class="d-flex justify-content-end">
+                <input type="button" value="답글등록" class="btn btn-secondary" id="${ question.onetoone_idx }" onclick="popupHideAndShowForQnaList(event)" style="width: 80px; height: 30px; font-size: 14px; cursor: pointer;">
+              </div>
+            </td>
+            </tr>
+            <!-- 아코디언 -->
+            <tr class="collapse" id="q${ question.onetoone_idx }" style="font-size: 14px;">
+              
+              <td colspan="3" style="width: 260px;">${ question.onetoone_contents }</td>
+            </tr>
+          
+         </c:forEach>
+         </c:if>
           </tbody> 
       </table>
     </div>
     
-
+	<input type="hidden" id="mode" value="${ mode }">
     <!-- 상품 문의 답글 팝업 -->
     <div class="position-absolute d-none flex-column bg-white border border-dark-50 rouned w-90" id="qna_reply_popup" style="top: 150px;z-index: 1100; max-width: 520px;">
       <!-- 닫기 버튼 -->
