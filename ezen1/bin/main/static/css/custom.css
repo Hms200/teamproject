@@ -50,6 +50,7 @@ input[type="tel"]:focus,
 input[type="color"]:focus,
 select:focus,
 .btn-primary:focus,
+.btn:focus,
 .uneditable-input:focus {   
   border-color: rgba(167, 130, 111, 1) !important;
   box-shadow: 0 0 0 1px rgba(167, 130, 111, 0.6) inset, 0 0 0 3px rgba(167, 130, 111, 0.8) !important;
@@ -65,8 +66,11 @@ select:focus,
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
 }
-.form-control-plaintext{
-	border: none;
+input[type="text"]:focus.form-control-plaintext{
+	border: none !important;
+	box-shadow: none !important;
+	outline-color: transparent !important;
+	cursor: default !important;
 }
 
 /* goodslist */
@@ -95,9 +99,6 @@ body .dep {
   }
   
   /* goodsDetail*/
-  body .dep {
-    display: none;
-  }
   main.info .dep._info,
   main.review .dep._review,
   main.inquiry .dep._inquiry {
@@ -113,23 +114,7 @@ body .dep {
     transition: background-color 0.7s;
     cursor: pointer;
   }
-  .accordionGoodsDetail {
-    width: 300px;
-  }
-  .cardHeaderGoodsDetail {
-    height: 55px;
-  }
-  .goodsDetailCrossIconImg {
-    cursor: pointer;
-  }
-  /*팝업의 위치설정css 설계서에는 t60 l10 이였는데 b30으로 지정 추후에 결정*/
-  #goodDetailInquiryPop {
-    position: absolute;
-    bottom: 30px;
-  }
-  .goodsDetailCartIcon {
-    cursor: pointer;
-  }
+
   .goodsDetailOption{
     width: 200px;
   }
@@ -138,40 +123,6 @@ body .dep {
   }
   .goodsDetailDivisionLine{
     height: 20px;
-  }
-  .goodsDeatailPurchaseButton{
-    width: 280px;
-  }
-  .goodsDetailReviewImgBox{
-    height: 150px;
-  }
-  .goodsDetailInquiryPop{
-    border-radius: 6px; width: 340px; height: 320px;
-  }
-  .goodsDetailCrossIconBox{
-    height: 30px;
-  }
-  .goodsDetailInquiryPopBox1{
-    width: 300px; height: 260px;
-  }
-  .goodsDetailInquiryPopBox2{
-    width: 300px; height: 25px;
-  }
-  .goodsDetailInquiryPopDate{
-    height: 20px;
-  }
-  .goodsDetailInquiryPopTitle{
-    border-radius: 6px; height: 40px;
-  }
-  .goodsDetailInquiryPopContent{
-    border-radius: 6px; height: 100px;
-  }
-  .goodsDetailInquiryPopCancle{
-    width: 100px; height: 40px;
-  }
-  .goodsDetailInquiryPopSubmit{
-    width: 185px; height: 40px;
-    background-color: dimgrey;
   }
 
   /*cart*/
@@ -195,25 +146,3 @@ body .dep {
     height: 40px;
   } 
 
-  /*purchaseList*/
-  #pwCheckPop{
-    position: absolute;
-    top: 50%; left: 35%;
-  }
-  .purchaseListTopBox {
-    height: 60px;
-  }
-  .purchaseListTotalPriceBox{
-    height: 85px;
-  }
-  .purchaseListPay{
-    height: 100px;
-  }
-  .purchaseListPop{
-    width: 300px;
-    height: 60px;
-  }
-  .purchaseListPopInput{
-    width: 300px;
-    height: 40px;
-  }

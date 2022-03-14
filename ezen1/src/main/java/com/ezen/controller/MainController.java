@@ -41,7 +41,7 @@ public class MainController {
 	public String root() {
 		return "redirect:main";
 	}
-	
+	 
 	@RequestMapping("main")
 	public String main(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
   		// 장바구니 숫자뱃지
@@ -54,12 +54,14 @@ public class MainController {
 			user_idx = 0;
 		}
 		// 뱃지 숫자 설정. 
-		int cartBedgNum;
-		try {
-			cartBedgNum = (int) session.getAttribute("cart");
-		} catch (NullPointerException e) {
-			cartBedgNum = goodsListService.getCountOfGoodsInCart(user_idx);
-			session.setAttribute("cart", cartBedgNum);
+		int cartBedgNum = 0;
+		if(user_idx != 0) {
+			try {
+				cartBedgNum = goodsListService.getCountOfGoodsInCart(user_idx);
+				session.setAttribute("cart", cartBedgNum);
+			} catch (NullPointerException e) {
+				System.out.println(e);
+			}
 		}
 		// 메인용 공지사항
 		model = mainService.noticeForMain(model);

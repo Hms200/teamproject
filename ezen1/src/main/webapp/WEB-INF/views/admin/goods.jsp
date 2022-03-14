@@ -72,7 +72,7 @@
       </div>
       
       
-      <form name="goodsimgs" method="post" enctype="multipart/form-data">
+      <form name="goodsimgs" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
       <div class="d-none">
    		<input type="hidden" name="goods_idx" value="">
       </div>

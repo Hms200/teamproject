@@ -10,91 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
-	<script>		
-	
-	//ajak을 이용한 id 중복체크 여부기능 
-    function idCheck() {
-    	var user_id = $('#user_id').val();
-    	if(!user_id){
-			alert("아이디 중복체크 후 회원가입이 가능합니다");
-			return false;
-			}
-    	// 아이디 유효성 검사(1보다 같거나 크면 중복 / 0 이면 중복안됨)
-    	$.ajax(
-    			{
-    				url: 'http://localhost:8085/login/idCheckAjax?user_id='+ user_id,	
-    	    		type: 'get',
-    	    		success: function(data) {
-    	    			console.log('통신 성공, data:' + data);
-    	    			
-    	    			var data_num = Number( data );
-    	    			if( data_num >= 1 ) {
-    	    				//아이디가 중복됨.
-    	    				alert("중복된 아이디입니다.");
-    						$('#isIDChecked').val('no');
-    						$('#user_id').val('');
-    						$('#user_id').focus();
-    	    			}else{
-    	    				//아이디가 중복 안됨. 사용 가능.
-    	    				alert("사용가능한 아이디입니다.");
-    						$('#isIDChecked').val('ok');
-    	    			}    			
-    	    		},
-    	    		error: function(){
-    	    			console.log('통신 실패');
-    	    		}	
-    			}    		
-    	);
-   	 }
-	//비밀번호 일치 여부확인 
-    function pwCheck() {
-    	var user_pw = $('#user_pw').val();
-    	if(!user_pw){
-			alert("비밀번호 중복체크 후 회원가입이 가능합니다");
-			return false;
-			}
-    	if( $('#user_pw').val() == $('#user_pw_check').val() ){
-    		alert("비밀번호가 일치합니다");
-			$('#isPWChecked').val('ok');
-    	}else {
-    		alert("비밀번호가 다릅니다.");
-			$('#isPWChecked').val('no');
-			$('#user_pw_check').val('');
-			$('#user_pw_check').focus();
-    	}
-    	
-	}
-    
-	function joinCheckAll(){
-    	
-		var isIDChecked = $('#isIDChecked').val();
-		var isPWChecked = $('#isPWChecked').val();	
-		
-		if( isIDChecked == 'no'){
-			alert("아이디 중복확인 후 회원가입이 가능합니다.");
-		}	    
-		if(isPWChecked == 'no') {	
-		   	alert("비밀번호 일치여부 후 회원가입이 가능합니다.");				
-		}
-		
-		const target = document.getElementsByClassName('nullcheck');
-
-	    for(i=0; i<target.length; i++){
-	        if(target[i].value == ''){
-	            alert(target[i].placeholder);
-	            target[i].focus();
-	            return false;
-	        }else if(target[i].type == 'checkbox' && target[i].checked == false){
-	            alert('채크사항을 확인 해 주세요');
-	            return false;
-	        }
-	    }			   
-	    document.forms[0].submit();
-	    return true;	    	
-	}
-
-</script>
 </head>
+
 <body>
     <!-- container -->
     <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
@@ -107,7 +24,7 @@
         </div>
         <!-- joinMainDiv -->
         <div class="container-sm container-fluid col-11 d-flex flex-column mt-3 justify-content-center align-items-center" style="max-width:520px;">
-            <form action="../login/joinAction" method="post">
+            <form action="../login/joinAction" method="post" onsubmit="return nullChecker();">
             
                 <div class="text-left font-weight-bold pl-2 mt-2">아이디</div>
                 <div class="form-group row mb-1 ml-0 mr-0 justify-content-between" style="font-size:14px;">
@@ -146,6 +63,7 @@
                     <input type="text" class="col-12 form-control nullcheck" name="sample6_detailAddress" id="sample6_detailAddress"  placeholder="상세주소를 입력해주세요">
                     <!-- 지우면 버튼클릭 안됨 -->
                     <input type="hidden" class="inputStyle1" id="sample6_extraAddress" placeholder="참고항목">
+                    <input type="hidden" class="" id="user_address" name="user_address" value="" />
                 </div>
                 <!-- checkBox -->
                 <div class="mb-4">
@@ -179,5 +97,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <!-- main js -->
 <script src="/js/main.js"></script>
+
+
 </body>
 </html>

@@ -2,6 +2,8 @@ package com.ezen.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,6 +35,7 @@ public class FileService {
 	@Value("${app.thumb.img.dir}")
 	private String thumbImgUploadDir;
 	
+	// detail 이미지 업로드 경
 	@Value("${app.goods.detail.dir}")
 	private String detailImgUploadDir;
 	
@@ -42,7 +45,7 @@ public class FileService {
 	// 업로드에 성공하면 이미지가 저장된 서버상의 경로를 String으로 리턴 
 	// 리턴된 이미지 저장경로를 받아서 DB의 img 관련 테이블에 해당 idx와 함께 insert하면 됨.
 	// 파일 업로드에 실패했는지 여부는 리턴된 String의 charAt(0) 의 값이 f 이면 실패로 처리.
-	public String fileUploader(String cat, MultipartFile multipartFile) {
+	public String fileUploader(String cat, MultipartFile multipartFile) throws UnsupportedEncodingException {
 		
 		String uploadDir;
 		if(cat.equals("goods")) {
@@ -59,6 +62,7 @@ public class FileService {
 		
 		// 파일명 생성기
 		String newName = fileNameGenerator(multipartFile.getOriginalFilename());
+		
 		
 		// 파일 저장 경로 
 		// File.separator 는 os마다 다른 경로구분문자를 알아서 넣어줌. cleanPath는 파일명의 지저분한 값들을 다 지워줌

@@ -41,7 +41,7 @@
             </div>
 
             <!-- 공지사항 -->
-            <div id="carouselNotice" class="carousel slide w-100" data-ride="carousel">
+            <div id="carouselNotice" class="carousel slide w-100" data-ride="carousel" style="cursor: pointer;">
                 <div class="carousel-inner">
 	                <div class="carousel-item active" data-interval="4000">
 	                    <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3" onclick="location.href='notice'" style="font-size: 14px;">
