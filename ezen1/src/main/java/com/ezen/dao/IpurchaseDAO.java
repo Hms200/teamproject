@@ -20,4 +20,16 @@ public interface IpurchaseDAO {
 	
 	//insert purchase
 	public int insertPurchase(Purchase purchase);
+	
+	//purchase_statement 로 해당하는 row 가져옴
+	public ArrayList<Purchase> getPurchaseListByStatement(String purchase_statement);
+	
+	// 최신순으로 정렬된 모든 값을 가져옴
+	public ArrayList<Purchase> getPurchaseListDesc();
+	
+	// 오래된 순으로 정렬된 모든 값을 가져옴
+	public ArrayList<Purchase> getPurchaseListAsc();
+	
+	// purchase 단건 가져옴
+	public Purchase getPurchaseByPurchaseIdx(int purchase_idx);
 }

@@ -13,4 +13,10 @@ public interface IreviewDAO {
 	
 	//review insert
 	public int insertReview(Review review);
+	
+	// 모든 리뷰 가져옴
+	public ArrayList<Review> getAllReviews();
+	
+	// 리뷰 답글달기
+	public int updateReviewReply(int review_idx, String review_reply);
 }

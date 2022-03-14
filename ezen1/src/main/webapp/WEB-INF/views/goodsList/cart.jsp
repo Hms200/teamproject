@@ -20,7 +20,7 @@
   <div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
     style="max-width: 520px; margin-top: 60px;">
-    <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom cartTopdivBox">
+    <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom" style="height: 60px">
       <div class="col-2 my-3">
         <a href="goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
           width="30px" height="30px"></a>
@@ -33,12 +33,12 @@
     <c:if test="${ cart != 0 }">
     <!-- 전체선택/선택삭제 -->
     <main class="w-100">
-    <div class="container-fluid d-flex felx-row justify-content-between mx-3 my-3 w-100 border-bottom cartSelectAllBox">
+    <div class="container-fluid d-flex felx-row justify-content-between mx-3 my-3 border-bottom col-11" style="height: 40px;">
       <div class="ml-3">
         <input type="checkbox" value="selectAll" class="ml-0" id="checkAll" onclick="selectAll(this)" style="width: 16px; height: 16px;"><label for="selectAll"
           class="ml-2" style="font-size: 14px;">전체선택</label>
       </div> 
-      <!--서버에서 처리-->
+      
       <div style="font-size: 13px;">
         <input type="button" value="선택삭제" onclick="removeGoodsInCart();">
       </div>
@@ -62,7 +62,7 @@
       <div class="d-flex flex-row justify-content-around">
         <img src="${ goods.goods_thumb }" alt="" class="img-fluid mx-3" width="100px"
           height="100px">
-        <div class="d-flex flex-column cartGoodsInfo">
+        <div class="d-flex flex-column col-7">
           <div class="d-flex flex-row justify-content-between">
             <span>가격</span><span>${ cart.cart_total_price }</span> 
             <input type="hidden" class="price" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
@@ -132,7 +132,7 @@
       <input type="hidden" name="cart_total_price" value="">
    		<input type="hidden" name="cart_list_idx" value="">
     </div>
-    <div class="font-weight-bold w-100 mt-5 text-center cartOrderButtonBox mb-5" style="font-size: 16xp;">
+    <div class="font-weight-bold w-100 mt-5 text-center mb-5" style="font-size: 16xp;">
       <button type="button" class="btn btn-primary" style="width: 300px; height: 40px;" onclick="listingGoods();">주문하기</button>
       </div>
       
@@ -146,12 +146,13 @@
     <div class="font-weight-bold mb-5" style="font-size: 26px;">
       장바구니가 비었습니다.
     </div>
-    <div class="d-flex flex-row justify-content-center mb-5 w-100 cartGoToGoodsList">
-      <a href="goodsList"><input type="button" class="btn btn-primary" value="상품보러가기" style="border-radius: 20px;"></a>
+    <div class="d-flex flex-row justify-content-center mb-5 w-100">
+      <a href="goodsList"><input type="button" class="btn btn-primary rounded-pill" value="상품보러가기"></a>
     </div>
+  </c:if>
   </div>
-	</c:if>
-</div>
+	
+
     
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import> 

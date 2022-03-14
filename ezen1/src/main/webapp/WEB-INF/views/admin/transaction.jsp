@@ -17,7 +17,7 @@
 <c:import url="../header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px; margin-top: 60px;">
    
          <!-- title container -->
          <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
@@ -40,18 +40,18 @@
                     </a>
                     
                     <div class="dropdown-menu col-11" style="min-width: 0;" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">주문접수</a>
-                      <a class="dropdown-item" href="#">발송준비중</a>
-                      <a class="dropdown-item" href="#">배송중</a>
-                      <a class="dropdown-item" href="#">완료</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=주문접수">주문접수</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=발송준비">발송준비중</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=배송">배송중</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=완료">완료</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">주문취소</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=주문취소">주문취소</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">반품신청</a>
-                      <a class="dropdown-item" href="#">교환신청</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=반품신청">반품신청</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=교환신청">교환신청</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">반품접수</a>
-                      <a class="dropdown-item" href="#">교환접수</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=반품접수">반품접수</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=교환접수">교환접수</a>
 
                     </div>
                 </div>
@@ -62,8 +62,8 @@
                     </a>
                   
                     <div class="dropdown-menu col-11" style="min-width: 0;" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">최신순</a>
-                      <a class="dropdown-item" href="#">오래된순</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=최신순">최신순</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=오래된순">오래된순</a>
                     </div>
                 </div>
             </div>
@@ -79,23 +79,16 @@
                         <th scope="col">주문날짜</th>
                     </thead>
                     <tbody>
+                    	<c:forEach var="list" items="${ purchaselist }">
                         <tr>
-                            <th scope="row" onclick="location.href='transactionpop?#'" style="cursor: pointer;">111111</th>
-                            <td>abc0123</td>
-                            <td>배송중</td>
-                            <td style="font-size: 12px;">yyyy-MM-dd:<br>HH:mm</td>
+                            <th scope="row" onclick="location.href='transactionpop?purchase_idx=${ list.purchase_idx}'" style="cursor: pointer;">${ list.purchase_idx }</th>
+                            <td>
+	                            ${ userlist.get(list.user_idx) }
+                            </td>
+                            <td>${ list.purchase_statement }</td>
+                            <td style="font-size: 12px;">${ list.purchase_date }</td>
                         </tr>
-                        <tr>
-                            <th scope="row"onclick="location.href='#'" style="cursor: pointer;"">222222</th>
-                            <td> abc0112</td>
-                            <td> 주문접수</td>
-                            <td style="font-size: 12px;">yyyy-MM-dd:<br>HH:mm</td>
-                        </tr><tr>
-                            <th scope="row" onclick="location.href='#'" style="cursor: pointer;">333333</th>
-                            <td> abc0012</td>
-                            <td> 배송완료</td>
-                            <td style="font-size: 12px;">yyyy-MM-dd:<br>HH:mm</td>
-                        </tr>
+                        </c:forEach>                        
                     </tbody>
                 </table>
                 

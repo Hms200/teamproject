@@ -17,7 +17,7 @@
 <c:import url="../header.jsp"></c:import>
 
 <!-- container -->
-  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px;">
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top: 60px;">
     <!-- 타이틀 -->
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
       <!-- 뒤로가기 버튼 -->
@@ -25,12 +25,12 @@
           <img src="/img/icon/left.png" alt="뒤로가기" onclick="location.href='admin'" width="30px" height="30px" style="cursor: pointer;">
       </div>
       <div class="col-11 my-3 py-1 text-center font-weight-bold">
-        Qna
+        <a class="text-decoration-none text-dark" href="qnaList?cat=Qna">Qna</a>  /  <a class="text-decoration-none text-dark" href="qnaList?cat=OneToOne">1:1문의</a>
       </div>
     </div>
     <!-- 상품 상세 문의 테이블 -->
     <div class="container-sm container-fluid mt-1" style="font-size: 16px;">
-      <table class="table table-hover border border-dark-50" id="myTable">
+      <table class="table table-hover border border-dark-50" id="questionTable">
         <thead class="text-center" style="height: 40px;">
           <tr>
           <th class="col-4" style="font-size: 14px;">유형</th>
@@ -38,59 +38,30 @@
         </tr>
         </thead>
         <tbody>
-            <tr data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse" data-parent="#myTable">
-              <th style="font-size: 14px;">상품상세보기</th>
-              <td>2022-02-22 작성자:***</td>
-            </tr>
-            <!-- 아코디언 -->
-            <tr class="collapse" id="collapse1" style="font-size: 14px;">
-              <td class="hiddenRow" style="width: 100px;">상품번호 및 상품이름</td>
-              <td style="width: 260px;">문의 내용입니다</td>
-            </tr>
-            <!-- 답글 버튼 -->
-            <tr>
+        <c:forEach var="question" items="${ questionlist }">
+            <tr data-toggle="collapse" data-target="#q${ question.question_idx }" aria-expanded="false" aria-controls="collapse" data-parent="#questionTable" style="cursor: pointer;">
+              <th style="font-size: 10px;">${ goodslist.get(question.goods_idx) }</th>
+              <td class="text-right font-weight-light">${ userlist.get(question.user_idx) } &numsp;&numsp;&numsp;&numsp;<small> ${ question.question_date }</small></td>
               <td colspan="2">
               <div class="d-flex justify-content-end">
-                <input type="button" value="답글등록" class="btn btn-secondary" onclick="popupHideAndShow(target ='qna_reply_popup')" style="width: 80px; height: 30px; font-size: 14px; cursor: pointer;"></button>
+                <input type="button" value="답글등록" class="btn btn-secondary" id="${ question.question_idx }" onclick="popupHideAndShowForQnaList(event)" style="width: 80px; height: 30px; font-size: 14px; cursor: pointer;">
               </div>
             </td>
             </tr>
-          </tbody> 
-      </table>
-    </div>
-    <!-- onetoone 문의 테이블 -->
-    <div class="container-sm container-fluid mt-1" style="font-size: 16px;">
-      <table class="table table-hover border border-dark-50" id="myTable">
-        <thead class="text-center" style="height: 40px;">
-          <tr>
-          <th class="col-4" style="font-size: 14px;">1:1</th>
-          <th class="col-8">내용</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse" data-parent="#myTable">
-              <th style="font-size: 14px;">싱품문의</th>
-              <td>2022-02-22 작성자:***</td>
-            </tr>
             <!-- 아코디언 -->
-            <tr class="collapse" id="collapse2" style="font-size: 14px;">
-              <td class="hiddenRow" style="width: 100px;"></td>
-              <td style="width: 260px;">문의 내용입니다</td>
+            <tr class="collapse" id="q${ question.question_idx }" style="font-size: 14px;">
+              
+              <td colspan="3" style="width: 260px;">${ question.question_contents }</td>
             </tr>
-            <!-- 답글 버튼 -->
-            <tr>
-              <td colspan="2">
-              <div class="d-flex justify-content-end">
-                <input type="button" value="답글등록" class="btn btn-secondary" onclick="popupHideAndShow(target ='onetoone_reply_popup')" style="width: 80px; height: 30px; font-size: 14px; cursor: pointer;"></button>
-              </div>
-            </td>
-            </tr>
+          
+         </c:forEach>
           </tbody> 
       </table>
     </div>
+    
 
     <!-- 상품 문의 답글 팝업 -->
-    <div class="position-absolute d-none bg-white border border-dark-50 rouned w-100" id="qna_reply_popup" style="top: 115px; left: 10px; z-index: 1100; max-width: 520px;">
+    <div class="position-absolute d-none flex-column bg-white border border-dark-50 rouned w-90" id="qna_reply_popup" style="top: 150px;z-index: 1100; max-width: 520px;">
       <!-- 닫기 버튼 -->
       <div class="d-flex justify-content-end">
         <img src="/img/icon/cross.png" alt="닫기 버튼" width="30px" height="30px" style="cursor: pointer;" onclick="popupHideAndShow(target ='qna_reply_popup')">
@@ -100,56 +71,25 @@
         <div class="text-center font-weight-bold text-dark" style="height: 25px; margin: 5px 0 20px; font-size: 16px;">
           답글 작성
         </div>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex flex-column justify-content-center align-items-center">
         <!-- 작성폼 시작 -->
-      <form action="qnaAnswerAction" method="post" name="qnaAnswerForm" onsubmit="return nullChecker();">
+      
         <!-- 히든 input -->
-        <input type="hidden" name="question_idx" value="question_idx">
-        <input type="hidden" name="question_reply_date" value="question_reply_date">
-        <input type="hidden" name="question_isreplied" value="1">
+        <input type="hidden" id="targetIdx" name="question_idx" value="question_idx">
       <!-- 내용 -->
       <div>
-        <textarea name="question_reply" placeholder="내용을 입력해주세요" cols="30" rows="20" class="border border-dark-50 rouned nullcheck" style="width: 300px; height: 100px; font-size: 14px; padding: 2px 15px;resize: none;"></textarea>
+        <textarea name="question_reply" placeholder="내용을 입력해주세요" cols="30" rows="10" class="border border-dark-50 rouned nullcheck" style="padding: 2px 15px;resize: none;"></textarea>
       </div>
       <!-- 확인 버튼 -->
-      <div class="d-flex align-items-center justify-content-center">
-        <input type="submit" value="등록하기" class="btn btn-dark text-light form-control" style="width: 185px; margin-top: 20px; cursor: pointer;">
+      <div>
+        <input type="button" value="등록하기" class="btn btn-dark text-light form-control" onclick="registerQuestionReply()" style="width: 185px; margin-top: 20px; cursor: pointer;">
       </div>
     </div>
-    </form>
+    
   </div>
     </div>
 
-    <!-- 1:1 문의 답글 팝업 -->
-    <div class="position-absolute d-none bg-white border border-dark-50 rouned w-100" id="onetoone_reply_popup" style="top: 115px; left: 10px; z-index: 1100;">
-      <!-- 닫기 버튼 -->
-      <div class="d-flex justify-content-end">
-        <img src="/img/icon/cross.png" alt="닫기 버튼" width="30px" height="30px" style="cursor: pointer;" onclick="popupHideAndShow(target ='onetoone_reply_popup')">
-      </div>
-      <div style="margin: 0 20px 30px">
-        <!-- 타이틀 -->
-        <div class="text-center font-weight-bold text-dark" style="height: 25px; margin: 5px 0 20px; font-size: 16px;">
-          답글 작성
-        </div>
-        <div class="d-flex justify-content-center">
-        <!-- 작성폼 시작 -->
-      <form action="onetooneReplyAction" method="post" name="onetooneReplyForm" onsubmit="return nullChecker();">
-        <!-- 히든 input -->
-        <input type="hidden" name="onetoone_idx" value="onetoone_idx">
-        <input type="hidden" name="onetoone_reply_date" value="onetoone_reply_date">
-        <input type="hidden" name="onetoone_isreplied" value="onetoone_isreplied">
-      <!-- 내용 -->
-      <div>
-        <textarea name="onetoone_reply" placeholder="내용을 입력해주세요" cols="30" rows="20" class="border border-dark-50 rouned nullcheck" style="width: 300px; height: 100px; font-size: 14px; padding: 2px 15px; resize: none;"></textarea>
-      </div>
-      <!-- 확인 버튼 -->
-      <div class="d-flex align-items-center justify-content-center">
-        <input type="submit" value="등록하기" class="btn btn-dark text-light form-control" style="width: 185px; margin-top: 20px; cursor: pointer;">
-      </div>
-    </div>
-    </form>
-  </div>
-    </div>
+  
   </div>
     
 <c:import url="../footer.jsp"></c:import>
@@ -159,5 +99,23 @@
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
+<script>
+
+//popup hide & show   for admin.qnaList
+function popupHideAndShowForQnaList(event) {
+    const targetWindow = document.getElementById('qna_reply_popup');
+    if(targetWindow.classList.contains("d-none")){
+        targetWindow.classList.add("d-block");
+        targetWindow.classList.remove("d-none");
+    }else if(targetWindow.classList.contains("d-block")){
+        targetWindow.classList.add("d-none");
+        targetWindow.classList.remove("d-block");
+    }
+    const targetQuestionIdx = event.target.id;
+    const questionIdxInput = document.getElementById('targetIdx');
+    questionIdxInput.value = targetQuestionIdx;
+};
+
+</script>
 </body>
 </html>
