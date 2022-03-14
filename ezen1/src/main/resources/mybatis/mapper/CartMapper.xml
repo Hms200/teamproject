@@ -7,7 +7,7 @@
 
 	<!-- user_idx가 일치하고 cart_isdone가 1 인값을 반환 -->
 	<select id="getCartIsDone" resultType="com.ezen.dto.Cart">
-		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx) AND CART_ISDONE=1
+		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx} AND CART_ISDONE=1
 	</select>
 
 	<!-- user_idx가 일치하고 cart_isdone이 0인값의 갯수를 반환 -->

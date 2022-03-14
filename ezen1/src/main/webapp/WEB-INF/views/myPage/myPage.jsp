@@ -52,13 +52,13 @@
 		<!-- 쇼핑 -->
 		<div class="w-100 ml-0 mr-0 border p-2">
 			<div class="text-black-50" style="font-size: 12px;">쇼핑</div>
-			<a href="./purchaseList" style="font-size: 16px;"
+			<a href="./purchaseList?user_id=${user_id}" style="font-size: 16px;"
 				class="text-dark"> 구매내역보기</a>
 		</div>
 		<!-- 고객센터 -->
 		<div class="w-100 ml-0 mr-0 border p-2">
 			<div class="text-black-50" style="font-size: 12px;">고객센터</div>
-			<a href="/customer/ask" style="font-size: 16px;"
+			<a href="/customer/ask?" style="font-size: 16px;"
 				class="text-dark"> 1:1 문의 </a> <br> 
 				<a href="/customer/myAsk"style="font-size: 16px;" class="text-dark">상품문의보기</a> <br>
 				<a href="/customer/faq" style="font-size: 16px;" class="text-dark">FAQ</a>
