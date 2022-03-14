@@ -107,7 +107,13 @@ public class CustomerController {
 	
 	//문의하기 페이지(ask)
 	@RequestMapping("ask")
-	public String ask() {
+	public String ask(HttpSession session) {
+		int user_idx;
+		try {
+			user_idx = (int)session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			return "redirect:../login/login";
+		}	
 		return "customer/ask";
 	}
 	
