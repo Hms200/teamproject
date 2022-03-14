@@ -34,7 +34,7 @@
 			<div class="col-11 my-3 py-1 text-center font-weight-bold">
 				회원정보</div>
 		</div>
-		<form action="userUpdateAction" name="userUpdateForm"
+		<form action="userUpdateAction" name="userUpdateForm" method="post"
 			onsubmit="return nullChecker();">
 			<!-- 이름, 아이디 -->
 			<div class="col-12 my-3 d-flex flex-row justify-content-center">
@@ -43,13 +43,13 @@
 						class="col font-weight-bold form-group text-dark pr-2">
 						이름 <input type="text"
 							class="form-control-plaintext col-12 rounded font-weight-normal border"
-							style="font-size: 12px;" placeholder="${user.user_name}" readonly>
+							style="font-size: 12px;" name="user_name" value="${user.user_name}" readonly>
 					</div>
 					<div style="height: 65px;"
 						class="col font-weight-bold form-hroup text-dark">
 						아이디 <input type="text"
 							class="form-control-plaintext col-12 rounded font-weight-normal border"
-							style="font-size: 12px;" placeholder="${user.user_id}" readonly>
+							style="font-size: 12px;" name="user_id" value="${user.user_id}" readonly>
 					</div>
 				</div>
 			</div>
@@ -58,13 +58,15 @@
 				<div class="my-2 col-12 font-weight-bold form-group text-dark">
 					비밀번호 <input type="password"
 						class="form-control col-12 rounded font-weight-nomal nullcheck"
-						id= "existingPassword"placeholder="기존 비밀번호를 입력해 주세요">
+						placeholder="기존 비밀번호를 입력해 주세요">
 						 <input type="password"
-						class="form-control col-12 rounded font-weight-nomal my-1 nullcheck"
-						id="newPassword"placeholder="변경할 비밀번호를 입력해 주세요">
+						class="form-control col-12 rounded font-weight-nomal my-1 nullcheck" id="pw1"
+						placeholder="변경할 비밀번호를 입력해 주세요">
 						 <input type="password"
-						class="form-control col-12 rounded font-weight-nomal nullcheck"
-						id="newPasswordCheck"placeholder="비밀번호 확인 입력을 해주세요">
+						class="form-control col-12 rounded font-weight-nomal nullcheck" id="pw2" name="user_pw"
+						placeholder="비밀번호 확인 입력을 해주세요">
+						<div id="al1" style="color: red; display: none;" >*비밀번호가 서로 다릅니다*</div>
+           			    <div id="al2" style="color: green; display: none;">*비밀번호가 일치합니다*</div>
 				</div>
 				<!-- 이메일 -->
 				<div class="my-3 col-12 font-weight-bold form-group text-dark">
@@ -104,6 +106,7 @@
                     <input type="text" class="col-12 form-control nullcheck" name="sample6_detailAddress" id="sample6_detailAddress"  placeholder="상세주소를 입력해주세요">
                     <!-- 지우면 버튼클릭 안됨 -->
                     <input type="hidden" class="inputStyle1" id="sample6_extraAddress" placeholder="참고항목">
+                    <input type="hidden" name="user_address">
 				</div>
 			</div>
 			<!-- 수정하기 button -->
@@ -123,5 +126,26 @@
 		crossorigin="anonymous"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/js/main.js"></script>
+	<!-- 비밀번호 확인 true/false 표현 , 주소값 넘겨주기 -->
+	<script>
+  $(function(){
+    var pw2;
+    $('input[id=pw2]').keyup(function(){
+      var pw2 = $(this).val();
+      if(pw2 != $('input[id=pw1]').val()){
+        $('#al1').css('display','block');
+        $('#al2').css('display','none');
+      }
+      if(pw2 == $('input[id=pw1]').val()){
+        $('#al1').css('display','none');
+        $('#al2').css('display','block');
+      }
+    })
+    $('button[type=submit]').click(function(){
+    const address = $('#sample6_address').val()+$('#sample6_detailAddress').val();
+    $('input[name=user_address]').attr('value',address);
+    })
+  })
+</script>
 </body>
 </html>
