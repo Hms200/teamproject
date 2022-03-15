@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
 <c:import url="../header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top: 60px;">
         <!-- 헤더 -->
         <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
             <div class="col-1 my-3">
@@ -69,23 +70,21 @@
                 </tr>
                 </thead>
                 <tbody style="font-size: 12px;">
-                  
-               <tr style="cursor:pointer;" onclick="popupHideandShow(target='memberlistpopup')">
-                <td>01</td>
-               <td>hong1234</td>
-               <td>홍길동</td>
-               <td>12</td>
-               <td>123.000</td>
-               <td>2022.02.21</td>
-              </tr>
-               <tr style="cursor:pointer;" onclick="popupHideandShow(target='memberlistpopup')">
-               <td>02</td>
-               <td>lee1234</td>
-               <td>이순신</td>
-               <td>3</td>
-               <td>70.000</td>
-               <td>2022.02.21</td>
-               </tr>
+               
+                <c:forEach var="user" items="${ userlist }"> 
+                	
+			               <tr style="cursor:pointer;" onclick="location.href='memberListpopup?user_idx=${ user.get('USER_IDX')}'">
+			                <td>${ user.get("USER_IDX") }</td>
+			               <td>${ user.get("USER_ID") }</td>
+			               <td>${ user.get("USER_NAME") }</td>
+			               <td>${ user.get("TOTAL_AMOUNT") }</td>
+			               <td>${ user.get("TOTAL_PRICE") }</td>
+			               <fmt:formatDate var="date" value="${ user.get('JOIN_DATE') }" pattern="YY.MM.dd"/>
+			               <td>${ date }</td>
+			              </tr>
+              	
+              </c:forEach> 
+               
                
             
                </tbody>
