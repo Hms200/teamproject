@@ -64,41 +64,42 @@
 			</div>
 		</div>
 		<!-- 카드 -->
-		<c:forEach var="list" items="${list}">
+		<c:forEach var="list" items="${isDoneList}">
 			<div
 				class="w-100 col-12 d-flex flex-column border border-dark-50 py-1 my-2"
 				style="height: 160px;">
 				<form name="purchaseHistoryForm">
 					<div class="w-100 d-flex flex-row justify-content-between"
 						style="font-size: 12px;">
-						<div>${purchase.purchase_statement}</div>
-						<div>${purchase.purchase_date}</div>
+						<div>${purchaseList.get(list.cart_list_idx).purchase_statement}</div>
+						<div>${purchaseList.get(list.cart_list_idx).purchase_date}</div>
 					</div>
 					<div class="d-flex flex-row">
 						<div col-3>
-							<img src="${goods_thumb}" alt="" class="img-thumbnail"
+							<img src="${thumbList.get(list.goods_idx)}" alt="" class="img-thumbnail"
 								width="80px">
 						</div>
 						<div class="col-9" style="font-size: 14px;">
-							<div class="col-12 text-left pl-2">상품이름: ${list.purchaseList}</div>
-							<div class="col-12 text-left pl-2">상품번호: ${goods_idx}</div>
+							<div class="col-12 text-left pl-2">상품이름: ${nameList.get(list.goods_idx) }</div>
+							<div class="col-12 text-left pl-2">구매번호: ${purchaseList.get(list.cart_list_idx).purchase_idx}</div>
 							<div class="col-12 text-left pl-2 position-relative">
-								<span>가격</span> <span
-									style="right: 0%; position: absolute; cursor: pointer"
+								<span>가격: ${priceList.get(list.goods_idx) }</span> 
+								<span style="right: 0%; position: absolute; cursor: pointer"
 									class="text-dark"
 									onclick="popupHideAndShow(target='reviewpopup')">리뷰쓰기</span>
 							</div>
 							<div
 								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-2">
-								<button type="button" value="환불신청" class="p-0"
+								<button type="submit" value="환불신청" class="p-0" name="AskRefund"
 									style="font-size: 14px;"
-									onclick="multiSubmt(formName='purchasehistoryForm', formAction='purchaseRefundAction')">환불신청</button>
-								<button type="button" value="교환신청" class="p-0"
+									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseRefundAction')">환불신청</button>
+								<button type="submit" value="교환신청" class="p-0" name="AskChange"
 									style="font-size: 14px;"
-									onclick="multiSubmt(formName='purchasehistoryForm', formAction='purchaseChangeAction')">교환신청</button>
-								<button type="button" value="반품신청" class="p-0"
+									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseChangeAction')">교환신청</button>
+								<button type="submit" value="취소신청" class="p-0" name="AskCancle"
 									style="font-size: 14px;" style=" font-size: 14px;"
-									onclick="multiSubmt(formName='purchasehistoryForm', formAction='purchaseCancleAction')">취소신청</button>
+									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseCancleAction')">취소신청</button>
+								<input type="hidden" name="purchase_idx" value="${purchaseList.get(list.cart_list_idx).purchase_idx}">
 							</div>
 						</div>
 					</div>

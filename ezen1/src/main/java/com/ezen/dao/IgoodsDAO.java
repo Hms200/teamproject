@@ -72,4 +72,7 @@ public interface IgoodsDAO {
 	
 	// goods_purchased 를 기준으로 판매량 상위 10개 상품 가져옴
 	public ArrayList<Goods> getBestSellingGoods();
+
+	//상품의 가격을 가져옴
+	public int getGoodsPrice(int goods_idx);
 }
