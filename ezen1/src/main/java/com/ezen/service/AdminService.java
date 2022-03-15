@@ -1,17 +1,18 @@
 package com.ezen.service;
 
 
-import java.lang.StackWalker.Option;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import com.ezen.dao.IcartDAO;
 import com.ezen.dao.IgoodsDAO;
@@ -32,6 +33,8 @@ import com.ezen.dto.Question;
 import com.ezen.dto.Review;
 import com.ezen.dto.ReviewIMGS;
 import com.ezen.dto.User;
+
+
 
 @Service
 public class AdminService {
@@ -72,20 +75,54 @@ public class AdminService {
 	@Autowired
 	IonetooneDAO onetooneDAO;
 	
-	// MemberList filter
+	//// MemberList filter
 	// ID로 검색
-	public Model MemberListBySearch(String searchText, Model model) {
+	public Model userListBySearch(String searchText, Model model) {
 		ArrayList<User> userList = userDAO.searchUserById(searchText);
 		ArrayList<HashMap<String, String>> filtterd = new ArrayList<>();
-		userList.forEach(item ->{
+		userList.forEach(item -> {
 			HashMap<String, String> info = cartDAO.getCartSumOfPriceAndAmountByUserIdx(item.getUser_idx());
 			filtterd.add(info);
 		});
 		model.addAttribute("userlist", filtterd);
-		
-		
 		return model;	
 	}
+	// 그 외 검색
+	public Model userListbyFiltter(String cat, Model model) {
+		// 1. 구매량 2.금액 3.가입일
+		ArrayList<HashMap<String, String>> userList = cartDAO.getCartSumOfPriceAndAmount();
+		if(cat.equals("1")) {
+			Comparator<HashMap<String, String>> comparator = (o1, o2) -> {
+				//내림차순
+				int amount1 = Integer.parseInt(String.valueOf(o1.get("TOTAL_AMOUNT")));
+				int amount2 = Integer.parseInt(String.valueOf(o2.get("TOTAL_AMOUNT")));
+				return amount2 - amount1;
+			};
+			Collections.sort(userList, comparator);
+			model.addAttribute("userlist", userList);
+		}else if(cat.equals("2")) {
+			Comparator<HashMap<String, String>> comparator = (o1, o2) -> {
+				//내림차순
+				int price1 = Integer.parseInt(String.valueOf(o1.get("TOTAL_PRICE")));
+				int price2 = Integer.parseInt(String.valueOf(o2.get("TOTAL_PRICE")));
+				return price2 - price1;
+			};
+			Collections.sort(userList, comparator);
+			model.addAttribute("userlist", userList);
+		}else {
+			Comparator<HashMap<String, String>> comparator = (o1, o2) -> {
+				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.S");
+				//내림차순
+				LocalDate date1 = LocalDate.parse(String.valueOf(o1.get("JOIN_DATE")).replace(" ", "T"),fmt);
+				LocalDate date2 = LocalDate.parse(String.valueOf(o2.get("JOIN_DATE")).replace(" ", "T"),fmt);
+				return date2.compareTo(date1);
+			};
+			Collections.sort(userList, comparator);
+			model.addAttribute("userlist", userList);
+		}
+		return model;
+	}
+
 	// 회원관리 유저리스트 받기
 	public Model getUserListForAdmin(Model model) {
 		ArrayList<HashMap<String, String>> userList = cartDAO.getCartSumOfPriceAndAmount();

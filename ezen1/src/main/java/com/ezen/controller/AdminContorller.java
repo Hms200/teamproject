@@ -1,15 +1,12 @@
 package com.ezen.controller;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IpurchaseDAO;
-import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
-import com.ezen.dto.Purchase;
 import com.ezen.service.AdminService;
 import com.ezen.service.FileService;
 
@@ -67,7 +62,7 @@ public class AdminContorller {
 		model = adminService.getUserListForAdmin(model);
 		return "admin/memberList";
 	}
-	
+	// 상세조
 	@RequestMapping("memberListpopup")
 	public String memberListpopup(@RequestParam String user_idx, Model model) {
 		model = adminService.getUserInfo(Integer.parseInt(user_idx), model);
@@ -76,19 +71,21 @@ public class AdminContorller {
 	
 	// memberList 상단 필터
 	@GetMapping("userSearchAction")
-	public String memberListFilter(@RequestParam(name = "cat")int cat,
+	public String memberListFilter(@RequestParam(name = "cat")String cat,
 									@RequestParam(name = "searchText",required = false)String searchText,
 									Model model) {
-		if(cat == 0) {
-			model = adminService.MemberListBySearch(searchText, model);
+		if(cat.equals("0")) {
+			model = adminService.userListBySearch(searchText, model);
 		}else {
-			model = adminService.getUserListForAdmin(model);
+			model = adminService.userListbyFiltter(cat, model);
 			
 		}
 		
 		
 		return "admin/memberList";
 	}
+	
+	
 	
 	/////////////////////////////////////////
 	// 문의관리 페이지
@@ -170,6 +167,8 @@ public class AdminContorller {
 		adminService.orderGoods(param);
 	}
 	
+	
+	
 	/////////////////////////////
 	// 상품등록 페이지
 	/////////////////////////////
@@ -224,6 +223,8 @@ public class AdminContorller {
 		return "<script>alert('등록되었습니다.'); location.href='goods';</script>";
 	}
 	
+	
+	
 	///////////////////////////////
 	//  리뷰관리 페이지
 	///////////////////////////////
@@ -238,6 +239,7 @@ public class AdminContorller {
 	public String registReviewReply(@RequestBody HashMap<String, String> param) {
 		return adminService.registReviewReply(param);
 	}
+	
 	
 	
 	//////////////////////////////
@@ -271,6 +273,8 @@ public class AdminContorller {
 		String returnString = adminService.changeStatement(purchase_idx, purchase_statement);
 		return returnString;
 	}
+	
+	
 	
 	////////////////////////////////
 	// 이벤트관리페이지
