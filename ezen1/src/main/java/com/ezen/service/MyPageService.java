@@ -57,32 +57,59 @@ public class MyPageService {
 		}
 	}
 
-	public ArrayList<Model> purchaseList(String user_id,Model model) {
+	public Model purchaseList(String user_id,Model model) {
 		int user_idx = userDAO.getUserIdx(user_id);
 		ArrayList<Cart> isDoneList = cartDAO.getCartIsDone(user_idx);
-		model.addAttribute("purchaseList",isDoneList);
-
-		ArrayList<Model> modelList = new ArrayList<>();
+		HashMap<Object, Object> thumbList = new HashMap<>();
+		HashMap<Object, Object> nameList = new HashMap<>();
+		HashMap<Object, Object> priceList = new HashMap<>();
+		HashMap<Object, Object> purchaseList = new HashMap<>();
+		
+		ArrayList<Purchase> purchasesList = null;
+		
+		isDoneList.forEach(result ->{
+			//purchasesList.add(purchaseDAO.getpurchaseArrayList(result.getUser_idx(), result.getCart_list_idx(), result.getGoods_idx()));
+			//System.out.println(result.getCart_list_idx());
+			//System.out.println(result.getUser_idx());
+			//System.out.println(result.getGoods_idx());
+		});
 		
 		isDoneList.forEach(list -> {
-			int goods_idx = list.getGoods_idx();
-			model.addAttribute("goods_idx", goods_idx);
-			
-			String Thumb = goodsDAO.getGoodsThumb(goods_idx);
-			model.addAttribute("goods_thumb",Thumb);
-			
-			String Name = goodsDAO.getGoodsName(goods_idx);
-			model.addAttribute("goods_name", Name);
-			
-			int cart_list_idx = list.getCart_list_idx();
-			Purchase purchase = purchaseDAO.getPurchaseInfoByCartListidx(cart_list_idx);
-			model.addAttribute("purchase", purchase);
-			modelList.add(model);
+			thumbList.put(list.getGoods_idx(), goodsDAO.getGoodsThumb(list.getGoods_idx()));
+			nameList.put(list.getGoods_idx(), goodsDAO.getGoodsName(list.getGoods_idx()));
+			priceList.put(list.getGoods_idx(), goodsDAO.getGoodsPrice(list.getGoods_idx()));
+			purchaseList.put(list.getCart_list_idx(), purchaseDAO.getPurchaseInfoByCartListidx(list.getCart_list_idx()));
 		});
-		System.out.println(modelList);
-		model.addAttribute("list",modelList);
 		
-		return modelList;
+		model.addAttribute("purchaseList",purchaseList);
+		model.addAttribute("thumbList",thumbList);
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("priceList",priceList);
+		model.addAttribute("isDoneList",isDoneList);
+		
+		
+		return model;
+	}
+	
+	public String changeStatement(int purchase_idx, String ask) {
+		
+		String result = null;
+		switch (ask) {
+		case "환불신청":
+			purchaseDAO.updatePurchaseStatementByMyPage(purchase_idx, ask);
+			result=  "<script>alert('환불신청이 완료되었습니다.'); location.href='/myPage/myPage'; </script>";
+			break;
+		case "교환신청":
+			purchaseDAO.updatePurchaseStatementByMyPage(purchase_idx, ask);
+			result=  "<script>alert('교환신청이 완료되었습니다.'); location.href='/myPage/myPage'; </script>";
+			break;
+		case "취소신청":
+			purchaseDAO.updatePurchaseStatementByMyPage(purchase_idx, ask);
+			result=  "<script>alert('취소신청이 완료되었습니다.'); location.href='/myPage/myPage'; </script>";
+			break;
+		}
+		return result;
+		
 	}
 
 
