@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.dto.Purchase;
+import com.ezen.dto.User;
 
 @Mapper
 public interface IpurchaseDAO {
@@ -32,4 +33,7 @@ public interface IpurchaseDAO {
 	
 	// purchase 단건 가져옴
 	public Purchase getPurchaseByPurchaseIdx(int purchase_idx);
+	
+	//purchaseList 필요정보 query
+	public ArrayList<Purchase> getpurchaseArrayList(int user_idx, int cart_list_idx, int goods_idx);
 }

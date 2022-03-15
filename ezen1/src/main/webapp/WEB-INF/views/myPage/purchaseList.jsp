@@ -92,14 +92,14 @@
 								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-2">
 								<button type="submit" value="환불신청" class="p-0" name="AskRefund"
 									style="font-size: 14px;"
-									onclick="multiSubmt(formName='purchasehistoryForm', formAction='purchaseRefundAction')">환불신청</button>
-									<input type="hidden" name="purchase_idx" value="${purchaseList.get(list.cart_list_idx).purchase_idx}">
-								<button type="button" value="교환신청" class="p-0"
+									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseRefundAction')">환불신청</button>
+								<button type="submit" value="교환신청" class="p-0" name="AskChange"
 									style="font-size: 14px;"
-									onclick="multiSubmt(formName='purchasehistoryForm', formAction='purchaseChangeAction')">교환신청</button>
-								<button type="button" value="반품신청" class="p-0"
+									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseChangeAction')">교환신청</button>
+								<button type="submit" value="취소신청" class="p-0" name="AskCancle"
 									style="font-size: 14px;" style=" font-size: 14px;"
-									onclick="multiSubmt(formName='purchasehistoryForm', formAction='purchaseCancleAction')">취소신청</button>
+									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseCancleAction')">취소신청</button>
+								<input type="hidden" name="purchase_idx" value="${purchaseList.get(list.cart_list_idx).purchase_idx}">
 							</div>
 						</div>
 					</div>

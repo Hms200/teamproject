@@ -30,6 +30,7 @@ public class MyPageController {
 	@Autowired
 	IuserDAO userDAO;
 	
+	//회원정보 수정 리스트
 	@RequestMapping("/memberInfo")
 	public String memberInfo(HttpServletRequest request,Model model) {
 		String user_id = request.getParameter("user_id");
@@ -37,6 +38,7 @@ public class MyPageController {
 		model.addAttribute("user",user);
 		return "myPage/memberInfo";
 	}
+	//회원정보 업데이트action
 	@PostMapping("/userUpdateAction")
 	public @ResponseBody String userUpdateAction(User user) {
 		System.out.println(user.toString());
@@ -49,23 +51,37 @@ public class MyPageController {
 		
 		return "myPage/myPage";
 	}
-	
+	//user_id해당 구매내역 보여주기
 	@RequestMapping("/purchaseList")
 	public String purchaseList(HttpServletRequest request,Model model) {
 		String user_id =request.getParameter("user_id");
 		myPageService.purchaseList(user_id, model);
 		return "myPage/purchaseList";
 	}
-	
+	//환불신청
 	@RequestMapping("/purchaseRefundAction")
-	public String purchaseRefundAction(@RequestParam("purchase_idx")int purchase_idx,
-									   @RequestParam("AskRefund")String AskRefund) {
-		System.out.println("purchase_idx:"+purchase_idx);
-		System.out.println("AskRefund:"+AskRefund);
-		
-		
-		return "";
+	public @ResponseBody String purchaseRefundAction(@RequestParam("purchase_idx")int purchase_idx,
+									   @RequestParam("AskRefund")String ask) {
+		String result = myPageService.changeStatement(purchase_idx,ask);
+		return result;
 	}
+	//교환신청
+	@RequestMapping("/purchaseChangeAction")
+	public @ResponseBody String purchaseChangeAction(@RequestParam("purchase_idx")int purchase_idx,
+									   @RequestParam("AskChange")String ask) {
+		String result = myPageService.changeStatement(purchase_idx, ask);
+		return result;
+	}
+	//취소신청
+	@RequestMapping("/purchaseCancleAction")
+	public @ResponseBody String purchaseCancleAction(@RequestParam("purchase_idx")int purchase_idx,
+									   @RequestParam("AskCancle") String ask) {
+		
+		String result = myPageService.changeStatement(purchase_idx, ask);
+		return result;
+		
+	}
+	
 	
 	@RequestMapping("/reviewpopup")
 	public String reviewpopup() {

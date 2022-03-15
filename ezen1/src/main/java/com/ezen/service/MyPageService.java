@@ -65,6 +65,15 @@ public class MyPageService {
 		HashMap<Object, Object> priceList = new HashMap<>();
 		HashMap<Object, Object> purchaseList = new HashMap<>();
 		
+		ArrayList<Purchase> purchasesList = null;
+		
+		isDoneList.forEach(result ->{
+			//purchasesList.add(purchaseDAO.getpurchaseArrayList(result.getUser_idx(), result.getCart_list_idx(), result.getGoods_idx()));
+			//System.out.println(result.getCart_list_idx());
+			//System.out.println(result.getUser_idx());
+			//System.out.println(result.getGoods_idx());
+		});
+		
 		isDoneList.forEach(list -> {
 			thumbList.put(list.getGoods_idx(), goodsDAO.getGoodsThumb(list.getGoods_idx()));
 			nameList.put(list.getGoods_idx(), goodsDAO.getGoodsName(list.getGoods_idx()));
@@ -80,6 +89,27 @@ public class MyPageService {
 		
 		
 		return model;
+	}
+	
+	public String changeStatement(int purchase_idx, String ask) {
+		
+		String result = null;
+		switch (ask) {
+		case "환불신청":
+			purchaseDAO.updatePurchaseStatementByMyPage(purchase_idx, ask);
+			result=  "<script>alert('환불신청이 완료되었습니다.'); location.href='/myPage/myPage'; </script>";
+			break;
+		case "교환신청":
+			purchaseDAO.updatePurchaseStatementByMyPage(purchase_idx, ask);
+			result=  "<script>alert('교환신청이 완료되었습니다.'); location.href='/myPage/myPage'; </script>";
+			break;
+		case "취소신청":
+			purchaseDAO.updatePurchaseStatementByMyPage(purchase_idx, ask);
+			result=  "<script>alert('취소신청이 완료되었습니다.'); location.href='/myPage/myPage'; </script>";
+			break;
+		}
+		return result;
+		
 	}
 
 
