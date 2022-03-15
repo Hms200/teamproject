@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IpurchaseDAO;
+import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.dto.Purchase;
@@ -64,12 +65,12 @@ public class AdminContorller {
 	@RequestMapping("memberList")
 	public String memberList(Model model) {
 		model = adminService.getUserListForAdmin(model);
-		System.out.println(model.toString());
 		return "admin/memberList";
 	}
 	
 	@RequestMapping("memberListpopup")
-	public String memberListpopup() {
+	public String memberListpopup(@RequestParam String user_idx, Model model) {
+		model = adminService.getUserInfo(Integer.parseInt(user_idx), model);
 		return "admin/memberListpopup";
 	}
 	
@@ -80,8 +81,13 @@ public class AdminContorller {
 									Model model) {
 		if(cat == 0) {
 			model = adminService.MemberListBySearch(searchText, model);
+		}else {
+			model = adminService.getUserListForAdmin(model);
+			
 		}
-		return "";
+		
+		
+		return "admin/memberList";
 	}
 	
 	/////////////////////////////////////////

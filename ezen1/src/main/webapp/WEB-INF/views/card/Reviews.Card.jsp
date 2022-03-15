@@ -3,13 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
  <div class="container-fluid my-2 col-12 d-flex flex-column justify-content-center border rounded px-0" style="max-width:520px;">
-        <!-- tilte -->
+        <!-- title -->
         <div class="d-block font-weight-bold font-italic  pl-1" style="font-size: 16px;">Best Review</div>
 
         <div class="container-fluid px-0 mt-2 mb-2 col-12 d-flex justify-content-start" style="white-space:nowrap; overflow-x: auto;">           
                
       <c:forEach var="review" items="${ reviewlist }">
-        <div class="col-5 inline-block mx-1 my-2 px-0 border rounded">
+        <div class="col-5 inline-block mx-1 my-2 px-0 border rounded" onclick="location.href = '../goodsList/goodsDetail?goods_idx=${ review.goods_idx }'" style="cursor: pointer">
         	<c:forEach var="review_img" items="${ reviewimglist }">
         		<c:set var="img" value="" />
         		<c:if test="${ review.review_idx == review_img.review_idx }">

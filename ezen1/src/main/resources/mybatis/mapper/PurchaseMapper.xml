@@ -49,4 +49,14 @@
 	<select id="getPurchaseListAsc" resultType="com.ezen.dto.Purchase">
 		SELECT * FROM MALL_PURCHASE ORDER BY purchase_date ASC
 	</select>
+	
+	<select id="getpurchaseArrayList" resultType="com.ezen.dto.Purchase">
+		SELECT PURCHASE_STATEMENT, PURCHASE_DATE,
+		MALL_GOODS.GOODS_NAME,PURCHASE_IDX, GOODS_PRICE FROM MALL_CART,
+		MALL_PURCHASE ,MALL_USER, MALL_GOODS
+		WHERE MALL_CART.CART_LIST_IDX = ${param2}
+		AND MALL_USER.USER_IDX = ${param1}
+		AND MALL_CART.CART_ISDONE = 0
+		AND MALL_GOODS.GOODS_IDX = ${param3}
+	</select>
 </mapper>

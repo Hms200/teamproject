@@ -73,11 +73,31 @@ public class AdminService {
 	IonetooneDAO onetooneDAO;
 	
 	// MemberList filter
+	// ID로 검색
 	public Model MemberListBySearch(String searchText, Model model) {
-		ArrayList<User> userList = userDAO.searchUserById("%"+searchText+"%");
+		ArrayList<User> userList = userDAO.searchUserById(searchText);
+		ArrayList<HashMap<String, String>> filtterd = new ArrayList<>();
+		userList.forEach(item ->{
+			HashMap<String, String> info = cartDAO.getCartSumOfPriceAndAmountByUserIdx(item.getUser_idx());
+			filtterd.add(info);
+		});
+		model.addAttribute("userlist", filtterd);
+		
+		
+		return model;	
+	}
+	// 회원관리 유저리스트 받기
+	public Model getUserListForAdmin(Model model) {
+		ArrayList<HashMap<String, String>> userList = cartDAO.getCartSumOfPriceAndAmount();
 		model.addAttribute("userlist", userList);
 		return model;
-		
+	}
+	
+	// 회원정보 단건받기
+	public Model getUserInfo(int user_idx, Model model) {
+		User userInfo = userDAO.getMemberInfoByUserIdx(user_idx);
+		model.addAttribute("user", userInfo);
+		return model;
 	}
 	
 	// goods page 상품등록	
@@ -353,11 +373,5 @@ public class AdminService {
 		
 	}
 	
-	// 회원관리 유저리스트 받기
-	public Model getUserListForAdmin(Model model) {
-		ArrayList<HashMap<String, String>> userList = cartDAO.getCartSumOfPriceAndAmount();
-		model.addAttribute("userlist", userList);
-		System.out.println(model.toString());
-		return model;
-	}
+
 }
