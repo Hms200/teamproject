@@ -44,9 +44,7 @@ public class MyPageService {
 		}else {
 			return "<script> alert('리뷰등록실패')  </script>";
 		}
-	
 	}
-
 	public String updateUserInfo(User user) {
 		int result = userDAO.UpdateMemberInfo(user);
 		System.out.println(result);
@@ -60,39 +58,18 @@ public class MyPageService {
 	public Model purchaseList(String user_id,Model model) {
 		int user_idx = userDAO.getUserIdx(user_id);
 		ArrayList<Cart> isDoneList = cartDAO.getCartIsDone(user_idx);
-		HashMap<Object, Object> thumbList = new HashMap<>();
-		HashMap<Object, Object> nameList = new HashMap<>();
-		HashMap<Object, Object> priceList = new HashMap<>();
-		HashMap<Object, Object> purchaseList = new HashMap<>();
 		
-		ArrayList<Purchase> purchasesList = null;
+		ArrayList<HashMap<String, String>> purchaseList = new ArrayList<>();
 		
 		isDoneList.forEach(result ->{
-			//purchasesList.add(purchaseDAO.getpurchaseArrayList(result.getUser_idx(), result.getCart_list_idx(), result.getGoods_idx()));
-			//System.out.println(result.getCart_list_idx());
-			//System.out.println(result.getUser_idx());
-			//System.out.println(result.getGoods_idx());
+			HashMap<String, String> map = purchaseDAO.getpurchaseArrayList(result.getUser_idx(), result.getCart_list_idx(), result.getGoods_idx());
+			purchaseList.add(map);
 		});
-		
-		isDoneList.forEach(list -> {
-			thumbList.put(list.getGoods_idx(), goodsDAO.getGoodsThumb(list.getGoods_idx()));
-			nameList.put(list.getGoods_idx(), goodsDAO.getGoodsName(list.getGoods_idx()));
-			priceList.put(list.getGoods_idx(), goodsDAO.getGoodsPrice(list.getGoods_idx()));
-			purchaseList.put(list.getCart_list_idx(), purchaseDAO.getPurchaseInfoByCartListidx(list.getCart_list_idx()));
-		});
-		
 		model.addAttribute("purchaseList",purchaseList);
-		model.addAttribute("thumbList",thumbList);
-		model.addAttribute("nameList", nameList);
-		model.addAttribute("priceList",priceList);
-		model.addAttribute("isDoneList",isDoneList);
-		
-		
 		return model;
 	}
 	
 	public String changeStatement(int purchase_idx, String ask) {
-		
 		String result = null;
 		switch (ask) {
 		case "환불신청":
@@ -109,8 +86,12 @@ public class MyPageService {
 			break;
 		}
 		return result;
-		
 	}
-
+	public String sortByProgress(String cat) {
+		
+		
+		return null;
+	}
+	
 
 }

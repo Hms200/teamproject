@@ -1,6 +1,7 @@
 package com.ezen.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -35,5 +36,5 @@ public interface IpurchaseDAO {
 	public Purchase getPurchaseByPurchaseIdx(int purchase_idx);
 	
 	//purchaseList 필요정보 query
-	public ArrayList<Purchase> getpurchaseArrayList(int user_idx, int cart_list_idx, int goods_idx);
+	public HashMap<String, String> getpurchaseArrayList(int user_idx, int cart_list_idx, int goods_idx);
 }
