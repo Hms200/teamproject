@@ -63,14 +63,16 @@ public class MyPageService {
 		HashMap<Object, Object> thumbList = new HashMap<>();
 		HashMap<Object, Object> nameList = new HashMap<>();
 		HashMap<Object, Object> priceList = new HashMap<>();
-
+		HashMap<Object, Object> purchaseList = new HashMap<>();
 		
 		isDoneList.forEach(list -> {
 			thumbList.put(list.getGoods_idx(), goodsDAO.getGoodsThumb(list.getGoods_idx()));
 			nameList.put(list.getGoods_idx(), goodsDAO.getGoodsName(list.getGoods_idx()));
 			priceList.put(list.getGoods_idx(), goodsDAO.getGoodsPrice(list.getGoods_idx()));
+			purchaseList.put(list.getCart_list_idx(), purchaseDAO.getPurchaseInfoByCartListidx(list.getCart_list_idx()));
 		});
 		
+		model.addAttribute("purchaseList",purchaseList);
 		model.addAttribute("thumbList",thumbList);
 		model.addAttribute("nameList", nameList);
 		model.addAttribute("priceList",priceList);

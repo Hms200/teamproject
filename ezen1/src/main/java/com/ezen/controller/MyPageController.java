@@ -57,6 +57,16 @@ public class MyPageController {
 		return "myPage/purchaseList";
 	}
 	
+	@RequestMapping("/purchaseRefundAction")
+	public String purchaseRefundAction(@RequestParam("purchase_idx")int purchase_idx,
+									   @RequestParam("AskRefund")String AskRefund) {
+		System.out.println("purchase_idx:"+purchase_idx);
+		System.out.println("AskRefund:"+AskRefund);
+		
+		
+		return "";
+	}
+	
 	@RequestMapping("/reviewpopup")
 	public String reviewpopup() {
 		return "myPage/reviewpopup";
