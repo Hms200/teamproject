@@ -50,4 +50,16 @@
 		UPDATE mall_cart SET cart_isdone = 1 WHERE cart_list_idx = ${param1}
 	</update>
 	
+	<!-- admin userList 용 쿼리. user_idx, user_id, user_name, user_idx별 구매량합계, 지불총액합계를 가져옴 -->
+	<select id="getCartSumOfPriceAndAmount" resultType="hashmap">
+		SELECT   mall_cart.user_idx, mall_user.user_id, mall_user.user_name, mall_user.join_date, SUM(mall_cart.cart_amount) AS total_amount, SUM(mall_cart.cart_total_price) AS total_price
+			FROM mall_user, mall_cart WHERE mall_user.user_idx = mall_cart.user_idx AND mall_cart.cart_isdone=1 GROUP BY mall_cart.user_idx, mall_user.user_id, mall_user.user_name, mall_user.join_date
+	</select>
+	
+	<!-- admin userList 용 쿼리. 입력받은 user_idx에 대 user_id, user_name, user_idx별 구매량합계, 지불총액합계를 가져옴 -->
+	<select id="getCartSumOfPriceAndAmountByUserIdx" resultType="hashmap">
+		SELECT   mall_cart.user_idx, mall_user.user_id, mall_user.user_name, mall_user.join_date, SUM(mall_cart.cart_amount) AS total_amount, SUM(mall_cart.cart_total_price) AS total_price
+			FROM mall_user, mall_cart WHERE mall_user.user_idx=${param1} AND mall_user.user_idx = mall_cart.user_idx AND mall_cart.cart_isdone=1 GROUP BY mall_cart.user_idx, mall_user.user_id, mall_user.user_name, mall_user.join_date
+	</select>
+	
 </mapper>

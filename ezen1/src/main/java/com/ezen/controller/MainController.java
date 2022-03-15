@@ -77,6 +77,8 @@ public class MainController {
 		model = mainService.mdPickCardData(model);
 		// 이달의 할인 card
 		model = mainService.monthDiscountCardData(model);
+		// best review
+		model = mainService.BestReviewCard(model);
 		return "main";
 	}
 	
@@ -94,6 +96,12 @@ public class MainController {
 	public String notice(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
 		model = mainService.noticeList(currentPage, model);
 		return "notice";
+	}
+	
+	//pcMianPage추가
+	@RequestMapping("pcMain")
+	public String pcMain() {
+		return "pcMain";
 	}
 	
 	// main검색

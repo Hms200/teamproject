@@ -1,6 +1,7 @@
 package com.ezen.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -34,4 +35,11 @@ public interface IcartDAO {
 	
 	// 해당 cart_list_idx를 가진 cart의 isdone을 1로 변경
 	public int updateCartIsDone(int cart_list_idx);
+	
+	
+	// mall_user와 조인하여 아이디 이름 가입일자를 구함
+	public ArrayList<HashMap<String, String>> getCartSumOfPriceAndAmount();
+	
+	// 해당 user_idx를 가진 cart 의 isdone이 1인 항목들의 cart_amount, cart_total_price의 합,
+	public HashMap<String, String> getCartSumOfPriceAndAmountByUserIdx(int user_idx);
 }

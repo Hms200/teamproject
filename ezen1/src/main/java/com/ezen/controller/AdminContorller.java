@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
 import com.ezen.dao.IpurchaseDAO;
+import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Goods;
 import com.ezen.dto.GoodsIMGS;
 import com.ezen.dto.Purchase;
@@ -50,16 +51,29 @@ public class AdminContorller {
 	public String adminRoot() {
 		return "redirect:admin/main";
 	}
-
+	/////////////////////////////////////////
+	// 메인
+	/////////////////////////////////////////
 	@RequestMapping("main")
 	public String adminMain() {
 		return "admin/main";
 	}
 	
+	////////////////////////////////////////
+	// 회원관리
+	////////////////////////////////////////
 	@RequestMapping("memberList")
 	public String memberList(Model model) {
+		model = adminService.getUserListForAdmin(model);
 		return "admin/memberList";
 	}
+	
+	@RequestMapping("memberListpopup")
+	public String memberListpopup(@RequestParam String user_idx, Model model) {
+		model = adminService.getUserInfo(Integer.parseInt(user_idx), model);
+		return "admin/memberListpopup";
+	}
+	
 	// memberList 상단 필터
 	@GetMapping("userSearchAction")
 	public String memberListFilter(@RequestParam(name = "cat")int cat,
@@ -67,8 +81,13 @@ public class AdminContorller {
 									Model model) {
 		if(cat == 0) {
 			model = adminService.MemberListBySearch(searchText, model);
+		}else {
+			model = adminService.getUserListForAdmin(model);
+			
 		}
-		return "";
+		
+		
+		return "admin/memberList";
 	}
 	
 	/////////////////////////////////////////
@@ -81,27 +100,30 @@ public class AdminContorller {
 				model = adminService.getQuestionsFromGoodsDetail(model);
 				return "admin/qnaList";
 			}else {
-				
+				model = adminService.getOneToOneList(model);
+				return "admin/qnaList";
 			}
 		} catch (NullPointerException e) {
-			// TODO: handle exception
+			model = adminService.getQuestionsFromGoodsDetail(model);
 		}
-		model = adminService.getQuestionsFromGoodsDetail(model);
+		
 		return "admin/qnaList";
 	}
-	// 상품상세문의 답글등록
+	// 상품상세문의 답글등록 qna
 	@PostMapping("registerQuestionReplyAction")
 	@ResponseBody
 	public String registerQuestionReply(@RequestBody HashMap<String, String> param) {
 		return adminService.registQuestionReply(param);
 	}
-	
-	
-	
-	@RequestMapping("memberListpopup")
-	public String memberListpopup() {
-		return "admin/memberListpopup";
+	// 상품상세문의 답글등록 1:1문의
+	@PostMapping("registerOneToOneReplyAction")
+	@ResponseBody
+	public String registerOneToOneReply(@RequestBody HashMap<String, String> param) {
+		return adminService.registOneToOneReply(param);
 	}
+	
+	
+	
 	
 	///////////////////////////////
 	// 재고관리 페이지

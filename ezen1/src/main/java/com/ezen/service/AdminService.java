@@ -73,11 +73,31 @@ public class AdminService {
 	IonetooneDAO onetooneDAO;
 	
 	// MemberList filter
+	// ID로 검색
 	public Model MemberListBySearch(String searchText, Model model) {
-		ArrayList<User> userList = userDAO.searchUserById("%"+searchText+"%");
+		ArrayList<User> userList = userDAO.searchUserById(searchText);
+		ArrayList<HashMap<String, String>> filtterd = new ArrayList<>();
+		userList.forEach(item ->{
+			HashMap<String, String> info = cartDAO.getCartSumOfPriceAndAmountByUserIdx(item.getUser_idx());
+			filtterd.add(info);
+		});
+		model.addAttribute("userlist", filtterd);
+		
+		
+		return model;	
+	}
+	// 회원관리 유저리스트 받기
+	public Model getUserListForAdmin(Model model) {
+		ArrayList<HashMap<String, String>> userList = cartDAO.getCartSumOfPriceAndAmount();
 		model.addAttribute("userlist", userList);
 		return model;
-		
+	}
+	
+	// 회원정보 단건받기
+	public Model getUserInfo(int user_idx, Model model) {
+		User userInfo = userDAO.getMemberInfoByUserIdx(user_idx);
+		model.addAttribute("user", userInfo);
+		return model;
 	}
 	
 	// goods page 상품등록	
@@ -313,6 +333,7 @@ public class AdminService {
 		model.addAttribute("questionlist", questionList);
 		model.addAttribute("userlist", userList);
 		model.addAttribute("goodslist", goodsList);
+		model.addAttribute("mode", "Qna");
 		return model;
 	}
 	// 1:1문의로 올라온 질문 받기
@@ -323,10 +344,12 @@ public class AdminService {
 			userList.put(item.getUser_idx(), userDAO.getUserIdByUserIdx(item.getUser_idx()));
 		});
 		model.addAttribute("questionlist", OneToOneList);
-		
+		model.addAttribute("userlist", userList);
+		model.addAttribute("mode", "OneToOne");
+		return model;
 	}
 	
-	// 상품상세 문의글에 답글달기
+	// 상품상세 문의글에 답글달기 qna
 	public String registQuestionReply(HashMap<String, String> param) {
 		int question_idx = Integer.parseInt(param.get("question_idx"));
 		String question_reply = param.get("qustion_reply");
@@ -337,5 +360,18 @@ public class AdminService {
 			return "실패하였습니다.";
 		}
 	}
+	// 1:1문의글에 답글달기
+	public String registOneToOneReply(HashMap<String, String> param) {
+		int question_idx = Integer.parseInt(param.get("question_idx"));
+		String question_reply = param.get("qustion_reply");
+		int result = onetooneDAO.updateQnaAnswerByReplyAndContent(question_idx, question_reply);
+		if(result == 1) {
+			return "등록되었습니다.";
+		}else {
+			return "실패하였습니다.";
+		}
+		
+	}
 	
+
 }

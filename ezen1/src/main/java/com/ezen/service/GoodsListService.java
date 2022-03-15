@@ -102,16 +102,8 @@ public class GoodsListService {
 	public String addGoodsInCart(Cart cart) {
 		
 		int result = cartDAO.insertCart(cart);
-		String resultString;
-		if(result == 0) {
-			resultString = "false";
-		}else if(result == 1) {
-			resultString = "true";
-		}else {
-			resultString = "false";
-		}
-
-		return resultString;
+		
+		return result == 1 ? "true" : "false";
 	}
 	
 	// 카트에 담긴 상품불러오기
