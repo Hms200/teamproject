@@ -37,4 +37,7 @@ public interface IpurchaseDAO {
 	
 	//purchaseList 필요정보 query
 	public HashMap<String, String> getpurchaseArrayList(int user_idx, int cart_list_idx, int goods_idx);
+
+	//넘어온 카테고리 구매내역만 출력
+	public ArrayList<HashMap<String, String>> getCartIsDoneAndByCat(int user_idx, String search);
 }

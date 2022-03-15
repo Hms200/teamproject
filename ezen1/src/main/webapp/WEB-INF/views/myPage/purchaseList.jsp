@@ -44,20 +44,22 @@
 		<div class="form-goup d-flex justify-content-between my-3 col-12">
 			<div class="font-weight-bold mt-2">내 구매내역 보기</div>
 
+			<%String user_id = request.getParameter("user_id"); %>
 			<!-- 드롭다운 -->
 			<div style="width: 120px; height: 40px;">
-				<form name="progressForm" action="progressAction"
+				<form name="progressForm" action="purchaseList"
 					style="height: 40px;">
+					<input type="hidden" name="user_id" value="<%=user_id%>">
 					<select class="form-select mt-2" name="cat" aria-label="문의종류"
 						onchange="submit();">
-						<option value="0" selected>문의종류</option>
+						<option value="null" selected>문의종류</option>
 						<option value="1">주문접수</option>
 						<option value="2">상품준비중</option>
 						<option value="3">배송준비중</option>
 						<option value="4">배송중</option>
 						<option value="5">배송완료</option>
-						<option value="6">환불접수중</option>
-						<option value="7">교환접수중</option>
+						<option value="6">환불신청</option>
+						<option value="7">교환신청</option>
 						<option value="8">반품접수중</option>
 					</select>
 				</form>

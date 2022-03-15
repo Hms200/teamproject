@@ -58,9 +58,7 @@ public class MyPageService {
 	public Model purchaseList(String user_id,Model model) {
 		int user_idx = userDAO.getUserIdx(user_id);
 		ArrayList<Cart> isDoneList = cartDAO.getCartIsDone(user_idx);
-		
 		ArrayList<HashMap<String, String>> purchaseList = new ArrayList<>();
-		
 		isDoneList.forEach(result ->{
 			HashMap<String, String> map = purchaseDAO.getpurchaseArrayList(result.getUser_idx(), result.getCart_list_idx(), result.getGoods_idx());
 			purchaseList.add(map);
@@ -87,10 +85,34 @@ public class MyPageService {
 		}
 		return result;
 	}
-	public String sortByProgress(String cat) {
+	public Model purchaseListByCat(String user_id, Model model, Integer cat) {
+		int user_idx = userDAO.getUserIdx(user_id);
+		String str = null;
+		switch (cat) {
+		case 1: str = "주문접수";
+			break;
+		case 2: str = "상품배송중";
+			break;
+		case 3: str = "배송준비중";
+			break;
+		case 4: str = "배송중";
+			break;
+		case 5: str = "배송완료";
+			break;
+		case 6: str = "환불신청";
+			break;
+		case 7: str = "교환신청";
+			break;
+		case 8: str = "반품접수중";
+			break;
+		}
+		String search = str.toString();
 		
+		ArrayList<HashMap<String, String>> catList = purchaseDAO.getCartIsDoneAndByCat(user_idx,search);
+		model.addAttribute("purchaseList",catList);
 		
-		return null;
+		return model;
+		
 	}
 	
 
