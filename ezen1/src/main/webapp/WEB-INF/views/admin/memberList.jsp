@@ -23,7 +23,7 @@
         <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
             <div class="col-1 my-3">
               <a href="/main">
-                <img src="/img/icon/뒤로가기 (2).png" alt="" width="30px" height="30px">
+                <img src="/img/icon/뒤로가기 (2).png" alt="main" width="30px" height="30px">
               </a>
             </div>
             <div class="col-11 my-3 py-1 text-center font-weight-bold">
@@ -31,7 +31,7 @@
             </div>
           </div>
           <!-- 검색바 -->
-          <form action="admin/userSearchAction" name="userSearchForm">
+          <form action="userSearchAction" name="userSearchForm">
 
           <div class="d-flex flex-row mt-4 mb-4">
           <div class="form-control" style="width: 90px;">
@@ -59,7 +59,7 @@
            <!-- 테이블 -->
            <div class="table-responsive">
            <table class="table table-bordered table-sm text-dark">
-               <thead class="font-weight-bold" style="font-size: 14px;">
+               <thead class="font-weight-bold text-center" style="font-size: 14px;">
                 <tr class="table-secondary">
                     <td>no</td>
                     <td>아이디</td>
@@ -69,7 +69,7 @@
                     <td>가입일</td> 
                 </tr>
                 </thead>
-                <tbody style="font-size: 12px;">
+                <tbody class="text-center" style="font-size: 12px;">
                
                 <c:forEach var="user" items="${ userlist }"> 
                 	
