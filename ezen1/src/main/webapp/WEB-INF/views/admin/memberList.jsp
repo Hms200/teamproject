@@ -22,7 +22,7 @@
         <!-- 헤더 -->
         <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
             <div class="col-1 my-3">
-              <a href="/main">
+              <a href="/admin/main">
                 <img src="/img/icon/뒤로가기 (2).png" alt="main" width="30px" height="30px">
               </a>
             </div>
@@ -35,7 +35,7 @@
 
           <div class="d-flex flex-row mt-4 mb-4">
           <div class="form-control" style="width: 90px;">
-            <select class="form-select " name="cat" style="border: none; background-color: white;">
+            <select class="form-select " name="cat" style="border: none; background-color: white;" onchange="submit();">
               <option value="0">id</option>
                <option value="1">구매량</option>
                <option value="2">금액</option>
