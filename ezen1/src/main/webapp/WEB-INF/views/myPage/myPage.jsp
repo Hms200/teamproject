@@ -22,7 +22,7 @@
 	<!-- 페이지 전체 div -->
 	<div
 		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mt-0 mb-0"
-		style="max-width: 520px;">
+		style="max-width: 520px; margin-top: 60px;">
 
 		<!-- 박스 -->
 		<div class="col-10 shadow border rounded my-4">

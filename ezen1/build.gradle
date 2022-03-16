@@ -28,11 +28,16 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	// 오라클 클라우드
-	implementation 'com.oracle.ojdbc:ucp'
-	implementation 'com.oracle.database.security:oraclepki'
-	implementation 'com.oracle.database.security:osdt_core'
-	implementation 'com.oracle.database.security:osdt_cert'
+	//implementation 'com.oracle.ojdbc:ucp'
+    implementation 'com.oracle.database.security:osdt_cert:21.4.0.0'
+    implementation 'com.oracle.database.security:oraclepki:21.4.0.0'
+    implementation 'com.oracle.database.security:osdt_core:21.4.0.0'
+	implementation 'com.oracle.database.jdbc:ucp:21.4.0.0.1'
+	//implementation 'com.oracle.database.security:oraclepki'
+	//implementation 'com.oracle.database.security:osdt_core'
+	//implementation 'com.oracle.database.security:osdt_cert'
 	
 	// jsp
 	implementation 'javax.servlet:jstl'

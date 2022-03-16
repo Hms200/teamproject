@@ -21,8 +21,8 @@
 
 	<!-- container -->
 	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
-		style="max-width: 520px;">
+		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
+		style="max-width: 520px; margin-top: 60px;">
 		<!-- header -->
 		<div
 			class="container-fluid border-bottom container-sm d-flex flex-row mb-0"
