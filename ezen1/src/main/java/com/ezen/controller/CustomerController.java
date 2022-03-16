@@ -33,12 +33,14 @@ public class CustomerController {
 	IonetooneDAO onetooneDao;
 	
 	//고객센터 이동시 FAQ로 리다이렉트
+	//("customer")로 매핑시 ("customer/faq")로 처리 해줌
 	@RequestMapping("")
 	public String customer() {
 		return "redirect:customer/faq";
 	}
 	
-	//자주묻는질문(FAQ List)(완)
+	//자주묻는질문(FAQ List)
+	//IfaqDAO.getFaqList등록된 모든 데이터를 가져옴
 	@RequestMapping("faq")
 	public String faq(Model model, HttpServletRequest request) {
 		
@@ -48,14 +50,16 @@ public class CustomerController {
 		return "customer/faq";
 	}
 	
-	//FAQ 카테고리 선택(완)
+	//FAQ List 카테고리 선택
+	//("faqCatAction") faq_cat을 파라미터로 받아 CustomerService.byFaqCat으로 넘겨준 뒤 리턴된 ArrayList<Model>을 페이지로 넘김
 	@GetMapping("faqCatAction")
 	public String faqCatAction(@RequestParam String faq_cat, Model model) {
 		model = customerService.faqListByFaqCat(faq_cat, model);
 		return "customer/faq";
 	}
 	
-	//FAQ 등록(완)
+	//FAQ 등록
+	//("faqWriteAction")에서 입력받은 내용들을 파라미터 값으로 받고 Faq로 담아 CustomerService.faqWrite로 보내준다
 	@PostMapping("faqWriteAction")
 	@ResponseBody
 	public String faqWriteAction(@ModelAttribute FaQ Faq) {
@@ -63,7 +67,8 @@ public class CustomerController {
 		return result;
 	}
 	
-	//FAQ 삭제(완)
+	//FAQ 삭제
+	//("faqDeleteAction") faq_idx를 파라미터로 받아 IfaqDAO,faqDelete로 보내준다
 	@RequestMapping("faqDeleteAction")
 	@ResponseBody
 	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpServletRequest reuqest) {
@@ -79,7 +84,9 @@ public class CustomerController {
 		}
 	}
 	
-	//내 문의 내역(myAsk List)(완)
+	//내 문의 내역(myAsk List)
+	//("myAsk")로 매핑시 로그인한 사용자 user_idx를 읽어 CustomerService.byUserIdx로 넘겨준 뒤
+	//리턴된 ArrayList<Model>을 페이지로 넘김, 사용자 정보가 없는 경우 login으로 리다이렉트
 	@RequestMapping("myAsk")
 	public String myAsk(Model model, HttpServletRequest request, HttpSession session) {
 		int user_idx;
@@ -92,7 +99,8 @@ public class CustomerController {
 		return "customer/myAsk";
 	}
 	
-	//내 문의 내역 카테고리 선택(완)
+	//myAsk List 카테고리 선택
+	//("myAskCatAction") onetoone_cat을 파라미터로 받아 CustomerService.onetooneByCat으로 넘겨준 뒤 리턴된 ArrayList<Model>을 페이지로 넘김
 	@GetMapping("myAskCatAction")
 	public String myAskCatAction(@RequestParam String onetoone_cat, Model model, HttpSession session) {
 		int user_idx;
@@ -106,6 +114,7 @@ public class CustomerController {
 		}
 	
 	//문의하기 페이지(ask)
+	//사용자 정보가 없는 경우 login으로 리다이렉트
 	@RequestMapping("ask")
 	public String ask(HttpSession session) {
 		int user_idx;
@@ -117,7 +126,8 @@ public class CustomerController {
 		return "customer/ask";
 	}
 	
-	//문의하기 액션(완)
+	//문의하기 액션
+	//("qnaQuestionAction")에서 입력받은 내용들을 파라미터 값으로 받고 Question으로 담아 CustormerService.insertOneToOne으로 보내준다
 	@PostMapping("qnaQuestionAction")
 	@ResponseBody
 	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone, HttpSession session) {
