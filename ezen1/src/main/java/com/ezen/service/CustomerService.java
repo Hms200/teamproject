@@ -29,7 +29,11 @@ public class CustomerService {
 	public Model faqListByFaqCat(String faq_cat, Model model) {
 		ArrayList<FaQ> allFaqList = faqDao.getFaqList();
 		ArrayList<FaQ> faqListByCat = new ArrayList<>();
-		if(faq_cat.equals("상품문의")) {
+		if(faq_cat.equals("전체문의")) {
+			allFaqList.forEach(FaQ -> {
+					faqListByCat.add(FaQ);
+			});
+		}else if(faq_cat.equals("상품문의")) {
 			allFaqList.forEach(FaQ -> {
 				if(FaQ.getFaq_cat().equals(faq_cat)) {
 					faqListByCat.add(FaQ);
@@ -83,7 +87,11 @@ public class CustomerService {
 	public Model onetooneByCat(int user_idx, String onetoone_cat, Model model, HttpSession session) {
 		ArrayList<OneToOne> myOneToOne = onetooneDao.getOnetoOneByUserIdx(user_idx);
 		ArrayList<OneToOne> oneToOneByCat = new ArrayList<>();
-		if(onetoone_cat.equals("상품문의")) {
+		if(onetoone_cat.equals("전체문의")) {
+			myOneToOne.forEach(OnetoOne -> {
+					oneToOneByCat.add(OnetoOne);
+			});
+		}else if(onetoone_cat.equals("상품문의")) {
 			myOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
 					oneToOneByCat.add(OnetoOne);
