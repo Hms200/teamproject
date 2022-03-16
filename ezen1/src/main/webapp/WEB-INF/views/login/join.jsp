@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +13,12 @@
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px;">
+<c:import url="../pcMain.jsp"></c:import>
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative" style="max-width: 520px; max-height: 100vh; overflow: auto;" >
+
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top:60px ">
         <!-- joinTitle -->
-        <div class="container-sm container-fluid d-flex flex-row mb-0 border-bottom" height="60px">
+        <div class="container-sm container-fluid d-flex flex-row mb-0 border-bottom" height="60px;">
             <div class="col-1 my-3 py-1 pl-0">
                 <img src="/img/icon/left.png" class="mx-auto d-block" alt="" width="27px" height="27px" onclick="history.back(-1);">
             </div>
@@ -86,6 +90,7 @@
             </form>           
         </div>
     </div>
+ </div>
 <!-- 카카오 주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- bootstrap js -->
