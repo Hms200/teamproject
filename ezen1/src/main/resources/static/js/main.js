@@ -697,5 +697,138 @@ function makingPurchase(){
 	})
 }
 
+// admin stransActionPop 주문상태변경
+function updateTransactionStatement(event){
+	const targetId = event.target.id;
+	const selectValue = document.getElementsByName('purchase_statement')[1].value;
+	const purchaseIdx = document.getElementById('purchase_idx').value;
+	console.log(targetId);
+	let data = {};
+	
+	if(targetId == '확인'){
+		if(selectValue == '#'){
+			location.href = 'transaction';
+		}else{
+			data.purchase_idx = purchaseIdx;
+			data.purchase_statement = selectValue;
+			data = JSON.stringify(data);
+			console.log(data);
+			jQuery.ajax({
+				url: "changeStatementAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				async: false,
+				data: data,
+				success: function(result){
+					console.log(result);
+					alert(result);
+					location.href = 'transactionpop?purchase_idx='+purchaseIdx;
+				},
+				error: function(e){
+					console.log(e);
+				},
+			});
+		}
+	}else{
+		data.purchase_idx = purchaseIdx;
+		data.purchase_statement = targetId;
+		data = JSON.stringify(data);
+		console.log(data);
+		jQuery.ajax({
+			url: "changeStatementAction",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			async: false,
+			data: data,
+			success: function(result){
+				console.log(result);
+				alert(result);
+				location.href = 'transactionpop?purchase_idx='+purchaseIdx;
+			},
+			error: function(e){
+				console.log(e);
+			},
+		});
+	}
+	
+}
+
+// admin.review 리뷰답글달기
+function registReviewReply(){
+	const replyContents = document.getElementsByName('review_reply')[0].value;
+	const reviewIdx = document.getElementById('targetIdx').value;
+	
+	let formData = {};
+	formData.review_idx = reviewIdx;
+	formData.review_reply = replyContents;
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	jQuery.ajax({
+			url: "registReviewReplyAction",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			async: false,
+			data: formData,
+			success: function(result){
+				console.log(result);
+				alert(result);
+				popupHideAndShow('reviewReplyWriteForm');
+			},
+			error: function(e){
+				console.log(e);
+			},
+		});
+}
+
+// admin.qnaList 질문답글달기
+function registerQuestionReply(){
+	const replyContents = document.getElementsByName('question_reply')[0].value;
+	const questionIdx = document.getElementById('targetIdx').value;
+	const mode = document.getElementById('mode').value;
+	
+	let formData = {};
+	formData.question_idx = questionIdx;
+	formData.question_reply = replyContents;
+	formData = JSON.stringify(formData);
+	console.log(formData);
+	if(mode == 'Qna'){
+		jQuery.ajax({
+				url: "registerQuestionReplyAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				async: false,
+				data: formData,
+				success: function(result){
+					console.log(result);
+					alert(result);
+					popupHideAndShow('qna_reply_popup');
+				},
+				error: function(e){
+					console.log(e);
+				},
+			});
+		}else{
+			jQuery.ajax({
+				url: "registerOneToOneReplyAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				async: false,
+				data: formData,
+				success: function(result){
+					console.log(result);
+					alert(result);
+					popupHideAndShow('qna_reply_popup');
+				},
+				error: function(e){
+					console.log(e);
+				},
+			});
+		}
+}
 
 

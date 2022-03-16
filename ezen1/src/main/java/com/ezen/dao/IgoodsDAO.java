@@ -40,7 +40,7 @@ public interface IgoodsDAO {
 	// 상품 신규 등록 
 	public int insertGoods(Goods goods);
 	
-	// 가장 최근 등록한 상품의 goods_idx가져오기 (mybatis에서 자동증가 시퀀스를 가진 row가 insert되면 insert후 증가된 시퀀스값을 리턴하는 기능이 있어서 수정 고려
+	// 가장 최근 등록한 상품의 goods_idx가져오기
 	public int getNewestGoodsIdx();
 	
 	// 해당 goods_idx를 가진 상품의 onEvent 값 변경
@@ -51,6 +51,12 @@ public interface IgoodsDAO {
 	
 	// 해당 goods_idx를 가진 상품의 재고량에 입력받은 수 만큼 더함.
 	public int updateGoodsStockOrder(int goods_idx, int stock);
+	
+	// 해당 goods_idx를 가진 상품의 재고량에서 입력받은 수 만큼 뺌.
+	public int updateGoodsStockPurchased(int goods_idx, int purchased);
+	
+	// 해당 goods_idx를 가진 상품의 현재 재고량을 가져옴
+	public int getNumberOfStock(int goods_idx);
 	
 	// 해당 goods_idx를 가진 상품의 goods_purchased를 증가시킴
 	public int updatePurchased(int goods_idx, int cart_amount);
@@ -66,4 +72,7 @@ public interface IgoodsDAO {
 	
 	// goods_purchased 를 기준으로 판매량 상위 10개 상품 가져옴
 	public ArrayList<Goods> getBestSellingGoods();
+
+	//상품의 가격을 가져옴
+	public int getGoodsPrice(int goods_idx);
 }

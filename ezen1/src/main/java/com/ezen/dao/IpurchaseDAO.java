@@ -1,10 +1,12 @@
 package com.ezen.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.dto.Purchase;
+import com.ezen.dto.User;
 
 @Mapper
 public interface IpurchaseDAO {
@@ -20,4 +22,22 @@ public interface IpurchaseDAO {
 	
 	//insert purchase
 	public int insertPurchase(Purchase purchase);
+	
+	//purchase_statement 로 해당하는 row 가져옴
+	public ArrayList<Purchase> getPurchaseListByStatement(String purchase_statement);
+	
+	// 최신순으로 정렬된 모든 값을 가져옴
+	public ArrayList<Purchase> getPurchaseListDesc();
+	
+	// 오래된 순으로 정렬된 모든 값을 가져옴
+	public ArrayList<Purchase> getPurchaseListAsc();
+	
+	// purchase 단건 가져옴
+	public Purchase getPurchaseByPurchaseIdx(int purchase_idx);
+	
+	//purchaseList 필요정보 query
+	public HashMap<String, String> getpurchaseArrayList(int user_idx, int cart_list_idx, int goods_idx);
+
+	//넘어온 카테고리 구매내역만 출력
+	public ArrayList<HashMap<String, String>> getCartIsDoneAndByCat(int user_idx, String search);
 }

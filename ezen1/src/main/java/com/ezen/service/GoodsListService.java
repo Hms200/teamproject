@@ -102,16 +102,8 @@ public class GoodsListService {
 	public String addGoodsInCart(Cart cart) {
 		
 		int result = cartDAO.insertCart(cart);
-		String resultString;
-		if(result == 0) {
-			resultString = "false";
-		}else if(result == 1) {
-			resultString = "true";
-		}else {
-			resultString = "false";
-		}
-
-		return resultString;
+		
+		return result == 1 ? "true" : "false";
 	}
 	
 	// 카트에 담긴 상품불러오기
@@ -208,6 +200,20 @@ public class GoodsListService {
 	// cart 항목 구매됨으로 변경
 	public void makeCartIsDone(int cart_list_idx) {
 		cartDAO.updateCartIsDone(cart_list_idx);
+	}
+	// cart 항목들의 purchased를 해당 수량만큼 증가시킴
+	// cart 항목들의 stock을 해당 수량만큼 감소시킴
+	// cart 항목들의 stock이 0이하이면 품절처리함
+	public void increaseCountOfPurchasedAndCheckGoodsStock(int cart_list_idx) {
+		ArrayList<Cart> list = cartDAO.getCartIsListed(cart_list_idx);
+		list.forEach(item -> {
+			goodsDAO.updatePurchased(item.getGoods_idx(), item.getCart_amount());
+			goodsDAO.updateGoodsStockPurchased(item.getGoods_idx(), item.getCart_amount());
+			int stock = goodsDAO.getNumberOfStock(item.getGoods_idx());
+			if(stock <= 0) {
+				goodsDAO.updateGoodsStockSoldOut(item.getGoods_idx());
+			}
+		});
 	}
 	
 	

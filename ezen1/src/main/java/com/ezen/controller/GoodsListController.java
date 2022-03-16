@@ -123,7 +123,6 @@ public class GoodsListController {
 	/////////////////////////////
 	@GetMapping("purchase")
 	public String purchase(@RequestParam String cart_list_idx, Model model) {
-		//넘어온 장바구니 리스트 번호로 장바구니 리스트 아이탬 꺼내오기
 		model = goodsListService.getListedGoods(Integer.parseInt(cart_list_idx), model);
 		return "goodsList/purchase";
 	}
@@ -135,14 +134,15 @@ public class GoodsListController {
 		String result = goodsListService.checkPw(password);
 		return result;
 	}
-	// 구매 프로세스 진행 완료 후 구매기록 저장 & 장바구니항목 구매됨으로 변경
+	// 구매 프로세스 진행 완료 후 구매기록 저장 & 장바구니항목 구매됨으로 변경 & 상품 구매카운터 증가
+	// 각 상품 구매 후 남은 재고 없으면 품절처리
 	@PostMapping("makePurchaseAction")
 	@ResponseBody
 	public String makePurchase(@RequestBody Purchase purchase) {
 		String returnString = goodsListService.makePurchase(purchase);
-		System.out.println(returnString);
 		int cart_list_idx = purchase.getCart_list_idx();
 		goodsListService.makeCartIsDone(cart_list_idx);
+		goodsListService.increaseCountOfPurchasedAndCheckGoodsStock(cart_list_idx);
 		return returnString;
 	}
 	
