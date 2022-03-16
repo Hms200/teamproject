@@ -21,7 +21,7 @@
 <c:import url="../header.jsp"></c:import>
 
   <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
     style="max-width: 520px; margin-top: 60px;">
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom" style="height: 60px;">
       <div class="col-2 my-3">

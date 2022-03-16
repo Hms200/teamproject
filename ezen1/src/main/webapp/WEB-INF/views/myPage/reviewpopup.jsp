@@ -24,7 +24,7 @@
 	<c:import url="../header.jsp"></c:import>
 
 	<div
-		class="container-sm container-fluid col-11  d-flex flex-column  align-items-center bg-white border border-dark-50 rounded"
+		class="container-sm container-fluid col-11  d-flex flex-column  align-items-center bg-white border border-dark-50 rounded" id="mainContainer"
 		style="top: 60px; left: 10px; max-width: 520px;; height: 430px;">
 		<!-- 아이콘 -->
 		<div class="d-flex w-100 flex-row justify-content-end pt-2 ">

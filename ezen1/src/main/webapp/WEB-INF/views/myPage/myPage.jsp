@@ -24,7 +24,7 @@
 
 	<!-- 페이지 전체 div -->
 	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5"
+		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5" id="mainContainer"
 		style="max-width: 520px; margin-top: 60px;">
 
 		<!-- 박스 -->

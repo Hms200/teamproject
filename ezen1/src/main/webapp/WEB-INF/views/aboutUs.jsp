@@ -22,7 +22,7 @@
 <c:import url="header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" id="mainContainer" style="max-width: 520px;">
       <!--  -->
       <div class="w-100 d-flex align-items-center pl-3" style="height: 60px;">
         <div style="width: 100px;">

@@ -22,7 +22,7 @@
 
 <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
   <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
     style="max-width: 520px; margin-top: 60px;">
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom" style="height: 60px">
       <div class="col-2 my-3">
