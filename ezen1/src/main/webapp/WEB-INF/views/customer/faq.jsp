@@ -18,12 +18,12 @@
 <c:import url="../header.jsp"></c:import>
 
 <!-- container -->
-  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px;">
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top: 60px;">
     <!-- 타이틀 -->
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
       <!-- 뒤로가기 버튼 -->
       <div class="col-1 my-3">
-          <img src="/img/icon/left.png" onclick="location.href='main'" alt="뒤로가기" width="30px" height="30px" style="cursor: pointer;">
+          <img src="/img/icon/left.png" onclick="window.history.back()" alt="뒤로가기" width="30px" height="30px" style="cursor: pointer;">
       </div>
       <div class="col-11 my-3 py-1 text-center font-weight-bold">
         고객센터
@@ -48,7 +48,7 @@
       <form name="faqCatForm" method="get" action="faqCatAction">
       <span>
         <select name="faq_cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
-          <option selected hidden>문의종류</option>
+          <option value="전체문의" selected>전체문의</option>
           <option value="상품문의">상품문의</option>
           <option value="배송문의">배송문의</option>
           <option value="결제문의">결제문의</option>

@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Review {
 
 	private int review_idx;
-	private int user_dix;
+	private int user_idx;
 	private int goods_idx;
 	private String review_contents;
 	private int review_star;
@@ -26,11 +26,11 @@ public class Review {
 	private Date review_reply_date;
 	
 	@Builder
-	public Review(int review_idx, int user_dix, int goods_idx, String review_contents, int review_star,
+	public Review(int review_idx, int user_idx, int goods_idx, String review_contents, int review_star,
 			int review_isreplied, String review_reply, Date review_date, Date review_reply_date) {
 		super();
 		this.review_idx = review_idx;
-		this.user_dix = user_dix;
+		this.user_idx = user_idx;
 		this.goods_idx = goods_idx;
 		this.review_contents = review_contents;
 		this.review_star = review_star;
