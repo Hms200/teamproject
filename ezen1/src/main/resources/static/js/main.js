@@ -530,6 +530,16 @@ function removeGoodsInCart(){
 		formData[listOfCheckbox[i].name] = listOfCheckbox[i].checked;
 	}
 	
+	let indicator = 0;
+	for(i=1; i<listOfCheckbox.length; i++){
+		if(formData[listOfCheckbox[i].name]  == false){
+			indicator ++;
+		}
+	}
+	if(indicator == listOfCheckbox.length -1){
+		return alert('선택된 상품이 없습니다.');
+	}
+	
 	formData = JSON.stringify(formData);
 	console.log(formData);
 	
@@ -560,6 +570,17 @@ function listingGoods(){
 		targetCartIdx[checkboxes[i].name] = checkboxes[i].checked;
 		
 	}
+	
+	let indicator = 0;
+	for(i=1; i<checkboxes.length; i++){
+		if(targetCartIdx[checkboxes[i].name]  == false){
+			indicator ++;
+		}
+	}
+	if(indicator == checkboxes.length -1){
+		return alert('선택된 상품이 없습니다.');
+	}
+	
 	console.log(typeof(targetCartIdx));
 	targetCartIdx = JSON.stringify(targetCartIdx);
 	console.log(targetCartIdx);
@@ -599,7 +620,7 @@ function changeBuyerInfo(){
 	const hiddenInputForPhone = document.getElementsByName('purchase_buyer_phone')[0];
 	const hiddenInputForAddress = document.getElementsByName('purchase_buyer_address')[0];
 	
-	nameAndPhoneArea.innerText = newName + "<br>" + newPhone;
+	nameAndPhoneArea.innerHTML = newName + "<br>" + newPhone;
 	addressArea.innerText = newFullAddress;
 	hiddenInputForName.value = newName;
 	hiddenInputForPhone.value = newPhone;
@@ -696,7 +717,7 @@ function makingPurchase(){
 			console.log(result);
 			console.log('구매프로세스 완료');
 			// mypage 구매기록 페이지로 보내기. result로 purchase_idx를 받을 예정
-			//location.href = '../myPage'
+			location.href = '../myPage/purchaseList';
 		},
 		error: function(e){
 			console.log(e);

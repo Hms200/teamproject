@@ -78,11 +78,12 @@ public class AdminService {
 	//// MemberList filter
 	// ID로 검색
 	public Model userListBySearch(String searchText, Model model) {
-		ArrayList<User> userList = userDAO.searchUserById(searchText);
+		ArrayList<HashMap<String, String>> rawList = cartDAO.getCartSumOfPriceAndAmount();
 		ArrayList<HashMap<String, String>> filtterd = new ArrayList<>();
-		userList.forEach(item -> {
-			HashMap<String, String> info = cartDAO.getCartSumOfPriceAndAmountByUserIdx(item.getUser_idx());
-			filtterd.add(info);
+		rawList.forEach(user -> {
+			if(user.get("USER_ID").contains(searchText)) {
+				filtterd.add(user);
+			}
 		});
 		model.addAttribute("userlist", filtterd);
 		return model;	
@@ -94,8 +95,19 @@ public class AdminService {
 		if(cat.equals("1")) {
 			Comparator<HashMap<String, String>> comparator = (o1, o2) -> {
 				//내림차순
-				int amount1 = Integer.parseInt(String.valueOf(o1.get("TOTAL_AMOUNT")));
-				int amount2 = Integer.parseInt(String.valueOf(o2.get("TOTAL_AMOUNT")));
+				int amount1;
+				int amount2;
+				try {
+					amount1 = Integer.parseInt(String.valueOf(o1.get("TOTAL_AMOUNT")));
+				} catch (Exception e) {
+					amount1= 0;
+				}
+				try {
+					amount2 = Integer.parseInt(String.valueOf(o2.get("TOTAL_AMOUNT")));
+				} catch (Exception e) {
+					amount2 = 0;
+				}
+				
 				return amount2 - amount1;
 			};
 			Collections.sort(userList, comparator);
@@ -103,8 +115,18 @@ public class AdminService {
 		}else if(cat.equals("2")) {
 			Comparator<HashMap<String, String>> comparator = (o1, o2) -> {
 				//내림차순
-				int price1 = Integer.parseInt(String.valueOf(o1.get("TOTAL_PRICE")));
-				int price2 = Integer.parseInt(String.valueOf(o2.get("TOTAL_PRICE")));
+				int price1;
+				int price2;
+				try {
+					price1 = Integer.parseInt(String.valueOf(o1.get("TOTAL_PRICE")));
+				} catch (Exception e) {
+					price1 = 0;
+				}
+				try {
+					price2 = Integer.parseInt(String.valueOf(o2.get("TOTAL_PRICE")));
+				} catch (Exception e) {
+					price2 = 0;
+				}
 				return price2 - price1;
 			};
 			Collections.sort(userList, comparator);

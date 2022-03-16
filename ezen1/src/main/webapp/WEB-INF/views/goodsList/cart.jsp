@@ -26,7 +26,7 @@
     style="max-width: 520px; margin-top: 60px;">
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom" style="height: 60px">
       <div class="col-2 my-3">
-        <a href="goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
+        <a href="../goodsList/goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
           width="30px" height="30px"></a>
       </div>
       <div class="col-10 my-3 py-1 pr-5 text-center font-weight-bold">
