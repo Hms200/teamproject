@@ -72,19 +72,19 @@ public class LoginService {
 	// jsp -> main.js 경로를 거쳐 결과값 처리
 	public int idCheckAjax( String user_id ) {
 		
-		int result;	
 		String userID = userDao.getUserID( user_id );
 		if( userID == null ) {
-			result = 0; //int값이 0일 경우 중복없음 -> 사용가능한 아이디			
+			return 0; // int값이 0일 경우 중복없음 -> 사용가능한 아이디			
 		} else {
-			result = 1; //int값이 1일 경우 중복있음 -> 사용불가한 아이디
+			return 1; // int값이 1일 경우 중복있음 -> 사용불가한 아이디
 		}		
-		return result;
 		
 	}
 	
 	//회원가입 
 	//입력받은 user정보를 User user값에 insert
+	//user_address값: input type hidden 코드 추가
+	//js를 이용해 sample6_address와 sample6_detailAddress의 합친 값을 value값에 넣어 name=user_address로 서버에 전송.
 	public String join(User user) {
 					
 		int result = userDao.insertUser(user);
