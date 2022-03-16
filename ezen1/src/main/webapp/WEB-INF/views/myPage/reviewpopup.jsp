@@ -16,12 +16,10 @@
 <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
-
+<c:import url="../pcMain.jsp"></c:import>
+	<!-- container -->
+	<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 	<c:import url="../header.jsp"></c:import>
-
-	<div
-		class="container-sm container-fluid col-11  d-flex flex-column  align-items-center bg-white border border-dark-50 rounded"
-		style="top: 60px; left: 10px; max-width: 520px;; height: 430px;">
 		<!-- 아이콘 -->
 		<div class="d-flex w-100 flex-row justify-content-end pt-2 ">
 			<img src="/img/icon/cross.png" alt="취소"
@@ -71,9 +69,9 @@
 					onclick = "reviewContentAction()">작성</button>
 			</div>
 		<!-- 팝업창 div -->
-	</div>
 	<c:import url="../footer.jsp"></c:import>
 	<c:import url="../nav.jsp"></c:import>
+	</div>
 	<!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
