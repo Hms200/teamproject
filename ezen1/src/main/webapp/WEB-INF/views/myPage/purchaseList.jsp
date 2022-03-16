@@ -44,49 +44,52 @@
 		<div class="form-goup d-flex justify-content-between my-3 col-12">
 			<div class="font-weight-bold mt-2">내 구매내역 보기</div>
 
+			<%String user_id = request.getParameter("user_id"); %>
 			<!-- 드롭다운 -->
 			<div style="width: 120px; height: 40px;">
-				<form name="progressForm" action="progressAction"
+				<form name="progressForm" action="purchaseList"
 					style="height: 40px;">
+					<input type="hidden" name="user_id" value="<%=user_id%>">
 					<select class="form-select mt-2" name="cat" aria-label="문의종류"
 						onchange="submit();">
-						<option value="0" selected>문의종류</option>
+						<option value="null" selected>문의종류</option>
 						<option value="1">주문접수</option>
 						<option value="2">상품준비중</option>
 						<option value="3">배송준비중</option>
 						<option value="4">배송중</option>
 						<option value="5">배송완료</option>
-						<option value="6">환불접수중</option>
-						<option value="7">교환접수중</option>
+						<option value="6">환불신청</option>
+						<option value="7">교환신청</option>
 						<option value="8">반품접수중</option>
 					</select>
 				</form>
 			</div>
 		</div>
 		<!-- 카드 -->
-		<c:forEach var="list" items="${isDoneList}">
+		<c:forEach var="list" items="${purchaseList}">
 			<div
 				class="w-100 col-12 d-flex flex-column border border-dark-50 py-1 my-2"
 				style="height: 160px;">
 				<form name="purchaseHistoryForm">
 					<div class="w-100 d-flex flex-row justify-content-between"
 						style="font-size: 12px;">
-						<div>${purchaseList.get(list.cart_list_idx).purchase_statement}</div>
-						<div>${purchaseList.get(list.cart_list_idx).purchase_date}</div>
+						<div>${list.get("PURCHASE_STATEMENT") }</div>
+						<div>${list.get("PURCHASE_DATE") }</div>
 					</div>
 					<div class="d-flex flex-row">
 						<div col-3>
-							<img src="${thumbList.get(list.goods_idx)}" alt="" class="img-thumbnail"
+							<img src="${list.get('GOODS_THUMB') }" alt="" class="img-thumbnail"
 								width="80px">
 						</div>
 						<div class="col-9" style="font-size: 14px;">
-							<div class="col-12 text-left pl-2">상품이름: ${nameList.get(list.goods_idx) }</div>
-							<div class="col-12 text-left pl-2">구매번호: ${purchaseList.get(list.cart_list_idx).purchase_idx}</div>
+							<div class="col-12 text-left pl-2">상품이름: ${list.get("GOODS_NAME") } </div>
+							<div class="col-12 text-left pl-2">구매번호: ${list.get("PURCHASE_IDX") }</div>
 							<div class="col-12 text-left pl-2 position-relative">
-								<span>가격: ${priceList.get(list.goods_idx) }</span> 
+								<span>가격: ${list.get("GOODS_PRICE")}</span> 
 								<span style="right: 0%; position: absolute; cursor: pointer"
 									class="text-dark"
-									onclick="popupHideAndShow(target='reviewpopup')">리뷰쓰기</span>
+									onclick="location.href=
+									'reviewpopup?goods_idx='${list.get('GOODS_IDX')}''">리뷰쓰기</span>
 							</div>
 							<div
 								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-2">
@@ -99,7 +102,7 @@
 								<button type="submit" value="취소신청" class="p-0" name="AskCancle"
 									style="font-size: 14px;" style=" font-size: 14px;"
 									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseCancleAction')">취소신청</button>
-								<input type="hidden" name="purchase_idx" value="${purchaseList.get(list.cart_list_idx).purchase_idx}">
+								<input type="hidden" name="purchase_idx" value="${list.get('PURCHASE_IDX') }" >
 							</div>
 						</div>
 					</div>
