@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<nav>
+<nav style="width: 100%">
  <!-- container -->
-     <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center fixed-bottom border border-dark-50 bg-white" style="max-width: 520px; height: 60px;">
-     <!-- top scroll 버튼 -->
-         <div class="mx-auto bg-white border border-dark-50 rounded position-absolute" onclick="javascript:window.scrollTo(0,0)" style="right: 12px;bottom: 82px; cursor: pointer;">
-             <img src="/img/icon/chevron.png" alt="위로가기" width="35px" height="35px">
-         </div>
-
+     <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center border border-dark-50 bg-white" style="max-width: 520px; height: 60px;position:fixed; bottom: 0;">
+     
+    <!-- top scroll 버튼 -->
+        <div class="mx-auto bg-white border border-dark-50 position-absolute rounded" onclick="scrollToTop()" style="right: 12px;bottom: 82px; cursor: pointer;z-index: 1500;">
+            <img src="/img/icon/chevron.png" alt="위로가기" width="35px" height="35px">
+        </div>
      <!-- icon container 4개 -->
          <div class="d-flex flex-column justify-content-center align-itmes-center text-center mb-1" onclick="location.href='../main'" style="cursor: pointer;">
              <img class="mx-auto" src="/img/icon/home.png" alt="홈으로" width="25px" height="25px" >

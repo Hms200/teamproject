@@ -35,8 +35,8 @@ public interface IpurchaseDAO {
 	// purchase 단건 가져옴
 	public Purchase getPurchaseByPurchaseIdx(int purchase_idx);
 	
-	//purchaseList 필요정보 query
-	public HashMap<String, String> getpurchaseArrayList(int user_idx, int cart_list_idx, int goods_idx);
+	//cart_isdone 리스트 중에 로그인된user_idx를 가지고 mall_purchase의cart_list_idx와 mall_goods의 goods_idx가 둘다 일치하는 상품
+	public ArrayList<HashMap<String, String>> getpurchaseArrayList(int user_idx, int cart_list_idx, int goods_idx);
 
 	//넘어온 카테고리 구매내역만 출력
 	public ArrayList<HashMap<String, String>> getCartIsDoneAndByCat(int user_idx, String search);

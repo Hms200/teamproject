@@ -19,4 +19,7 @@ public interface IreviewDAO {
 	
 	// 리뷰 답글달기
 	public int updateReviewReply(int review_idx, String review_reply);
+	
+	//가장 최근에 등록된 review_idx를 가져옴
+	public int getNewestReviewIdx();
 }

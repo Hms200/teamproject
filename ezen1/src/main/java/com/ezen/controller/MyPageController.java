@@ -15,11 +15,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.dao.IuserDAO;
+import com.ezen.dto.Goods;
 import com.ezen.dto.Review;
 import com.ezen.dto.User;
+import com.ezen.service.FileService;
 import com.ezen.service.MyPageService;
+
+import lombok.Builder;
 
 @Controller
 @RequestMapping("myPage")
@@ -29,6 +34,8 @@ public class MyPageController {
 	MyPageService myPageService;
 	@Autowired
 	IuserDAO userDAO;
+	@Autowired
+	FileService fileService;
 	
 	//회원정보 수정 리스트
 	@RequestMapping("/memberInfo")
@@ -92,15 +99,18 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/reviewpopup")
-	public String reviewpopup() {
+	public String reviewpopup(HttpServletRequest request,Model model) {
+		String goods_idx = request.getParameter("goods_idx");
+		model.addAttribute("goods_idx",goods_idx);
 		return "myPage/reviewpopup";
 	}
 	
-	@RequestMapping("/reviewWriteAction")	
-	public String reviewWriteAction(@ModelAttribute Review review) {
-		String str = review.toString();
-		String result = myPageService.getNewReview(review); 
-		return "";
+	
+	//리뷰등록
+	@PostMapping("reviewWriteAction")
+	public @ResponseBody String reviewWriteAction(@RequestBody Review review) {
+		String result = myPageService.insertReview(review);
+		return result;
 	}
 	
 	

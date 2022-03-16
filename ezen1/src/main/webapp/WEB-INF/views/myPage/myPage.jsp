@@ -16,13 +16,13 @@
 <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
-
+ 
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- 페이지 전체 div -->
 	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mt-0 mb-0"
-		style="max-width: 520px;">
+		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5"
+		style="max-width: 520px; margin-top: 60px;">
 
 		<!-- 박스 -->
 		<div class="col-10 shadow border rounded my-4">
