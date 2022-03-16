@@ -16,19 +16,23 @@
 
 <c:import url="../pcMain.jsp"></c:import>
 
-<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
+ <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" > 
 
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top:60px ">
-      <div class="container col-11 d-flex flex-column align-items-center justify-content-center text-center postion-relative" style="max-width: 520px; margin-top:150px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top:60px;">
+    
+      <div class="container col-11 d-flex flex-column align-items-center justify-content-center text-center postion-relative" style="margin-top:150px;">
         <div class="font-weight-bold font-italic text-dark w-100 mb-1" style="font-size: 24px">LOGIN</div>
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
-        <div class="col-12 pl-0 pr-0  ml-0 mr-0 column">
-          <form action="../login/loginAction" method="post" class="control mb-1" name="userInfo" onsubmit="return nullChecker();">
+        <div>
+        
+        <div class="col-12 pl-0 pr-0  ml-0 mr-0 column" style="height: 150px;">
+          <form action="../login/loginAction" method="post" class="control mb-1" name="userInfo" onsubmit="return nullChecker();" style="height: 150px;">
             <input type="text" class="mb-1 p-2 w-100 nullcheck" style="font-size: 14px;" name="user_id" id="user_id" placeholder="아이디를 입력하세요.">
             <input type="password" class="mb-3 p-2 w-100 nullcheck" style="font-size: 14px;" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요.">
             <input type="submit" class="btn btn-primary w-100 rouned-lg text-white mb-2" style="font-size: 16px;" value="로그인">
           </form>
         </div>
+        
         <a href="join" class="btn btn-outline-primary text-primary mb-2 w-100" style="font-size: 16px;">회원가입</a>
         <!-- 팝업창 띄우는 아이디/비밀번호찾기 -->
         <div class="w-100 mt-2 text-center" style="font-size: 14px;">
@@ -36,6 +40,8 @@
           <span class="text-black-50">&nbsp; | &nbsp;</span>
           <span class="text-dark" onclick="popupHideAndShow(target ='pwFindForm');" style="cursor: pointer;">비밀번호찾기</span>
         </div>
+        </div>
+        
       </div>
     </div>
     <!-- 아이디찾기팝업창_ 팝업창 좌표는 화면 정가운데 고정시킴 -->
