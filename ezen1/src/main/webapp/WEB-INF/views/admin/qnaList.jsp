@@ -14,6 +14,12 @@
 </head>
 <body>
 
+<c:import url="../pcMain.jsp"></c:import>
+
+
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
+
+
 <c:import url="../header.jsp"></c:import>
 
 <!-- container -->
@@ -117,6 +123,7 @@
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import>
 
+</div>
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
