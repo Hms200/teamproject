@@ -69,7 +69,7 @@
             </button>
 			</c:if>
             <!-- 페이지 표시기 -->
-			<c:if test="${ pages.beginPagenation != pages.endPagenation }">
+			
 		    <div class="container row my-3 mx-auto">
 		      <nav class="mx-auto">
 		        <ul class="pagination justify-content-center ">
@@ -84,17 +84,17 @@
 		          </c:forEach>
 		          <!-- 마지막페이지까지 표시되면 앞으로 가기 표시 안됨 -->
 		          <li class="page-item <c:if test="${ pages.countOfPages eq pages.endPagenation }">disabled</c:if>">
-		            <a class="page-link" href="notice?curruntPage=${ pages.endPagenation+1}">&rang;</a>
+		            <a class="page-link" href="notice?currentPage=${ pages.endPagenation+1}">&rang;</a>
 		          </li>
 		        </ul>
 		      </nav>
 		    </div>
-		    </c:if>
+		    
 		    
 			    
         </div>
         
-        <!-- 팝업 별도 페이지로 작성예정! -->
+        
         <!-- 공지사항 열람/수정(관리자) 팝업창 -->
         <c:forEach var="notice" items="${ noticeList }">
         <div class="position-absolute d-none bg-white border border-dark-50 rouned" id="notice_popup${ notice.notice_idx }" style=" top: 120px;z-index: 1100;">
@@ -122,10 +122,12 @@
                         <textarea class="form-control overflow-auto bg-white nullcheck" <c:if test="${ user_id != 'admin' }"> readonly </c:if> name="notice_contents"cols="30" rows="10" style="resize: none;">${ notice.notice_contents }</textarea>
                     </div>
                     <!-- 중요공지사항(관리자) -->
+                    <c:if test="${ user_id == 'amdin' }">
                     <div class="ml-4 my-2 pl-2">
                         <label><input class="mr-2 checkbox" type="checkbox" name="notice_show"<c:if test="${ user_id != 'admin' }"> disabled </c:if><c:if test="${ notice.notice_show eq 1 }"> checked</c:if>
                         	>중요공지사항</label>
                     </div>
+                    </c:if>
                     <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
                     <div class="mx-auto" style="width: fit-content;">
                         <!-- 사용자용 확인버튼 -->

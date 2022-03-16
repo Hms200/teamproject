@@ -60,7 +60,7 @@ public class MainController {
 				cartBedgNum = goodsListService.getCountOfGoodsInCart(user_idx);
 				session.setAttribute("cart", cartBedgNum);
 			} catch (NullPointerException e) {
-				System.out.println(e);
+				return "login/login";
 			}
 		}
 		// 메인용 공지사항
