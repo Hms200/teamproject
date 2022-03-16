@@ -43,23 +43,22 @@ public class LoginController {
 		
 		return "login/quit";
 	}
+	
 	@RequestMapping("test")
 	public String test() {
 		
 		return "login/test";
 	}
-	
 
+	//로그인액션
 	@RequestMapping("loginAction")
 	@ResponseBody
-	public String loginAction(
-				@RequestParam("user_id") String user_id,
-				@RequestParam("user_pw") String user_pw,
-				HttpSession session) {
-
-			String result = loginService.login(user_id, user_pw, session);			
-			return result;
-		}
+	public String loginAction( @RequestParam("user_id") String user_id,
+							   @RequestParam("user_pw") String user_pw,
+							   HttpSession session) {
+		String result = loginService.login(user_id, user_pw, session);			
+		return result;
+	}
 
 	//로그아웃 기능
 	@RequestMapping("logoutAction")
@@ -72,7 +71,7 @@ public class LoginController {
 			
 	}
 	
-	//아이디찾기(미완성)
+	//아이디찾기
 	@RequestMapping("idFindAction")
 	@ResponseBody
 	public String idFindAction( @RequestParam("user_name") String user_name,
@@ -82,26 +81,23 @@ public class LoginController {
 		return result;	
 	}
 	
-	//비밀번호찾(미완성)
-		@RequestMapping("pwFindAction")
-		@ResponseBody
-		public String pwFindAction( 
-				@RequestParam("user_id") String user_id,
-				@RequestParam("user_name") String user_name,
-				@RequestParam("user_email") String user_email) {
-						
-			String result = loginService.findPW(user_id, user_name, user_email);			
-			return result;	
-		}
+	//비밀번호찾기 
+	@RequestMapping("pwFindAction")
+	@ResponseBody
+	public String pwFindAction( @RequestParam("user_id") String user_id,
+								@RequestParam("user_name") String user_name,
+								@RequestParam("user_email") String user_email) {
+							
+		String result = loginService.findPW(user_id, user_name, user_email);			
+		return result;	
+	}
 		
 	//아이디 중복체크 
 	@RequestMapping("idCheckAjax")
 	@ResponseBody
 	public int idCheckAjax(@RequestParam("user_id") String user_id) {
 			
-		int result = loginService.idCheckAjax( user_id );
-		System.out.println("result:" + result);
-			
+		int result = loginService.idCheckAjax( user_id );			
 		return result;
 	}
 	
@@ -113,19 +109,18 @@ public class LoginController {
 		String result = loginService.join(user);		
 		return result;		
 	}
+	
 	//회원탈퇴 
 	@RequestMapping("quitAction")
 	@ResponseBody
 	public String quitAction(@RequestParam("user_id") String user_id) {
 		
 		int result = userDao.deleteUser(user_id);
-		if( result == 1){
-			System.out.println("회원탈퇴");
-				
+		if( result == 1){				
 			return "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";
-		}else {
-			
+		} else {			
 			return "<script>alert('회원탈퇴 실패!'); history.back(-1);</script>";		
 		}		
 	}
+	
 }
