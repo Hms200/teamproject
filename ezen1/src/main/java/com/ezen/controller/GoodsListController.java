@@ -20,7 +20,8 @@ import com.ezen.dto.Cart;
 import com.ezen.dto.Purchase;
 import com.ezen.dto.Question;
 import com.ezen.service.GoodsListService;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("goodsList")
@@ -31,7 +32,7 @@ public class GoodsListController {
 	
 	@Autowired
 	HttpSession session;
-	
+	private final Logger logger = LoggerFactory.getLogger("LoggerController 의 로그");
 	////////////////////////
     //전체상품 페이지
 	////////////////////////
@@ -47,6 +48,8 @@ public class GoodsListController {
 	@RequestMapping("goodsDetail")
 	public String goodsDetail(@RequestParam("goods_idx")int goods_idx,
 							  Model model) {
+		
+		logger.info("goods_idx==="+goods_idx);
 		model = goodsListService.goodsDetail(goods_idx, model);
 		return "goodsList/goodsDetail";
 	}
