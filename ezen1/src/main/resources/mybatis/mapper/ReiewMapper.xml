@@ -11,8 +11,8 @@
 	</select>
 	
 	<insert id="insertReview" parameterType="com.ezen.dto.Review">
-		INSERT INTO MALL_REVIEW (review_idx, user_dix, goods_idx, review_contents, review_star, review_isreplied, review_reply, review_date, review_reply_date)
-			VALUES (MALL_REVIEW_seq.nextval, #{user_dix}, #{goods_idx}, #{review_contents},#{review_star} #{review_isreplied}, #{review_reply}, sysdate, sysdate)
+		INSERT INTO MALL_REVIEW (review_idx, user_idx, goods_idx, review_contents, review_star, review_isreplied, review_reply, review_date, review_reply_date)
+			VALUES (MALL_REVIEW_seq.nextval, #{user_idx}, #{goods_idx}, #{review_contents},#{review_star} ,#{review_isreplied}, #{review_reply}, sysdate, sysdate)
 	</insert>
 	
 	<!-- 모든 리뷰 가져옴 -->
@@ -24,4 +24,9 @@
 	<update id="updateReviewReply">
 		UPDATE mall_review SET review_reply = #{param2}, review_reply_date = sysdate, review_isreplied = 1 WHERE review_idx = ${param1}
 	</update>
+	
+	<!-- 가장 최신리뷰의 idx를 가져옴 -->
+	<select id="getNewestReviewIdx" resultType="int">
+		SELECT MAX(REVIEW_IDX) FROM MALL_REVIEW
+	</select>
 </mapper>
