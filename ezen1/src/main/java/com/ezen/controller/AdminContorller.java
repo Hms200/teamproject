@@ -62,7 +62,7 @@ public class AdminContorller {
 		model = adminService.getUserListForAdmin(model);
 		return "admin/memberList";
 	}
-	// 상세조
+	// 상세조회
 	@RequestMapping("memberListpopup")
 	public String memberListpopup(@RequestParam String user_idx, Model model) {
 		model = adminService.getUserInfo(Integer.parseInt(user_idx), model);
