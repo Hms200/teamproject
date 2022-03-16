@@ -34,18 +34,20 @@
 			<div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4"
 				style="font-size: 16px;">고객님의 리뷰가 큰 힘이 됩니다!</div>
 		</div>
-		<form action="reviewWriteAction" name="reviewWriteForm" method="post" enctype="mutipart/form-data">
+		<form name="reviewImg" method="post" enctype="mutipart/form-data"  accept-charset="UTF-8">
 			<!-- 파일선택 -->
-			<div class="custom-flie flex-row p-2 "
+			<div class="w-100 custom-flie d-flex flex-row p-2"
 				style="float: left; font-size: 14px;">
-				<input type="file" class="custom-flie-input" name="file">
+				<input type="file" class="custom-flie-input " name="reviewFile" id="reviewImg" accept="image/*">
+				<div class="change_img"><img src="" class="mt-2"/></div>
 			</div>
+		</form>
 			<!-- 셀렉트 -->
-			<div>
+		<form action="reviewWriteAction" name="reviewWriteForm" method="post" id="reviewWriteForm">
 				<div class="d-flex justify-content-end">
-					<select class="form-select form-control rounded text-dark"
+					<select class="form-select form-control rounded text-dark my-2 "
 						style="font-size: 14px; height: 35px; width: 110px;"
-						aria-label="별점" name="review_star">
+						aria-label="별점" name="review_star" id="review_star">
 						<option value="" disabled selected>별점선택</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -58,15 +60,16 @@
 				<div style="font-size: 14px;" class="container w-100">
 					<textarea name="review_contents" id="review" cols="50" rows="10"
 						class="form-control form-control-lg border border-color col-12"
-						style="font-size: 14px; height: 150px;" placeholder="리뷰를 입력해 주세요"></textarea>
+						style="font-size: 14px; height: 80px;" placeholder="리뷰를 입력해 주세요" id="review_content"></textarea>
+					<input type="hidden" name="user_idx" id="user_idx" value="<%=request.getParameter("user_idx") %>">
+					<input type="hidden" name="goods_idx" id="goods_idx" value="<%=request.getParameter("goods_idx") %>">
 				</div>
-			</div>
+			</form>
 			<!-- 버튼 -->
 			<div class="mt-5 align-items-center text-center">
-				<button type="submit" class="btn btn-dark text-light form-control"
-					style="width: 140px;">작성</button>
+				<button type="submit" class="btn btn-dark text-light form-control"style="width: 140px;"
+					onclick = "reviewContentAction()">작성</button>
 			</div>
-		</form>
 		<!-- 팝업창 div -->
 	</div>
 	<c:import url="../footer.jsp"></c:import>
@@ -77,5 +80,17 @@
 		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
 		crossorigin="anonymous"></script>
 	<script src="/js/main.js"></script>
+	<script>
+	//이미지 보여지기
+	  $("#reviewImg").change(function(){
+	   if(this.files && this.files[0]) {
+	    var reader = new FileReader;
+	    reader.onload = function(data) {
+	     $(".change_img img").attr("src", data.target.result).width(100).height(50);        	
+	    }
+	    reader.readAsDataURL(this.files[0]);
+	   }
+	  });
+ </script>
 </body>
 </html>
