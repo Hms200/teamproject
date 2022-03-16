@@ -82,13 +82,14 @@
 								width="80px">
 						</div>
 						<div class="col-9" style="font-size: 14px;">
-							<div class="col-12 text-left pl-2">상품이름: ${list.get("GOODS_NAME") }</div>
+							<div class="col-12 text-left pl-2">상품이름: ${list.get("GOODS_NAME") } </div>
 							<div class="col-12 text-left pl-2">구매번호: ${list.get("PURCHASE_IDX") }</div>
 							<div class="col-12 text-left pl-2 position-relative">
 								<span>가격: ${list.get("GOODS_PRICE")}</span> 
 								<span style="right: 0%; position: absolute; cursor: pointer"
 									class="text-dark"
-									onclick="popupHideAndShow(target='reviewpopup')">리뷰쓰기</span>
+									onclick="location.href=
+									'reviewpopup?goods_idx='${list.get('GOODS_IDX')}''">리뷰쓰기</span>
 							</div>
 							<div
 								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-2">
