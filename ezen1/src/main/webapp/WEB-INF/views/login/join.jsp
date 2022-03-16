@@ -18,7 +18,7 @@
         <!-- joinTitle -->
         <div class="container-sm container-fluid d-flex flex-row mb-0 border-bottom" height="60px">
             <div class="col-1 my-3 py-1 pl-0">
-                <img src="/img/icon/left.png" class="mx-auto d-block" alt="" width="27px" height="27px" onclick="history.back(-1);";>
+                <img src="/img/icon/left.png" class="mx-auto d-block" alt="" width="27px" height="27px">
             </div>
             <div class="col-11 my-3 py-1 text-center text-bold">회원가입</div>
         </div>
