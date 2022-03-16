@@ -38,6 +38,7 @@ public class MyPageController {
 		model.addAttribute("user",user);
 		return "myPage/memberInfo";
 	}
+	
 	//회원정보 업데이트action
 	@PostMapping("/userUpdateAction")
 	public @ResponseBody String userUpdateAction(User user) {
@@ -51,13 +52,20 @@ public class MyPageController {
 		
 		return "myPage/myPage";
 	}
+	
 	//user_id해당 구매내역 보여주기
 	@RequestMapping("/purchaseList")
-	public String purchaseList(HttpServletRequest request,Model model) {
+	public String purchaseList(HttpServletRequest request,Model model,
+							   @RequestParam(name = "cat", required = false) Integer cat) {
 		String user_id =request.getParameter("user_id");
+		if(cat == null ) {
 		myPageService.purchaseList(user_id, model);
+		}else {
+		myPageService.purchaseListByCat(user_id, model , cat);
+		}
 		return "myPage/purchaseList";
 	}
+	
 	//환불신청
 	@RequestMapping("/purchaseRefundAction")
 	public @ResponseBody String purchaseRefundAction(@RequestParam("purchase_idx")int purchase_idx,
@@ -65,6 +73,7 @@ public class MyPageController {
 		String result = myPageService.changeStatement(purchase_idx,ask);
 		return result;
 	}
+	
 	//교환신청
 	@RequestMapping("/purchaseChangeAction")
 	public @ResponseBody String purchaseChangeAction(@RequestParam("purchase_idx")int purchase_idx,
@@ -72,16 +81,15 @@ public class MyPageController {
 		String result = myPageService.changeStatement(purchase_idx, ask);
 		return result;
 	}
+	
 	//취소신청
 	@RequestMapping("/purchaseCancleAction")
 	public @ResponseBody String purchaseCancleAction(@RequestParam("purchase_idx")int purchase_idx,
 									   @RequestParam("AskCancle") String ask) {
-		
 		String result = myPageService.changeStatement(purchase_idx, ask);
 		return result;
 		
 	}
-	
 	
 	@RequestMapping("/reviewpopup")
 	public String reviewpopup() {
