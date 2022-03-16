@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -15,8 +13,6 @@ import com.ezen.dao.IonetooneDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.FaQ;
 import com.ezen.dto.OneToOne;
-
-import oracle.net.aso.c;
 
 @Service
 public class CustomerService {
@@ -28,7 +24,8 @@ public class CustomerService {
 	@Autowired
 	IuserDAO userDao;
 	
-	//FAQ카테고리 선택
+	//FAQ List 카테고리 선택
+	//faqList가 리턴한 Model 배열을 전체순환하면서 faq_cat가 파라미터로 넘겨받은 faq_cat와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
 	public Model faqListByFaqCat(String faq_cat, Model model) {
 		ArrayList<FaQ> allFaqList = faqDao.getFaqList();
 		ArrayList<FaQ> faqListByCat = new ArrayList<>();
@@ -56,6 +53,7 @@ public class CustomerService {
 	}
 	
 	//FAQ작성
+	//넘겨받은 Faq에 담긴 데이터를 확인해서 IfaqDAO.faqWrtie을 통해 DB에 insert
 	public String FaqWrite(FaQ Faq) {
 		
 		int result = faqDao.FaqWrite(Faq);
@@ -66,12 +64,13 @@ public class CustomerService {
 		return returnString;
 	}
 	
-	//내문의내역
+	//내 문의 내역 (myAsk List)
+	//allOneToOne가 리턴한 Model 배열을 전체순환하면서 user_idx가 파라미터로 넘겨받은 user_idx와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
 	public Model byUserIdx(int user_idx, Model model, HttpSession session) {
 		ArrayList<OneToOne> allOneToOne = onetooneDao.getOneToOneList();
 		ArrayList<OneToOne> myOneToOne = new ArrayList<>();
 			allOneToOne.forEach(OnetoOne -> {
-				if(session.getAttribute("user_idx").equals(user_idx)) {
+				if(OnetoOne.getUser_idx() == user_idx) {
 					myOneToOne.add(OnetoOne);
 				}
 			});
@@ -79,7 +78,8 @@ public class CustomerService {
 		return model;
 	}
 	  
-	//내 문의 내역 카테고리 선택
+	//myAsk List 카테고리 선택
+	////myOneToOne가 리턴한 Model 배열을 전체순환하면서 faq_cat가 파라미터로 넘겨받은 faq_cat와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
 	public Model onetooneByCat(int user_idx, String onetoone_cat, Model model, HttpSession session) {
 		ArrayList<OneToOne> myOneToOne = onetooneDao.getOnetoOneByUserIdx(user_idx);
 		ArrayList<OneToOne> oneToOneByCat = new ArrayList<>();
@@ -106,7 +106,8 @@ public class CustomerService {
 		return model;
 	}
 	
-	//onetoone작성
+	//onetoone 작성(문의하기)
+	//넘겨받은 Question에 담긴 데이터를 확인해서 IonetooneDAO.insertOneToOne을 통해 DB에 insert
 	public String insertOneToOne(OneToOne onetoone) {
 		
 		int result = onetooneDao.insertOneToOne(onetoone);

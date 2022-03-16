@@ -20,6 +20,7 @@
 		SELECT * FROM MALL_ONETOONE WHERE user_idx = #{user_idx}
 	</select>
 	
+	<!-- Mall_ONETOONE에서 해당 user_idx를 가진 data중에 onetoone_cat이 동일한 data를 가져옴. -->
 	<select id="myOnetoOneByCat" resultType="com.ezen.dto.OneToOne">
 		SELECT * FROM mall_onetoone where user_idx = #{user_idx} AND onetoone_cat like #{onetoone_cat}
 	</select>

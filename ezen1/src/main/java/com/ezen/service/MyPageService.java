@@ -16,6 +16,7 @@ import com.ezen.dao.IpurchaseDAO;
 import com.ezen.dao.IreviewDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Cart;
+import com.ezen.dto.Goods;
 import com.ezen.dto.Purchase;
 import com.ezen.dto.Review;
 import com.ezen.dto.User;
@@ -37,14 +38,6 @@ public class MyPageService {
 	@Autowired
 	IpurchaseDAO purchaseDAO;
 	
-	public String getNewReview(Review review) {
-		int result = reviewDAO.insertReview(review);
-		if(result == 1) {
-			return "<script> alert('리뷰등록!')  </script>";
-		}else {
-			return "<script> alert('리뷰등록실패')  </script>";
-		}
-	}
 	public String updateUserInfo(User user) {
 		int result = userDAO.UpdateMemberInfo(user);
 		System.out.println(result);
@@ -60,8 +53,8 @@ public class MyPageService {
 		ArrayList<Cart> isDoneList = cartDAO.getCartIsDone(user_idx);
 		ArrayList<HashMap<String, String>> purchaseList = new ArrayList<>();
 		isDoneList.forEach(result ->{
-			HashMap<String, String> map = purchaseDAO.getpurchaseArrayList(result.getUser_idx(), result.getCart_list_idx(), result.getGoods_idx());
-			purchaseList.add(map);
+			ArrayList<HashMap<String, String>> map = purchaseDAO.getpurchaseArrayList(result.getUser_idx(), result.getCart_list_idx(), result.getGoods_idx());
+			purchaseList.addAll(map);
 		});
 		model.addAttribute("purchaseList",purchaseList);
 		return model;
@@ -113,6 +106,26 @@ public class MyPageService {
 		
 		return model;
 		
+	}
+//	public String inserReview(Review review) {
+//		int result = reviewDAO.insertReview(review);
+//		if(result ==1 ) {
+//			return "<script>alert('리뷰가 등록되었습니다.'); location.href='/myPage/myPage'; </script>";
+//		}else {
+//			return "<script>alert('error:다시 시도해주세요.'); location.href='/myPage/myPage'; </script>";
+//		}
+//	}
+	public String insertReview(Review review) {
+		int result = reviewDAO.insertReview(review);
+		String resultString;
+		if(result==1) {
+			int idx = reviewDAO.getNewestReviewIdx();
+			resultString = String.valueOf(idx);
+			return resultString;
+		}else {
+			resultString = "false";
+			return resultString;
+		}
 	}
 	
 
