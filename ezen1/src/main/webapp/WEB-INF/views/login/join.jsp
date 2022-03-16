@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +12,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
 </head>
-
 <body>
-    <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+<c:import url="../pcMain.jsp"></c:import>
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative" style="max-width: 520px; max-height: 100vh; overflow: auto;" >
+
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top:60px ">
         <!-- joinTitle -->
-        <div class="container-sm container-fluid d-flex flex-row mb-0 border-bottom" height="60px">
+        <div class="container-sm container-fluid d-flex flex-row mb-0 border-bottom" height="60px;">
             <div class="col-1 my-3 py-1 pl-0">
-                <img src="/img/icon/left.png" class="mx-auto d-block" alt="" width="27px" height="27px">
+                <img src="/img/icon/left.png" class="mx-auto d-block" alt="" width="27px" height="27px" onclick="history.back(-1);">
             </div>
             <div class="col-11 my-3 py-1 text-center text-bold">회원가입</div>
         </div>
-        <!-- joinMainDiv -->
         <div class="container-sm container-fluid col-11 d-flex flex-column mt-3 justify-content-center align-items-center" style="max-width:520px;">
             <form action="../login/joinAction" method="post" onsubmit="return nullChecker();">
             
@@ -53,17 +54,16 @@
                 <div class="form-group mb-1" style="font-size:14px;">
                     <input type="text" class="col-12 form-control nullcheck" name="user_phone" id="user_phone" placeholder="전화번호를 입력해주세요">
                 </div>
-                <!-- 자바스크립트 주소연결 성공 -->
-                <!-- child window로 열리게 설정하고 , child window 크기 설정해야 함 -->
                 <div class="text-left font-weight-bold pl-2 mt-2">주소</div>
                 <div class="form-group row mb-5 ml-0 mr-0 justify-content-between" style="font-size:14px;">
                     <input type="text" class="col-8 form-control mb-1 bg-white" name="sample6_postcode" id="sample6_postcode" placeholder="우편주소" readonly>
                     <input type="button" class="col-3 btn btn-secondary text-dark mb-1"  value="주소찾기" style="font-size: 14px;" onclick="sample6_execDaumPostcode()">
                     <input type="text" class="col-12 form-control mb-1 bg-white nullcheck" name="sample6_address" id="sample6_address" placeholder="주소를 입력해주세요" readonly>
                     <input type="text" class="col-12 form-control nullcheck" name="sample6_detailAddress" id="sample6_detailAddress"  placeholder="상세주소를 입력해주세요">
-                    <!-- 지우면 버튼클릭 안됨 -->
-                    <input type="hidden" class="inputStyle1" id="sample6_extraAddress" placeholder="참고항목">
-                    <input type="hidden" class="" id="user_address" name="user_address" value="" />
+                    <!-- 주소찾기 기본 hidden버튼(삭제x) -->
+                    <input type="hidden" class="inputStyle1" id="sample6_extraAddress" placeholder="참고항목">                   
+                    <!-- 입력한 sample6_address 와 sample6_detailAddress를 js를 이용해 value값을 합쳐 user_address로 서버에 전송 -->
+                    <input type="hidden" id="user_address" name="user_address" value="" />
                 </div>
                 <!-- checkBox -->
                 <div class="mb-4">
@@ -90,6 +90,7 @@
             </form>           
         </div>
     </div>
+ </div>
 <!-- 카카오 주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- bootstrap js -->
@@ -97,7 +98,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <!-- main js -->
 <script src="/js/main.js"></script>
-
-
 </body>
 </html>

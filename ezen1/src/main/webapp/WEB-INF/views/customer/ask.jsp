@@ -13,16 +13,18 @@
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
+<c:import url="../pcMain.jsp"></c:import>
 
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 <c:import url="../header.jsp"></c:import>
 
 <!-- container -->
-  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top: 60px;">
     <!-- 타이틀 -->
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
       <!-- 뒤로가기 버튼 -->
       <div class="col-1 my-3">
-          <img src="/img/icon/left.png" alt="뒤로가기" onclick="location.href='/customer'" width="30px" height="30px" style="cursor: pointer;">
+          <img src="/img/icon/left.png" alt="뒤로가기" onclick="window.history.back()" width="30px" height="30px" style="cursor: pointer;">
       </div>
       <div class="col-11 my-3 py-1 text-center font-weight-bold">
         문의하기
@@ -61,13 +63,13 @@
                 <!-- 작성버튼 -->
                 <button type="submit" class="btn btn-dark mx-2" style="width: 190px; cursor: pointer;">문의하기</button>
             </div>
+            </form>
         </div>
-      </form>
-  </div>
+      
     
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import>
-
+</div>
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

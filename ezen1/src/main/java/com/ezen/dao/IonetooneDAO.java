@@ -14,7 +14,7 @@ public interface IonetooneDAO {
 	public int updateQnaAnswerByReplyAndContent(int onetoone_idx, String onetoone_reply);
 	//Mall_ONETOONE에서 해당 user_idx를 가진 data를 가져옴.
 	public ArrayList<OneToOne> getOnetoOneByUserIdx(int user_idx);
-	
+	//Mall_ONETOONE에서 해당 user_idx를 가진 data중에 동일한 onetoone_cat을 가진 data를 가져옴.
 	public ArrayList<OneToOne> myOnetoOneByCat(String onetoone_cat);
 	//OneToOne을 받아 mall_onetoone에 insert
 	public int insertOneToOne(OneToOne onetoone);

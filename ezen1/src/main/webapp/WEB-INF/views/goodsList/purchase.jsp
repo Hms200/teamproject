@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
+<c:import url="../pcMain.jsp"></c:import>
+
+
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 
 <c:import url="../header.jsp"></c:import>
 
@@ -189,7 +193,7 @@
     
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import>
-
+</div>
 <!-- 카카오 주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->

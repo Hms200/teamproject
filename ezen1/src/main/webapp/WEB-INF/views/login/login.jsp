@@ -13,8 +13,12 @@
   <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
-  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
+
+<c:import url="../pcMain.jsp"></c:import>
+
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
+
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top:60px ">
       <div class="container col-11 d-flex flex-column align-items-center justify-content-center text-center postion-relative" style="max-width: 520px; margin-top:150px;">
         <div class="font-weight-bold font-italic text-dark w-100 mb-1" style="font-size: 24px">LOGIN</div>
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
@@ -56,15 +60,12 @@
     </div>
     <!-- 비밀번호찾기 팝업창  -->
     <div class="container-sm container-fluid col-12 position-absolute d-none flex-column justify-content-center bg-white border border-dark-50 rounded" style="top:50%; left: 50%; transform:translate(-50%, -50%); max-width:340px;" id="pwFindForm">
-      <!-- iconDiv -->
       <div class="d-100 d-flex flex-row justify-content-end">
         <img src="/img/icon/cross.png" alt="" width="30px" height="30px" onclick="popupHideAndShow(target ='pwFindForm');">
       </div>
-        <!-- main div -->
         <div class="w-100 d-flex flex-column justify-content-center align-items-center mb-4" >
           <!-- idFindText -->
           <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;">비밀번호찾기</div>
-          <!-- formDiv -->
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
             <form action="../login/pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
               <div class="form-group">
@@ -81,6 +82,9 @@
           </div>
         </div>
     </div>
+        
+</div>
+
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

@@ -10,6 +10,13 @@ function popupHideAndShow(target) {
     }
 };
 
+// 최상위로 스크롤
+ function scrollToTop(){
+    	const target = document.getElementById('mainContainer');
+    	target.scrollIntoView({behavior: "smooth"});
+}
+
+
 // 장바구니 벳지 장바구니가 0이면 숨기기
 
 window.onload = bedgeHideAndShow();

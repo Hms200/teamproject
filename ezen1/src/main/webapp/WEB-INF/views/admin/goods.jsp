@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
+<c:import url="../pcMain.jsp"></c:import>
+
+
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
+
 
 <c:import url="../header.jsp"></c:import>
 
@@ -105,7 +110,7 @@
           style="width: 76px; height: 27px; font-size: 12px;">파일선택</label>
       </div>
       <div class="d-flex flex-row justify-content-between my-3">
-          <button type="button" class="btn btn-dark text-light ml-3 col-5" style="height: 40px; border-radius: 6px;" onclick="location.href='admin/main'">취소</button>
+          <button type="button" class="btn btn-dark text-light ml-3 col-5" style="height: 40px; border-radius: 6px;" onclick="location.href='main'">취소</button>
           <button type="button" class="btn btn-primary text-light mr-3 col-5" style="height: 40px; border-radius: 6px;" onclick="registerGoods();">확인</button>
       </div>
     </div>
@@ -116,6 +121,7 @@
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import>
 
+</div>
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

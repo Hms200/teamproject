@@ -14,7 +14,9 @@
      <link rel="styleshhet" href="/css/custom.css">
 </head>
 <body>
-  <div class="container-sm container-fluid col-12 position-absolute d-flex flex-column justify-content-center bg-white border border-dark-50 rounded" id="quitForm" style="max-width: 340px; top: 50%; left: 50%; transform:translate(-50%, -50%);">
+<c:import url="../pcMain.jsp"></c:import>
+
+  <div class="container-sm container-fluid col-12 position-absolute d-flex flex-column justify-content-center bg-white border border-dark-50 rounded" id="quitForm" style="max-width: 340px; top: 50%; left: 50%; transform:translate(-50%, -50%);  margin-top:60px ">
     <div class="d-100  d-flex flex-row  justify-content-end">
       <img src="/img/icon/cross.png" alt="취소아이콘" width="30px" height="30px" onclick="history.back(-1);">
     </div>

@@ -16,13 +16,16 @@
 <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
+ <c:import url="../pcMain.jsp"></c:import>
 
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
+ 
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- 페이지 전체 div -->
 	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mt-0 mb-0"
-		style="max-width: 520px;">
+		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5"
+		style="max-width: 520px; margin-top: 60px;">
 
 		<!-- 박스 -->
 		<div class="col-10 shadow border rounded my-4">
@@ -77,7 +80,7 @@
 	</div>
 	<c:import url="../footer.jsp"></c:import>
 	<c:import url="../nav.jsp"></c:import>
-
+	</div>
 
 	<!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 	<script

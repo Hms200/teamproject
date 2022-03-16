@@ -16,6 +16,10 @@
 <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
+<c:import url="../pcMain.jsp"></c:import>
+
+
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 
 	<c:import url="../header.jsp"></c:import>
 
@@ -86,10 +90,8 @@
 							<div class="col-12 text-left pl-2">구매번호: ${list.get("PURCHASE_IDX") }</div>
 							<div class="col-12 text-left pl-2 position-relative">
 								<span>가격: ${list.get("GOODS_PRICE")}</span> 
-								<span style="right: 0%; position: absolute; cursor: pointer"
-									class="text-dark"
-									onclick="location.href=
-									'reviewpopup?goods_idx='${list.get('GOODS_IDX')}''">리뷰쓰기</span>
+								<a href="reviewpopup?goods_idx=${list.get('GOODS_IDX')}&user_idx=${list.get('USER_IDX')}" 
+								style="right: 0%; position: absolute" class="text-dark">리뷰작성</a>
 							</div>
 							<div
 								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-2">
@@ -113,6 +115,7 @@
 
 	<c:import url="../footer.jsp"></c:import>
 	<c:import url="../nav.jsp"></c:import>
+	</div>
 	<!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"

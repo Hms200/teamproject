@@ -98,12 +98,6 @@ public class MainController {
 		return "notice";
 	}
 	
-	//pcMianPage추가
-	@RequestMapping("pcMain")
-	public String pcMain() {
-		return "pcMain";
-	}
-	
 	// main검색
 	@GetMapping("mainsearchAction")
 	public String mainSearch(@RequestParam String searchtext,@RequestParam(required = false, defaultValue = "1")String currentPage ,Model model) {

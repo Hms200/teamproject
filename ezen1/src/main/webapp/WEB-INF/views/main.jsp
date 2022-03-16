@@ -13,13 +13,16 @@
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
+<c:import url="pcMain.jsp"></c:import>
 
+
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 <c:import url="header.jsp"></c:import>
 
-
-    <section>
+ 
+    
         <!-- main container -->
-        <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center pl-0 pr-0" style="max-width: 520px; margin-top: 60px;">
+        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
             <!-- 케러셀 이미지 -->
             <div id="carouselImg" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -76,13 +79,16 @@
              <c:import url="card/entireItem.Card.jsp"></c:import>
              </c:if>  
             </div>
+             
+        
         
         </div>
-        </section>
+        
         
 
 <c:import url="footer.jsp"></c:import>
 <c:import url="nav.jsp"></c:import>
+</div>
 
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
