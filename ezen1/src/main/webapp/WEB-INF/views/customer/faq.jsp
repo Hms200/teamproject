@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
+<c:import url="../pcMain.jsp"></c:import>
 
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 <c:import url="../header.jsp"></c:import>
 
 <!-- container -->
@@ -48,7 +50,7 @@
       <form name="faqCatForm" method="get" action="faqCatAction">
       <span>
         <select name="faq_cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
-          <option value="전체문의" selected>전체문의</option>
+          <option value="전체문의">전체문의</option>
           <option value="상품문의">상품문의</option>
           <option value="배송문의">배송문의</option>
           <option value="결제문의">결제문의</option>
@@ -147,7 +149,7 @@
     
 <c:import url="../footer.jsp"></c:import>
 <c:import url="../nav.jsp"></c:import>
-
+</div>
 
 <!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
