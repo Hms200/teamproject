@@ -13,12 +13,10 @@
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
-
 <c:import url="../pcMain.jsp"></c:import>
 
 
 <div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
-
 
 <c:import url="../header.jsp"></c:import>
 
