@@ -77,11 +77,8 @@ public class AdminContorller {
 		if(cat.equals("0")) {
 			model = adminService.userListBySearch(searchText, model);
 		}else {
-			model = adminService.userListbyFiltter(cat, model);
-			
+			model = adminService.userListbyFiltter(cat, model);	
 		}
-		
-		
 		return "admin/memberList";
 	}
 	
