@@ -105,7 +105,7 @@
           style="width: 76px; height: 27px; font-size: 12px;">파일선택</label>
       </div>
       <div class="d-flex flex-row justify-content-between my-3">
-          <button type="button" class="btn btn-dark text-light ml-3 col-5" style="height: 40px; border-radius: 6px;" onclick="location.href='admin/main'">취소</button>
+          <button type="button" class="btn btn-dark text-light ml-3 col-5" style="height: 40px; border-radius: 6px;" onclick="location.href='main'">취소</button>
           <button type="button" class="btn btn-primary text-light mr-3 col-5" style="height: 40px; border-radius: 6px;" onclick="registerGoods();">확인</button>
       </div>
     </div>

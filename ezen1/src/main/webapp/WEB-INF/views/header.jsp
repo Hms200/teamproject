@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-   <header>
+   <header style="width: 100%;">
         <!-- header container -->
-        <div class="container-sm container-fluid px-3 py-2 d-flex flex-row justify-content-between align-items-center border-bottom border-dark-50 fixed-top bg-white" style="max-width: 520px; height: 60px; margin-bottom: 60px;">
+        <div class="container-sm container-fluid w-100 px-3 py-2 d-flex flex-row justify-content-between align-items-center border-bottom border-dark-50 bg-white" style="max-width: 520px; height: 60px;position:fixed;top: 0;z-index:1500;">
             <!-- header logo img -->
             <div >
                 <a href="../main">

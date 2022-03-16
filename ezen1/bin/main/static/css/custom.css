@@ -118,3 +118,9 @@ body .dep {
     cursor: pointer;
   }
 
+/* responsible 페이지적용 body*/
+body{
+	display: flex;
+	flex-direction: row;
+	max-width : 1400px;
+}
