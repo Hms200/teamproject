@@ -20,14 +20,14 @@
 	<c:import url="../header.jsp"></c:import>
 	<!-- container -->
 	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative"
-		style="max-width: 520px;">
+		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
+		style="max-width: 520px; margin-top: 60px;">
 		<!-- 헤더 -->
 		<div
 			class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom"
 			style="height: 60px; font-size: 16px;">
 			<div class="col-1 my-3">
-				<a href="/customer"> <img src="/img/icon/뒤로가기 (2).png"
+				<a href="/myPage/myPage"> <img src="/img/icon/뒤로가기 (2).png"
 					style="width: 30px; height: 30px;" alt="">
 				</a>
 			</div>
