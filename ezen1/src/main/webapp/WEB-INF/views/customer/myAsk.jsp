@@ -15,11 +15,11 @@
 <body>
 <c:import url="../pcMain.jsp"></c:import>
 
-<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
+<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 <c:import url="../header.jsp"></c:import>
 
   <!-- container -->
-  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top: 60px;">
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
     <!-- 타이틀 -->
     <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
       <!-- 뒤로가기 버튼 -->
@@ -50,6 +50,7 @@
       <span>
         <select name="onetoone_cat" onchange="this.form.submit();" style="width: 100px; height: 50px; font-size: 14px;">
           <option selected hidden>문의종류</option>
+          <option value="전체문의">전체문의</option>
           <option value="상품문의">상품문의</option>
           <option value="배송문의">배송문의</option>
           <option value="결제문의">결제문의</option>

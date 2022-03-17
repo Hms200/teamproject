@@ -23,7 +23,9 @@
 
 	<c:import url="../header.jsp"></c:import>
 
+
         <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+
 		<!-- 아이콘 -->
 		<div class="d-flex w-100 flex-row justify-content-end pt-2 ">
 			<img src="/img/icon/cross.png" alt="취소"

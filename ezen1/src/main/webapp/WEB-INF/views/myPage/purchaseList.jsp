@@ -24,7 +24,9 @@
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- container -->
+
         <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+
 		<!-- header -->
 		<div
 			class="container-fluid border-bottom container-sm d-flex flex-row mb-0"

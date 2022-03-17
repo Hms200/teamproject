@@ -21,7 +21,7 @@
 <c:import url="../header.jsp"></c:import>
 
   <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
     style="max-width: 520px; margin-top: 60px;">
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom" style="height: 60px;">
       <div class="col-2 my-3">
@@ -43,11 +43,11 @@
       <div class="d-flex flex-row justify-content-around mb-2">
 	        <a href="goodsDetail?goods_idx=${ goods.goods_idx }"><img src="${ goods.goods_thumb }" alt="Thumbnail of ${ goods.goods_name }" class="img-fluid ml-3" width="100px" height="100px"></a>
 	        <div class="d-flex flex-column" style="width: 200px;height: 100px;">
-		          <div class="d-flex flex-row justify-content-between my-auto">
+		          <div class="d-flex flex-row justify-content-around my-auto">
 		            <span style="width: max-contents;">가격</span>
 		            <input type="text" class="form-control-plaintext text-right col-6 price" readonly value="${ cart.cart_total_price }">
 		          </div>
-		         <div class="d-flex flex-row justify-content-between my-auto">
+		         <div class="d-flex flex-row justify-content-around my-auto">
 		            <span>옵션</span>
 		            <span><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
 		            <c:forEach var="option" items="${ optionlist }">
@@ -165,7 +165,7 @@
       <input type="hidden" name="cart_list_idx" value="${ cartlistidx }">
       <div class="w-100 font-weight-bold text-center"
         style="width: 300px; height: 40px; margin-top: 30px; margin-bottom: 50px; font-size: 16xp;">
-        <span><button class="btn btn-primary" onclick=" popupHideAndShow('pwCheckPop')" style="width: 300px; height: 40px;">결제하기</button></span>
+        <span><button class="btn btn-primary col-12" onclick=" popupHideAndShow('pwCheckPop')" style=" height: 40px;">결제하기</button></span>
       </div>
       <!-- 비밀번호 확인 팝업창 -->
       <div class="d-none col-12 position-absolute" id="pwCheckPop" style="left: 0; bottom: 100px;">

@@ -24,7 +24,7 @@
 <c:import url="../header.jsp"></c:import>
 
 <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
     style="max-width: 520px; margin-top: 60px">
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0">
