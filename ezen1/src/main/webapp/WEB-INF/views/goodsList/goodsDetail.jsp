@@ -148,7 +148,7 @@
 			  <c:forEach var="reviewimg" items="${ reviewImgList }">
 			      <c:if test="${ dto.review_idx == reviewimg.review_idx }">
 			      	<c:set var="imgsrc" value="${ reviewimg.review_img }" />
-			    		<div class="col-4 border rounded my-2">
+			    		<div class="col-4 border rounded my-2" >
 			     		 	<img class="img-fluid" src="${ imgsrc }" alt="유저등록 리뷰이미지">
 			    		</div>
 		    		 <c:remove var="imgsrc"/>
@@ -158,7 +158,7 @@
 	          
 			    <div class="col-8">
 			      <div class="card-body">
-			        <h5 class="card-title">★ ${ dto.review_star }</h5>
+			        <p class="card-title"><small>★ ${ dto.review_star }</small></p>
 			        <p class="card-text my-2">${ dto.review_contents }</p>
 			        <p class="card-text my-1"><small class="text-muted">${ dto.review_date }</small></p>
 			        <!-- 등록된 답글이 있으면 답글보기 버튼이 노출됨 -->
