@@ -10,7 +10,7 @@
                
       <c:forEach var="review" items="${ reviewlist }">
         <div class="col-5 card ] inline-block mx-1 my-2 px-0 border rounded" onclick="location.href = '../goodsList/goodsDetail?goods_idx=${ review.goods_idx }'" style="cursor: pointer">
-          <div class="row no-gutters">
+          <div class="row no-gutters my-0">
         	<c:forEach var="review_img" items="${ reviewimgslist }">
         		
         		<c:if test="${ review.review_idx == review_img.review_idx }">

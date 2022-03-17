@@ -44,6 +44,11 @@
 		select * from mall_goods where goods_onsale = 1
 	</select>
 	
+	<!-- 품절 포함 모든상품 가져오기 -->
+	<select id="getAllSoldOutGoodsList" resultType="com.ezen.dto.Goods">
+		SELECT * FROM mall_goods where goods_onsale = 0
+	</select>
+	
 	<!-- 등록된 상품중 처음과 끝범위 지정해서 가져오기 -->
 	<select id="getGoodsList" resultType="com.ezen.dto.Goods">
 		SELECT * FROM ( 
