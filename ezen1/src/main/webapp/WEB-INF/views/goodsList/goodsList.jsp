@@ -17,11 +17,11 @@
 <c:import url="../pcMain.jsp"></c:import>
 
 
-<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
+<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"   style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 
 <c:import url="../header.jsp"></c:import>
 
-<div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center pl-0 pr-0"
+<div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center pl-0 pr-0" id="mainContainer"
     style="max-width: 520px; margin-top: 60px;">
     <!-- 상품 종류 네브 바 -->
     <nav class="w-100">

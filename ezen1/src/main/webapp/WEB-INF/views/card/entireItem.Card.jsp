@@ -21,6 +21,7 @@
   	
   	<!-- 평상시 메인에 노출되는경우  -->
   	<c:if test="${ entireItemCardMode == 0  }">
+  	
 		<div class="container-fluid px-0 mt-2 mb-1 col-12 d-flex justify-content-start text-center" style="white-space:nowrap; overflow-x: auto;">
 	        <!-- 단일상품 -->
 	        <c:forEach var="list" items="${ goodsList }">
@@ -36,6 +37,7 @@
         	</c:forEach>   
 
     	</div>
+   
     </c:if>
     
     <!-- 검색결과로 노출되는 경우 -->
@@ -75,7 +77,12 @@
 			         <a href="../goodsList/goodsDetail?goods_idx=${ list.goods_idx }">
 			            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
 			            	<h5 class="card-title font-weight-bold" style="font-size: 14px;">${ list.goods_name }</h5>
-			            	<p class="card-text" style="font-size:12px;">${ list.goods_price }원</p>              
+			            	<p class="card-text" style="font-size:12px;">${ list.goods_price }원</p>   
+			            	<p class="card-text">
+			            		<small>재고 : ${ list.goods_stock },
+			            		  <c:if test="${ list.goods_onsale == 1 }">판매중</c:if>
+			            		  <c:if test="${ list.goods_onsale == 0 }">판매중</c:if>
+			            		  </small></p>         
 			            </div>
 		            </a>
 		        </div>
@@ -89,7 +96,7 @@
     
     
     <!-- 메인화면용 페이지 표시기. 검색결과로 나올때는노출안됨 & 1페이지로 끝나는 경우에도 표시 안됨 -->
-	<c:if test="${ entireItemCardMode == 0 } && ${ page.beginPagenation != page.endPagenation }">
+	<%--  <c:if test="${ entireItemCardMode == 0 }">
    
 	    <div class="container row my-3 mx-auto">
 	      <nav class="mx-auto">
@@ -110,10 +117,10 @@
 	        </ul>
 	      </nav>
 	    </div>
-    </c:if>
+    </c:if> --%>
     
     <!-- admin/stock & admin/eventConfig용 페이지표시기 -->
-    <c:if test="${ entireItemCardMode == 2 } && ${ page.beginPagenation != page.endPagenation }">
+    <c:if test="${ entireItemCardMode == 2 }">
    
 	    <div class="container row my-3 mx-auto">
 	      <nav class="mx-auto">

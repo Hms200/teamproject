@@ -60,7 +60,7 @@ public class MainService {
 		ArrayList<Notice> notice = noticeDAO.getNoticeLIst(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		model.addAttribute("noticeList", notice);
 		model.addAttribute("pages", pagenation);
-		
+		System.out.println(model.toString());
 		return model;
 	}
 	// 관리자용 공지사항 업데이트
@@ -106,18 +106,13 @@ public class MainService {
 
 	
 	// entireItem card
-	public Model entireItemCardData(String currentPage, Model model) {
-		//전체 상품 갯수
-		int countOfGoods = goodsDAO.countOfGoods();
-		int numberOfGoodsOnCard = 8;
-		int numberOfPagenation = 5;
+	public Model entireItemCardData( Model model) {
 		
-		pagenation = pagenation.pagenation(currentPage, countOfGoods, numberOfGoodsOnCard, numberOfPagenation);
 
-		ArrayList<Goods> goods = goodsDAO.getGoodsList(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
+		ArrayList<Goods> goods = goodsDAO.getAllGoodsList();
 		
 		model.addAttribute("goodsList", goods );
-		model.addAttribute("page", pagenation);
+		
 		return model;
 	}
 	// best item card

@@ -43,7 +43,7 @@ public class MainController {
 	}
 	 
 	@RequestMapping("main")
-	public String main(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
+	public String main( Model model) {
   		// 장바구니 숫자뱃지
 		// session에서 로그인된 user_idx 불러옴. 비로그인이면 user_idx = 0
 		
@@ -60,14 +60,14 @@ public class MainController {
 				cartBedgNum = goodsListService.getCountOfGoodsInCart(user_idx);
 				session.setAttribute("cart", cartBedgNum);
 			} catch (NullPointerException e) {
-				System.out.println(e);
+				return "login/login";
 			}
 		}
 		// 메인용 공지사항
 		model = mainService.noticeForMain(model);
 		// 카드 표시용 데이터 
 		// entireGoods card
-		model = mainService.entireItemCardData(currentPage, model);
+		model = mainService.entireItemCardData( model);
 		if(model.getAttribute("entireItemCardMode") == null) {
 		model.addAttribute("entireItemCardMode", 0);
 		}
@@ -102,7 +102,7 @@ public class MainController {
 	@GetMapping("mainsearchAction")
 	public String mainSearch(@RequestParam String searchtext,@RequestParam(required = false, defaultValue = "1")String currentPage ,Model model) {
 		model = mainService.goodsSearch(searchtext, model);
-		return main(currentPage, model);
+		return main(model);
 	}
 	
 	// 공지사항 내용 변경
