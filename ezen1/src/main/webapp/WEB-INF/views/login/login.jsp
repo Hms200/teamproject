@@ -33,7 +33,7 @@
 	          </form>
 	        </div>
         
-	        <a href="join" class="btn btn-outline-primary text-primary mb-2 w-100" style="font-size: 16px;">회원가입</a>
+	        <a href="../login/join" class="btn btn-outline-primary text-primary mb-2 w-100" style="font-size: 16px;">회원가입</a>
 	        
 	        <!-- 팝업창 띄우는 아이디/비밀번호찾기 -->
 	        <div class="w-100 mt-2 text-center" style="font-size: 14px;">
