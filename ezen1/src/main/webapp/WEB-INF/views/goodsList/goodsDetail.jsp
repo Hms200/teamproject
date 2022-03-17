@@ -26,6 +26,7 @@
 <div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
     style="max-width: 520px; margin-top: 60px">
+    
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0">
       <div class="col-2 my-3">
@@ -74,7 +75,7 @@
       <!--부모클래스bg-primary 안넣었음 -->
     </div>
     <!--상품 상세보기 옵션 드롭다운-->
-    <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px;">
+    <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px; flex: none;">
       <div class="clo-6 py-2"> 
         상품 옵션
       </div>
@@ -141,7 +142,7 @@
         <div class="d-flex flex-column justify-content-start my-3">
         <c:forEach var = "dto" items="${reviewList}">
           
-          <div class="card mb-3 col-11 position-relative" style="max-width: 520px;">
+          <div class="card mb-3 col-10 position-relative" style="max-width: 520px;">
 			  <div class="row no-gutters">
 			  <!-- 등록된 리뷰이미지가 있으면 표시하고, 없으면 공란으로 둠 -->
 			  <c:forEach var="reviewimg" items="${ reviewImgList }">
@@ -150,13 +151,9 @@
 			    		<div class="col-4 border rounded my-2">
 			     		 	<img class="img-fluid" src="${ imgsrc }" alt="유저등록 리뷰이미지">
 			    		</div>
+		    		 <c:remove var="imgsrc"/>
 			      </c:if>
-			      <c:if test="${ imgsrc == null }">
-			      	<div class="col-4 d-flex flex-column border rounded text-center my-2 justify-content-center">
-			      		<p class="cart-text">등록된<br>이미지가<br>없습니다.</p>
-			      	</div>
-			      </c:if>	
-			      <c:remove var="imgsrc"/>
+			     
 	          </c:forEach>
 	          
 			    <div class="col-8">
