@@ -55,8 +55,12 @@ public class MyPageController {
 	//마이페이지 화면보여주기
 	@RequestMapping("/myPage")
 	public String myPage(HttpSession session,Model model) {
-		
+		String id = (String) session.getAttribute("user_id");
+		if(id == null) {
+			return "login/login";
+		}
 		return "myPage/myPage";
+		
 	}
 	
 	//user_id해당 구매내역 보여주기

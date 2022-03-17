@@ -31,7 +31,7 @@
 				<div
 					class="w-100 text-center font-weight-bold d-flex justify-content-center align-items-center"
 					style="height: 92px;">
-					<div>고객님의 방문을 환영합니다.</div>
+					<div>${user_id}님의 방문을 환영합니다.</div>
 				</div>
 				<!-- 회원정보 보기 링크 -->
 				<div class="border-top w-100 container-fluid">

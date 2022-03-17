@@ -30,7 +30,7 @@
 		<div class="d-flex w-100 flex-row justify-content-end pt-2 ">
 			<img src="/img/icon/cross.png" alt="취소"
 				style="width: 30px; height: 30px; cursor: pointer;"
-				onclick="location.href='memberlist'">
+				onclick="location.href='myPage'">
 		</div>
 		<!-- main -->
 		<div
