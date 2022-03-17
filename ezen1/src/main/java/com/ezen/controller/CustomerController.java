@@ -53,8 +53,8 @@ public class CustomerController {
 	//FAQ List 카테고리 선택
 	//("faqCatAction") faq_cat을 파라미터로 받아 CustomerService.byFaqCat으로 넘겨준 뒤 리턴된 ArrayList<Model>을 페이지로 넘김
 	@GetMapping("faqCatAction")
-	public String faqCatAction(@RequestParam String faq_cat, Model model) {
-		model = customerService.faqListByFaqCat(faq_cat, model);
+	public String faqCatAction(@RequestParam String faq_cat, String faqcat, Model model) {
+		model = customerService.faqListByFaqCat(faq_cat, faqcat, model);
 		return "customer/faq";
 	}
 	
