@@ -20,7 +20,7 @@
 
     <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top:60px;">
     
-      <div class="container col-11 d-flex flex-column align-items-center justify-content-center text-center" style="margin-top:100px;">
+      <div class="container col-11 d-flex flex-column align-items-center justify-content-center text-center" style="margin-top: 90px;">
         <div class="font-weight-bold font-italic text-dark w-100 mb-1" style="font-size: 24px">LOGIN</div>
         <div class="text-dark  w-100 mb-4" style="font-size: 10px">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
         
