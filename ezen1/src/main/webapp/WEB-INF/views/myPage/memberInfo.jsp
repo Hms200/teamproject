@@ -25,12 +25,9 @@
 	<c:import url="../header.jsp"></c:import>
 	<!-- container -->
 	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
-<<<<<<< HEAD
-		style="max-width: 520px; margin-top: 60px;">
-=======
-		style="max-width: 520px;">
->>>>>>> 3139a0466d224ed362f68f4bec4c01001aefe1f3
+		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative;"
+        style="max-width: 520px; margin-top: 60px;">
+
 		<!-- 헤더 -->
 		<div
 			class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom"
