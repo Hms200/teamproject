@@ -23,7 +23,9 @@
 <c:import url="../header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
+    <!--  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">--!>
+     <!-- main container -->
+        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
    
          <!-- title container -->
          <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
@@ -101,6 +103,8 @@
             </div>
     
     </div>
+   
+
 
     
 <c:import url="../footer.jsp"></c:import>

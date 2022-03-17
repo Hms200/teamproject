@@ -22,10 +22,13 @@
 <div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 
 <c:import url="../header.jsp"></c:import>
-
-<div
+ <!-- main container -->
+        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+<!-- <div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
-    style="max-width: 520px; margin-top: 60px">
+    style="max-width: 520px; margin-top: 60px">--!>
+    
+    
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0">
       <div class="col-2 my-3">
