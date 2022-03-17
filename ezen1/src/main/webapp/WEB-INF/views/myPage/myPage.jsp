@@ -23,9 +23,7 @@
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- 페이지 전체 div -->
-	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5"
-		style="max-width: 520px; margin-top: 60px;">
+	<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 
 		<!-- 박스 -->
 		<div class="col-10 shadow border rounded my-4">
@@ -33,7 +31,7 @@
 				<div
 					class="w-100 text-center font-weight-bold d-flex justify-content-center align-items-center"
 					style="height: 92px;">
-					<div>고객님의 방문을 환영합니다.</div>
+					<div>${user_id}님의 방문을 환영합니다.</div>
 				</div>
 				<!-- 회원정보 보기 링크 -->
 				<div class="border-top w-100 container-fluid">
@@ -50,7 +48,7 @@
 				</div>
 				<!-- box div -->
 			</div>
-		</div>
+		
 
 		<!-- 쇼핑 -->
 		<div class="w-100 ml-0 mr-0 border p-2">
@@ -77,6 +75,7 @@
 				회원탈퇴</a>
 		</div>
 		<!-- 목업 div -->
+		</div>
 	</div>
 	<c:import url="../footer.jsp"></c:import>
 	<c:import url="../nav.jsp"></c:import>

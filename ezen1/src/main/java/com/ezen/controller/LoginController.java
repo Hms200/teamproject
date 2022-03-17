@@ -27,29 +27,54 @@ public class LoginController {
 	
 	
 	@RequestMapping("login")
-	public String login() {
+	public String login(HttpSession session) {
 		
-		return "login/login";
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx != 0 ) {	
+			return "redirect:../myPage/myPage";
+		} 	
+			return "login/login";
+		
 	}
 	
 	@RequestMapping("join")
-	public String join() {
+	public String join(HttpSession session) {
 		
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx != 0 ) {	
+			return "redirect:/login/login";
+		}
 		return "login/join";
 	}
 	
 	@RequestMapping("quit")
-	public String quit() {
+	public String quit(HttpSession session) {
 		
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx == 0 ) {	
+			return "redirect:/main";
+		}
 		return "login/quit";
 	}
 	
-	@RequestMapping("test")
-	public String test() {
-		
-		return "login/test";
-	}
-
 	//로그인액션
 	@RequestMapping("loginAction")
 	@ResponseBody
@@ -113,10 +138,12 @@ public class LoginController {
 	//회원탈퇴 
 	@RequestMapping("quitAction")
 	@ResponseBody
-	public String quitAction(@RequestParam("user_id") String user_id) {
-		
+	public String quitAction(@RequestParam("user_id") String user_id,
+							 HttpServletRequest request) {
+			
 		int result = userDao.deleteUser(user_id);
-		if( result == 1){				
+		if( result == 1){	
+			request.getSession().invalidate();
 			return "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";
 		} else {			
 			return "<script>alert('회원탈퇴 실패!'); history.back(-1);</script>";		

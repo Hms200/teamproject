@@ -23,14 +23,14 @@
 
 	<c:import url="../header.jsp"></c:import>
 
-	<div
-		class="container-sm container-fluid col-11  d-flex flex-column  align-items-center bg-white border border-dark-50 rounded"
-		style="top: 60px; left: 10px; max-width: 520px;; height: 430px;">
+
+        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+
 		<!-- 아이콘 -->
 		<div class="d-flex w-100 flex-row justify-content-end pt-2 ">
 			<img src="/img/icon/cross.png" alt="취소"
 				style="width: 30px; height: 30px; cursor: pointer;"
-				onclick="location.href='memberlist'">
+				onclick="location.href='myPage'">
 		</div>
 		<!-- main -->
 		<div
@@ -38,11 +38,12 @@
 			<div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4"
 				style="font-size: 16px;">고객님의 리뷰가 큰 힘이 됩니다!</div>
 		</div>
-		<form name="reviewImg" method="post" enctype="mutipart/form-data"  accept-charset="UTF-8">
+		<form name="reviewImg" method="post" enctype="multipart/form-data"  accept-charset="UTF-8">
 			<!-- 파일선택 -->
 			<div class="w-100 custom-flie d-flex flex-row p-2"
 				style="float: left; font-size: 14px;">
 				<input type="file" class="custom-flie-input " name="reviewFile" id="reviewImg" accept="image/*">
+				<input type="hidden" name="review_idx" value="">
 				<div class="change_img"><img src="" class="mt-2"/></div>
 			</div>
 		</form>
@@ -96,6 +97,33 @@
 	    reader.readAsDataURL(this.files[0]);
 	   }
 	  });
+	  function reviewContentAction() {
+		  const form = document.querySelectorAll('form[name="reviewWriteForm"] > div > input, select, textarea');
+		  let formData = {};
+		  for(i=0; i<form.length; i++){
+				formData[form[i].name] = form[i].value;
+		  }
+		  formData = JSON.stringify(formData);
+		  console.log(formData);
+		  console.log('파일등록 폼 전송 시도');
+		  jQuery.ajax({
+				url: "reviewWriteAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				data: formData,
+				success: function(result){
+					if(result == false){
+						alert('등록에 실패하였습니다.');
+						return false;
+					}
+					console.log('등록 성공 review_idx ='+result);
+					document.getElementsByName('review_idx')[0].value = result;
+					multiSubmit(formName = 'reviewImg', formAction = 'uploadReviewImgAction');
+				},
+				error: function(){return false},
+			})
+		  };
  </script>
 </body>
 </html>
