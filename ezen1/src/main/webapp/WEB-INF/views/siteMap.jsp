@@ -30,7 +30,7 @@
 <c:import url="header.jsp"></c:import>
 
     <!-- All container -->
-<div class="container-sm container-fluid d-flex flex-column postion-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px;">
+<div class="container-sm container-fluid d-flex flex-column position-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
 
         <!-- Title container-->
         <div class="container-sm container-fluid d-flex flex-row mb-0 " style="height: 60px;">
@@ -88,13 +88,13 @@
         <div class="container-sm container-fluid my-3 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="'myPage/myPage'">마이<br>페이지</button>
+                    <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='myPage/myPage'">마이<br>페이지</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="'myPage/memberInfo'">회원정보조회</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='myPage/memberInfo'">회원정보조회</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="'myPage/purchaseList'">구매내역보기</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='myPage/purchaseList'">구매내역보기</button>
                 </div>
             </div>
         </div><div class="line"></div>
@@ -138,9 +138,8 @@
                 <div class="col-3">
                     <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='goodsList/cart'">장바구니</button>
                 </div>
-                <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='goodsList/purchase'">구매</button>
-                </div>
+               
+                
             </div>
         </div>        
         

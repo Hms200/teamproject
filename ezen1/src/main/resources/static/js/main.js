@@ -369,7 +369,7 @@ function makeGoodsSoldOut(){
 function orderGoods(){
 	let amount = prompt('발주 수량을 입력해 주세요.');
 	while(true){
-		if(amount == null || amount == 0 || amount < 0 || typeof(amount) != 'number'){
+		if(amount == null || amount == 0 || amount < 0){
 			amount = prompt('발주 수량을 입력해 주세요');
 		}else{
 			break;
