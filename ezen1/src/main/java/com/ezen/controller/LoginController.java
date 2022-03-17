@@ -27,29 +27,54 @@ public class LoginController {
 	
 	
 	@RequestMapping("login")
-	public String login() {
+	public String login(HttpSession session) {
 		
-		return "login/login";
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx != 0 ) {	
+			return "redirect:../myPage/myPage";
+		} 	
+			return "login/login";
+		
 	}
 	
 	@RequestMapping("join")
-	public String join() {
+	public String join(HttpSession session) {
 		
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx != 0 ) {	
+			return "redirect:/login/login";
+		}
 		return "login/join";
 	}
 	
 	@RequestMapping("quit")
-	public String quit() {
+	public String quit(HttpSession session) {
 		
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx == 0 ) {	
+			return "redirect:/main";
+		}
 		return "login/quit";
 	}
 	
-	@RequestMapping("test")
-	public String test() {
-		
-		return "login/test";
-	}
-
 	//로그인액션
 	@RequestMapping("loginAction")
 	@ResponseBody
