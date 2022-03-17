@@ -24,6 +24,7 @@
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- container -->
+<<<<<<< HEAD
 	<!-- <div
 		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
 		style="max-width: 520px;">--!>
@@ -32,6 +33,11 @@
 		
 		
 		
+=======
+
+        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+
+>>>>>>> branch 'Jang' of https://github.com/Hms200/teamproject.git
 		<!-- header -->
 		<div
 			class="container-fluid border-bottom container-sm d-flex flex-row mb-0"
@@ -41,7 +47,7 @@
 				<img src="/img/icon/뒤로가기 (2).png" alt=""
 					class="mx-auto d-block  my-auto"
 					style="width: 30px; height: 30px; cursor: pointer;"
-					onclick="location.href='mypage'">
+					onclick="location.href='myPage'">
 			</div>
 			<!-- 헤더 텍스트 -->
 			<div class="col-11 my-3 py-1 text-center text-bold">
@@ -50,9 +56,8 @@
 			</div>
 		</div>
 		<!-- 검색창 -->
-		<div class="form-goup d-flex justify-content-between my-3 col-12">
+		<div class="form-goup d-flex flex-row justify-content-between my-3 w-75 " >
 			<div class="font-weight-bold mt-2">내 구매내역 보기</div>
-
 			<%String user_id = request.getParameter("user_id"); %>
 			<!-- 드롭다운 -->
 			<div style="width: 120px; height: 40px;">
@@ -77,7 +82,7 @@
 		<!-- 카드 -->
 		<c:forEach var="list" items="${purchaseList}">
 			<div
-				class="w-100 col-12 d-flex flex-column border border-dark-50 py-1 my-2"
+				class="w-100 d-flex flex-column border border-dark-50 py-1 my-2"
 				style="height: 160px;">
 				<form name="purchaseHistoryForm">
 					<div class="w-100 d-flex flex-row justify-content-between"

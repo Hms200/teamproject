@@ -23,6 +23,7 @@
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- 페이지 전체 div -->
+<<<<<<< HEAD
 
 	<div
 		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5"
@@ -33,8 +34,13 @@
 		
 
 
+=======
+>>>>>>> branch 'Jang' of https://github.com/Hms200/teamproject.git
 	<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'Jang' of https://github.com/Hms200/teamproject.git
 
 		<!-- 박스 -->
 		<div class="col-10 shadow border rounded my-4">
@@ -42,7 +48,7 @@
 				<div
 					class="w-100 text-center font-weight-bold d-flex justify-content-center align-items-center"
 					style="height: 92px;">
-					<div>고객님의 방문을 환영합니다.</div>
+					<div>${user_id}님의 방문을 환영합니다.</div>
 				</div>
 				<!-- 회원정보 보기 링크 -->
 				<div class="border-top w-100 container-fluid">
