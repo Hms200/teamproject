@@ -49,18 +49,17 @@
     <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
       <form name="faqCatForm" method="get" action="faqCatAction">
       <span>
-        <select name="faq_cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
-          <option hidden selected>문의종류</option>
-          <option value="전체문의">전체문의</option>
-          <option value="상품문의">상품문의</option>
-          <option value="배송문의">배송문의</option>
-          <option value="결제문의">결제문의</option>
+        <select name="faq_cat" id="faq_cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
+          <option hidden>문의종류</option>
+          <option value="전체문의" >전체문의</option>
+          <option value="상품문의" >상품문의</option>
+          <option value="배송문의" >배송문의</option>
+          <option value="결제문의" >결제문의</option>
         </select>
       </span>
       </form>
     </div>
     <!-- faq아코디언 -->
-  
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 16px;">
       <c:forEach var="dto" items="${ getFaqList }">
       <div class="card my-1">
