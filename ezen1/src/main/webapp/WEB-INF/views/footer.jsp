@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-    <footer style="width: 100%;">
+    <footer style="width: 100%">
         <!-- container -->
         <div class="container-fluid d-flex flex-column bg-secondary justify-content-center align-items-center px-0 w-100" style="max-width: 520px;height: 175px;margin-bottom: 60px;">
             <!-- footer div -->

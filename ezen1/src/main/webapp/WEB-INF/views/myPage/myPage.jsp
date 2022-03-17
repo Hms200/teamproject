@@ -24,27 +24,27 @@
 
 	<!-- 페이지 전체 div -->
 	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center"
-		style="max-width: 520px; margin-top: 60px; margin-bottom: 300px;">
+		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5"
+		style="max-width: 520px; margin-top: 60px;">
 
 		<!-- 박스 -->
-		<div class="w-75 shadow border rounded my-4">
+		<div class="col-10 shadow border rounded my-4">
 			<div class="d-flex flex-column">
 				<div
-					class="text-center font-weight-bold d-flex justify-content-center align-items-center"
+					class="w-100 text-center font-weight-bold d-flex justify-content-center align-items-center"
 					style="height: 92px;">
-					고객님의 방문을 환영합니다.
+					<div>고객님의 방문을 환영합니다.</div>
 				</div>
 				<!-- 회원정보 보기 링크 -->
 				<div class="border-top w-100 container-fluid">
 					<a href="./memberInfo?user_id=${user_id}" class="text-dark"
 						style="text-decoration: none;">
 						<div
-							class="text-left pl-2 ml-0 mr-0 align-items-center pt-2"
+							class="col-10 text-left pl-2 ml-0 mr-0 align-items-center pt-2"
 							style="height: 40px; float: left;">회원정보보기</div>
 						<div style="float: left;">
 							<img src="/img/icon/right.png" alt=""
-								style="width: 25px; height: 25px;" class="mx-auto d-block pt-3">
+								style="width: 25px; height: 25px;" class="mx-auto d-block pt-2">
 						</div>
 					</a>
 				</div>
@@ -78,14 +78,9 @@
 		</div>
 		<!-- 목업 div -->
 	</div>
-
-
-			<c:import url="../footer.jsp"></c:import>
-			<c:import url="../nav.jsp"></c:import>
-		
-	
-	
-</div>
+	<c:import url="../footer.jsp"></c:import>
+	<c:import url="../nav.jsp"></c:import>
+	</div>
 
 	<!-- bootstrap js  // jquery js는 nav에 들어있는채로 import-->
 	<script
