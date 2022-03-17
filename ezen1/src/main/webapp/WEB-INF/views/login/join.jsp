@@ -16,7 +16,7 @@
 <c:import url="../pcMain.jsp"></c:import>
 <div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative" style="max-width: 520px; max-height: 100vh; overflow: auto;" >
 
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; margin-top:60px ">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px;">
         <!-- joinTitle -->
         <div class="container-sm container-fluid d-flex flex-row mb-0 border-bottom" height="60px;">
             <div class="col-1 my-3 py-1 pl-0">
@@ -37,7 +37,7 @@
                 <div class="text-left font-weight-bold pl-2 mt-2">비밀번호</div>
                 <div class="form-group row mb-1 ml-0 mr-0 justify-content-between" style="font-size:14px;">
                     <input type="text" class="col-8 form-control mb-1 nullcheck" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
-                    <input type="button" class="col-3 btn btn-secondary text-dark mb-1" value="중복체크" style="font-size: 14px;" onclick="pwCheck();">
+                    <input type="button" class="col-3 btn btn-secondary text-dark mb-1" value="확인체크" style="font-size: 14px;" onclick="pwCheck();">
                     <input type="text" class="col-12 form-control nullcheck" id="user_pw_check" placeholder="비밀번호를 한 번더 입력해주세요">
                     <input type="hidden" name="isPWChecked" id="isPWChecked" value='no'>
                 </div>                
