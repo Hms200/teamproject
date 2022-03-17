@@ -22,13 +22,8 @@
 <c:import url="header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" style="max-width: 520px;">
-      <!--  -->
-      <div class="w-100 d-flex align-items-center pl-3" style="height: 60px;">
-        <div style="width: 100px;">
-          <img src="/img/logo.png" class="img-fluid" alt="siteLogo" onclick="location.href='main';">
-        </div>   
-      </div>    
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer" style="max-width: 520px; margin-top: 80px;">
+       
       <!-- mainBOX -->
       <div class="col-12 d-flex flex-column justify-content-center align-items-center">           
         <div><img src="/img/main01.jpeg" class="img-fluid"alt="이미지"></div>   

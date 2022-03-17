@@ -23,7 +23,7 @@
 <c:import url="../header.jsp"></c:import>
 
    <!-- container -->
-   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative pl-0 pr-0" style="max-width: 520px;">
+   <div class="container-sm container-fluid d-flex flex-column  align-items-center position-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px;">
    
         <!-- title container -->
         <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
@@ -38,7 +38,7 @@
         </div>
 
         <!-- 검색 바 -->
-        <div class="container-fluid form-group col-11">
+        <div class="container-fluid form-group col-11" style="flex: none;">
             <form class="w-100 d-flex flex-row position-relative" name="adminStockForm" method="get" action="adminStockSearchAction">
                 <select class="custom-select custom-select-lg col-3" name="search_cat">
                     <option value="goods_name">이름</option>
@@ -55,7 +55,7 @@
 
         <!-- 품절처리, 발주, 삭제 버튼 그룹-->
         
-        <div class="col-12 d-flex flex-row justify-content-around text-center align-middle">
+        <div class="col-12 d-flex flex-row justify-content-around text-center align-middle" style="flex:none;">
             <button class="btn text-white col-3 " style="background-color: rgb(52, 152, 219); font-size: 12px; height: 30px;"
             onclick="makeGoodsSoldOut();">
                 품절 처리하기

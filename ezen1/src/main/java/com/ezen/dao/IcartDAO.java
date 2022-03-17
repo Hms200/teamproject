@@ -40,7 +40,6 @@ public interface IcartDAO {
 	// mall_user와 조인하여 아이디 이름 가입일자를 구함
 	public ArrayList<HashMap<String, String>> getCartSumOfPriceAndAmount();
 	
-	// 해당 user_idx를 가진 cart 의 isdone이 1인 항목들의 cart_amount, cart_total_price의 합,
-	public HashMap<String, String> getCartSumOfPriceAndAmountByUserIdx(int user_idx);
+	// 
 
 }
