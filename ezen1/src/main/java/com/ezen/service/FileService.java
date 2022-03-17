@@ -59,6 +59,9 @@ public class FileService {
 		}else {
 			return "f 잘못된 이미지 카테고리 지정";
 		}
+		// os에 따른 dir 구문문자 처리
+		uploadDir = uploadDir.replace("/", File.separator);
+		
 		
 		// 파일명 생성기
 		String newName = fileNameGenerator(multipartFile.getOriginalFilename());
@@ -75,7 +78,8 @@ public class FileService {
 			System.out.println("업로드 실패 파일: " + multipartFile.getOriginalFilename());
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
-		return copyLocation.toString().replace("\\", "/").replace("src/main/resources/static/img/", "/img/");
+		// dir 구분문자를 /로 교체
+		return copyLocation.toString().replace(File.separator, "/").replace("src/main/resources/static/img/", "/img/");
 	}
 	
 	// 파일명 생성기. 같은 이름의 파일이 업로드되어 덮어쓰기 되는것 방지용
