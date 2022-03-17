@@ -88,11 +88,22 @@ public class LoginController {
 	//로그아웃 기능
 	@RequestMapping("logoutAction")
 	@ResponseBody
-	public String loginAction(HttpServletRequest request) {
+	public String loginAction( HttpSession session, HttpServletRequest request ) {
 			
-		//세션객체 초기화
-		request.getSession().invalidate();
-		return "<script>alert('로그아웃 되었습니다.'); location.href='/main';</script>";
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx != 0 ) {	// 로그인 상태일 때  
+			request.getSession().invalidate();
+			return "<script>alert('로그아웃 되었습니다.'); location.href='/main';</script>";
+		}
+		//로그인 회원이 아닌경우
+		return "<script>alert('현재 로그인 상태가 아닙니다.'); location.href='/login/login';</script>";
+		
 			
 	}
 	
