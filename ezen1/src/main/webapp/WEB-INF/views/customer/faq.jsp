@@ -51,10 +51,10 @@
       <span>
         <select name="faq_cat" onchange="this.form.submit()" style="width: 100px; height: 50px; font-size: 14px;">
           <option hidden>문의종류</option>
-          <option value="전체문의" <c:if test=${ faq_cat == "전체문의"}> selected </c:if> >전체문의</option>
-          <option value="상품문의" <c:if test=${ faq_cat == "상품문의"}> selected </c:if> >상품문의</option>
-          <option value="배송문의" <c:if test=${ faq_cat == "배송문의"}> selected </c:if> >배송문의</option>
-          <option value="결제문의" <c:if test=${ faq_cat == "결제문의"}> selected </c:if> >결제문의</option>
+          <option value="전체문의" <c:if test="${ faq_cat == '전체문의'}"> selected </c:if> >전체문의</option>
+          <option value="상품문의" <c:if test="${ faq_cat == '상품문의'}"> selected </c:if> >상품문의</option>
+          <option value="배송문의" <c:if test="${ faq_cat == '배송문의'}"> selected </c:if> >배송문의</option>
+          <option value="결제문의" <c:if test="${ faq_cat == '결제문의'}"> selected </c:if> >결제문의</option>
         </select>
       </span>
       </form>
