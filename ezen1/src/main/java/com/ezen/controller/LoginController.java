@@ -138,10 +138,12 @@ public class LoginController {
 	//회원탈퇴 
 	@RequestMapping("quitAction")
 	@ResponseBody
-	public String quitAction(@RequestParam("user_id") String user_id) {
-		
+	public String quitAction(@RequestParam("user_id") String user_id,
+							 HttpServletRequest request) {
+			
 		int result = userDao.deleteUser(user_id);
-		if( result == 1){				
+		if( result == 1){	
+			request.getSession().invalidate();
 			return "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";
 		} else {			
 			return "<script>alert('회원탈퇴 실패!'); history.back(-1);</script>";		
