@@ -1,9 +1,9 @@
 package com.ezen.service;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -63,7 +63,6 @@ public class FileService {
 		// 파일명 생성기
 		String newName = fileNameGenerator(multipartFile.getOriginalFilename());
 		
-		
 		// 파일 저장 경로 
 		// File.separator 는 os마다 다른 경로구분문자를 알아서 넣어줌. cleanPath는 파일명의 지저분한 값들을 다 지워줌
 		Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(newName));
@@ -76,7 +75,7 @@ public class FileService {
 			System.out.println("업로드 실패 파일: " + multipartFile.getOriginalFilename());
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
-		return copyLocation.toString().replace("src/main/resources/static/img/", "/img/");
+		return copyLocation.toString().replace("\\", "/").replace("src/main/resources/static/img/", "/img/");
 	}
 	
 	// 파일명 생성기. 같은 이름의 파일이 업로드되어 덮어쓰기 되는것 방지용
