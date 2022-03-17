@@ -50,6 +50,7 @@
 		SELECT * FROM MALL_PURCHASE ORDER BY purchase_date ASC
 	</select>
 	
+	<!-- cart,purhcase,goods join후 user_idx,cart_list_idx,goods_idx가져옴 넘어온값에 해당하는 상품 리턴 -->
 	<select id="getpurchaseArrayList" resultType="map">
 		SELECT * FROM MALL_CART 
 		INNER JOIN MALL_PURCHASE 
@@ -62,7 +63,7 @@
 		 AND MALL_CART.CART_LIST_IDX = ${param2}
 		 AND MALL_CART.GOODS_IDX = ${param3}
 	</select>
-	
+	<!-- cart,purchase,goods join후 statement와user_idx가 일치하는 상품 리턴  -->
 	<select id="getCartIsDoneAndByCat" resultType="hashmap">
 		SELECT * FROM MALL_CART 
 		INNER JOIN MALL_PURCHASE 

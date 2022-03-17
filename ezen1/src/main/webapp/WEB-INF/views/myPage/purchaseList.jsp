@@ -24,9 +24,9 @@
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- container -->
-	<div
-		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" id="mainContainer"
-		style="max-width: 520px;">
+
+        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+
 		<!-- header -->
 		<div
 			class="container-fluid border-bottom container-sm d-flex flex-row mb-0"
@@ -45,9 +45,8 @@
 			</div>
 		</div>
 		<!-- 검색창 -->
-		<div class="form-goup d-flex justify-content-between my-3 col-12">
+		<div class="form-goup d-flex justify-content-between my-3 col-12" >
 			<div class="font-weight-bold mt-2">내 구매내역 보기</div>
-
 			<%String user_id = request.getParameter("user_id"); %>
 			<!-- 드롭다운 -->
 			<div style="width: 120px; height: 40px;">
