@@ -37,7 +37,7 @@ public class MyPageService {
 	IcartListDAO cartListDAO;
 	@Autowired
 	IpurchaseDAO purchaseDAO;
-	
+	//입력받은 정보로 회원정보 변경
 	public String updateUserInfo(User user) {
 		int result = userDAO.UpdateMemberInfo(user);
 		System.out.println(result);
@@ -47,7 +47,7 @@ public class MyPageService {
 			return "<script>alert('error: 확인후 다시 시도해주세요.');history.back(-1);</script>";
 		}
 	}
-
+	//해당 매개변수에 해당하는 purchaseList만듬
 	public Model purchaseList(String user_id,Model model) {
 		int user_idx = userDAO.getUserIdx(user_id);
 		ArrayList<Cart> isDoneList = cartDAO.getCartIsDone(user_idx);
@@ -59,7 +59,7 @@ public class MyPageService {
 		model.addAttribute("purchaseList",purchaseList);
 		return model;
 	}
-	
+	//넘어온 ask에 따라 현재상태를 변경해줌
 	public String changeStatement(int purchase_idx, String ask) {
 		String result = null;
 		switch (ask) {
@@ -78,6 +78,7 @@ public class MyPageService {
 		}
 		return result;
 	}
+	//cat별로 위에 purchaseList 에서 현재상태가 해당되는것만 가져옴
 	public Model purchaseListByCat(String user_id, Model model, Integer cat) {
 		int user_idx = userDAO.getUserIdx(user_id);
 		String str = null;
@@ -107,14 +108,7 @@ public class MyPageService {
 		return model;
 		
 	}
-//	public String inserReview(Review review) {
-//		int result = reviewDAO.insertReview(review);
-//		if(result ==1 ) {
-//			return "<script>alert('리뷰가 등록되었습니다.'); location.href='/myPage/myPage'; </script>";
-//		}else {
-//			return "<script>alert('error:다시 시도해주세요.'); location.href='/myPage/myPage'; </script>";
-//		}
-//	}
+	//리뷰등록,최근에 등록된 리뷰idx가져옴
 	public String insertReview(Review review) {
 		int result = reviewDAO.insertReview(review);
 		String resultString;
