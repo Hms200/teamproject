@@ -103,7 +103,7 @@
         <!-- 작성폼 시작 -->
       
         <!-- 히든 input -->
-        <input type="hidden" id="targetIdx" name="question_idx" value="question_idx">
+        <input type="hidden" id="targetIdx" name="question_idx" value="">
       <!-- 내용 -->
       <div>
         <textarea name="question_reply" placeholder="내용을 입력해주세요" cols="30" rows="10" class="border border-dark-50 rouned nullcheck" style="padding: 2px 15px;resize: none;"></textarea>

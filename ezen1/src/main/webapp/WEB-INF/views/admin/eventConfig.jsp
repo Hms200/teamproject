@@ -38,7 +38,7 @@
           </div>
     
             <!-- 검색 바 -->
-            <div class="container-fluid form-group col-11">
+            <div class="container-fluid form-group col-11" style="flex: none;">
                 <form class="w-100 d-flex flex-row position-relative" name="adminStockForm" method="get" action="adminStockSearchAction">
                     <select class="custom-select custom-select-lg col-3" name="search_cat">
                         <option value="goods_name">이름</option>
@@ -56,8 +56,7 @@
            
               <!-- 버튼 그룹. 멀티 서밋 버튼 -->
               <!-- 품절처리, 발주, 삭제 버튼 그룹-->
-              <!-- 하단 상품리스트 카드의 체크박스와 연결하여 form submit으로 바꿀것. -->
-             <div class="col-12 d-flex flex-row justify-content-around text-center mt-3 mb-3" style="line-height: 30px;">
+             <div class="col-12 d-flex flex-row justify-content-around text-center mt-3 mb-3" style="line-height: 30px; flex:none;">
                  <button class="btn btn-primary text-white col-3 " style="background-color: rgb(52, 152, 219); font-size: 12px; " onclick="multiSubmit(formName = 'productManagementForm', formAction = 'discountProductAction')">
                      할인상품<br> 등록하기
                  </button>
