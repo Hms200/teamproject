@@ -88,7 +88,7 @@ public class AdminContorller {
 	// 문의관리 페이지
 	/////////////////////////////////////////
 	@RequestMapping("qnaList")
-	public String qnaList(@RequestParam(required = false) String cat,Model model) {
+	public String qnaList(@RequestParam(required = false, defaultValue = "Qna") String cat,Model model) {
 		try {
 			if(cat.equals("Qna")) {
 				model = adminService.getQuestionsFromGoodsDetail(model);
