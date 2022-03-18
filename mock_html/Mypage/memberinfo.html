@@ -61,7 +61,7 @@
           <div class="d-flex flex-column">
           <div class="my-2 col-12 font-weight-bold form-group text-dark">
             비밀번호
-            <input type="password" class="form-control col-12 rounded font-weight-nomal nullcheck" placeholder="기존 비밀번호를 입력해 주세요">
+            <input type="password" id="checkPW" class="form-control col-12 rounded font-weight-nomal nullcheck" placeholder="기존 비밀번호를 입력해 주세요">
             <input type="password" class="form-control col-12 rounded font-weight-nomal my-1 nullcheck" placeholder="변경할 비밀번호를 입력해 주세요">
             <input type="password" class="form-control col-12 rounded font-weight-nomal nullcheck" placeholder="비밀번호 확인 입력을 해주세요">
 
@@ -132,6 +132,12 @@
   $(function(){
     $('button[type=submit]').click(function(){
       
+    })
+    $(function(){
+      $('#checkPW').focusout(function(){
+        var l = $(this).val();
+        console.log(l);
+      })
     })
    
 })

@@ -205,11 +205,8 @@ public class AdminService {
 					}
 				});
 			}else if(search_cat.equals("goods_onsale=0")) {
-				allGoodsList.forEach(goods -> {
-					if(goods.getGoods_onsale() == 0) {
-						goodsList.add(goods);
-					}
-				});
+				goodsList.addAll(goodsDAO.getAllSoldOutGoodsList());
+
 			}else if(search_cat.equals("goods_cat")) {
 				allGoodsList.forEach(goods -> {
 					if(goods.getGoods_cat().equals(searchText)) {
@@ -234,6 +231,7 @@ public class AdminService {
 				});
 			}
 			model.addAttribute("goodslist", goodsList);
+			System.out.println(model.toString());
 			return model;
 		}
 	  	 

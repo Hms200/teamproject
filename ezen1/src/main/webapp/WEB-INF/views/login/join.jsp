@@ -28,14 +28,14 @@
             <form action="../login/joinAction" method="post" onsubmit="return nullChecker();">
             
                 <div class="text-left font-weight-bold pl-2 mt-2">아이디</div>
-                <div class="form-group row mb-1 ml-0 mr-0 justify-content-between" style="font-size:14px;">
+                <div class="form-group row mb-2 mx-0 justify-content-between" style="font-size:14px;">
                     <input type="text" class="col-8 form-control nullcheck" name="user_id" id="user_id" placeholder="아이디를 입력해주세요">
                     <input type="button" class="col-3 btn btn-secondary text-dark" value="중복체크" style="font-size: 14px;" onclick="idCheck();">
                     <input type="hidden" name="isIDChecked" id="isIDChecked" value='no'>
                 </div>
                 
                 <div class="text-left font-weight-bold pl-2 mt-2">비밀번호</div>
-                <div class="form-group row mb-1 ml-0 mr-0 justify-content-between" style="font-size:14px;">
+                <div class="form-group row mb-2 mx-0 justify-content-between" style="font-size:14px;">
                     <input type="text" class="col-8 form-control mb-1 nullcheck" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
                     <input type="button" class="col-3 btn btn-secondary text-dark mb-1" value="확인체크" style="font-size: 14px;" onclick="pwCheck();">
                     <input type="text" class="col-12 form-control nullcheck" id="user_pw_check" placeholder="비밀번호를 한 번더 입력해주세요">
@@ -43,15 +43,15 @@
                 </div>                
               
                 <div class="text-left font-weight-bold pl-2 mt-2">이름</div>
-                <div class="form-group mb-1" style="font-size:14px;">
+                <div class="form-group mb-2" style="font-size:14px;">
                     <input type="text" class="col-12 form-control nullcheck" name="user_name" id="user_name" placeholder="이름을 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2">이메일</div>
-                <div class="form-group mb-1" style="font-size:14px;">
+                <div class="form-group mb-2" style="font-size:14px;">
                     <input type="email" class="col-12 form-control nullcheck" name="user_email" id="user_email" placeholder="이메일을 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2 ">휴대폰</div>
-                <div class="form-group mb-1" style="font-size:14px;">
+                <div class="form-group mb-2" style="font-size:14px;">
                     <input type="text" class="col-12 form-control nullcheck" name="user_phone" id="user_phone" placeholder="전화번호를 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2">주소</div>
