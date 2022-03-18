@@ -121,6 +121,4 @@ public class MyPageService {
 			return resultString;
 		}
 	}
-	
-
 }
