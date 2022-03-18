@@ -1,11 +1,9 @@
 package com.ezen.service;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.devtools.tunnel.client.TunnelClient;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -16,11 +14,8 @@ import com.ezen.dao.IpurchaseDAO;
 import com.ezen.dao.IreviewDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Cart;
-import com.ezen.dto.Goods;
-import com.ezen.dto.Purchase;
 import com.ezen.dto.Review;
 import com.ezen.dto.User;
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 @Service
 public class MyPageService {

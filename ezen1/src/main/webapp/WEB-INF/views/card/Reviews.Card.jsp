@@ -23,7 +23,7 @@
           		
           	</c:forEach>
 	          <div class="card-body col-8 py-2 pl-3 pr-3"> 
-	            <p class="card-text d-flex text-black-50 justify-content-between" style="font-size: 10px;"><span>★ ${ review.review_star }</span><span class="text-right">${ review.review_date }</span></p>
+	            <p class="card-text d-flex text-black-50" style="font-size: 10px;"><span>★ ${ review.review_star }</span><span class="text-right" style="float: right;">${ review.review_date }</span></p>
 			    <h5 class="card-title font-weight-bold" style="font-size: 14px;">${ goodsnamelist.get(review.goods_idx) }</h5>
 	            <c:remove var="name"/>
 	            <p class="card-text" style="font-size:12px; width: 118px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${ review.review_contents }</p>
