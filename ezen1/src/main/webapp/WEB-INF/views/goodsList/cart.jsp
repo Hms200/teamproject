@@ -54,7 +54,8 @@
       
        <c:forEach var="cart" items="${ cartlist }" varStatus="status">
        
-      <div class="row mt-1 mx-3 mb-3" style="font-size: 14px;">
+
+      <div class="row mt-1 mx-3 mb-1" style="font-size: 14px;">
         <input type="hidden" class="cartidx" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
         <input type="checkbox" name="${ cart.cart_idx }" class="mx-1" style="width: 16px; height: 16px;">
         <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page" />
@@ -67,11 +68,11 @@
         <img src="${ goods.goods_thumb }" alt="" class="img-fluid mx-3" width="100px"
           height="100px">
         <div class="d-flex flex-column col-7">
-          <div class="d-flex flex-row justify-content-between">
+          <div class="d-flex flex-row justify-content-between mb-1">
             <span style="font-size:14px;">가격</span><span>${ cart.cart_total_price }</span> 
             <input type="hidden" class="price" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }" style="font-size:14px;">
           </div>
-          <div class="d-flex flex-row justify-content-between">
+          <div class="d-flex flex-row justify-content-between mb-1">
             <span style="font-size:14px;">옵션</span>
             <span style="font-size:14px"><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
             <c:forEach var="option" items="${ optionlist }">
@@ -87,7 +88,7 @@
               style="width: 80px;height: 20px; font-size: 11px;" onclick="changeValue(event);">
           </div>
           <div class="d-flex flex-row justify-content-start">
-            <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 140px; font-size:14px;">
+            <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 150px; font-size:14px;">
               <c:forEach var="options" items="${ optionlist }">
               <option <c:if test="${ this_cart_option eq options.option_idx }"> selected </c:if> value="${ options.option_idx }">${ options.option_name }+${ options.option_price }</option>
               </c:forEach>
@@ -108,7 +109,7 @@
       
       </c:forEach>
       
-      <div class="d-flex flex-row justify-content-between mx-2 mt-5" style="font-size: 14px;">
+      <div class="d-flex flex-row justify-content-between mx-2 mt-5 mb-2" style="font-size: 14px;">
         <div>
           상품금액
         </div>
