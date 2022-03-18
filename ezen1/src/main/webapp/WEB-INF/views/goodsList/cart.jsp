@@ -38,7 +38,7 @@
     <!-- 전체선택/선택삭제 -->
     <main class="w-100">
     <div class="container-fluid d-flex felx-row justify-content-between mx-3 my-3 border-bottom col-11" style="height: 40px;">
-      <div class="ml-3">
+      <div class="ml-0">
         <input type="checkbox" value="selectAll" class="ml-0" id="checkAll" onclick="selectAll(this)" style="width: 16px; height: 16px;"><label for="selectAll"
           class="ml-2" style="font-size: 14px;">전체선택</label>
       </div> 
@@ -54,9 +54,9 @@
       
        <c:forEach var="cart" items="${ cartlist }" varStatus="status">
        
-      <div class="row mt-4 mx-3 mb-3" style="font-size: 14px;">
+      <div class="row mt-1 mx-3 mb-3" style="font-size: 14px;">
         <input type="hidden" class="cartidx" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
-        <input type="checkbox" name="${ cart.cart_idx }" class="mx-2" style="width: 16px; height: 16px;">
+        <input type="checkbox" name="${ cart.cart_idx }" class="mx-1" style="width: 16px; height: 16px;">
         <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page" />
         <div name="goods_name">${ goods.goods_name }</div>
         <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ goods.goods_price }">
@@ -83,10 +83,10 @@
           <div class="d-flex flex-row justify-content-between" style="font-size:14px">
             옵션
             <!-- 서버에서 처리 -->
-            <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1" value="옵션/수량변경"
+            <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1" value="변경하기"
               style="width: 80px;height: 20px; font-size: 11px;" onclick="changeValue(event);">
           </div>
-          <div class="d-flex flex-row justify-content-start pl-1">
+          <div class="d-flex flex-row justify-content-start">
             <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 140px; font-size:14px;">
               <c:forEach var="options" items="${ optionlist }">
               <option <c:if test="${ this_cart_option eq options.option_idx }"> selected </c:if> value="${ options.option_idx }">${ options.option_name }+${ options.option_price }</option>
@@ -144,14 +144,14 @@
   </c:if>
   <c:if test="${ cart == 0 }">
     <!--장바구니 비어있는-->
-    <div class="d-flex justify-content-center mb-0 mt-5">
-      <img src="/img/icon/bag.png" alt="" class="img-fluid " width="225px" height="225px">
+    <div class="d-flex justify-content-center mb-2 mt-5">
+      <img src="/img/icon/bag.png" alt="" class="img-fluid " width="215px" height="215px">
     </div>
-    <div class="font-weight-bold mb-5" style="font-size: 26px;">
+    <div class="font-weight-bold mb-5" style="font-size: 20px;">
       장바구니가 비었습니다.
     </div>
     <div class="d-flex flex-row justify-content-center mb-5 w-100">
-      <a href="goodsList"><input type="button" class="btn btn-primary rounded-pill" value="상품보러가기" style="width: 150px;"></a>
+      <a href="goodsList"><input type="button" class="btn btn-primary rounded-pill" value="상품보러가기" style="width: 170px;"></a>
     </div>
   </c:if>
   </div>
