@@ -243,7 +243,7 @@ public class AdminContorller {
 	// 주문목록 페이지
 	//////////////////////////////
 	@GetMapping("transaction")
-	public String transaction(@RequestParam(required = false) String statement, String currentPage, Model model) {
+	public String transaction(@RequestParam(required = false) String statement, @RequestParam(required=false, defaultValue = "1") String currentPage, Model model) {
 		try {
 			model = adminService.transactionFiltered(statement, model);
 		} catch (NullPointerException e) {
