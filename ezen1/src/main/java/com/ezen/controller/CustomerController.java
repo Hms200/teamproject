@@ -102,14 +102,14 @@ public class CustomerController {
 	//myAsk List 카테고리 선택
 	//("myAskCatAction") onetoone_cat을 파라미터로 받아 CustomerService.onetooneByCat으로 넘겨준 뒤 리턴된 ArrayList<Model>을 페이지로 넘김
 	@GetMapping("myAskCatAction")
-	public String myAskCatAction(@RequestParam String onetoone_cat, Model model, HttpSession session) {
+	public String myAskCatAction(@RequestParam String onetoone_cat, String onetoonecat, Model model, HttpSession session) {
 		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
 		} catch (NullPointerException e) {
 			return "redirect:../login/login";
 		}
-		model = customerService.onetooneByCat(user_idx, onetoone_cat, model, session);
+		model = customerService.onetooneByCat(user_idx, onetoone_cat, onetoonecat, model, session);
 		return "customer/myAsk";
 		}
 	

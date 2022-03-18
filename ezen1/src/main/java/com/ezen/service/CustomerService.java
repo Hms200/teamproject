@@ -89,26 +89,30 @@ public class CustomerService {
 	  
 	//myAsk List 카테고리 선택
 	////myOneToOne가 리턴한 Model 배열을 전체순환하면서 faq_cat가 파라미터로 넘겨받은 faq_cat와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
-	public Model onetooneByCat(int user_idx, String onetoone_cat, Model model, HttpSession session) {
+	public Model onetooneByCat(int user_idx, String onetoone_cat, String onetoonecat, Model model, HttpSession session) {
 		ArrayList<OneToOne> myOneToOne = onetooneDao.getOnetoOneByUserIdx(user_idx);
 		ArrayList<OneToOne> oneToOneByCat = new ArrayList<>();
 		if(onetoone_cat.equals("전체문의")) {
+			onetoonecat = "전체문의";
 			myOneToOne.forEach(OnetoOne -> {
 					oneToOneByCat.add(OnetoOne);
 			});
 		}else if(onetoone_cat.equals("상품문의")) {
+			onetoonecat = "상품문의";
 			myOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
 					oneToOneByCat.add(OnetoOne);
 				}
 			});
 		}else if(onetoone_cat.equals("배송문의")) {
+			onetoonecat = "배송문의";
 			myOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
 					oneToOneByCat.add(OnetoOne);
 				}
 			});
 		}else if(onetoone_cat.equals("결제문의")) {
+			onetoonecat = "결제문의";
 			myOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
 					oneToOneByCat.add(OnetoOne);
@@ -116,6 +120,7 @@ public class CustomerService {
 			});
 		}
 		model.addAttribute("getOneToOneList", oneToOneByCat);
+		model.addAttribute("onetoone_cat", onetoone_cat);
 		return model;
 	}
 	

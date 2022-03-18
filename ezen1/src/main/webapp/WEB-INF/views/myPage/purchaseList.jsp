@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,7 +78,8 @@
 					<div class="w-100 d-flex flex-row justify-content-between"
 						style="font-size: 12px;">
 						<div>${list.get("PURCHASE_STATEMENT") }</div>
-						<div>${list.get("PURCHASE_DATE") }</div>
+						<div>
+						<fmt:formatDate value="${list.get('PURCHASE_DATE') }" dateStyle="default"/></div>
 					</div>
 					<div class="d-flex flex-row">
 						<div col-3>
@@ -88,7 +90,9 @@
 							<div class="col-12 text-left pl-2">상품이름: ${list.get("GOODS_NAME") } </div>
 							<div class="col-12 text-left pl-2">구매번호: ${list.get("PURCHASE_IDX") }</div>
 							<div class="col-12 text-left pl-2 position-relative">
-								<span>가격: ${list.get("GOODS_PRICE")}</span> 
+								<span>가격: 
+								<fmt:formatNumber value='${list.get("GOODS_PRICE")}' groupingUsed="true" type="currency" />
+								</span> 
 								<a href="reviewpopup?goods_idx=${list.get('GOODS_IDX')}&user_idx=${list.get('USER_IDX')}" 
 								style="right: 0%; position: absolute" class="text-dark">리뷰작성</a>
 							</div>
