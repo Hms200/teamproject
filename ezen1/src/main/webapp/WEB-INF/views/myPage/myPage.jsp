@@ -23,7 +23,6 @@
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- 페이지 전체 div -->
-<<<<<<< HEAD
 
 	<div
 		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5 mt-1"
