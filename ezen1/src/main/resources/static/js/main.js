@@ -168,9 +168,9 @@ function changeValueOfCheckbox(){
 	for(i=0; i<checkbox.length; i++){
 	if(checkbox[i].value == 'on'){
 		checkbox[i].value = 1;
-	}else {
-		checkbox[i].value = 0;
-	}
+		}else {
+			checkbox[i].value = 0;
+		}
 	}
 	return true;
 }
@@ -725,7 +725,7 @@ function makingPurchase(){
 	})
 }
 
-// admin stransActionPop 주문상태변경
+// admin transActionPop 주문상태변경
 function updateTransactionStatement(event){
 	const targetId = event.target.id;
 	const selectValue = document.getElementsByName('purchase_statement')[1].value;
@@ -837,6 +837,7 @@ function registerQuestionReply(){
 				},
 				error: function(e){
 					console.log(e);
+					alert('등록에 실패하였습니다. 다시 시도해주세요');
 				},
 			});
 		}else{
@@ -854,6 +855,7 @@ function registerQuestionReply(){
 				},
 				error: function(e){
 					console.log(e);
+					alert('등록에 실패하였습니다. 다시 시도해주세요');
 				},
 			});
 		}
