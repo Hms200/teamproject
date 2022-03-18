@@ -41,13 +41,14 @@ public class MyPageController {
 	//회원정보 수정 리스트
 	@RequestMapping("/memberInfo")
 	public String memberInfo(HttpServletRequest request,Model model) {
+		String id;
 		try {
-			String id = (String)session.getAttribute("user_id");
+			id = (String)session.getAttribute("user_id");
 			id.isEmpty();
 		} catch (NullPointerException e) {
 			return "login/login";
 		}
-		String user_id = request.getParameter("user_id");
+		String user_id = id;
 		User user = userDAO.getMemberInfo(user_id);
 		model.addAttribute("user",user);
 		return "myPage/memberInfo";
@@ -77,15 +78,14 @@ public class MyPageController {
 	@RequestMapping("/purchaseList")
 	public String purchaseList(HttpServletRequest request,Model model,
 							   @RequestParam(name = "cat", required = false) Integer cat) {
-		
+		String id;
 		try {
-			String id = (String)session.getAttribute("user_id");
+			id = (String)session.getAttribute("user_id");
 			id.isEmpty();
 		} catch (NullPointerException e) {
 			return "login/login";
 		}
-		
-		String user_id =request.getParameter("user_id");
+		String user_id = id;
 		if(cat == null ) {
 		myPageService.purchaseList(user_id, model);
 		}else {
