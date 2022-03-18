@@ -64,8 +64,11 @@ public interface IgoodsDAO {
 	// 해당 goods_idx를 가진 상품을 db에서 삭제
 	public int deleteGoods(int goods_idx);
 		
-	//모든 상품 정보 가져오기
+	//모든 판매중인상품 정보 가져오기
 	public ArrayList<Goods> getAllGoodsList();
+	
+	//품절 상품 가져오기
+	public ArrayList<Goods> getAllSoldOutGoodsList();
 	
 	// 상품을 판매중으로 변경
 	public void updateGoodsStockOnSale(int goods_idx);
