@@ -1,5 +1,10 @@
 package com.ezen.service;
 
+
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.User;
+import com.ezen.security.TokenProvider;
 
 @Service
 public class LoginService {
@@ -14,13 +20,20 @@ public class LoginService {
 	@Autowired
 	IuserDAO userDao;
 	
+	@Autowired
+	TokenProvider tokenProvider;
+	
+	@Autowired
+	HttpSession session;
+	
+	
 	//로그인
 	// MALL_USER에 있는 user_id 값 조회 후 null값일 경우 js로 이전 페이지로 이동 
 	// user_id가 있을 경우 user_id과 매치되는 userPw값과 MALL_USER에 있는 userPw값 일치할 경우
 	// session에 user_id와, user_id와 매칭되는 user_idx값 저장. js로 메인페이지로 이동 
-	public String login(String user_id, String user_pw, HttpSession session) {
+	public String login(String user_id, String user_pw, HttpServletResponse response) {
 			
-		String result = "<script>alert('로그인 실패!'); history.back(-1);</script>";
+		String result = "<script>alert('로그인 실패!'); location.reload;</script>";
 		
 		String userID = userDao.getUserID(user_id);
 		if(userID == null) {
@@ -31,6 +44,25 @@ public class LoginService {
 		if(user_pw.equals(userPw)) {
 				
 			int user_idx = userDao.getUserIdx(user_id);
+			
+			// jwt 인증 토큰 생성
+			String userIdx = String.valueOf(user_idx);
+			final String token = tokenProvider.create(userIdx);
+			
+			// cookie에 저장
+			Cookie cookie = new Cookie("Authorization","Bearer"+token);
+			// 만료기간 1일
+			cookie.setMaxAge(1 * 24 * 60 * 60);
+
+		    // optional properties
+		    cookie.setSecure(true);
+		    cookie.setHttpOnly(true);
+		    cookie.setPath("/");
+
+		    // add cookie to response
+		    response.addCookie(cookie);
+		    
+		    
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("user_idx", user_idx);	
 				

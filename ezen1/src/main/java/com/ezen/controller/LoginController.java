@@ -1,6 +1,7 @@
 package com.ezen.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,12 +77,12 @@ public class LoginController {
 	}
 	
 	//로그인액션
-	@RequestMapping("loginAction")
+	@PostMapping("loginAction")
 	@ResponseBody
 	public String loginAction( @RequestParam("user_id") String user_id,
 							   @RequestParam("user_pw") String user_pw,
-							   HttpSession session) {
-		String result = loginService.login(user_id, user_pw, session);			
+							   HttpServletResponse response) {
+		String result = loginService.login(user_id, user_pw, response);			
 		return result;
 	}
 
