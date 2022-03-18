@@ -29,7 +29,7 @@
         <!-- title container -->
         <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
             <!-- title back btn -->
-                <div class="col-1 my-3" onclick="location.href='admin/transaction'" style="cursor: pointer;">
+                <div class="col-1 my-3" onclick="location.href='../admin/transaction'" style="cursor: pointer;">
                     <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
                 </div>
             <!-- title -->
