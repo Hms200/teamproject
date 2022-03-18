@@ -124,7 +124,7 @@
                     <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_statement" value="${ purchase.purchase_statement }" readonly>
                 </label>
                 <!-- 주문상태별 value값 정해야함. -->
-                <select class="form-control col-6 mx-auto" name="purchase_statement">
+                <select class="form-control col-6 mx-auto" name="purchase_statement" style="flex:none;">
                     <option value="#" selected>주문상태 변경</option>
                     <option value="주문접수">주문접수</option>
                     <option value="발송준비중">발송준비중</option>

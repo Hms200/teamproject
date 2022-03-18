@@ -30,7 +30,7 @@
          <!-- title container -->
          <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
             <!-- title back btn -->
-                <div class="col-1 my-3" onclick="location.href='admin'" style="cursor: pointer;">
+                <div class="col-1 my-3" onclick="location.href='../admin'" style="cursor: pointer;">
                     <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
                 </div>
             <!-- title -->
@@ -41,7 +41,7 @@
 
             <!-- drop down 정렬버튼 -->
             <!-- href 에 해당상품만 노출되도록 서버에 요청하는 request 작성해야함. -->
-            <div class="col-11 d-flex flex-row justify-content-around mb-4">
+            <div class="col-11 d-flex flex-row justify-content-around mb-4" style="flex: none;">
                 <div class="dropdown col-5 px-2">
                     <a class="btn btn-outline-secondary dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                       주문 상태

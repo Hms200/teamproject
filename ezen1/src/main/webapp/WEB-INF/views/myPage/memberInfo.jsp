@@ -64,7 +64,7 @@
 				<div class="my-2 col-12 font-weight-bold form-group text-dark">
 					비밀번호 <input type="password"
 						class="form-control col-12 rounded font-weight-nomal nullcheck"
-						placeholder="기존 비밀번호를 입력해 주세요">
+						placeholder="기존 비밀번호를 입력해 주세요" id="checkPW">
 						 <input type="password"
 						class="form-control col-12 rounded font-weight-nomal my-1 nullcheck" id="pw1"
 						placeholder="변경할 비밀번호를 입력해 주세요">
@@ -119,7 +119,7 @@
 			<div class="my-5 align-items-center text-center">
 				<button type="submit"
 					class="btn btn-primary text-light form-control"
-					style="width: 300px;">수정하기</button>
+					style="width: 300px;"id="submitButton" disabled>수정하기</button>
 			</div>
 		</form>
 	</div>
@@ -133,7 +133,7 @@
 		crossorigin="anonymous"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/js/main.js"></script>
-	<!-- 비밀번호 확인 true/false 표현 , 주소값 넘겨주기 -->
+	<!-- 비밀번호 확인 true/false 표현 , 주소값 넘겨주기 , 기존비밀번호 확인 체크 -->
 	<script>
   $(function(){
     var pw2;
@@ -152,7 +152,21 @@
     const address = $('#sample6_address').val()+$('#sample6_detailAddress').val();
     $('input[name=user_address]').attr('value',address);
     })
-  })
+  });
+  
+  $(function(){
+      $('#checkPW').focusout(function(){
+    	  inputPW = $(this).val();
+    	  const user_pw = <c:out value="${user.user_pw}"/>;
+    	  if(user_pw == inputPW){
+    		  alert("기존비밀번호가 일치합니다. 이제수정이 가능합니다")
+    		  $('#submitButton').removeAttr('disabled');
+    	  }else{
+    		  alert("기존비밀번호가 다릅니다. 다시입력해주세요")
+    	  }
+        })
+     })
+  
 </script>
 </body>
 </html>
