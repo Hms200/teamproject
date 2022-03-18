@@ -81,7 +81,11 @@
 			            	<p class="card-text">
 			            		<small>재고 : ${ list.goods_stock },
 			            		  <c:if test="${ list.goods_onsale == 1 }">판매중</c:if>
-			            		  <c:if test="${ list.goods_onsale == 0 }">판매중</c:if>
+			            		  <c:if test="${ list.goods_onsale == 0 }">판매중지 중</c:if>
+			            		  <c:if test="${ list.goods_onevent == 1 }">/할인</c:if>
+			            		  <c:if test="${ list.goods_onevent == 2 }">/추천</c:if>
+			            		  <c:if test="${ list.goods_onevent == 3 }">/이벤트</c:if>
+			            		  
 			            		  </small></p>         
 			            </div>
 		            </a>
