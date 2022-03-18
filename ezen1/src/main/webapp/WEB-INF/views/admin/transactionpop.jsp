@@ -27,14 +27,10 @@
 
 
         <!-- title container -->
-        <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
-            <!-- title back btn -->
-                <div class="col-1 my-3" onclick="location.href='../admin/transaction'" style="cursor: pointer;">
-                    <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
-                </div>
+        <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
             <!-- title -->
-                <div class="col-11 my-3 py-1 text-center font-weight-bold" style="font-size: 16px;">
-                    주문목록
+                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+                  주문목록 상세조회 
                 </div>
             </div>
 
@@ -42,7 +38,7 @@
         <div class="container-fluid d-flex flex-column mb-4 border-bottom border-dark-50 pb-2">
 
             <!-- 구매일 -->
-            <div class="w-100 text-right" style="font-size: 14px; height: 40px;">
+            <div class="w-100 text-right" style="font-size: 14px; height: 20px;">
                 ${ purchase.purchase_date }
             </div>
             <!-- 구매번호 -->
@@ -92,7 +88,7 @@
 
         <!-- 구매자 or 수령인 정보표시 -->
         
-        <div class="container-fluid d-flex flex-column mb-4  pb-2 form-group">
+        <div class="container-fluid d-flex flex-column mb-5 pb-2 form-group">
             
                 <label class="row text-center w-100 ml-2 font-weight-bold" style="line-height: 38px;">
                     수 &numsp;&numsp; 령 &numsp;&numsp; 인
@@ -124,7 +120,7 @@
                     <input class="form-control-plaintext text-right col-5 mx-auto font-weight-normal" type="text" name="purchase_statement" value="${ purchase.purchase_statement }" readonly>
                 </label>
                 <!-- 주문상태별 value값 정해야함. -->
-                <select class="form-control col-6 mx-auto" name="purchase_statement" style="flex:none;">
+                <select class="form-control col-6 mx-auto mt-3" name="purchase_statement" style="flex:none;">
                     <option value="#" selected>주문상태 변경</option>
                     <option value="주문접수">주문접수</option>
                     <option value="발송준비중">발송준비중</option>
@@ -138,10 +134,10 @@
 				<input type="hidden" id="purchase_idx" value="${ purchase.purchase_idx }">
                 <!-- 버튼 그룹 -->
                 <div class="w-100 d-flex flex-wrap flex-row justify-content-around mt-4" style="height: 125px;">
-                    <button class="btn btn-secondary col-5 my-auto" id="교환접수" onclick="updateTransactionStatement(event)">교환접수</button>
-                    <button class="btn btn-secondary col-5 my-auto" id="반품접수" onclick="updateTransactionStatement(event)">반품접수</button>
-                    <button class="btn btn-secondary col-5 my-auto" id="주문취소" onclick="updateTransactionStatement(event)">주문취소</button>
-                    <button class="btn btn-secondary col-5 my-auto" id="확인" onclick="updateTransactionStatement(event)">확인</button>
+                    <button class="btn btn-outline-primary text-primary col-4 my-auto mx-1" id="교환접수" onclick="updateTransactionStatement(event)">교환접수</button>
+                    <button class="btn btn-outline-primary text-primary col-4 my-auto mx-1" id="반품접수" onclick="updateTransactionStatement(event)">반품접수</button>
+                    <button class="btn btn-outline-primary text-primary col-4 my-auto mx-1" id="주문취소" onclick="updateTransactionStatement(event)">주문취소</button>
+                    <button class="btn btn-outline-primary text-primary col-4 my-auto mx-1" id="확인" onclick="updateTransactionStatement(event)">확인</button>
                 </div>
             
         </div>
