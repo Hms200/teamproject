@@ -409,7 +409,9 @@ public class AdminService {
 	// 상품상세 문의글에 답글달기 qna
 	public String registQuestionReply(HashMap<String, String> param) {
 		int question_idx = Integer.parseInt(param.get("question_idx"));
-		String question_reply = param.get("qustion_reply");
+		String question_reply = param.get("question_reply");
+		System.out.println(param.toString());
+		System.out.println(question_reply);
 		int result = questionDAO.updateQnaAnswer(question_idx, question_reply);
 		if(result == 1) {
 			return "등록되었습니다.";
@@ -420,7 +422,9 @@ public class AdminService {
 	// 1:1문의글에 답글달기
 	public String registOneToOneReply(HashMap<String, String> param) {
 		int question_idx = Integer.parseInt(param.get("question_idx"));
-		String question_reply = param.get("qustion_reply");
+		String question_reply = param.get("question_reply");
+		System.out.println(param.toString());
+		System.out.println(question_reply);
 		int result = onetooneDAO.updateQnaAnswerByReplyAndContent(question_idx, question_reply);
 		if(result == 1) {
 			return "등록되었습니다.";
