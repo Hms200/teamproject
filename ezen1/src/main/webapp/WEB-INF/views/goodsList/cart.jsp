@@ -54,6 +54,7 @@
       
        <c:forEach var="cart" items="${ cartlist }" varStatus="status">
        
+
       <div class="row mt-1 mx-3 mb-1" style="font-size: 14px;">
         <input type="hidden" class="cartidx" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
         <input type="checkbox" name="${ cart.cart_idx }" class="mx-1" style="width: 16px; height: 16px;">

@@ -31,16 +31,10 @@
 		<!-- main container -->
     <!--  <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">-->
 		
-
-
-
-
 	<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 
-
-
-
 		<!-- 박스 -->
+
 		<div class="container-fluid container-sm shadow border rounded my-2 mx-2" style="width:320px;">
 			<div class="d-flex flex-column">
 				<div
