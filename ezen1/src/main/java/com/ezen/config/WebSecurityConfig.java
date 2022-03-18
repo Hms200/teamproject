@@ -11,6 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import com.ezen.security.JwtAuthenticationFilter;
 
 
+
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
