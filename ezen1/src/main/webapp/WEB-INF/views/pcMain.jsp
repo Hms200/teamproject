@@ -6,7 +6,7 @@
     <div class="d-flex flex-column justify-content-end align-items-end pr-4 no-repeat mx-auto col-12" style="background-image: url('/img/pcMainImg.jpeg'); background-size: cover; height: 100vh;">
       <!-- 버튼 디자인 -->
       <c:if test="${ not empty user_id }">
-	    <div class="border border-primary rounded-pill text-center text-primary my-2" style="font-size: 12px; width: 100px; height: 22px; line-height: 22px; cursor: pointer;" onclick="logoutQuestion();">
+	    <div class="border border-primary rounded-pill text-center text-primary my-2" style="font-size: 12px; width: 100px; height: 22px; line-height: 22px; cursor: pointer;" onclick="location.href='../myPage/myPage'">
 	    	${ user_id }
 	    </div>
 	  </c:if>
@@ -18,12 +18,3 @@
       <div class="border border-primary rounded-pill text-center text-primary mb-5" style="font-size: 12px; width: 100px; height: 22px; line-height: 22px; cursor: pointer;" onclick="location.href='../aboutUs'">aboutUs > </div>
     </div>
   </div>
-  
- <script>
- function logoutQuestion(){
-	 result = confirm('로그아웃 하시겠습니까?');
-   if(result){ //네 버튼 클릭 시     
-	  return location.href='../login/logoutAction';
-   }
-}
- </script>
