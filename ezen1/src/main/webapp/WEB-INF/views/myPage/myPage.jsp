@@ -43,7 +43,7 @@
 >>>>>>> branch 'Jang' of https://github.com/Hms200/teamproject.git
 
 		<!-- 박스 -->
-		<div class="col-10 shadow border rounded my-4">
+		<div class="col-10 shadow border rounded my-5">
 			<div class="d-flex flex-column">
 				<div
 					class="w-100 text-center font-weight-bold d-flex justify-content-center align-items-center"
@@ -52,11 +52,9 @@
 				</div>
 				<!-- 회원정보 보기 링크 -->
 				<div class="border-top w-100 container-fluid">
-					<a href="./memberInfo?user_id=${user_id}" class="text-dark"
+					<a href="./memberInfo" class="text-dark"
 						style="text-decoration: none;">
-						<div
-							class="col-10 text-left pl-2 ml-0 mr-0 align-items-center pt-2"
-							style="height: 40px; float: left;">회원정보보기</div>
+						<div class="col-10 text-left pl-2 ml-0 mr-0 align-items-center pt-2" style="height: 40px; float: left;">회원정보보기</div>
 						<div style="float: left;">
 							<img src="/img/icon/right.png" alt=""
 								style="width: 25px; height: 25px;" class="mx-auto d-block pt-2">
@@ -70,7 +68,7 @@
 		<!-- 쇼핑 -->
 		<div class="w-100 ml-0 mr-0 border p-2">
 			<div class="text-black-50" style="font-size: 12px;">쇼핑</div>
-			<a href="./purchaseList?user_id=${user_id}" style="font-size: 16px;"
+			<a href="./purchaseList" style="font-size: 16px;"
 				class="text-dark"> 구매내역보기</a>
 		</div>
 		<!-- 고객센터 -->
