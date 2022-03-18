@@ -88,7 +88,7 @@
                 <lable>이름 &nbsp;<input type="text" class="ml-2 mt-1" name="user_name" placeholder="이름을 입력해주세요" /></lable>
               </div>
               <div class="form-group d-flex align-items-center" style="height:29px;">
-                <lable>이메일 <input type="email" class="mt-1" name="user_email" placeholder="이메일을 입력해주세요"/></lable>
+                <lable>이메일 <input type="email" class="mt-1" name="user_email" placeholder="이메일을 입력해주세요" /></lable>
               </div>
               <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" style="font-size: 16px" height="40px" />
             </form>
