@@ -243,11 +243,11 @@ public class AdminContorller {
 	// 주문목록 페이지
 	//////////////////////////////
 	@GetMapping("transaction")
-	public String transaction(@RequestParam(required = false) String statement, Model model) {
+	public String transaction(@RequestParam(required = false) String statement, String currentPage, Model model) {
 		try {
 			model = adminService.transactionFiltered(statement, model);
 		} catch (NullPointerException e) {
-			model = adminService.transaction(model);
+			model = adminService.transaction(currentPage, model);
 		}
 		System.out.println(model.toString());
 		return "admin/transaction";

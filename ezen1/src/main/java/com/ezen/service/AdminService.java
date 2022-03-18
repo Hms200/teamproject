@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-
 import com.ezen.dao.IcartDAO;
 import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
@@ -294,14 +293,19 @@ public class AdminService {
 		});
 	}
 	// transaction 페이지 구매목록 불러오기
-	public Model transaction(Model model) {
-		ArrayList<Purchase> list = purchaseDAO.getPurchaseList();
+	public Model transaction(String currentPage, Model model) {
+		int countOfArticles = purchaseDAO.countOfPurchase();
+		int numberOfArticlesOnPage = 10;
+		int numberOfPagenation = 5;
+		ArrayList<Purchase> list = purchaseDAO.getPurchaseList(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		HashMap<Integer, String> userlist = new HashMap<>();
 		list.forEach(item -> {
 			userlist.put(item.getUser_idx(), userDAO.getUserIdByUserIdx(item.getUser_idx()));
 		});
+		pagenation = pagenation.pagenation(currentPage, countOfArticles, numberOfArticlesOnPage, numberOfPagenation);
 		model.addAttribute("purchaselist", list);
 		model.addAttribute("userlist", userlist);
+		model.addAttribute("pages", pagenation);
 		return model;
 	}
 	

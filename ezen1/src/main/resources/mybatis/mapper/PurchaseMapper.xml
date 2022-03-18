@@ -18,6 +18,10 @@
 		SELECT * FROM MALL_PURCHASE
 	</select>
 	
+	<select id="countOfPurchase" resultType="int">
+		SELECT COUNT(*) FROM mall_purchase
+	</select>
+	
 	<!-- purchase 단건 가저옴 -->
 	<select id="getPurchaseByPurchaseIdx" resultType="com.ezen.dto.Purchase">
 		SELECT * FROM mall_purchase WHERE purchase_idx = ${param1}
