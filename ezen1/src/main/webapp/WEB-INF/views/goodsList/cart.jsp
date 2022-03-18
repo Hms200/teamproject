@@ -68,26 +68,26 @@
           height="100px">
         <div class="d-flex flex-column col-7">
           <div class="d-flex flex-row justify-content-between">
-            <span>가격</span><span>${ cart.cart_total_price }</span> 
-            <input type="hidden" class="price" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
+            <span style="font-size:14px;">가격</span><span>${ cart.cart_total_price }</span> 
+            <input type="hidden" class="price" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }" style="font-size:14px;">
           </div>
           <div class="d-flex flex-row justify-content-between">
-            <span>옵션</span>
-            <span><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
+            <span style="font-size:14px;">옵션</span>
+            <span style="font-size:14px"><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
             <c:forEach var="option" items="${ optionlist }">
             	<c:if test="${ this_cart_option eq option.option_idx }">${ option.option_name }+${ option.option_price }</c:if>
             </c:forEach>
           <c:remove var="goods" scope="page"/>  
             </span>
           </div> 
-          <div class="d-flex flex-row justify-content-between">
+          <div class="d-flex flex-row justify-content-between" style="font-size:14px">
             옵션
             <!-- 서버에서 처리 -->
             <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1" value="옵션/수량변경"
               style="width: 80px;height: 20px; font-size: 11px;" onclick="changeValue(event);">
           </div>
-          <div class="d-flex flex-row justify-content-between">
-            <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 140px;">
+          <div class="d-flex flex-row justify-content-start pl-1">
+            <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 140px; font-size:14px;">
               <c:forEach var="options" items="${ optionlist }">
               <option <c:if test="${ this_cart_option eq options.option_idx }"> selected </c:if> value="${ options.option_idx }">${ options.option_name }+${ options.option_price }</option>
               </c:forEach>
@@ -144,14 +144,14 @@
   </c:if>
   <c:if test="${ cart == 0 }">
     <!--장바구니 비어있는-->
-    <div class="d-flex justify-content-center mb-0">
-      <img src="/img/icon/bag.png" alt="" class="img-fluid " width="300px" height="300px">
+    <div class="d-flex justify-content-center mb-0 mt-5">
+      <img src="/img/icon/bag.png" alt="" class="img-fluid " width="225px" height="225px">
     </div>
     <div class="font-weight-bold mb-5" style="font-size: 26px;">
       장바구니가 비었습니다.
     </div>
     <div class="d-flex flex-row justify-content-center mb-5 w-100">
-      <a href="goodsList"><input type="button" class="btn btn-primary rounded-pill" value="상품보러가기"></a>
+      <a href="goodsList"><input type="button" class="btn btn-primary rounded-pill" value="상품보러가기" style="width: 150px;"></a>
     </div>
   </c:if>
   </div>
