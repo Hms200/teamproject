@@ -35,10 +35,18 @@ public class MyPageController {
 	FileService fileService;
 	@Autowired
 	IreviewIMGSDAO reviewImgsDAO;
+	@Autowired
+	HttpSession session;
 	
 	//회원정보 수정 리스트
 	@RequestMapping("/memberInfo")
 	public String memberInfo(HttpServletRequest request,Model model) {
+		try {
+			String id = (String)session.getAttribute("user_id");
+			id.isEmpty();
+		} catch (NullPointerException e) {
+			return "login/login";
+		}
 		String user_id = request.getParameter("user_id");
 		User user = userDAO.getMemberInfo(user_id);
 		model.addAttribute("user",user);
@@ -52,21 +60,31 @@ public class MyPageController {
 		String result = myPageService.updateUserInfo(user);
 		return result;
 	}
+	
 	//마이페이지 화면보여주기
 	@RequestMapping("/myPage")
-	public String myPage(HttpSession session,Model model) {
-		String id = (String) session.getAttribute("user_id");
-		if(id == null) {
+	public String myPage(Model model) {
+		try {
+			String id = (String)session.getAttribute("user_id");
+			id.isEmpty();
+		} catch (NullPointerException e) {
 			return "login/login";
 		}
 		return "myPage/myPage";
-		
 	}
 	
 	//user_id해당 구매내역 보여주기
 	@RequestMapping("/purchaseList")
 	public String purchaseList(HttpServletRequest request,Model model,
 							   @RequestParam(name = "cat", required = false) Integer cat) {
+		
+		try {
+			String id = (String)session.getAttribute("user_id");
+			id.isEmpty();
+		} catch (NullPointerException e) {
+			return "login/login";
+		}
+		
 		String user_id =request.getParameter("user_id");
 		if(cat == null ) {
 		myPageService.purchaseList(user_id, model);
@@ -104,6 +122,13 @@ public class MyPageController {
 	//리뷰작성화면
 	@RequestMapping("/reviewpopup")
 	public String reviewpopup(HttpServletRequest request,Model model) {
+		
+		try {
+			String id = (String)session.getAttribute("user_id");
+			id.isEmpty();
+		} catch (NullPointerException e) {
+			return "login/login";
+		}
 		String goods_idx = request.getParameter("goods_idx");
 		model.addAttribute("goods_idx",goods_idx);
 		return "myPage/reviewpopup";

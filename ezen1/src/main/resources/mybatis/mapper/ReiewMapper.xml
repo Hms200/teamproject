@@ -12,7 +12,7 @@
 	
 	<insert id="insertReview" parameterType="com.ezen.dto.Review">
 		INSERT INTO MALL_REVIEW (review_idx, user_idx, goods_idx, review_contents, review_star, review_isreplied, review_reply, review_date, review_reply_date)
-			VALUES (MALL_REVIEW_seq.nextval, #{user_idx}, #{goods_idx}, #{review_contents},#{review_star} ,#{review_isreplied}, #{review_reply}, sysdate, sysdate)
+			VALUES (MALL_REVIEW_seq.nextval, #{user_idx}, #{goods_idx}, #{review_contents},#{review_star} ,#{review_isreplied}, #{review_reply}, sysdate , null)
 	</insert>
 	
 	<!-- 모든 리뷰 가져옴 -->
