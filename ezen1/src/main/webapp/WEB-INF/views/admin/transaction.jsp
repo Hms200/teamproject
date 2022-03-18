@@ -49,8 +49,8 @@
                     
                     <div class="dropdown-menu col-11" style="min-width: 0;" aria-labelledby="dropdownMenuLink">
                       <a class="dropdown-item" href="../admin/transaction?statement=주문접수">주문접수</a>
-                      <a class="dropdown-item" href="../admin/transaction?statement=발송준비">발송준비중</a>
-                      <a class="dropdown-item" href="../admin/transaction?statement=배송">배송중</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=발송준비중">발송준비중</a>
+                      <a class="dropdown-item" href="../admin/transaction?statement=배송중">배송중</a>
                       <a class="dropdown-item" href="../admin/transaction?statement=완료">완료</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="../admin/transaction?statement=주문취소">주문취소</a>
