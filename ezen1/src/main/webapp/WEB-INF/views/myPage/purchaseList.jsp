@@ -40,35 +40,22 @@
 	<!-- <div
 		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
 		style="max-width: 520px;">--!>
+		
 		 <!-- main container -->
-        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
-		
-		
+        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 mb-5" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 		
 
-
-       
-
-		<!-- header -->
-		<div
-			class="container-fluid border-bottom container-sm d-flex flex-row mb-0"
-			style="height: 60px;">
-			<!-- 아이콘 -->
-			<div class="col-1 my-3">
-				<img src="/img/icon/뒤로가기 (2).png" alt=""
-					class="mx-auto d-block  my-auto"
-					style="width: 30px; height: 30px; cursor: pointer; "
-					onclick="location.href='myPage'">
-			</div>
-			<!-- 헤더 텍스트 -->
-			<div class="col-11 my-3 py-1 text-center text-bold">
-				<div class="font-weight-bold pl-2 mb-2" style="font-size: 16px;">
-					구매내역</div>
-			</div>
-		</div>
+		<!-- header 
+		<div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">           
+                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+                  구매내역 상세조회  
+                </div>
+        </div> -->
+		
+		
 		<!-- 검색창 -->
-		<div class="form-goup d-flex flex-row justify-content-between my-3 w-75 " >
-			<div class="font-weight-bold mt-2">내 구매내역 보기</div>
+		<div class="form-goup d-flex flex-row justify-content-between mt-5 mb-3 w-100 " >
+			<div class="font-weight-bold mt-2 pl-3">내 구매내역 보기</div>
 			<%String user_id = request.getParameter("user_id"); %>
 			<!-- 드롭다운 -->
 			<div style="width: 120px; height: 40px;">
@@ -93,10 +80,10 @@
 		<!-- 카드 -->
 		<c:forEach var="list" items="${purchaseList}">
 			<div
-				class="w-100 d-flex flex-column border border-dark-50 py-1 my-2"
-				style="height: 160px;">
+				class="w-100 d-flex flex-column border border-dark-50 py-2 my-1"
+				style="height: 170px;">
 				<form name="purchaseHistoryForm">
-					<div class="w-100 d-flex flex-row justify-content-between mb-1"
+					<div class="w-100 d-flex flex-row justify-content-between my-1"
 						style="font-size: 12px;">
 						<div class="ml-2">${list.get("PURCHASE_STATEMENT") }</div>
 						<div class="mr-3">
