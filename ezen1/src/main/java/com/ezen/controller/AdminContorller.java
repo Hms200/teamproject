@@ -88,17 +88,17 @@ public class AdminContorller {
 	// 문의관리 페이지
 	/////////////////////////////////////////
 	@RequestMapping("qnaList")
-	public String qnaList(@RequestParam(required = false, defaultValue = "Qna") String cat,Model model) {
+	public String qnaList(@RequestParam(required = false, defaultValue = "Qna") String cat, @RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
 		try {
 			if(cat.equals("Qna")) {
-				model = adminService.getQuestionsFromGoodsDetail(model);
+				model = adminService.getQuestionsFromGoodsDetail(currentPage, model);
 				return "admin/qnaList";
 			}else {
-				model = adminService.getOneToOneList(model);
+				model = adminService.getOneToOneList(currentPage, model);
 				return "admin/qnaList";
 			}
 		} catch (NullPointerException e) {
-			model = adminService.getQuestionsFromGoodsDetail(model);
+			model = adminService.getQuestionsFromGoodsDetail(currentPage, model);
 		}
 		
 		return "admin/qnaList";
@@ -226,8 +226,8 @@ public class AdminContorller {
 	//  리뷰관리 페이지
 	///////////////////////////////
 	@RequestMapping("review")
-	public String review(Model model) {
-		model = adminService.reviewList(model);
+	public String review(@RequestParam(required = false, defaultValue = "1")String currentPage, Model model) {
+		model = adminService.reviewList(currentPage, model);
 		return "admin/review";
 	}
 	// 리뷰 답글 등록
@@ -243,11 +243,11 @@ public class AdminContorller {
 	// 주문목록 페이지
 	//////////////////////////////
 	@GetMapping("transaction")
-	public String transaction(@RequestParam(required = false) String statement, Model model) {
+	public String transaction(@RequestParam(required = false) String statement, @RequestParam(required=false, defaultValue = "1") String currentPage, Model model) {
 		try {
 			model = adminService.transactionFiltered(statement, model);
 		} catch (NullPointerException e) {
-			model = adminService.transaction(model);
+			model = adminService.transaction(currentPage, model);
 		}
 		System.out.println(model.toString());
 		return "admin/transaction";

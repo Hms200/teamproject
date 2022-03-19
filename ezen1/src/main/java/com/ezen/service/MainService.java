@@ -135,7 +135,7 @@ public class MainService {
 	}
 	// best review cart
 	public Model BestReviewCard(Model model) {
-		ArrayList<Review> reviewList = reviewDAO.getAllReviews();
+		ArrayList<Review> reviewList = reviewDAO.getAllReviews(0, 0);
 		ArrayList<ReviewIMGS> reviewImgsList = reviewIMGSDAO.getAllReviewImgs();
 		HashMap<Integer, String> goodsnameList = new HashMap<>();
 		reviewList.forEach(item -> {

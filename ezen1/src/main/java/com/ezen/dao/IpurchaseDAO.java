@@ -18,7 +18,9 @@ public interface IpurchaseDAO {
 	public int updatePurchaseStatementByMyPage(int purchase_idx,String purchase_statement);
 	
 	//모든 값을 가져옴
-	public ArrayList<Purchase> getPurchaseList();
+	public ArrayList<Purchase> getPurchaseList(int start, int end);
+	
+	public int countOfPurchase();
 	
 	//insert purchase
 	public int insertPurchase(Purchase purchase);
