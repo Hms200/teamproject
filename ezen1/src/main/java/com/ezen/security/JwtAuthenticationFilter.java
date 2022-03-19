@@ -36,8 +36,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 			if(token != null && !token.equalsIgnoreCase("null")) {
 				// user_idx 가져오고 위조된경우 예외처리함.
 				String user_idx = tokenProvider.validateAndGetUserIdx(token);
-				System.out.println(user_idx);
+				System.out.println("user_idx : " + user_idx);
 				// SecurityContextHolder에 등록
+				
 				AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken
 							(user_idx, null, AuthorityUtils.NO_AUTHORITIES);
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -61,7 +62,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		for(Cookie c : cookies) {
 			if(c.getName().equals("Authorization")) {
 				token = c.getValue();
-				System.out.println(token);
+				System.out.println("token : " + token);
 			}
 		}
 		if(StringUtils.hasText(token) && token.startsWith("Bearer")) {

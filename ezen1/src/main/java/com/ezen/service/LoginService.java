@@ -43,7 +43,7 @@ public class LoginService {
 		if(user_pw.equals(userPw)) {
 				
 			int user_idx = userDao.getUserIdx(user_id);
-			
+			///////////////////////////////////////////
 			// jwt 인증 토큰 생성
 			String userIdx = String.valueOf(user_idx);
 			final String token = tokenProvider.create(userIdx);
@@ -60,7 +60,7 @@ public class LoginService {
 
 		    // add cookie to response
 		    response.addCookie(cookie);
-		    
+		    ////////////////////////////////////////////
 		    
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("user_idx", user_idx);	
