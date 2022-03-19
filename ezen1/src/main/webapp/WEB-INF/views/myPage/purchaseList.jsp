@@ -15,6 +15,17 @@
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/custom.css">
+
+<style>
+     
+       button {
+         border: none;
+         background-color: white;
+       }
+        
+      
+    </style>
+
 </head>
 <body>
 <c:import url="../pcMain.jsp"></c:import>
@@ -26,7 +37,17 @@
 
 	<!-- container -->
 
+	<!-- <div
+		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
+		style="max-width: 520px;">--!>
+		 <!-- main container -->
         <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+		
+		
+		
+
+
+       
 
 		<!-- header -->
 		<div
@@ -36,7 +57,7 @@
 			<div class="col-1 my-3">
 				<img src="/img/icon/뒤로가기 (2).png" alt=""
 					class="mx-auto d-block  my-auto"
-					style="width: 30px; height: 30px; cursor: pointer;"
+					style="width: 30px; height: 30px; cursor: pointer; "
 					onclick="location.href='myPage'">
 			</div>
 			<!-- 헤더 텍스트 -->
@@ -75,29 +96,29 @@
 				class="w-100 d-flex flex-column border border-dark-50 py-1 my-2"
 				style="height: 160px;">
 				<form name="purchaseHistoryForm">
-					<div class="w-100 d-flex flex-row justify-content-between"
+					<div class="w-100 d-flex flex-row justify-content-between mb-1"
 						style="font-size: 12px;">
-						<div>${list.get("PURCHASE_STATEMENT") }</div>
-						<div>
+						<div class="ml-2">${list.get("PURCHASE_STATEMENT") }</div>
+						<div class="mr-3">
 						<fmt:formatDate value="${list.get('PURCHASE_DATE') }" dateStyle="default"/></div>
 					</div>
 					<div class="d-flex flex-row">
-						<div col-3>
+						<div col-3 class="ml-2">
 							<img src="${list.get('GOODS_THUMB') }" alt="" class="img-thumbnail"
-								width="80px">
+								width="100px">
 						</div>
-						<div class="col-9" style="font-size: 14px;">
-							<div class="col-12 text-left pl-2">상품이름: ${list.get("GOODS_NAME") } </div>
-							<div class="col-12 text-left pl-2">구매번호: ${list.get("PURCHASE_IDX") }</div>
+						<div class="col-9 mt-2" style="font-size: 14px;">
+							<div class="col-12 text-left pl-2">상품이름: &nbsp;  ${list.get("GOODS_NAME") } </div>
+							<div class="col-12 text-left pl-2">구매번호:  &nbsp; ${list.get("PURCHASE_IDX") }</div>
 							<div class="col-12 text-left pl-2 position-relative">
-								<span>가격: 
+								<span>가격:  &nbsp;
 								<fmt:formatNumber value='${list.get("GOODS_PRICE")}' groupingUsed="true" type="currency" />
 								</span> 
 								<a href="reviewpopup?goods_idx=${list.get('GOODS_IDX')}&user_idx=${list.get('USER_IDX')}" 
 								style="right: 0%; position: absolute" class="text-dark">리뷰작성</a>
 							</div>
 							<div
-								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-2">
+								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-3 ">
 								<button type="submit" value="환불신청" class="p-0" name="AskRefund"
 									style="font-size: 14px;"
 									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseRefundAction')">환불신청</button>

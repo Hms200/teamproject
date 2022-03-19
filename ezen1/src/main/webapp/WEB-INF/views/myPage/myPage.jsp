@@ -31,21 +31,15 @@
 		<!-- main container -->
     <!--  <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">-->
 		
-
-
-
-
-	<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 mb-3" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
-
-
-
+	<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 
 		<!-- 박스 -->
-		<div class="container-fluid container-sm shadow border rounded my-5 mx-2" style="width:320px;">
+
+		<div class="container-fluid container-sm shadow border rounded my-2 mx-2" style="width:320px;">
 			<div class="d-flex flex-column">
 				<div
 					class="w-100 text-center font-weight-bold d-flex justify-content-center align-items-center"
-					style="height: 100px;">
+					style="height: 150px;">
 					<div>${user_id}님의 방문을 환영합니다.</div>
 			</div>
 				<!-- 회원정보 보기 링크 -->
