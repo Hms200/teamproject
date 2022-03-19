@@ -358,8 +358,13 @@ public class AdminService {
 	}
 	
 	// 리뷰목록
-	public Model reviewList(Model model) {
-		ArrayList<Review> reviewList = reviewDAO.getAllReviews();
+	public Model reviewList(String currentPage, Model model) {
+		int countOfArticles = reviewDAO.countOfReviews();
+		int numberOfArticlesOnPage = 10;
+		int numberOfPagenation = 5;
+		
+		pagenation = pagenation.pagenation(currentPage, countOfArticles, numberOfArticlesOnPage, numberOfPagenation);
+		ArrayList<Review> reviewList = reviewDAO.getAllReviews(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		ArrayList<ReviewIMGS> reviewImgsList = reviewImgsDAO.getAllReviewImgs();
 		HashMap<Integer, String> goodsnameList = new HashMap<>();
 		reviewList.forEach(item -> {
@@ -368,6 +373,7 @@ public class AdminService {
 		model.addAttribute("reviewlist", reviewList);
 		model.addAttribute("reviewimgslist", reviewImgsList);
 		model.addAttribute("goodsnamelist", goodsnameList);
+		model.addAttribute("pages", pagenation);
 		return model;
 	}
 	// 리뷰 답글달기
@@ -383,8 +389,12 @@ public class AdminService {
 	}
 	
 	// 문의관리/ 상품상세정보에 올라온 질문 받기
-	public Model getQuestionsFromGoodsDetail(Model model) {
-		ArrayList<Question> questionList = questionDAO.getAllQuestions();
+	public Model getQuestionsFromGoodsDetail(String currentPage, Model model) {
+		int countOfArticles = questionDAO.countOfQuestions();
+		int numberOfArticlesOnPage = 10;
+		int numberOfPagenation = 5;
+		pagenation = pagenation.pagenation(currentPage, countOfArticles, numberOfArticlesOnPage, numberOfPagenation);
+		ArrayList<Question> questionList = questionDAO.getAllQuestions(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		HashMap<Integer, String> userList = new HashMap<>();
 		HashMap<Integer, String> goodsList = new HashMap<>();
 		questionList.forEach(item -> {
@@ -395,11 +405,16 @@ public class AdminService {
 		model.addAttribute("userlist", userList);
 		model.addAttribute("goodslist", goodsList);
 		model.addAttribute("mode", "Qna");
+		model.addAttribute("pages", pagenation);
 		return model;
 	}
 	// 1:1문의로 올라온 질문 받기
-	public Model getOneToOneList(Model model) {
-		ArrayList<OneToOne> OneToOneList = onetooneDAO.getOneToOneList();
+	public Model getOneToOneList(String currentPage, Model model) {
+		int countOfArticles = onetooneDAO.countOfOneToOne();
+		int numberOfArticlesOnPage = 10;
+		int numberOfPagenation = 5;
+		pagenation = pagenation.pagenation(currentPage, countOfArticles, numberOfArticlesOnPage, numberOfPagenation);
+		ArrayList<OneToOne> OneToOneList = onetooneDAO.getOneToOneList(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		HashMap<Integer, String> userList = new HashMap<>();
 		OneToOneList.forEach(item -> {
 			userList.put(item.getUser_idx(), userDAO.getUserIdByUserIdx(item.getUser_idx()));
@@ -407,6 +422,7 @@ public class AdminService {
 		model.addAttribute("questionlist", OneToOneList);
 		model.addAttribute("userlist", userList);
 		model.addAttribute("mode", "OneToOne");
+		model.addAttribute("pages", pagenation);
 		return model;
 	}
 	

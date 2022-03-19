@@ -87,6 +87,52 @@
       </table>
     </div>
     
+     <!-- 페이지 표시기 -->
+    	<c:if test="${ mode == 'Qna' }">
+		    <div class="container row my-3 mx-auto">
+		      <nav class="mx-auto">
+		        <ul class="pagination justify-content-center ">
+					<!-- 현재 페이지가 페이지표시기의 페이지 표시 수 보다 작으면 뒤로가기버튼 disable -->
+		          <li class="page-item <c:if test="${ pages.currentPage <= 5 }">disabled</c:if>">
+		            <a class="page-link" href="qnaList?currentPage=${ pages.beginPagenation - 1}">&lang;</a>
+		          </li>
+				  <c:forEach var="page" begin="${ pages.beginPagenation }" end="${ pages.endPagenation }" step="1">
+		          <li class="page-item <c:if test="${ pages.currentPage == page }">active</c:if>">
+		            <a class="page-link" href="qnaList?currentPage=${ page }">${ page }</a>
+		          </li>
+		          </c:forEach>
+		          <!-- 마지막페이지까지 표시되면 앞으로 가기 표시 안됨 -->
+		          <li class="page-item <c:if test="${ pages.countOfPages eq pages.endPagenation }">disabled</c:if>">
+		            <a class="page-link" href="qnaList?currentPage=${ pages.endPagenation+1}">&rang;</a>
+		          </li>
+		        </ul>
+		      </nav>
+		    </div>
+		    </c:if>
+    
+    <!-- 페이지 표시기 -->
+    	<c:if test="${ mode == 'OneToOne' }">
+		    <div class="container row my-3 mx-auto">
+		      <nav class="mx-auto">
+		        <ul class="pagination justify-content-center ">
+					<!-- 현재 페이지가 페이지표시기의 페이지 표시 수 보다 작으면 뒤로가기버튼 disable -->
+		          <li class="page-item <c:if test="${ pages.currentPage <= 5 }">disabled</c:if>">
+		            <a class="page-link" href="qnaList&cat=oneToone?currentPage=${ pages.beginPagenation - 1}">&lang;</a>
+		          </li>
+				  <c:forEach var="page" begin="${ pages.beginPagenation }" end="${ pages.endPagenation }" step="1">
+		          <li class="page-item <c:if test="${ pages.currentPage == page }">active</c:if>">
+		            <a class="page-link" href="qnaList&cat=oneToone?currentPage=${ page }">${ page }</a>
+		          </li>
+		          </c:forEach>
+		          <!-- 마지막페이지까지 표시되면 앞으로 가기 표시 안됨 -->
+		          <li class="page-item <c:if test="${ pages.countOfPages eq pages.endPagenation }">disabled</c:if>">
+		            <a class="page-link" href="qnaList&cat=oneToone?currentPage=${ pages.endPagenation+1}">&rang;</a>
+		          </li>
+		        </ul>
+		      </nav>
+		    </div>
+		    </c:if>
+
 	<input type="hidden" id="mode" value="${ mode }">
     <!-- 상품 문의 답글 팝업 -->
     <div class="position-absolute d-none flex-column bg-white border border-dark-50 rouned w-90" id="qna_reply_popup" style="top: 150px;z-index: 1100; max-width: 520px;">

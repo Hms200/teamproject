@@ -15,7 +15,11 @@
 	</update>
 	<!-- 모든 mall_purchase의 정보를 가져옴 -->
 	<select id="getPurchaseList" resultType="com.ezen.dto.Purchase">
-		SELECT * FROM MALL_PURCHASE
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_purchase.* FROM(
+				SELECT * FROM mall_purchase ORDER BY purchase_idx ASC )
+			 mall_purchase)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by purchase_idx DESC
 	</select>
 	
 	<select id="countOfPurchase" resultType="int">
