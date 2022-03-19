@@ -48,7 +48,7 @@
             <p class="card-text d-flex text-black-50 justify-content-between" style="font-size: 10px;"><span>★ ${ review.review_star }</span><span class="text-right">${ review.review_date }</span></p>
 		    <h5 class="card-title font-weight-bold" style="font-size: 14px;">${ goodsnamelist.get(review.goods_idx) }</h5>
             <c:remove var="name"/>
-            <p class="card-text" style="font-size:12px; width: 118px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${ review.review_contents }</p>
+            <p class="card-text" style="font-size:12px; white-space: wrap;">${ review.review_contents }</p>
             <div class="text-center">
                   <span class="btn btn-primary" id="${ review.review_idx }" onclick="popupHideAndShowForReview(event);" style="cursor: pointer; font-size: 12px;">답글달기</span>
               </div>
