@@ -28,10 +28,10 @@
     <div class="container-sm container-fluid mt-0" style="max-width: 520px; font-size: 14px;">
 
         <!-- 메인 타이틀 -->
-        <p class="text-start ml-3 my-3 font-weight-bold">메인</p>
+        <p class="col-12 text-start my-3">메인</p>
         
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-2 pb-4 text-center" style="border-bottom: solid;">
+        <div class="container-sm container-fluid my-2 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="main">
@@ -47,9 +47,9 @@
         </div>
        
         <!-- 로그인 타이틀 -->
-        <p class="text-start ml-3 my-3 font-weight-bold">로그인</p>
+        <p class="col-12 text-start my-3">로그인</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 pb-4 text-center"style="border-bottom: solid;">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='login/login'">로그인</button>
@@ -64,9 +64,9 @@
         </div>
 
         <!-- 마이페이지 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">마이페이지</p>
+        <p class="col-12 text-start my-3">마이페이지</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 pb-4 text-center"style="border-bottom: solid;">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='myPage/myPage'">마이<br>페이지</button>
@@ -81,9 +81,9 @@
         </div>
 
         <!-- 회사소개 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">회사소개</p>
+        <p class="col-12 text-start my-3">회사소개</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 pb-4 text-center"style="border-bottom: solid;">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='aboutUs'">회사소개</button>
@@ -92,9 +92,9 @@
         </div>
 
         <!-- 고객센터 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">고객센터</p>
+        <p class="col-12 text-start my-3">고객센터</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 pb-4 text-center"style="border-bottom: solid;">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/faq'">FAQ</button>
@@ -109,7 +109,7 @@
         </div>
 
         <!-- 상품 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">상품</p>
+        <p class="col-12 text-start my-3">상품</p>
         <!-- 분류 버튼 -->
         <div class="container-sm container-fluid my-3 pb-4 text-center">
             <div class="row my-2">
