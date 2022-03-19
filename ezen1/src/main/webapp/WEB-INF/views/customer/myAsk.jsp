@@ -51,22 +51,22 @@
     </div>
     <!-- 문의내역 아코디언 -->
    
-    <div class="accordion container-sm container-fluid my-2" id="accordion" style="font-size: 14px;">
+    <div class="accordion container-sm container-fluid my-2 font-secondary" id="accordion" >
      <c:forEach var="dto" items="${ getOneToOneList }">
       <div class="card my-2">
           <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${dto.onetoone_idx}" aria-expanded="false" aria-controls="collapse">
             <div class="d-flex flex-wrap justify-content-between">
-              <span class="col-7 text-left">
+              <span class="col-8 text-left px-0 mb-1">
                 ${dto.onetoone_title}
               </span>
-              <span class="col-5 text-right" style="font-size: 12px;">
+              <span class="col-4 text-right px-0 font-secondary">
                 ${dto.onetoone_date}
               </span>
-              <span class="col-10 text-left">
+              <span class="col-10 text-left font-primary px-0">
                 ${dto.onetoone_contents}
               </span>
-              <span class="col-2 text-right">
-                <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
+              <span class="col-2 text-right pr-0 pt-5">
+                <img src="/img/icon/down.png" alt="펼치기 아이콘" width="25px" height="25px">
               </span>
             </div>
           </button>
