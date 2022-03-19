@@ -16,6 +16,7 @@ public class TokenProvider {
 	private static final String SECRET_KEY = "bm93b25lemVuMQ==";
 	
 	public String create(String user_idx) {
+		System.out.println("토큰생성");
 		// 토큰 유효기간은 발급 후 1일
 		Date expiryDate = Date.from(Instant.now().plus(1, ChronoUnit.DAYS));
 		

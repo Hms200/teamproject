@@ -29,6 +29,8 @@ public class UserDetailsServieceImpl implements UserDetailsService{
 		if(user == null) {
 			throw new UsernameNotFoundException(user_id);
 		}
+		System.out.println("로그인인증을 시작합니다.");
+		System.out.println("로그인 시도 id : " + user.getUser_id());
 		
 		CustomUserDetails customUserDetails = new CustomUserDetails();
 		customUserDetails.setUsername(user.getUser_id());
@@ -46,6 +48,7 @@ public class UserDetailsServieceImpl implements UserDetailsService{
 		customUserDetails.setAccountNonExpired(true);
 		customUserDetails.setAccountNonLocked(true);
 		customUserDetails.setCredentialsNonExpried(true);
+		System.out.println("userDetaiilService종료");
 		
 		return customUserDetails;
 	}

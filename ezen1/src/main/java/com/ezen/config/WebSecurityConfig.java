@@ -2,23 +2,64 @@ package com.ezen.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-
+import com.ezen.security.CustomAuthFailureHandler;
 import com.ezen.security.JwtAuthenticationFilter;
+import com.ezen.security.LoginSuccessHandler;
+import com.ezen.security.UserDetailsServieceImpl;
 
 
-@EnableWebSecurity(debug = true)
+
+@Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	JwtAuthenticationFilter jwtAuthenticationFilter;
 	
+	@Autowired
+	UserDetailsServieceImpl userdetailsserviceImpl;
+	
+	// 로그인 성공시 수행할 작업(토큰발급)
+	@Autowired
+	LoginSuccessHandler loginSuccessHandler;
+	// 로그인 실패시 수행할 작업(실패원인 분석)
+	@Bean
+	public AuthenticationFailureHandler failureHandler() {
+		return new CustomAuthFailureHandler();
+	}
+	// passwordEncoder를 등록하고 UserDetailsService가 사용할 수 있게 등록해줌
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+
+	// passwordEncoder를 UserDetailsService가 사용할 수 있게 등록해줌
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception{
+		auth.userDetailsService(userdetailsserviceImpl).passwordEncoder(passwordEncoder());
+	}
+	
+	
+	// static 자원은 적용하지 않음
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/resources/**","/img/**","/css/**","/js/**");
+	}
+
 
 
 	@Override
@@ -27,18 +68,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		// http 시큐리티 빌더
 		http.cors()
 			.and()
-				.csrf()   // 우선 disable
+				.csrf()   // 사용하지 않으므로 disable
 					.disable()
-				.httpBasic()   // token인증이므로 basic인증은 disable
+				.httpBasic()   // token인증이므로 basic인증 disable
 					.disable()
 				.sessionManagement()  // session 생성 설정
 					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
 			.and()
 				.authorizeRequests()   // 다음 경로는 인증 안해도 됨
 					.antMatchers(
-							"/", "/main", "/aboutUs", "/siteMap",
-							"/goodsList/goodsList", "goodsList/goosDetail","/login/**",
-							"/js/**", "/img/**", "/css/**").permitAll()
+							"/main", "/aboutUs", "/siteMap",
+							"/goodsList/goodsList", "goodsList/goosDetail"
+							).permitAll()
 					.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest()  // 위 경로 외에는 인증 해야 함
 					.authenticated()
@@ -48,11 +89,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.usernameParameter("user_id")
 					.passwordParameter("user_pw")
 					.loginProcessingUrl("/login/loginAction")
-					.failureForwardUrl("/error/error")
-					.defaultSuccessUrl("/main")
+					.successHandler(loginSuccessHandler)
+					.failureHandler(failureHandler())
+					.permitAll()
 			.and()
 				.logout()
-					.logoutUrl("/login/logoutAction")
+					.logoutRequestMatcher(new AntPathRequestMatcher("/login/logoutAction"))
 					.deleteCookies("Authorization")
 					.logoutSuccessUrl("/main");
 			
@@ -61,8 +103,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.exceptionHandling()
 				.accessDeniedPage("/error/error");
 	}
-
-
+	
+	
 	
 	
 }

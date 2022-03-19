@@ -30,16 +30,16 @@ public class LoginController {
 	@RequestMapping("login")
 	public String login(HttpSession session) {
 		
-		int user_idx;
-		try {
-			user_idx = (int) session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
-			user_idx = 0;
-		}
-		System.out.println(user_idx);
-		if( user_idx != 0 ) {	
-			return "redirect:../myPage/myPage";
-		} 	
+//		int user_idx;
+//		try {
+//			user_idx = (int) session.getAttribute("user_idx");
+//		} catch (NullPointerException e) {
+//			user_idx = 0;
+//		}
+//		
+//		if( user_idx != 0 ) {	
+//			return "redirect:../myPage/myPage";
+//		} 	
 			return "login/login";
 		
 	}
@@ -77,14 +77,14 @@ public class LoginController {
 	}
 	
 	//로그인액션
-	@PostMapping("loginAction")
-	@ResponseBody
-	public String loginAction( @RequestParam("user_id") String user_id,
-							   @RequestParam("user_pw") String user_pw,
-							   HttpServletResponse response) {
-		String result = loginService.login(user_id, user_pw, response);			
-		return result;
-	}
+//	@RequestMapping("loginAction")
+//	//@ResponseBody
+//	public String loginAction( @RequestParam("user_id") String user_id,
+//							   @RequestParam("user_pw") String user_pw
+//							   ) {
+////		String result = loginService.login(user_id, user_pw, response);			
+//		return "";
+//	}
 
 	//로그아웃 기능
 	@RequestMapping("logoutAction")
