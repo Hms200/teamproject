@@ -19,22 +19,22 @@
 <c:import url="../header.jsp"></c:import>
 
 <!-- container -->
-  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer" style="max-width: 520px;">
-    <!-- 타이틀 -->
-    <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
-      <!-- 뒤로가기 버튼 -->
-      <div class="col-1 my-3">
-          <img src="/img/icon/left.png" alt="뒤로가기" onclick="window.history.back()" width="30px" height="30px" style="cursor: pointer;">
-      </div>
-      <div class="col-11 my-3 py-1 text-center font-weight-bold">
-        문의하기
-      </div>
-    </div>
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer" style="max-width: 520px;">
+
+  <!-- title container -->
+        <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
+            <!-- title -->
+                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+                  문의하기
+                </div>
+            </div>
+   	
+   	<div class="" style="max-width: 340px;">         
     <!-- 폼 시작 -->
     <form action="qnaQuestionAction" method="post" name="qnaQuestionForm" onsubmit="return nullChecker();" style="margin-bottom:30px;">
-      <div class="container-sm contaier-fluid d-flex flex-wrap justify-content-center my-5" style="font-size: 14px;">
+      <div class="container-sm contaier-fluid d-flex flex-wrap justify-content-center my-3" style="font-size: 14px;">
           <span class="col-12 font-weight-bold mb-2" style="font-size: 16px; padding-left:5px">
-            [${user_id}]님
+            [${user_id}] 님
           </span>
           
             <!-- 히든 input -->
@@ -42,20 +42,16 @@
             <input type="hidden" name="user_idx" value="${user_idx}">
             <!-- <input type="hidden" name="onetoone_date" value="onetoone_date"> -->
             <!-- 제목 -->
-            <span>
-              <input type="text" name="onetoone_title" class="nullcheck px-2" placeholder="제목을 입력해주세요" style="width: 200px; height: 38px; border-radius:5px;">
-            </span>
+              <input type="text" name="onetoone_title" class="nullcheck pl-2 pr-0 col-7 mr-4" placeholder="제목을 입력해주세요" style="height: 38px;">     
             <!-- 카테고리 -->
-            <select name="onetoone_cat" style="width: 100px; height: 38px; padding: 5px; border-radius:5px;">
+            <select name="onetoone_cat" class="col-4 rounded" style="height: 38px; padding: 5px;">
               <option selected hidden>문의 종류</option>
               <option value="상품문의">상품문의</option>
               <option value="배송문의">배송문의</option>
               <option value="결제문의">결제문의</option>
             </select>
             <!-- 내용 -->
-            <span>
-              <textarea name="onetoone_contents" class="nullcheck mt-2 px-2 py-2" placeholder="내용을 입력해주세요" cols="30" rows="20" style="width: 300px; height: 300px; resize: none; border-radius:5px;"></textarea>
-            </span>
+              <textarea name="onetoone_contents" class="nullcheck mt-2 px-2 py-2 col-12" placeholder="내용을 입력해주세요" cols="30" rows="20" style="height: 300px; resize: none; border-radius:5px;"></textarea>
         </div>
             <div class="container-sm container-fluid d-flex flex-row justify-content-center" style="height: 40px;">
                 <!-- 취소버튼 -->
@@ -63,8 +59,9 @@
                 <!-- 작성버튼 -->
                 <button type="submit" class="btn btn-dark mx-2" style="width: 100px; cursor: pointer;">작성하기</button>
             </div>
-            </form>
-        </div>
+        </form>
+     </div>
+  </div>
       
     
 <c:import url="../footer.jsp"></c:import>
