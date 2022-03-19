@@ -51,7 +51,7 @@
               <option value="결제문의">결제문의</option>
             </select>
             <!-- 내용 -->
-              <textarea name="onetoone_contents" class="nullcheck mt-2 px-2 py-2 col-12" placeholder="내용을 입력해주세요" cols="30" rows="20" style="height: 300px; resize: none; border-radius:5px;"></textarea>
+              <textarea name="onetoone_contents" class="nullcheck mt-2 px-2 py-2 col-12 rounded" placeholder="내용을 입력해주세요" cols="30" rows="20" style="height: 300px; resize: none;"></textarea>
         </div>
             <div class="container-sm container-fluid d-flex flex-row justify-content-center" style="height: 40px;">
                 <!-- 취소버튼 -->

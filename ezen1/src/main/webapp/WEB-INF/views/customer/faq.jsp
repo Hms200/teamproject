@@ -52,14 +52,14 @@
     <!-- faq아코디언 -->
     <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 16px;">
       <c:forEach var="dto" items="${ getFaqList }">
-      <div class="card my-2">
+      <div class="card my-1">
           <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${dto.faq_idx}" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
             <div class="d-flex justify-content-between">
               <span>
                 ${dto.faq_title}
               </span>
               <span>
-                <img src="/img/icon/down.png" alt="펼치기 아이콘" width="30px" height="30px">
+                <img src="/img/icon/down.png" alt="펼치기 아이콘" width="25px" height="25px">
               </span>
             </div>
           </button>
@@ -73,7 +73,7 @@
               <div class="d-flex justify-content-end">
               <c:if test="${ user_id eq 'admin' }">
               	<a href="faqDeleteAction?faq_idx=${ dto.faq_idx }">
-                	<button class="btn btn-secondary" style="width: 60px; height: 30px; cursor: pointer;">삭제</button>
+                	<button class="btn btn-secondary w-5 mt-1" style="height: 30px; cursor: pointer; font-size:14px;">삭제</button>
                 </a>
        		  </c:if>
               </div>
@@ -89,52 +89,48 @@
       </c:if>
     </div>
 
-    <!-- faq작성 팝업(관리자) -->
-    <div class="position-absolute d-none bg-white border border-dark-50 rouned w-100" id="faq_write_popup" style="top: 60px; left: 10px; z-index: 1100; max-width: 520px;">
-      <!-- 닫기 버튼 -->
-      <div class="d-flex justify-content-end">
-        <img src="/img/icon/cross.png" alt="닫기 버튼" width="30px" height="30px" style="cursor: pointer;" onclick="popupHideAndShow(target ='faq_write_popup')">
-      </div>
-      <div style="margin: 0 20px 30px">
-        <!-- 타이틀 -->
-        <div class="text-center font-weight-bold text-dark" style="height: 25px; margin-bottom: 20px; font-size: 16px;">
-          FAQ문의
-        </div>
-        <div class="d-flex justify-content-center">
-        <!-- 작성폼 시작 -->
-         <form action="faqWriteAction" method="post" name="faqWriteForm" onsubmit="return nullChecker();">
-          <!-- 히든 input -->
-          <!-- <input type="hidden" name="faq_idx" value="faq_idx"> -->
-          <div class="d-flex">
-            <!-- 제목 -->
-            <div>
-              <input type="text" name="faq_title" placeholder="제목을 입력해주세요" class="text-dark nullcheck" style="width: 200px; height: 40px; margin-bottom: 5px; padding: 2px 15px; font-size: 14px;">
-            </div>
-              <!-- 카테고리 -->
-            <div>
-              <select name="faq_cat" style="width: 100px; height: 40px; font-size: 14px;">
-                <option selected hidden>문의 종류</option>
-                <option value="상품문의">상품문의</option>
-                <option value="배송문의">배송문의</option>
-                <option value="결제문의">결제문의</option>
-              </select>
-            </div>
-          </div>
-    <!-- 내용 -->
-          <div>
-            <textarea name="faq_contents" placeholder="내용을 입력해주세요" cols="30" rows="10" class="text-dark nullcheck" style="width: 300px; height: 100px; font-size: 14px; margin-bottom: 30px;resize: none;"></textarea>
-          </div>
-      <!-- 확인 버튼 -->
-          <div class="d-flex align-items-center justify-content-center">
-            <input type="submit" value="확인" class="btn btn-dark text-light form-control" style="width: 185px; margin: 20px 80px 0; font-size: 14px; cursor: pointer;">
-          </div>
-          </form>
-        </div>
-          
-      </div>
-    </div>
 
-  
+ <!--팝업창 수정   -->
+    <div class="container-sm container-fluid col-12 position-absolute d-none flex-column justify-content-center bg-white border border-dark-50 rounded" style="top:50%; left: 50%; transform:translate(-50%, -50%); max-width:340px;" id="faq_write_popup">
+      <!-- 이모티콘  -->
+      <div class="d-100 d-flex flex-row justify-content-end">
+        <img src="/img/icon/cross.png" alt="" width="30px" height="30px" onclick="popupHideAndShow(target ='faq_write_popup');">
+      </div>
+      
+      <div class="w-100 d-flex flex-column justify-content-center align-items-center mb-4" >
+          <!-- pwFindText -->
+          <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;"> FAQ문의</div>          
+          <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
+            <form action="faqWriteAction" method="post" name="faqWriteForm" onsubmit="return nullChecker();" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+              
+	          <!-- 히든 input -->
+	          <!-- <input type="hidden" name="faq_idx" value="faq_idx"> -->
+	          <div class="d-flex">
+	            <!-- 제목 -->
+	            <div>
+	              <input type="text" name="faq_title" placeholder="제목을 입력해주세요" class="text-dark nullcheck" style="width: 200px; height: 40px; margin-bottom: 5px; padding: 2px 15px; font-size: 14px;">
+	            </div>
+	              <!-- 카테고리 -->
+	            <div>
+	              <select name="faq_cat" style="width: 100px; height: 40px; font-size: 14px;">
+	                <option selected hidden>문의 종류</option>
+	                <option value="상품문의">상품문의</option>
+	                <option value="배송문의">배송문의</option>
+	                <option value="결제문의">결제문의</option>
+	              </select>
+	            </div>
+	          </div>
+	   		 <!-- 내용 -->
+	            <textarea name="faq_contents" placeholder="내용을 입력해주세요" cols="30" rows="10" class="text-dark nullcheck mb-2" style="width: 300px; height: 100px; font-size: 14px; resize: none;"></textarea>
+	     	 <!-- 확인 버튼 -->
+	          <div class="d-flex align-items-center justify-content-center">
+	            <input type="submit" value="확인" class="btn btn-dark text-light form-control" style="width: 185px; margin: 20px 80px 0; font-size: 14px; cursor: pointer;">
+	          </div>         
+            </form>
+          </div>         
+      </div>     
+    </div>
+ 
   </div>
     
 <c:import url="../footer.jsp"></c:import>
