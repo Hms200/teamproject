@@ -56,7 +56,7 @@
             
         </div>
             
-        <div class="d-flex flex-column justify-content-center mb-2">
+        <div class="d-flex flex-column justify-content-center my-3">
         	<!-- 작성버튼 admin에게만 보임 -->
         	<c:if test="${ user_id eq 'admin' }">
             <button class="btn btn-secondary text-dark border-0 mx-auto font-weight-bold" style="width: 100px;font-size: 16px;" onclick="popupHideAndShow(target = 'notice_write_popup')">
