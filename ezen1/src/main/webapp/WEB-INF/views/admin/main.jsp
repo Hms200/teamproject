@@ -29,10 +29,10 @@
     <div class="container-sm container-fluid mt-0" style="max-width: 520px; font-size: 14px;">        
 
         <!-- 회원관리 타이틀 -->
-        <p class="text-start ml-3 my-3 font-weight-bold">회원관리</p>
+        <p class="col-12 text-start my-3">회원관리</p>
         
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-2 pb-4 text-center"style="border-bottom: solid;">
+        <div class="container-sm container-fluid my-2 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="memberList">
@@ -48,9 +48,9 @@
         </div>
        
         <!-- 상품관리 타이틀 -->
-        <p class="text-start ml-3 my-3 font-weight-bold">상품관리</p>
+        <p class="col-12 text-start my-3">상품관리</p>
         <!-- 분류 버튼 -->
-         <div class="container-sm container-fluid my-3 pb-4 text-center"style="border-bottom: solid;">
+         <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="goods">
@@ -84,9 +84,9 @@
         </div>
 
         <!-- 쇼핑몰관리 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">쇼핑몰관리</p>
+        <p class="col-12 text-start my-3">쇼핑몰관리</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 pb-4 text-center"style="border-bottom: solid;">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="../notice">
@@ -102,7 +102,7 @@
         </div>
 
         <!-- 매출조회 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">매출조회</p>
+        <p class="col-12 text-start my-3">매출조회</p>
         <!-- 분류 버튼 -->
         <div class="container-sm container-fluid my-3 pb-4 text-center">
             <div class="row my-2">
