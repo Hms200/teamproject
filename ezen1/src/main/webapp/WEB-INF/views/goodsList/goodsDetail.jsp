@@ -127,20 +127,20 @@
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
           <img src="${goods.goods_detail}" alt="" class="img-fluid">
-         </div>
-          <!--구매하기버튼/장바구니 아이콘-->
-          
          
-        </div>
-      </div>
-       <!--구매하기버튼/장바구니 아이콘-->
-          <div class="w-100 my-2 py-2 pl-4 border border-dark-50">
+           <!--구매하기버튼/장바구니 아이콘-->
+          
+          <div class="d-flex w-100 my-2 py-2 pl-4 border border-dark-50 overflow">
             <!--장바구니 버튼을 누르면 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
             <img src="/img/icon/bag.png" id="justAdd"
               onclick="addCart(event);" style="width: 40px; height: 40px; cursor: pointer;">
             <!--구매하기 버튼을 누르면 장바구니페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <button type="submit" class="btn btn-primary col-9 ml-4" id="addAndBuy" onclick="addCart(event);">구매하기</button>
+            <button type="submit" class="btn btn-primary col-8 ml-4" id="addAndBuy" onclick="addCart(event);">구매하기</button>
+            </div>
          
+        </div>
+      </div>
+      
       <!--해당네브:리뷰-->
       <div class="dep _review ">
         <div class="d-flex flex-column justify-content-start my-3">
