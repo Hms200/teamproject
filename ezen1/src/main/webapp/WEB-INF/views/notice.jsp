@@ -42,12 +42,12 @@
             <!-- table -->
             <table class="table table-hover border border-dark-50">
                 <thead class="thead-dark-50 bg-secondary">
-                    <th scope="col">번호</th>
+                    <th scope="col" class="px-0">번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">날짜</th>
                 </thead>
                 <tbody>
-                	<c:forEach var="notice" items="${ noticeList }">
+                 	<c:forEach var="notice" items="${ noticeList }">
                     <tr>
                         <th scope="row">${ notice.notice_idx }</th>
                         <td onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" style="cursor: pointer;"> ${ notice.notice_title }</td>
@@ -129,12 +129,12 @@
                     </div>
                     </c:if>
                     <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
-                    <div class="mx-auto" style="width: fit-content;">
+                    <div class="mx-auto my-3" style="width: fit-content;">
                         <!-- 사용자용 확인버튼 -->
-                        <button class="btn btn-dark btn-lg <c:if test="${ user_id eq 'admin' }">d-none</c:if>>" style="width: 140px" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" type="button">확인</button>
-                        <!-- 관리자용 확인버튼 -->
+                        <button class="btn btn-dark btn-lg <c:if test="${ user_id eq 'admin' }">d-none</c:if>>" style="width: 80px; font-size:14px;" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" type="button">확인</button>
+                        <!-- 관리자용 수정버튼 -->
                         <c:if test="${ user_id eq 'admin' }">
-                        <input type="submit" class="btn btn-dark btn-lg" style="width: 140px;" value="확인">
+                        <input type="submit" class="btn btn-dark btn-lg" style="width: 80px; font-size:14px;" value="수정">
                         <button class="btn btn-secondary" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction?${ notice.notice_idx}')">삭제</button>
                         </c:if>
                     </div>
@@ -170,9 +170,9 @@
                     <div class="ml-4 my-2 pl-2">
                         <label><input class="mr-2 checkbox" type="checkbox" name="notice_show">중요공지사항</label>
                     </div>
-                    <!-- 확인버튼 -->
+                    <!-- 작성버튼 -->
                     <div class="mx-auto" style="width: fit-content;">
-                        <input type="submit" class="btn btn-dark btn-lg" style="width: 140px;" value="확인">
+                        <input type="submit" class="btn btn-dark btn-lg" style="width: 100px; font-size:16px;" value="작성">
                     </div>
                 </form>
             </div>

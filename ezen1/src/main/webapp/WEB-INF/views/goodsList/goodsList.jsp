@@ -42,7 +42,7 @@
           <div class="col-5 inline-block mx-auto my-2 px-0 border rounded val${ dto.goods_cat } position-relative">
             <a href="goodsDetail?goods_idx=${dto.goods_idx}">
             <img src="${dto.goods_thumb}" alt="" class="card-img-top img-fluid"></a>
-            <div class="card-body  py-2 pl-3 pr-3 text-dark text-decoration-none" >
+            <div class="card-body  mb-1 py-2 pl-3 pr-3 text-dark text-decoration-none" >
 	            <h5 class="card-title font-weight-bold" style="font-size:14px;">${dto.goods_name}</h5>
 	            <p class="card-text" style="font-size: 10px;">${dto.goods_cat}</p>
 	            <p class="card-text mb-2" style="font-size: 12px;">￦${dto.goods_price }</p>
