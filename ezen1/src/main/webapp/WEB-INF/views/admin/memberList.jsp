@@ -40,7 +40,7 @@
           <form action="userSearchAction" name="userSearchForm">
 
           <div class="d-flex flex-row mt-4 mb-4">
-          <div class="form-control" style="width: 90px;">
+          <div class="form-control pl-1" style="width: 80px;">
             <select class="form-select " name="cat" style="border: none; background-color: white;" onchange="submit();">
               <option value="0">id</option>
                <option value="1">구매량</option>
@@ -51,19 +51,19 @@
             </div>
             
                 <div class="search">
-                <input type="text" name="searchText" placeholder="카테고리를 선택해주세요" class="border border-1 form-control" style="width: 230px;">
-              </div>
-              <div>
-                <button class="btn" type="submit">
-                  <img src="/img/icon/search.png" alt="" style="width: 25px; height: 25px;">
-                </button>
+                <input type="text" name="searchText" placeholder="카테고리를 선택해주세요" class="border border-1 form-control" style="width: 215px;">
+             </div>
+             <div>
+                <button class="btn border form-control" type="submit">
+                  <img src="/img/icon/search.png" alt="" style="width: 23px; height: 23px;">
+               </button>
               </div>
               
            </div>
           </form> 
 
            <!-- 테이블 -->
-           <div class="table-responsive">
+           <div class="table-responsive mb-5" >
            <table class="table table-bordered table-sm text-dark">
                <thead class="font-weight-bold text-center" style="font-size: 14px;">
                 <tr class="table-secondary">
