@@ -11,34 +11,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
-      <style>
-      .line{
-          width: 100%;
-          height: 3px;
-          background-color: gray;
-          border-radius: 50%;
-      }
+    <style>
+
   </style>
 </head>
 <body>
-
 <c:import url="../pcMain.jsp"></c:import>
 
-
-<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
-
+<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 
 <c:import url="../header.jsp"></c:import>
 
 <!-- All container -->
-<div class="container-sm container-fluid d-flex flex-column postion-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px;">
+<div class="container-sm container-fluid d-flex flex-column postion-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top:60px;">
 
-        
+    <!-- 분류 컨테이너 -->
+    <div class="container-sm container-fluid mt-0" style="max-width: 520px; font-size: 14px;">        
 
         <!-- 회원관리 타이틀 -->
         <p class="text-start ml-3 my-3 font-weight-bold">회원관리</p>
+        
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-2 text-center">
+        <div class="container-sm container-fluid my-2 pb-4 text-center"style="border-bottom: solid;">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="memberList">
@@ -50,14 +44,13 @@
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">QnA</button>
                     </a>
                 </div>
-               
             </div>
-        </div><div class="line"></div>
+        </div>
        
         <!-- 상품관리 타이틀 -->
         <p class="text-start ml-3 my-3 font-weight-bold">상품관리</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-2 text-center">
+         <div class="container-sm container-fluid my-3 pb-4 text-center"style="border-bottom: solid;">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="goods">
@@ -88,12 +81,12 @@
                     </a>
                 </div>
             </div>
-        </div><div class="line"></div>
+        </div>
 
         <!-- 쇼핑몰관리 타이틀-->
         <p class="text-start ml-3 my-3 font-weight-bold">쇼핑몰관리</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-2 text-center">
+        <div class="container-sm container-fluid my-3 pb-4 text-center"style="border-bottom: solid;">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="../notice">
@@ -106,22 +99,22 @@
                     </a>
                 </div>
             </div>
-        </div><div class="line"></div>
+        </div>
 
         <!-- 매출조회 타이틀-->
         <p class="text-start ml-3 my-3 font-weight-bold">매출조회</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-2 text-center">
+        <div class="container-sm container-fluid my-3 pb-4 text-center">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="sales">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">매출조회</button>
                     </a>
-                </div>
-                
+               </div>
             </div>
-        </div>  
-</div>
+         </div>
+      </div>  
+  </div>
 
     
 <c:import url="../footer.jsp"></c:import>

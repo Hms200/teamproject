@@ -24,7 +24,7 @@
 <c:import url="../header.jsp"></c:import>
 
 <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer"
     style="max-width: 520px; margin-top: 60px">
     
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
@@ -127,14 +127,15 @@
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
           <img src="${goods.goods_detail}" alt="" class="img-fluid">
+         </div>
           <!--구매하기버튼/장바구니 아이콘-->
-          <div class="col-12 my-2">
+          <div class="w-100 my-2 ml-4 ">
             <!--장바구니 버튼을 누르면 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
             <img src="/img/icon/장바구니_큰아이콘.png" id="justAdd"
               onclick="addCart(event);" style="width: 40px; height: 40px; cursor: pointer;">
             <!--구매하기 버튼을 누르면 장바구니페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
             <button type="submit" class="btn btn-primary col-8 ml-4" id="addAndBuy" onclick="addCart(event);">구매하기</button>
-          </div>
+         
         </div>
       </div>
       <!--해당네브:리뷰-->
