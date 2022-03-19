@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -36,10 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	LoginSuccessHandler loginSuccessHandler;
 	// 로그인 실패시 수행할 작업(실패원인 분석)
-	@Bean
-	public AuthenticationFailureHandler failureHandler() {
-		return new CustomAuthFailureHandler();
-	}
+	@Autowired
+	CustomAuthFailureHandler customAuthFailureHandler;
 	// passwordEncoder를 등록하고 UserDetailsService가 사용할 수 있게 등록해줌
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -90,7 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.passwordParameter("user_pw")
 					.loginProcessingUrl("/login/loginAction")
 					.successHandler(loginSuccessHandler)
-					.failureHandler(failureHandler())
+					.failureHandler(customAuthFailureHandler)
 					.permitAll()
 			.and()
 				.logout()

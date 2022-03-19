@@ -79,6 +79,7 @@ public class LoginService {
 //		return result;									
 //	}
 
+	
 	//아이디찾기
 	//mapper를 통해 입력받은 user_name와 user_email과 매칭되는 user_id값 조회
 	//null 값일 경우 이전 페이지 이동, 값이 존재할 경우 자바스크립트 alert을 이용해 user_id 전달
@@ -97,7 +98,7 @@ public class LoginService {
 	public String findPW( String user_id, String user_name, String user_email) {
 		
 		String user_pw = userDao.getUserPwByFindPw( user_id, user_name, user_email);
-
+	
 		if( user_pw == null ) {
 			return "<script>alert('비밀번호를 찾을 수 없습니다.'); history.back(-1);</script>";
 			

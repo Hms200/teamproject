@@ -12,7 +12,9 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomAuthFailureHandler implements AuthenticationFailureHandler{
 
 	private final String DEFAULT_FAILURE_URL = "/login/login?error=true";
