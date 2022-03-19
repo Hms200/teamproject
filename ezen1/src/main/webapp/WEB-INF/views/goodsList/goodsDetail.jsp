@@ -24,7 +24,7 @@
 <c:import url="../header.jsp"></c:import>
 
 <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer"
     style="max-width: 520px; margin-top: 60px">
     
     <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
@@ -98,7 +98,7 @@
     </div>
     <!--판매가격-->
     <div class="mx-2 my-2 d-flex flex-row justify-content-between w-75" style="font-size: 14px;">
-      <div class="col-3" style="font-size: 14px;">
+      <div class="col-3 py-2" style="font-size: 14px;">
         판매가 
       </div>
       <input type="hidden" name="goods_price" value="${ goods.goods_price }">
@@ -107,7 +107,7 @@
       <%-- <fmt:formatNumber value="${goods.goods_price}" type="number" /> --%>
       </div>
     </div>
-    <div class="w-100 bg-primary" style="height: 20px">
+    <div class="w-100 bg-secondary" style="height: 20px">
       <!--bg-dark-50-->
     </div>
     <!--상품정보 리뷰 문의/안내 네브-->
@@ -115,9 +115,9 @@
       <div
         class="navMenu d-flex flex-row justify-content-around mb-2 mt-1 font-weight-bold border-bottom w-100 text-center"
         style="height: 45px;">
-        <div class="col-4 info on" onclick="setMenu('info')">상품 정보</div>
-        <div class="col-4 review" onclick="setMenu('review')">리뷰</div>
-        <div class="col-4 inquiry" onclick="setMenu('inquiry')">문의/안내</div>
+        <div class="col-4 info on pt-2" onclick="setMenu('info')">상품 정보</div>
+        <div class="col-4 review pt-2" onclick="setMenu('review')">리뷰</div>
+        <div class="col-4 inquiry pt-2" onclick="setMenu('inquiry')">문의/안내</div>
       </div>
     </nav>
 
@@ -127,16 +127,20 @@
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
           <img src="${goods.goods_detail}" alt="" class="img-fluid">
+         </div>
           <!--구매하기버튼/장바구니 아이콘-->
-          <div class="col-12 my-2">
-            <!--장바구니 버튼을 누르면 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <img src="/img/icon/장바구니_큰아이콘.png" id="justAdd"
-              onclick="addCart(event);" style="width: 40px; height: 40px; cursor: pointer;">
-            <!--구매하기 버튼을 누르면 장바구니페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <button type="submit" class="btn btn-primary col-8 ml-4" id="addAndBuy" onclick="addCart(event);">구매하기</button>
-          </div>
+          
+         
         </div>
       </div>
+       <!--구매하기버튼/장바구니 아이콘-->
+          <div class="w-100 my-2 py-2 pl-4 border border-dark-50">
+            <!--장바구니 버튼을 누르면 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
+            <img src="/img/icon/bag.png" id="justAdd"
+              onclick="addCart(event);" style="width: 40px; height: 40px; cursor: pointer;">
+            <!--구매하기 버튼을 누르면 장바구니페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
+            <button type="submit" class="btn btn-primary col-9 ml-4" id="addAndBuy" onclick="addCart(event);">구매하기</button>
+         
       <!--해당네브:리뷰-->
       <div class="dep _review ">
         <div class="d-flex flex-column justify-content-start my-3">

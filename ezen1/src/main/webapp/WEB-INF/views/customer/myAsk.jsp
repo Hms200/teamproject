@@ -19,17 +19,8 @@
 <c:import url="../header.jsp"></c:import>
 
   <!-- container -->
-  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
-    <!-- 타이틀 -->
-    <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
-      <!-- 뒤로가기 버튼 -->
-      <div class="col-1 my-3">
-          <img src="/img/icon/left.png" onclick="window.history.back()" alt="" width="30px" height="30px" style="cursor: pointer;">
-      </div>
-      <div class="col-11 my-3 py-1 text-center font-weight-bold">
-        고객센터
-      </div>
-    </div>
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer" style="max-width: 520px; margin-top:0;">
+
     <!-- 네브바 -->
     <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center text-decoration-none text-center border-bottom font-weight-bold" style="font-size: 16px; height: 90px;">
       <nav>
@@ -45,10 +36,10 @@
       </nav>
     </div>
     <!-- 문의종류 -->
-    <div class="container-sm container-fluid d-flex justify-content-end mt-2 mb-2">
+    <div class="container-sm container-fluid d-flex justify-content-end my-3">
       <form name="myAskCatForm" method="get" action="myAskCatAction">
       <span>
-        <select name="onetoone_cat" onchange="this.form.submit();" style="width: 100px; height: 50px; font-size: 14px;">
+        <select name="onetoone_cat" onchange="this.form.submit();" style="width: 100px; height: 38px; font-size: 14px; padding:3px">
           <option hidden>문의종류</option>
           <option value="전체문의" <c:if test="${ onetoone_cat == '전체문의'}"> selected </c:if> >전체문의</option>
           <option value="상품문의" <c:if test="${ onetoone_cat == '상품문의'}"> selected </c:if> >상품문의</option>
@@ -60,9 +51,9 @@
     </div>
     <!-- 문의내역 아코디언 -->
    
-    <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 14px;">
+    <div class="accordion container-sm container-fluid my-2" id="accordion" style="font-size: 14px;">
      <c:forEach var="dto" items="${ getOneToOneList }">
-      <div class="card">
+      <div class="card my-2">
           <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${dto.onetoone_idx}" aria-expanded="false" aria-controls="collapse">
             <div class="d-flex flex-wrap justify-content-between">
               <span class="col-7 text-left">

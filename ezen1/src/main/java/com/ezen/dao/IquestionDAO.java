@@ -16,5 +16,7 @@ public interface IquestionDAO {
 	public int updateQnaAnswer(int question_idx, String question_reply);
 	
 	//등록된 모든 질문 가져오기
-	public ArrayList<Question> getAllQuestions();
+	public ArrayList<Question> getAllQuestions(int start, int end);
+	
+	public int countOfQuestions();
 }
