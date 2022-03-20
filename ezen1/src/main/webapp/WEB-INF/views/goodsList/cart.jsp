@@ -25,18 +25,14 @@
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
     style="max-width: 520px; margin-top: 60px;">
    
-     
-      <div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-2" style="float:left;">장바구니</div>
-      
-
     <!--장바구니 내용-->
     <c:if test="${ cart != 0 }">
     <!-- 전체선택/선택삭제 -->
-    <main class="w-100">
-    <div class="container-fluid d-flex felx-row justify-content-between mx-3 my-3 border-bottom col-11" style="height: 40px;">
+    <main class="w-100 my-4">
+    <div class="container-fluid d-flex felx-row justify-content-between mx-3 my-3 border-bottom col-11" style="height: 46px;">
       <div class="ml-0">
-        <input type="checkbox" value="selectAll" class="ml-0" id="checkAll" onclick="selectAll(this)" style="width: 16px; height: 16px;"><label for="selectAll"
-          class="ml-2" style="font-size: 14px;">전체선택</label>
+        <input type="checkbox" value="selectAll" class="ml-0 font-primary" id="checkAll" onclick="selectAll(this)" style="width: 16px; height: 16px;"><label for="selectAll"
+          class="ml-2">전체선택</label>
       </div> 
       
       <div>
@@ -51,7 +47,7 @@
        <c:forEach var="cart" items="${ cartlist }" varStatus="status">
        
 
-      <div class="row mt-1 mx-3 mb-1" style="font-size: 14px;">
+      <div class="row mt-1 mx-2 mb-1 font-primary">
         <input type="hidden" class="cartidx" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
         <input type="checkbox" name="${ cart.cart_idx }" class="mx-1" style="width: 16px; height: 16px;">
         <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page" />
@@ -61,27 +57,26 @@
       </div>
       
       <div class="d-flex flex-row justify-content-around">
-        <img src="${ goods.goods_thumb }" alt="" class="img-fluid mr-1" width="100px"
-          height="100px">
+        <img src="${ goods.goods_thumb }" alt="" class="img-fluid mr-1" width="100px" height="100px">
         <div class="d-flex flex-column col-8 pl-2 pt-1" >
           <div class="d-flex flex-row justify-content-between mb-1">
-            <span style="font-size:14px;">가격</span><span>${ cart.cart_total_price }</span> 
-            <input type="hidden" class="price" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }" style="font-size:14px;">
+            <span class="font-primary">가격</span><span>${ cart.cart_total_price }</span> 
+            <input type="hidden" class="price font-primary" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
           </div>
           <div class="d-flex flex-row justify-content-between mb-1">
-            <span style="font-size:14px;">옵션</span>
-            <span style="font-size:14px"><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
+            <span class="font-primary">옵션</span>
+            <span class="font-primary"><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
             <c:forEach var="option" items="${ optionlist }">
             	<c:if test="${ this_cart_option eq option.option_idx }">${ option.option_name }+${ option.option_price }</c:if>
             </c:forEach>
           <c:remove var="goods" scope="page"/>  
             </span>
           </div> 
-          <div class="d-flex flex-row justify-content-between" style="font-size:14px">
+          <div class="d-flex flex-row justify-content-between font-primary">
             옵션
             <!-- 서버에서 처리 -->
             <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1 btn btn-secondary d-flex flex-content-center" value="변경하기"
-              style="width: 70px;height: 20px; font-size: 11px; line-height:2px;" onclick="changeValue(event);">
+              style="width: 70px; height: 20px; font-size: 11px; line-height:2px;" onclick="changeValue(event);">
           </div>
           <div class="d-flex flex-row justify-content-end mt-1">
           <div class="mr-1">
@@ -109,7 +104,7 @@
       
       </c:forEach>
       
-      <div class="d-flex flex-row justify-content-between mx-2 mt-5 mb-2" style="font-size: 14px;">
+      <div class="d-flex flex-row justify-content-between mx-2 mt-5 mb-2 pr-3 font-primary">
         <div>
           상품금액
         </div>
@@ -117,7 +112,7 @@
           
         </div>
       </div>
-      <div class="d-flex flex-row justify-content-between mx-2 mb-3" style="font-size: 14px;">
+      <div class="d-flex flex-row justify-content-between mx-2 mb-3 pr-3 font-primary">
         <div>
           배송비
         </div>
@@ -126,18 +121,17 @@
         </div>
       </div>
     </div>
-    <div class="container d-flex flex-row justify-content-between my-4 mx-0 w-100 font-weight-bold"
-      style="font-size: 16px;">
+    <div class="container d-flex flex-row justify-content-between my-4 mx-0 w-100 font-weight-bold">
       <div>
         총 결제 금액
       </div>
-      <div id="final_price">
+      <div class="pr-4" id="final_price">
         
       </div>
       <input type="hidden" name="cart_total_price" value="">
    		<input type="hidden" name="cart_list_idx" value="">
     </div>
-    <div class="font-weight-bold w-100 mt-5 text-center mb-5" style="font-size: 16xp;">
+    <div class="font-weight-bold w-100 mt-5 text-center mb-5">
       <button type="button" class="btn btn-primary" style="width: 300px; height: 40px;" onclick="listingGoods();">주문하기</button>
       </div>
       
