@@ -32,7 +32,7 @@
           <!-- 검색바 -->
           <form action="userSearchAction" name="userSearchForm" >
 
-          <div class="d-flex flex-row mt-2 mb-4">
+          <div class="d-flex flex-row mt-2 my-5">
           <div class="form-control pl-1" style="width: 80px;">
             <select class="form-select " name="cat" style="border: none; background-color: white;" onchange="submit();">
               <option value="0">id</option>
@@ -44,7 +44,7 @@
             </div>
             
                 <div class="search d-flex flex-row">
-                <input type="text" name="searchText" class="border border-1 form-control" style="width: 220px;" >
+                <input type="text" name="searchText" value="검색" class="border border-1 form-control" style="width: 220px;" >
                 <button class="btn form-control p-1 pb-2 " type="submit" style="margin-left: -45px;">
                   <img src="/img/icon/search.png" alt="" style="width: 18px; height: 18px;">
                </button>
