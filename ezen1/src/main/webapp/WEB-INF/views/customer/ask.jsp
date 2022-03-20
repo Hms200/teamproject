@@ -15,25 +15,32 @@
 <body>
 <c:import url="../pcMain.jsp"></c:import>
 
-<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+<div class="container-sm container-fluid d-flex flex-column align-items-center px-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 <c:import url="../header.jsp"></c:import>
 
 <!-- container -->
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer" style="max-width: 520px;">
 
-  <!-- title container -->
-        <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
-            <!-- title -->
-                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
-                  문의하기
-                </div>
-            </div>
-   	
-   	<div class="" style="max-width: 340px;">         
+  <!-- 네브바 -->
+    <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center text-decoration-none text-center border-bottom font-weight-bold" style="height: 90px;">
+      <nav>
+        <span>
+          <a href="/customer/faq" class="text-black-50 col-4">FAQ</a>
+        </span>
+        <span>
+          <a href="myAsk" class="text-black-50 col-4">내 문의내역</a>
+        </span>
+        <span>
+          <a href="" class="text-primary col-4">문의하기</a>
+        </span>
+      </nav>
+    </div>
+    
+  <div class="mt-3" style="max-width: 340px;">         
     <!-- 폼 시작 -->
     <form action="qnaQuestionAction" method="post" name="qnaQuestionForm" onsubmit="return nullChecker();" style="margin-bottom:30px;">
-      <div class="container-sm contaier-fluid d-flex flex-wrap justify-content-center my-3" style="font-size: 14px;">
-          <span class="col-12 font-weight-bold mb-2" style="font-size: 16px; padding-left:5px">
+      <div class="container-sm contaier-fluid d-flex flex-wrap justify-content-center my-3 font-primary ">
+          <span class="col-12 font-weight-bold mb-2" style="padding-left:5px">
             [${user_id}] 님
           </span>
           
