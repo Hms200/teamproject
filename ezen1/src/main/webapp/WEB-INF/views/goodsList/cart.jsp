@@ -24,15 +24,11 @@
   <div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
     style="max-width: 520px; margin-top: 60px;">
-    <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom" style="height: 60px">
-      <div class="col-2 my-3">
-        <a href="../goodsList/goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
-          width="30px" height="30px"></a>
-      </div>
-      <div class="col-10 my-3 py-1 pr-5 text-center font-weight-bold">
-        장바구니
-      </div>
-    </div>
+   
+     
+      <div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-2" style="float:left;">장바구니</div>
+      
+
     <!--장바구니 내용-->
     <c:if test="${ cart != 0 }">
     <!-- 전체선택/선택삭제 -->
@@ -43,8 +39,8 @@
           class="ml-2" style="font-size: 14px;">전체선택</label>
       </div> 
       
-      <div style="font-size: 13px;">
-        <input type="button" value="선택삭제" onclick="removeGoodsInCart();">
+      <div>
+        <input type="button" value="선택삭제" onclick="removeGoodsInCart();" class="btn btn-secondary py-1 " style="font-size: 13px;">
       </div>
     </div>
     <!-- 상품내용  -->
@@ -65,9 +61,9 @@
       </div>
       
       <div class="d-flex flex-row justify-content-around">
-        <img src="${ goods.goods_thumb }" alt="" class="img-fluid mx-3" width="100px"
+        <img src="${ goods.goods_thumb }" alt="" class="img-fluid mr-1" width="100px"
           height="100px">
-        <div class="d-flex flex-column col-7">
+        <div class="d-flex flex-column col-8 pl-2 pt-1" >
           <div class="d-flex flex-row justify-content-between mb-1">
             <span style="font-size:14px;">가격</span><span>${ cart.cart_total_price }</span> 
             <input type="hidden" class="price" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }" style="font-size:14px;">
@@ -84,24 +80,28 @@
           <div class="d-flex flex-row justify-content-between" style="font-size:14px">
             옵션
             <!-- 서버에서 처리 -->
-            <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1" value="변경하기"
-              style="width: 80px;height: 20px; font-size: 11px;" onclick="changeValue(event);">
+            <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1 btn btn-secondary d-flex flex-content-center" value="변경하기"
+              style="width: 70px;height: 20px; font-size: 11px; line-height:2px;" onclick="changeValue(event);">
           </div>
-          <div class="d-flex flex-row justify-content-start">
-            <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 150px; font-size:14px;">
+          <div class="d-flex flex-row justify-content-end mt-1">
+          <div class="mr-1">
+            <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 125px; font-size:13px;">
               <c:forEach var="options" items="${ optionlist }">
               <option <c:if test="${ this_cart_option eq options.option_idx }"> selected </c:if> value="${ options.option_idx }">${ options.option_name }+${ options.option_price }</option>
               </c:forEach>
               <c:remove var="this_cart_option" scope="page"/>
             </select>
+            </div>
+            <div>
             <select class="form-select text-center" name="changeValue${ cart.cart_idx }"
-              style="width: 60px; font-size: 12px;">
+              style="width: 35px; font-size: 13px;">
               <option <c:if test="${ cart.cart_amount == 1 }"> selected </c:if> value="1" >1</option>
               <option <c:if test="${ cart.cart_amount == 2 }"> selected </c:if> value="2">2</option>
               <option <c:if test="${ cart.cart_amount == 3 }"> selected </c:if> value="3">3</option>
               <option <c:if test="${ cart.cart_amount == 4 }"> selected </c:if> value="4">4</option>
               <option <c:if test="${ cart.cart_amount == 5 }"> selected </c:if> value="5">5</option>
             </select>
+            </div>
             
           </div>
         </div>
