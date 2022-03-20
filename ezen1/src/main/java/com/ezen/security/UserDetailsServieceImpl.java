@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServieceImpl implements UserDetailsService{
@@ -31,10 +31,11 @@ public class UserDetailsServieceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
 		User user = userDAO.getMemberInfo(user_id);
 		if(user == null) {
+			log.info("해당 id를 찾을 수 없습니다.");
 			throw new UsernameNotFoundException(user_id);
 		}
-		System.out.println("로그인인증을 시작합니다.");
-		System.out.println("로그인 시도 id : " + user.getUser_id());
+		log.info("로그인 인증을 시작합니다.");
+		log.info("로그인 시도 id : {}", user.getUser_id());
 		
 		CustomUserDetails customUserDetails = new CustomUserDetails();
 		customUserDetails.setUsername(user.getUser_id());
@@ -43,10 +44,10 @@ public class UserDetailsServieceImpl implements UserDetailsService{
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		if(user_id.equals("admin")) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
-			System.out.println("사용자권한 : ADMIN");
+			log.info("사용자 권한 : ADMIN");
 		}else {
 			grantedAuthorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
-			System.out.println("사용자권한 : MEMBER");
+			log.info("사용자 권한 : MEMBER");
 			
 		}
 		

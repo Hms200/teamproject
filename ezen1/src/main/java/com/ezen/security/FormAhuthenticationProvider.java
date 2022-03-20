@@ -11,7 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class FormAhuthenticationProvider implements AuthenticationProvider{
@@ -28,17 +29,17 @@ public class FormAhuthenticationProvider implements AuthenticationProvider{
 		String username = authentication.getName();
 		String password = (String) authentication.getCredentials();
 		
-		System.out.println("로그인 요청 >>>>>> 검증대상 id : " + username);
+		log.info("로그인 요청  >>>>> 검증대상 id : {}", username);
 		
 		CustomUserDetails userDetails = (CustomUserDetails) userDetailsServieceImpl.loadUserByUsername(username);
 		String passwordFormDB = userDetails.getPassword();
 
 		
 		if(!passwordEncoder().matches(password, passwordFormDB)) {
-			System.out.println("비밀번호 불일치");
+			log.info("비밀번호 불일치");
 			throw new BadCredentialsException("비밀번호가 틀립니다.");
 		}
-		System.out.println("비밀번호검증완료");
+		log.info("비밀번호 검증 완료");
 		
 		return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), null, userDetails.getAuthorities());
 	}

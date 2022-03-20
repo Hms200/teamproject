@@ -14,6 +14,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class CustomAuthFailureHandler implements AuthenticationFailureHandler{
 
@@ -33,9 +36,8 @@ public class CustomAuthFailureHandler implements AuthenticationFailureHandler{
 		}else {
 			errorMessage = "알수 없는 이유로 로그인에 실패하였습니다.";
 		}
-		System.out.println("failur handler msg : "+ errorMessage);
+		log.info("Failure Handler message : {}", errorMessage);
 		request.setAttribute("errorMessage", errorMessage);
-		
 		request.getRequestDispatcher(DEFAULT_FAILURE_URL).forward(request, response);
 	}
 	

@@ -9,14 +9,15 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class TokenProvider {
 
 	private static final String SECRET_KEY = "bm93b25lemVuMQ==";
 	
 	public String create(String user_idx) {
-		System.out.println("토큰생성");
+		log.info("토큰 생성");
 		// 토큰 유효기간은 발급 후 1시간
 		Date expiryDate = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
 		

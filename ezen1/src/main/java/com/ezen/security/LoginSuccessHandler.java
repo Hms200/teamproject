@@ -21,7 +21,9 @@ import org.springframework.stereotype.Service;
 import com.ezen.dao.IuserDAO;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
@@ -41,18 +43,17 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		System.out.println("로그인 인증성공. 인증토큰발급시작");
+		log.info("로그인 인증성공. 인증토큰발급시작");
 		
 		
-		//CustomUserDetails userDetails = (CustomUserDetails) securityContextHolder().getContext().getAuthentication().getPrincipal();
 		String user_id = (String) securityContextHolder().getContext().getAuthentication().getPrincipal();
 		int user_idx = userDAO.getUserIdx(user_id);
 		String userIdx = String.valueOf(user_idx);
-		System.out.println("user_idx : " + userIdx);
+		log.info("user_idx : {}", user_idx);
 		
 		// jwt 인증 토큰 생성
 		final String token = tokenProvider.create(userIdx);
-		System.out.println("토큰 발급완료.");
+		log.info("인증토큰 발급완료");
 		// cookie에 저장
 		Cookie cookie = new Cookie("Authorization", "Bearer"+token);
 		
@@ -64,14 +65,15 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 		cookie.setPath("/");
 		// add cookie to response
 		response.addCookie(cookie);
-		System.out.println("jwt token cookie에 저장");
+		log.info("JWT Token을 cookie에 저장합니다.");
+		
 		// session에 user_id와 user_idx 넣어줌
 		
 		session.setAttribute("user_id", user_id);
 		session.setAttribute("user_idx", user_idx);
-		System.out.println("user_id, user_idx 세션에 저장");
+		log.info("user_id : {}, user_idx : {} 세선에 저장합니다.",user_id,user_idx);
 		// myPage로 redirect
-		System.out.println("myPage로 redirect합니다.");
+		log.info("myPage로 redirect합니다.");
 		response.sendRedirect("../myPage/myPage");
 		
 	}
