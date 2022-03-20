@@ -30,6 +30,43 @@
         </div>
         <div class="col-11 my-3 py-1 text-center text-bold">리뷰관리</div>  
     </div>
+     
+     
+     <!-- 답글달기 팝업창 -->
+      
+    <div class="d-none position-absolute " id="reviewReplyWriteForm" style="bottom: 30px; top: 150px; z-index: 1100; max-width: 520px;">
+      <!-- 닫기 버튼 -->
+   
+      <div class="d-flex flex-column border rounded bg-white mx-auto">
+        <!--X아이콘-->
+        <div class="d-flex justify-content-end">
+          <img src="/img/icon/cross.png" alt=""
+            onclick="popupHideAndShow('reviewReplyWriteForm')" style="width:30px; height: 30px; cursor: pointer;">
+        </div>
+        <div class="mr-3 mb-4 ml-3">
+          <div class="text-center font-weight-bold text-dark mb-2" style="font-size: 16px;">
+            답글달기
+          </div>
+          	<input type="hidden" id="targetIdx" value="">
+            <div class="d-block">
+              <textarea cols="50" rows="5" class="border rounded w-100 text-dark py-1 px-3 mb-4"
+                name="review_reply"
+                style="font-size: 14px; resize: none;"></textarea>
+            </div>
+            <button type="button" class="btn btn-secondary text-dark col-5 ml-3 mr-3" onclick="popupHideAndShow('reviewReplyWriteForm')">취소 </button>
+            <input type="submit" class="btn btn-dark text-light mr-2 ml-1 col-5" onclick="registReviewReply();" value="답글달기">
+        </div>
+      </div>
+    </div>
+</div>
+ 
+
+    
+    
+            
+
+    
+    
     <!-- mainDiv -->
     <div class=" container-fluid col-12 d-flex px-0 mt-3 mb-5 align-items-center flex-wrap" style="justify-content: space-evenly;">     
         
@@ -56,6 +93,8 @@
         </div>
      	</c:forEach>
     </div>
+       
+
     
     <!-- 페이지 표시기 -->
 			
@@ -78,33 +117,9 @@
 		        </ul>
 		      </nav>
 		    </div>
-        
-    <!-- 답글달기 팝업창 -->
-    <div class="d-none position-absolute" id="reviewReplyWriteForm" style="bottom: 30px">
-      <div class="d-flex flex-column border rounded bg-white mx-auto">
-        <!--X아이콘-->
-        <div class="d-flex justify-content-end">
-          <img src="/img/icon/cross.png" alt=""
-            onclick="popupHideAndShow('reviewReplyWriteForm')" style="width:30px; height: 30px; cursor: pointer;">
-        </div>
-        <div class="mr-3 mb-4 ml-3">
-          <div class="text-center font-weight-bold text-dark mb-2" style="font-size: 16px;">
-            답글달기
-          </div>
-          	<input type="hidden" id="targetIdx" value="">
-            <div class="d-block">
-              <textarea cols="50" rows="5" class="border rounded w-100 text-dark py-1 px-3 mb-4"
-                name="review_reply"
-                style="font-size: 14px; resize: none;"></textarea>
-            </div>
-            <button type="button" class="btn btn-secondary text-dark col-3" onclick="popupHideAndShow('reviewReplyWriteForm')">취소 </button>
-            <input type="submit" class="btn btn-dark text-light ml-2 col-6" onclick="registReviewReply();" value="답글달기">
-        </div>
-      </div>
-    </div>
     
     
-  </div>
+
 
 
     
