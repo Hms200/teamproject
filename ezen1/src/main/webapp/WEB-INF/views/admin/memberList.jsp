@@ -24,22 +24,15 @@
 <c:import url="../header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
+        
         <!-- 헤더 -->
-        <div class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom" style="height: 60px; font-size: 16px;">
-            <div class="col-1 my-3">
-              <a href="/admin/main">
-                <img src="/img/icon/뒤로가기 (2).png" alt="main" width="30px" height="30px">
-              </a>
-            </div>
-            <div class="col-11 my-3 py-1 text-center font-weight-bold">
-              회원목록
-            </div>
-          </div>
-          <!-- 검색바 -->
-          <form action="userSearchAction" name="userSearchForm">
+        <div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-3 text-black-50">회원목록 조회</div>
 
-          <div class="d-flex flex-row mt-4 mb-4">
+          <!-- 검색바 -->
+          <form action="userSearchAction" name="userSearchForm" >
+
+          <div class="d-flex flex-row my-3">
           <div class="form-control pl-1" style="width: 80px;">
             <select class="form-select " name="cat" style="border: none; background-color: white;" onchange="submit();">
               <option value="0">id</option>
@@ -50,12 +43,10 @@
              </select>
             </div>
             
-                <div class="search">
-                <input type="text" name="searchText" placeholder="카테고리를 선택해주세요" class="border border-1 form-control" style="width: 215px;">
-             </div>
-             <div>
-                <button class="btn border form-control" type="submit">
-                  <img src="/img/icon/search.png" alt="" style="width: 23px; height: 23px;">
+                <div class="search d-flex flex-row">
+                <input type="text" name="searchText" value="검색" class="border border-1 form-control" style="width: 220px;" >
+                <button class="btn form-control p-1 pb-2 " type="submit" style="margin-left: -45px;">
+                  <img src="/img/icon/search.png" alt="" style="width: 18px; height: 18px;">
                </button>
               </div>
               
@@ -63,7 +54,8 @@
           </form> 
 
            <!-- 테이블 -->
-           <div class="table-responsive mb-5" >
+
+           <div class="table-responsive my-4 pb-5" >
            <table class="table table-bordered table-sm text-dark">
                <thead class="font-weight-bold text-center" style="font-size: 14px;">
                 <tr class="table-secondary">
@@ -75,7 +67,7 @@
                     <td>가입일</td> 
                 </tr>
                 </thead>
-                <tbody class="text-center" style="font-size: 12px;">
+                <tbody class="text-center font-secondary" >
                
                 <c:forEach var="user" items="${ userlist }"> 
                 	

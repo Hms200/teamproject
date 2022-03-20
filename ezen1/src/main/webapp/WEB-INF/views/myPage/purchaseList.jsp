@@ -40,19 +40,16 @@
 	<!-- <div
 		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
 		style="max-width: 520px;">--!>
-		
 		 <!-- main container -->
-        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 mb-5" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
-		
-
-		<!-- header 
+         <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 mb-5" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+				
+	<!-- header 
 		<div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">           
                 <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
                   구매내역 상세조회  
                 </div>
         </div> -->
-		
-		
+        
 		<!-- 검색창 -->
 		<div class="form-goup d-flex flex-row justify-content-between mt-5 mb-3 w-100 " >
 			<div class="font-weight-bold mt-2 pl-3">내 구매내역 보기</div>
