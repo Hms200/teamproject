@@ -24,15 +24,15 @@
 <c:import url="../header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
+        
         <!-- 헤더 -->
-       
-             <div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-3" style="float:left;">회원목록조회</div>
+        <div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-3 text-black-50">회원목록 조회</div>
 
           <!-- 검색바 -->
           <form action="userSearchAction" name="userSearchForm" >
 
-          <div class="d-flex flex-row mt-2 my-5">
+          <div class="d-flex flex-row my-3">
           <div class="form-control pl-1" style="width: 80px;">
             <select class="form-select " name="cat" style="border: none; background-color: white;" onchange="submit();">
               <option value="0">id</option>
