@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class LoginController {
 	
 	
 	@RequestMapping("login")
-	public String login(HttpSession session) {
+	public String login(HttpServletRequest request, HttpServletResponse response) {
 		
 //		int user_idx;
 //		try {
@@ -75,27 +76,28 @@ public class LoginController {
 		}
 		return "login/quit";
 	}
-	
-	//로그인액션
+//	
+//	로그인액션
 //	@RequestMapping("loginAction")
-//	//@ResponseBody
+//	@ResponseBody
 //	public String loginAction( @RequestParam("user_id") String user_id,
 //							   @RequestParam("user_pw") String user_pw
 //							   ) {
-////		String result = loginService.login(user_id, user_pw, response);			
+//			String result = loginService.login(user_id, user_pw, response);			
 //		return "";
 //	}
-
-	//로그아웃 기능
-	@RequestMapping("logoutAction")
-	@ResponseBody
-	public String loginAction(HttpServletRequest request) {
-			
-		//세션객체 초기화
-		request.getSession().invalidate();
-		return "<script>alert('로그아웃 되었습니다.'); location.href='/main';</script>";
-			
-	}
+//
+//	로그아웃 기능
+//	@RequestMapping("logoutAction")
+//	@ResponseBody
+//	public String loginAction(HttpServletRequest request) {
+//			
+//		//세션객체 초기화
+//		request.getSession().invalidate();
+//		return "<script>alert('로그아웃 되었습니다.'); location.href='/main';</script>";
+//			
+//	} 
+//
 	
 	//아이디찾기
 	@RequestMapping("idFindAction")

@@ -33,7 +33,7 @@ public class CustomAuthFailureHandler implements AuthenticationFailureHandler{
 		}else {
 			errorMessage = "알수 없는 이유로 로그인에 실패하였습니다.";
 		}
-		
+		System.out.println("failur handler msg : "+ errorMessage);
 		request.setAttribute("errorMessage", errorMessage);
 		
 		request.getRequestDispatcher(DEFAULT_FAILURE_URL).forward(request, response);

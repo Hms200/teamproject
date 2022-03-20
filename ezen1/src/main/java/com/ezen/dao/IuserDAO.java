@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
 
 import com.ezen.dto.User;
+
 
 @Mapper
 public interface IuserDAO {
@@ -29,6 +31,8 @@ public interface IuserDAO {
 	public int UpdateMemberInfo(User user);
 	//user_idx를 받아 해당 user 정보 가져옴
 	public User getMemberInfoByUserIdx(int user_idx);
+	//임시 비밀번호 발급
+	public int updateUserPwByDisposablePassword(String user_id, String disposablePW);
 	
 	// 회원 검색용
 	// Id

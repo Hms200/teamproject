@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,14 +15,17 @@ import org.springframework.stereotype.Service;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.User;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServieceImpl implements UserDetailsService{
 
 	@Autowired
-	private final IuserDAO userDAO;
+	 private final IuserDAO userDAO;
 
 	@Override
 	public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
@@ -39,8 +43,11 @@ public class UserDetailsServieceImpl implements UserDetailsService{
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		if(user_id.equals("admin")) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
+			System.out.println("사용자권한 : ADMIN");
 		}else {
 			grantedAuthorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
+			System.out.println("사용자권한 : MEMBER");
+			
 		}
 		
 		customUserDetails.setAuthorities(grantedAuthorities);
@@ -48,7 +55,6 @@ public class UserDetailsServieceImpl implements UserDetailsService{
 		customUserDetails.setAccountNonExpired(true);
 		customUserDetails.setAccountNonLocked(true);
 		customUserDetails.setCredentialsNonExpried(true);
-		System.out.println("userDetaiilService종료");
 		
 		return customUserDetails;
 	}

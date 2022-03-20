@@ -56,6 +56,11 @@
 		SELECT * FROM mall_user WHERE user_idx = ${param1}
 	</select>
 	
+	<!-- 임시 비밀번호 발급 -->
+	<update id="updateUserPwByDisposablePassword">
+		UPDATE mall_user SET user_pw = #{param2} where user_id = #{param1}
+	</update>
+	
 	<!-- 검색용 쿼리들-->
 	<!-- Id로 검색 -->
 	<select id="searchUserById" resultType="com.ezen.dto.User">

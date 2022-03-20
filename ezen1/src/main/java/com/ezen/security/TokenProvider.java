@@ -17,8 +17,8 @@ public class TokenProvider {
 	
 	public String create(String user_idx) {
 		System.out.println("토큰생성");
-		// 토큰 유효기간은 발급 후 1일
-		Date expiryDate = Date.from(Instant.now().plus(1, ChronoUnit.DAYS));
+		// 토큰 유효기간은 발급 후 1시간
+		Date expiryDate = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
 		
 		return Jwts.builder()
 				// 토큰 해더. SECRET_KEY로 서명
