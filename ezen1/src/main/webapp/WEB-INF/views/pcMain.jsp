@@ -15,7 +15,6 @@
 	    	LOGIN
 	    </div>
 	  </c:if>
-	  <button onclick="location.href='../login/logoutAction'">로그아웃</button>
       <div class="border border-primary rounded-pill text-center text-primary mb-5" style="font-size: 12px; width: 100px; height: 22px; line-height: 22px; cursor: pointer;" onclick="location.href='../aboutUs'">aboutUs > </div>
     </div>
   </div>

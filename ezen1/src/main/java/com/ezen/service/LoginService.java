@@ -12,8 +12,10 @@ import com.ezen.dao.IuserDAO;
 import com.ezen.dto.User;
 import com.ezen.security.TokenProvider;
 
+import lombok.extern.slf4j.Slf4j;
 
 
+@Slf4j
 @Service
 public class LoginService {
 
@@ -82,15 +84,17 @@ public class LoginService {
 		String user_pw = userDao.getUserPwByFindPw( user_id, user_name, user_email);
 	
 		if( user_pw == null ) {
-			return "<script>alert('일치하는 정보를 찾을 수 없습니다.'); location.reload;</script>";
+			return "<script>alert('일치하는 정보를 찾을 수 없습니다.'); location.href='../login/login';</script>";
 			
 		} else {
 			// 임시비밀번호 생성기
 			String disposablePW = passwordGenerator.generateDisposablePassword();
+			log.info("1회용 비밀번호 : {}", disposablePW );
 			// 임시비밀번호로 db update
 			while(true) {
 				int result = userDao.updateUserPwByDisposablePassword(user_id, disposablePW);
 				if(result == 1) {
+					log.info("id : {} 임시밀번호 설정됨. pw = {}", user_id, disposablePW);
 					break;
 				}
 			}
@@ -99,8 +103,6 @@ public class LoginService {
 	}
 	
 	//아이디 중복확인 구동
-	//MALL_USER에 있는 user_id 값을 조회하여 int값으로 반환 후 
-	// jsp -> main.js 경로를 거쳐 결과값 처리
 	public int idCheckAjax( String user_id ) {
 		
 		String userID = userDao.getUserID( user_id );
@@ -114,12 +116,9 @@ public class LoginService {
 	
 	//회원가입 
 	//입력받은 user정보를 User user값에 insert
-	//user_address값: input type hidden 코드 추가
-	//js를 이용해 sample6_address와 sample6_detailAddress의 합친 값을 value값에 넣어 name=user_address로 서버에 전송.
 	public String join(User user) {
 		String pw = user.getUser_pw();
 		pw = bCryptPasswordEncoder.encode(pw);
-		pw = "{bcypt}"+pw;
 		user.setUser_pw(pw);
 		int result = userDao.insertUser(user);
 		if( result == 1 ) {

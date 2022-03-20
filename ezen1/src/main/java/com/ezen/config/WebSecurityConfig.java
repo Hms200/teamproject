@@ -88,8 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.disable()
 				.authorizeRequests()  	 // 다음 경로는 인증 안해도 됨
 					.antMatchers(
-							"/", "/main", "/aboutUs", "/siteMap", "/invalidate",
-							"/goodsList/**"
+							"/", "/main", "/aboutUs", "/siteMap", "/goodsList/**", "/login/**"
 							).permitAll()
 					.antMatchers("/admin/**").hasRole("ADMIN") // /admin/** 은  admin만 허용
 				.anyRequest() 			 // 위 경로 외에는 인증 해야 함

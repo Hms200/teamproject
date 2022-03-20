@@ -117,7 +117,7 @@
 			<div class="my-5 align-items-center text-center">
 				<button type="submit"
 					class="btn btn-primary text-light form-control"
-					style="width: 300px;"id="submitButton" disabled>수정하기</button>
+					style="width: 300px;"id="submitButton">수정하기</button>
 			</div>
 		</form>
 	</div>
