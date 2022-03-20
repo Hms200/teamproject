@@ -9,6 +9,10 @@
 		SELECT * FROM mall_question WHERE goods_idx = ${param1} ORDER BY question_idx DESC
 	</select>
 	
+	<select id="countOfQuestions" resultType="int">
+		SELECT COUNT(*) FROM mall_question
+	</select>
+	
 	<insert id="insertQna" parameterType="com.ezen.dto.Question">
 		INSERT INTO mall_question (question_idx, user_idx, goods_idx, question_title, question_contents, question_date)VALUES
 		(mall_question_seq.nextval, ${user_idx}, ${goods_idx}, #{question_title}, #{question_contents}, sysdate)
@@ -20,7 +24,11 @@
 	</update>
 	
 	<select id="getAllQuestions" resultType="com.ezen.dto.Question">
-		SELECT * FROM mall_question
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_question.* FROM(
+				SELECT * FROM mall_question ORDER BY question_idx ASC )
+			 mall_question)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by question_idx DESC
 	</select>
 	
 </mapper>

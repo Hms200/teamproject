@@ -26,17 +26,12 @@
     <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px">
    
         <!-- title container -->
-        <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
-        <!-- title back btn -->
-            <div class="col-1 my-3" onclick="location.href='main'" style="cursor: pointer;">
-                <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
+        <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
+            <!-- title -->
+                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+                  공지사항
+                </div>
             </div>
-        <!-- title -->
-            <div class="col-11 my-3 py-1 text-center font-weight-bold">
-                공지사항
-            </div>
-        </div>
-
         <!-- table container-->
         <div class="container-fluid text-center">
             <!-- table -->
@@ -61,7 +56,7 @@
             
         </div>
             
-        <div class="d-flex flex-column justify-content-center mb-2">
+        <div class="d-flex flex-column justify-content-center my-3">
         	<!-- 작성버튼 admin에게만 보임 -->
         	<c:if test="${ user_id eq 'admin' }">
             <button class="btn btn-secondary text-dark border-0 mx-auto font-weight-bold" style="width: 100px;font-size: 16px;" onclick="popupHideAndShow(target = 'notice_write_popup')">

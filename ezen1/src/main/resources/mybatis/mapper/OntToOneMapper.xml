@@ -7,7 +7,15 @@
 
 	<!-- MALL_oneToOne에서 등록된 모든 정보를 가져옴. -->	
 	<select id="getOneToOneList" resultType="com.ezen.dto.OneToOne">
-		SELECT * FROM MALL_ONETOONE
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_onetoone.* FROM(
+				SELECT * FROM MALL_ONETOONE ORDER BY onetoone_idx ASC )
+			 mall_onetoone)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by onetoone_idx DESC
+	</select>
+	
+	<select id="countOfOneToOne" resultType="int">
+		SELECT COUNT(*) FROM mall_ONETOONE
 	</select>
 	
 	<!-- oneToone_idx를 받아서 MALL_onetoone에서 값이 null인 onetoone_reply에 입력받은 내용을 넣어줌. oneToone_isreply값을 true로 변경 -->
