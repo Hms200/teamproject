@@ -67,7 +67,7 @@
                     <td>가입일</td> 
                 </tr>
                 </thead>
-                <tbody class="text-center" style="font-size: 12px;">
+                <tbody class="text-center font-secondary" >
                
                 <c:forEach var="user" items="${ userlist }"> 
                 	
