@@ -11,46 +11,27 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
-    <style>
-      .line{
-          width: 100%;
-          height: 3px;
-          background-color: gray;
-          border-radius: 50%;
-      }
+
   </style>
 </head>
 <body>
 <c:import url="pcMain.jsp"></c:import>
 
-
-<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
-
+<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 
 <c:import url="header.jsp"></c:import>
 
-    <!-- All container -->
-<div class="container-sm container-fluid d-flex flex-column position-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
+<!-- All container -->
+<div class="container-sm container-fluid d-flex flex-column postion-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top:60px;">
 
-        <!-- Title container-->
-        <div class="container-sm container-fluid d-flex flex-row mb-0 " style="height: 60px;">
-            <!-- Title back btn -->
-            <div class="col-1 my-3" onclick="location.href='main'" style="cursor: pointer;">
-                <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
-            </div>
-            <!-- Title -->
-            <div class="col-11 my-3 py-1 text-center font-weight-bold" style="margin-left: -1rem;">
-                사이트맵
-            </div>
-        </div>
-       
     <!-- 분류 컨테이너 -->
     <div class="container-sm container-fluid mt-0" style="max-width: 520px; font-size: 14px;">
 
         <!-- 메인 타이틀 -->
-        <p class="text-start ml-3 my-3 font-weight-bold">메인</p>
+        <p class="col-12 text-start my-3">메인</p>
+        
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-2 text-center">
+        <div class="container-sm container-fluid my-2 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <a href="main">
@@ -63,12 +44,12 @@
                     </a>
                 </div>
             </div>
-        </div><div class="line"></div>
+        </div>
        
         <!-- 로그인 타이틀 -->
-        <p class="text-start ml-3 my-3 font-weight-bold">로그인</p>
+        <p class="col-12 text-start my-3">로그인</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 text-center">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='login/login'">로그인</button>
@@ -80,12 +61,12 @@
                     <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='login/quit'">회원탈퇴</button>
                 </div>
             </div>
-        </div><div class="line"></div>
+        </div>
 
         <!-- 마이페이지 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">마이페이지</p>
+        <p class="col-12 text-start my-3">마이페이지</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 text-center">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='myPage/myPage'">마이<br>페이지</button>
@@ -97,23 +78,23 @@
                     <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='myPage/purchaseList'">구매내역보기</button>
                 </div>
             </div>
-        </div><div class="line"></div>
+        </div>
 
         <!-- 회사소개 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">회사소개</p>
+        <p class="col-12 text-start my-3">회사소개</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 text-center">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='aboutUs'">회사소개</button>
                 </div>
             </div>
-        </div><div class="line"></div>
+        </div>
 
         <!-- 고객센터 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">고객센터</p>
+        <p class="col-12 text-start my-3">고객센터</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 text-center">
+        <div class="container-sm container-fluid my-3 pb-4 text-center border-bottom">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/faq'">FAQ</button>
@@ -125,12 +106,12 @@
                     <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/ask'">문의하기</button>
                 </div>
             </div>
-        </div><div class="line"></div>
+        </div>
 
         <!-- 상품 타이틀-->
-        <p class="text-start ml-3 my-3 font-weight-bold">상품</p>
+        <p class="col-12 text-start my-3">상품</p>
         <!-- 분류 버튼 -->
-        <div class="container-sm container-fluid my-3 text-center">
+        <div class="container-sm container-fluid my-3 pb-4 text-center">
             <div class="row my-2">
                 <div class="col-3">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='goodsList/goodsList'">상품목록</button>
@@ -138,14 +119,8 @@
                 <div class="col-3">
                     <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='goodsList/cart'">장바구니</button>
                 </div>
-               
-                
             </div>
         </div>        
-        
-
-
-
     </div>
 </div>
 

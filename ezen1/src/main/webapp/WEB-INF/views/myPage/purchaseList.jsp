@@ -67,8 +67,8 @@
 			</div>
 		</div>
 		<!-- 검색창 -->
-		<div class="form-goup d-flex flex-row justify-content-between my-3 w-75 " >
-			<div class="font-weight-bold mt-2">내 구매내역 보기</div>
+		<div class="form-goup d-flex flex-row justify-content-between mt-5 mb-3 w-100 " >
+			<div class="font-weight-bold mt-2 pl-3">내 구매내역 보기</div>
 			<%String user_id = request.getParameter("user_id"); %>
 			<!-- 드롭다운 -->
 			<div style="width: 120px; height: 40px;">
@@ -93,8 +93,8 @@
 		<!-- 카드 -->
 		<c:forEach var="list" items="${purchaseList}">
 			<div
-				class="w-100 d-flex flex-column border border-dark-50 py-1 my-2"
-				style="height: 160px;">
+				class="w-100 d-flex flex-column border border-dark-50 py-2 my-1"
+				style="height: 170px;">
 				<form name="purchaseHistoryForm">
 					<div class="w-100 d-flex flex-row justify-content-between mb-1"
 						style="font-size: 12px;">

@@ -17,7 +17,15 @@
 	
 	<!-- 모든 리뷰 가져옴 -->
 	<select id="getAllReviews" resultType="com.ezen.dto.Review">
-		SELECT * FROM mall_review
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_review.* FROM(
+				SELECT * FROM mall_review ORDER BY review_idx ASC )
+			 mall_review)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by review_idx DESC
+	</select>
+	
+	<select id="countOfReviews" resultType="int">
+		SELECT COUNT(*) FROM mall_review
 	</select>
 	
 	<!-- 리뷰 답글달기-->

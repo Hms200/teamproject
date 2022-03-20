@@ -54,6 +54,7 @@
           </form> 
 
            <!-- 테이블 -->
+
            <div class="table-responsive my-4 pb-5" >
            <table class="table table-bordered table-sm text-dark">
                <thead class="font-weight-bold text-center" style="font-size: 14px;">

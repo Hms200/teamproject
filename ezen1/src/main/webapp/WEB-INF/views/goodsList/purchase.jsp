@@ -23,14 +23,13 @@
   <div
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
     style="max-width: 520px; margin-top: 60px;">
-    <div class="container-sm container-fluid d-flex flex-row mb-0 px-0 border-bottom" style="height: 60px;">
-      <div class="col-2 my-3">
-        <a href="../goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid" width="30px"
-            height="30px"></a>
-      </div>
-      <div class="col-10 my-3 py-1 pr-5 text-center font-weight-bold">
-        주문/결제
-      </div>
+    
+    <!-- title container -->
+    <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
+       <!-- title -->
+       <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+                  주문 / 결제 
+       </div>
     </div>
 
     <!-- 상품내용 -->
@@ -40,12 +39,12 @@
           <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page"/>
           <span id="goods_name">${ goods.goods_name }</span>
       </div>
-      <div class="d-flex flex-row justify-content-around mb-2">
+      <div class="d-flex flex-row justify-content-between mb-3">
 	        <a href="goodsDetail?goods_idx=${ goods.goods_idx }"><img src="${ goods.goods_thumb }" alt="Thumbnail of ${ goods.goods_name }" class="img-fluid ml-3" width="100px" height="100px"></a>
 	        <div class="d-flex flex-column" style="width: 200px;height: 100px;">
 		          <div class="d-flex flex-row justify-content-around my-auto">
-		            <span style="width: max-contents;">가격</span>
-		            <input type="text" class="form-control-plaintext text-right col-6 price" readonly value="${ cart.cart_total_price }">
+		            <span class="py-2" style="width: max-contents;">가격</span>
+		            <input type="text" class="form-control-plaintext text-right col-6 price py-2" readonly value="${ cart.cart_total_price }">
 		          </div>
 		         <div class="d-flex flex-row justify-content-around my-auto">
 		            <span>옵션</span>
@@ -68,8 +67,8 @@
     style="max-width: 520px; ">
       
     <!-- 배송지 정보 -->
-    <div class="container d-flex flex-column mt-2">
-      <span class="font-weight-bold mb-2">
+    <div class="container d-flex flex-column mt-3">
+      <span class="font-weight-bold mb-3">
         배송지 정보
       </span>
       <span id="nameAndPhone">
@@ -78,7 +77,7 @@
         <input type="hidden" name="purchase_buyer_name" value="${ userinfo.user_name }">
         <input type="hidden" name="purchase_buyer_phone" value="${ userinfo.user_phone }">
       </span>
-      <span class="mb-2" id="originalAddress">
+      <span class="mt-1 mb-3" id="originalAddress">
         ${ userinfo.user_address }
       </span>
       <input type="hidden" name="purchase_buyer_address" value="${ userinfo.user_address }">
@@ -89,7 +88,7 @@
         </select>
       
       <!-- 주소 변경하기 -->
-      <div class="d-flex flex-row justify-content-end" style=" margin-bottom: 20px">
+      <div class="d-flex flex-row justify-content-end mt-2 mb-4">
         <span onclick="popupHideAndShow('changeAddress')" style="padding: 5px; cursor: pointer;">
           주소 변경하기<img src="/img/icon/down.png" alt="" class="img-fluid" style="width: 12px;height: 12px;">
         </span>
@@ -127,12 +126,12 @@
       </div>
     </div>
     
-    <div class="d-flex flex-column w-100 border-bottom pb-2">
+    <div class="d-flex flex-column w-100 border-bottom mt-2 pb-2">
       <div class="d-flex flex-row justify-content-between w-100 mb-2">
         <span>상품금액</span>
         <span id="total_price"></span>
       </div>
-      <div class="d-flex flex-row justify-content-between">
+      <div class="d-flex flex-row justify-content-between my-2">
         <span>배송비</span>
         <span id="shipping_price">2500</span>
       </div>

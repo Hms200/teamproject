@@ -76,7 +76,7 @@ public class CustomerService {
 	//내 문의 내역 (myAsk List)
 	//allOneToOne가 리턴한 Model 배열을 전체순환하면서 user_idx가 파라미터로 넘겨받은 user_idx와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
 	public Model byUserIdx(int user_idx, Model model, HttpSession session) {
-		ArrayList<OneToOne> allOneToOne = onetooneDao.getOneToOneList();
+		ArrayList<OneToOne> allOneToOne = onetooneDao.getOneToOneList(user_idx, user_idx);
 		ArrayList<OneToOne> myOneToOne = new ArrayList<>();
 			allOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getUser_idx() == user_idx) {
