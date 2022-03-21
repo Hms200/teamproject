@@ -860,5 +860,32 @@ function registerQuestionReply(){
 			});
 		}
 }
-
+// 리뷰등록
+ function reviewContentAction() {
+		  const form = document.querySelectorAll('form[name="reviewWriteForm"] > div > input, select, textarea');
+		  let formData = {};
+		  for(i=0; i<form.length; i++){
+				formData[form[i].name] = form[i].value;
+		  }
+		  formData = JSON.stringify(formData);
+		  console.log(formData);
+		  console.log('리뷰 폼 전송 시도');
+		  jQuery.ajax({
+				url: "reviewWriteAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				data: formData,
+				success: function(result){
+					if(result == false){
+						alert('등록에 실패하였습니다.');
+						return false;
+					}
+					console.log('등록 성공 review_idx ='+result);
+					document.getElementsByName('review_idx')[0].value = result;
+					multiSubmit(formName = 'reviewImg', formAction = 'uploadReviewImgAction');
+				},
+				error: function(){return false},
+			})
+	  };
 
