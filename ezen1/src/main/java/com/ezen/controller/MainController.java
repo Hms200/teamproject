@@ -63,6 +63,7 @@ public class MainController {
 			try {
 				cartBedgNum = goodsListService.getCountOfGoodsInCart(user_idx);
 				session.setAttribute("cart", cartBedgNum);
+				log.info("장바구니 숫자 설정됨 : {}",cartBedgNum);
 			} catch (Exception e) {
 				log.error("{}",e);
 				return "login/login";
