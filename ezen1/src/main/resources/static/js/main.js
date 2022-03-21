@@ -669,7 +669,7 @@ function checkPw(){
 					/// bootpay 연결 후 수정해야할 부분, bootpay연결로 결제프로세스진행되면
 					// makingPurchase를 그 함수 안으로 옮길것.
 					console.log('결제 프로세스 진행');
-					makingPurchase();
+					bootpay();
 				}
 		},
 		error: function(e){

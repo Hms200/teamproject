@@ -167,6 +167,7 @@
       <div class="w-100 font-weight-bold text-center"
         style="width: 300px; height: 40px; margin-top: 30px; margin-bottom: 50px; font-size: 16xp;">
         <span><button class="btn btn-primary col-12" onclick="bootpay()" style=" height: 40px;">결제하기</button></span>
+        <!-- popupHideAndShow('pwCheckPop') -->
       </div>
       <!-- 비밀번호 확인 팝업창 -->
       <div class="d-none col-12 position-absolute" id="pwCheckPop" style="left: 0; bottom: 100px;">
@@ -205,7 +206,14 @@ window.onloade = calculateTotalPrice();
 </script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
 <script>
-	function bootpay(){	
+	//고유아이디(영수증에 나오는고유번호) 생성
+	function guid() {
+	function s4() {
+  	return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+	}
+	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	};
+	
 	const goods_price = $('span[id=final_price]').text();
 	const nameCount = $('span[id=goods_name]').length - 1 ;
 	let goods_name = $('span[id=goods_name]')[0].textContent
@@ -215,16 +223,26 @@ window.onloade = calculateTotalPrice();
 	const user_email = "${userinfo.user_email}";
 	const user_address = "${userinfo.user_address}";
 	const user_phone = "${userinfo.user_phone}";
-	//고유 아이디 생성
-	function guid() {
-	function s4() {
-  	return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-	}
-	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-	};
+	//부트페이 화면연동
+	function bootpay(){	
+	//물건이 1개이상일경우 맨처음 물건이름출력 외 (초과된 수) 개 
 	if(nameCount > 0 ){
 		goods_name +=  " "+"외" + nameCount +"개";
-	}
+	};
+	
+	var list = [];
+	var num = 1;
+	//여러건 구매 데이터 미리 배열로 만들어 한번에 넣어줌
+	<c:set var = "count" value="${goodslist.size()}"/>
+	<c:forEach var ='i' begin='0' end='${count-1}'>
+		var ele = {};
+		ele.item_name = '${goodslist[i].goods_name}';
+		ele.qty = '${cartlist[i].cart_amount}';
+		ele.unique = '${goodslist[i].goods_idx}';
+		ele.price = '${goodslist[i].goods_price}';
+		list.push(ele);
+	</c:forEach>
+	
 	BootPay.request({
  		price: 100, //실제 결제되는 가격
  		application_id: "623567172701800021f67cee",//부트페이 회원가입후 고유아이디 복사
@@ -232,14 +250,7 @@ window.onloade = calculateTotalPrice();
  		pg: 'nicepay',
  		method: 'card', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
  		show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
- 		items: [
- 	         {
- 	             item_name: goods_name, //상품명
- 	             qty: Number(goods_count), //수량
- 	             unique: goods_idx , //해당 상품을 구분짓는 primary key
- 	             price: goods_price, //상품 단가
- 	         }
- 	     ],
+ 		items: list,
  		user_info: {
  			username: user_name,
  			email: user_email,
@@ -273,6 +284,7 @@ window.onloade = calculateTotalPrice();
  		//결제가 정상적으로 완료되면 수행됩니다
  		//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
  		console.log(data);
+ 		makingPurchase();
  	});
 };
 </script>
