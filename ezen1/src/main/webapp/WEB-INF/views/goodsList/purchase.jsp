@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="623567172701800021f67cee" name="bootpay-application-id" />
     <title>구매</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -44,7 +46,7 @@
 	        <div class="d-flex flex-column" style="width: 200px; height: 100px;">
 		          <div class="d-flex flex-row justify-content-around my-auto">
 		            <span class="py-2" style="width: max-contents;">가격</span>
-		            <input type="text" class="form-control-plaintext text-right col-6 price py-2" readonly value="${ cart.cart_total_price }">
+		            <input type="text" class="form-control-plaintext text-right col-6 price py-2" id="goods_price" readonly value="${ cart.cart_total_price }">
 		          </div>
 		         <div class="d-flex flex-row justify-content-around my-auto">
 		            <span>옵션</span>
@@ -202,6 +204,106 @@
 <script>
 window.onloade = calculateTotalPrice();
 </script>
-
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
+<script>
+   //아이템 통계data startTrace()
+	$(document).ready(function() {
+	 var list = [];
+		<c:set var = "count" value="${goodslist.size()}"/>
+		<c:forEach var ='i' begin='0' end='${count-1}'>
+			var ele = {};
+			ele.item_name = '${goodslist[i].goods_name}';
+			ele.unique = '${goodslist[i].goods_idx}';
+			ele.price = '${goodslist[i].goods_price}';
+			ele.cat1 = '${goodslist[i].goods_cat}';
+			list.push(ele);
+		</c:forEach>
+	  console.log(list);
+	  BootPay.startTrace({
+	    items: list
+	  });
+	});
+	//고유아이디(영수증에 나오는고유번호) 생성
+	function guid() {
+	function s4() {
+  	return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+	}
+	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	};
+	//부트페이 화면연동
+	function bootpay(){	
+	//구매 itemList 배열로 미리생성
+	var statsList = [];
+	<c:set var = "count" value="${goodslist.size()}"/>
+	<c:forEach var ='i' begin='0' end='${count-1}'>
+		var itemList = {};
+		itemList.item_name = '${goodslist[i].goods_name}';
+		itemList.unique = '${goodslist[i].goods_idx}';
+		itemList.qty = '${cartlist[i].cart_amount}';
+		itemList.price = '${goodslist[i].goods_price}';
+		itemList.cat1 = '${goodslist[i].goods_cat}';
+		statsList.push(itemList);
+	</c:forEach>
+	//data 변수선언
+	const goods_price = $('span[id=final_price]').text();
+	const nameCount = $('span[id=goods_name]').length - 1 ;
+	let goods_name = $('span[id=goods_name]')[0].textContent
+	const goods_count = '${carlist[0].cart_amount}';
+	const goods_idx = "${goodslist[0].goods_idx}";
+	const user_name = "${userinfo.user_name}";
+	const user_email = "${userinfo.user_email}";
+	const user_address = "${userinfo.user_address}";
+	const user_phone = "${userinfo.user_phone}";
+	//물건이 1개이상일경우 맨처음 물건이름출력 외 (초과된 수) 개 
+	if(nameCount > 0 ){
+		goods_name +=  " "+"외" + nameCount +"개";
+	};
+	
+	//pg사 연동 화면
+	BootPay.request({
+ 		price: goods_price, //실제 결제되는 가격
+ 		application_id: "623567172701800021f67cee",//부트페이 회원가입후 고유아이디 복사
+ 		name: goods_name, //결제창에서 보여질 이름
+ 		pg: 'nicepay',
+ 		method: '', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
+ 		show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
+ 		items : statsList,
+ 		user_info: {
+ 			username: user_name,
+ 			email: user_email,
+ 			addr: user_address,
+ 			phone: user_phone
+ 		},
+ 		order_id: guid(), //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
+ 	}).error(function (data) {
+ 		//결제 진행시 에러가 발생하면 수행됩니다.
+ 		console.log(data);
+ 	}).cancel(function (data) {
+ 		//결제가 취소되면 수행됩니다.
+ 		console.log(data);
+ 	}).ready(function (data) {
+ 		// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
+ 		console.log(data);
+ 	}).confirm(function (data) {
+ 		//결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
+ 		//주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
+ 		console.log(data);
+ 		var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
+ 		if (enable) {
+ 			BootPay.transactionConfirm(data); // 조건이 맞으면 승인 처리를 한다.
+ 		} else {
+ 			BootPay.removePaymentWindow(); // 조건이 맞지 않으면 결제 창을 닫고 결제를 승인하지 않는다.
+ 		}
+ 	}).close(function (data) {
+ 	    // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
+ 	    console.log(data);
+ 	}).done(function (data) {
+ 		//결제가 정상적으로 완료되면 수행됩니다
+ 		//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
+ 		console.log(data);
+ 		makingPurchase();
+ 	});
+  };
+ </script>
 </body>
 </html>

@@ -107,7 +107,7 @@
         <div class="container-sm container-fluid my-3 pb-4 text-center">
             <div class="row my-2">
                 <div class="col-3">
-                    <a href="sales">
+                    <a href="https://admin.bootpay.co.kr/login" target="_blank">
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;">매출조회</button>
                     </a>
                </div>
