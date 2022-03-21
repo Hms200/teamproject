@@ -78,7 +78,6 @@ public class FileService {
 			Files.copy(multipartFile.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			log.error("{}",e);
-			e.printStackTrace();
 			log.info("업로드 실패 파일 : {}", multipartFile.getOriginalFilename());
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
