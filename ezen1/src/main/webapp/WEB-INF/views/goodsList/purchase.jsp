@@ -27,7 +27,7 @@
     <!-- title container -->
     <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
        <!-- title -->
-       <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+       <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" >
                   주문 / 결제 
        </div>
     </div>
@@ -41,7 +41,7 @@
       </div>
       <div class="d-flex flex-row justify-content-between mb-3">
 	        <a href="goodsDetail?goods_idx=${ goods.goods_idx }"><img src="${ goods.goods_thumb }" alt="Thumbnail of ${ goods.goods_name }" class="img-fluid ml-3" width="100px" height="100px"></a>
-	        <div class="d-flex flex-column" style="width: 200px;height: 100px;">
+	        <div class="d-flex flex-column" style="width: 200px; height: 100px;">
 		          <div class="d-flex flex-row justify-content-around my-auto">
 		            <span class="py-2" style="width: max-contents;">가격</span>
 		            <input type="text" class="form-control-plaintext text-right col-6 price py-2" readonly value="${ cart.cart_total_price }">
@@ -62,9 +62,7 @@
       </c:forEach>
       
       
-  <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
-    style="max-width: 520px; ">
+  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" style="max-width: 520px; ">
       
     <!-- 배송지 정보 -->
     <div class="container d-flex flex-column mt-3">
@@ -81,7 +79,7 @@
         ${ userinfo.user_address }
       </span>
       <input type="hidden" name="purchase_buyer_address" value="${ userinfo.user_address }">
-        <select class="form-select form-control w-100" name="purchase_buyer_request" style="font-size: 14px;">
+        <select class="form-select form-control w-100 font-primary " name="purchase_buyer_request" >
           <option selected>배송시 요청사항</option>
           <option value="문앞에 두고가주세요">문앞에 두고가주세요</option>
           <option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
@@ -90,14 +88,13 @@
       <!-- 주소 변경하기 -->
       <div class="d-flex flex-row justify-content-end mt-2 mb-4">
         <span onclick="popupHideAndShow('changeAddress')" style="padding: 5px; cursor: pointer;">
-          주소 변경하기<img src="/img/icon/down.png" alt="" class="img-fluid" style="width: 12px;height: 12px;">
+          주소 변경하기<img src="/img/icon/down.png" alt="" class="img-fluid" style="width: 12px; height: 12px;">
         </span>
       </div>
     </div>
     <!-- 주소 변경하기 배송시 요청사항 -->
     <div class="d-none mb-5 w-100" id="changeAddress">
-      <div class="w-100 d-flex flex-column align-self-between border-top border"
-        style="padding: 50px 30px;">
+      <div class="w-100 d-flex flex-column align-self-between border-top border" style="padding: 50px 30px;">
         <div class="d-flex flex-row justify-content-between form-group">
           <span class="col-4">수령인</span>
           <input class="form-control col-8" id="adjustBuyerName" type="text" placeholder="수령인을 입력해주세요">
@@ -111,7 +108,7 @@
             <span class="col-4">주소</span>
             <div class="form-group w-95 row mx-0">
               <input class="form-control col-9" type="text" name="sample6_postcode" id="sample6_postcode" placeholder="우편주소">
-              <button class="btn btn-primary col-3 px-0" style="height: 38px; font-size: 12px; text-align: center; line-height: 24px;" onclick="sample6_execDaumPostcode();">주소찾기</button>
+              <button class="btn btn-primary col-3 px-0 font-secondary" style="height: 38px; text-align: center; line-height: 24px;" onclick="sample6_execDaumPostcode();">주소찾기</button>
             </div>
           </div>
           <div class="d-flex flex-row justify-content-end form-group">
@@ -136,8 +133,7 @@
         <span id="shipping_price">2500</span>
       </div>
     </div>
-    <div class="d-flex flex-row justify-content-between w-100 font-weight-bold border-top border-bottom py-4 px-3" 
-      style="font-size: 16px; height: 85px;">
+    <div class="d-flex flex-row justify-content-between w-100 font-weight-bold border-top border-bottom py-4 px-3" style="height: 85px;">
       <span>총결제금액</span>
       <span id="final_price"></span>
       <input type="hidden" name="cart_total_price" value="">
@@ -145,25 +141,32 @@
     <hr>
     
     <div class="w-75 d-flex flex-column my-3">
-      <span class="font-weight-bold text-center " style="font-size: 16px;">
+      <span class="font-weight-bold text-center" >
         결제방법
       </span>
-      <div class="d-flex flex-row justify-content-between">
+      <!-- 서버에는 정상작동 / 라디오 모양 없애고 버튼 모양만 다듬어서 완성시키기  -->
+      <div class="d-flex flex-row justify-content-between my-2">
         <div class="d-flex flex-column align-items-center">
-          <input type="radio" class="btn-check my-4" name="purchase_buyer_payment" value="카드" checked>
-          <label class="btn btn-primary" for="option1">카드결제</label>
+          	<input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option1" value="카드" checked style=" opacity:0;">
+          		<label class="btn btn-primary" for="option1">카드결제</label>          	
         </div>
+        
         <div class="d-flex flex-row justify-content-between">
           <div class="d-flex flex-column align-items-center">
-            <input type="radio" class="btn-check my-4" name="purchase_buyer_payment" value="무통장결제">
-            <label class="btn btn-primary" for="option2">무통장결제</label>
+            <input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option2" value="무통장결제" style=" opacity:0;">
+            	<label class="btn btn-primary" for="option2">무통장결제</label>          
           </div>
         </div>
+        
+        
+        <!-- <input type="button" class="btn btn-primary" id="cardA" value="카드" onclick="$('#purchase_buyer_payment').val('카드');">
+		<input type="button" class="btn btn-primary" id="cardB" value="무통장결제" onclick="$('#purchase_buyer_payment').val('무통장결제');">
+		<input type="hidden" name="purchase_buyer_payment"  id="purchase_buyer_payment" value="카드" > -->      
       </div>
+      
       <input type="hidden" name="user_idx" value="${ user_idx }">
       <input type="hidden" name="cart_list_idx" value="${ cartlistidx }">
-      <div class="w-100 font-weight-bold text-center"
-        style="width: 300px; height: 40px; margin-top: 30px; margin-bottom: 50px; font-size: 16xp;">
+      <div class="w-100 font-weight-bold text-center" style="width: 300px; height: 40px; margin-top: 30px; margin-bottom: 50px; ">
         <span><button class="btn btn-primary col-12" onclick=" popupHideAndShow('pwCheckPop')" style=" height: 40px;">결제하기</button></span>
       </div>
       <!-- 비밀번호 확인 팝업창 -->
@@ -176,13 +179,11 @@
           개인정보 보호를 위해<br>
           비밀번호를 다시 입력해주세요
         </div>
-        <div class="mx-auto mb-2 py-1 px-2"
-          style="font-size: 14px; width: 300px; height: 40px;">
-          <input type="text" id="inputtedPw" placeholder="비밀번호를 입력해주세요" class="text-center text-dark w-100 border border-dark-50 form-control"
-            style="border-radius: 6px;">
+        <div class="mx-auto mb-2 py-1 px-2 font-primary " style="width: 300px; height: 40px;">
+          <input type="text" id="inputtedPw" placeholder="비밀번호를 입력해주세요" class="text-center text-dark w-100 border border-dark-50 form-control rounded">
         </div>
         <div class="d-flex flex-row justify-content-center my-5">
-          <button class="btn btn-dark" style="width: 140px; height: 40px; border-radius: 6px;" onclick="checkPw();">확인</button>
+          <button class="btn btn-dark rounded" style="width: 140px; height: 40px;" onclick="checkPw();">확인</button>
         </div>
       </div>
     </div>
@@ -201,5 +202,6 @@
 <script>
 window.onloade = calculateTotalPrice();
 </script>
+
 </body>
 </html>
