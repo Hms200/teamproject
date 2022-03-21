@@ -77,7 +77,7 @@
 			         <a href="../goodsList/goodsDetail?goods_idx=${ list.goods_idx }">
 			            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
 			            	<h5 class="card-title font-weight-bold" style="font-size: 14px;">${ list.goods_name }</h5>
-			            	<p class="card-text" style="font-size:12px;">${ list.goods_price }원</p>   
+			            	<p class="card-text mb-1" style="font-size:12px;">${ list.goods_price }원</p>   
 			            	<p class="card-text">
 			            		<small>재고 : ${ list.goods_stock },
 			            		  <c:if test="${ list.goods_onsale == 1 }">판매중</c:if>

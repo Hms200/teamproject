@@ -24,7 +24,7 @@
                 <!-- 검색아이콘 -->
                 <img id="search-icon" src="/img/icon/search.png" alt="검색아이콘" width="25px" height="25px" style="cursor: pointer;" onclick="popupHideAndShow(target = 'searchbar');">  
                 <!-- 장바구니아이콘-->
-                <a href="../goodsList/cart">  
+                <a href="../goodsList/cart" class="pl-1">  
                     <img src="/img/icon/bag.png" alt="장바구니아이콘" width="25px" height="25px">
                 </a>
             </div>

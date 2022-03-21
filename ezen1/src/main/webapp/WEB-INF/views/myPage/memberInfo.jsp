@@ -27,17 +27,8 @@
   
         <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 		<!-- 헤더 -->
-		<div
-			class="container-sm container-fluid d-flex flex-row mb-0 pl-2 mt-1 border-bottom"
-			style="height: 60px; font-size: 16px;">
-			<div class="col-1 my-3">
-				<a href="/myPage/myPage"> <img src="/img/icon/뒤로가기 (2).png"
-					style="width: 30px; height: 30px;" alt="">
-				</a>
-			</div>
-			<div class="col-11 my-3 py-1 text-center font-weight-bold">
-				회원정보</div>
-		</div>
+		<div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-3 text-black-50">회원정보</div>
+		<!--  -->
 		<form action="userUpdateAction" name="userUpdateForm" method="post"
 			onsubmit="return nullChecker();">
 			<!-- 이름, 아이디 -->
@@ -46,14 +37,14 @@
 					<div style="height: 65px;"
 						class="col font-weight-bold form-group text-dark pr-2">
 						이름 <input type="text"
-							class="form-control-plaintext col-12 rounded font-weight-normal border"
-							style="font-size: 12px;" name="user_name" value="${user.user_name}" readonly>
+							class="form-control-plaintext col-12 rounded font-weight-normal border font-secondary px-1"
+							 name="user_name" value="${user.user_name}" readonly>
 					</div>
 					<div style="height: 65px;"
 						class="col font-weight-bold form-hroup text-dark">
 						아이디 <input type="text"
-							class="form-control-plaintext col-12 rounded font-weight-normal border"
-							style="font-size: 12px;" name="user_id" value="${user.user_id}" readonly>
+							class="form-control-plaintext col-12 rounded font-weight-normal border font-secondary px-1"
+							 name="user_id" value="${user.user_id}" readonly>
 					</div>
 				</div>
 			</div>
@@ -102,9 +93,8 @@
             </div>
         </div> -->
 				<div class="text-left font-weight-bold col-12 mt-2">주소</div>
-				<div class="form-group row mb-5 px-4 justify-content-between"
-					style="font-size: 14px;">
-					 <input type="text" class="col-8 form-control mb-1 bg-white" name="sample6_postcode" id="sample6_postcode" placeholder="우편주소" readonly>
+				<div class="form-group row mb-5 px-4 justify-content-between font-primary">
+					<input type="text" class="col-8 form-control mb-1 bg-white" name="sample6_postcode" id="sample6_postcode" placeholder="우편주소" readonly>
                     <input type="button" class="col-3 btn btn-secondary text-dark mb-1"  value="주소찾기" style="font-size: 14px;" onclick="sample6_execDaumPostcode()">
                     <input type="text" class="col-12 form-control mb-1 bg-white nullcheck" name="sample6_address" id="sample6_address" placeholder="주소를 입력해주세요" readonly>
                     <input type="text" class="col-12 form-control nullcheck" name="sample6_detailAddress" id="sample6_detailAddress"  placeholder="상세주소를 입력해주세요">
@@ -114,7 +104,7 @@
 				</div>
 			</div>
 			<!-- 수정하기 button -->
-			<div class="my-5 align-items-center text-center">
+			<div class="mt-3 mb-5 align-items-center text-center">
 				<button type="submit"
 					class="btn btn-primary text-light form-control"
 					style="width: 300px;"id="submitButton" disabled>수정하기</button>

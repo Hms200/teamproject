@@ -23,12 +23,12 @@
 <c:import url="header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative px-0 mb-5" id="mainContainer" style="max-width: 520px; margin-top: 60px">
    
         <!-- title container -->
         <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
             <!-- title -->
-                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50">
                   공지사항
                 </div>
             </div>
@@ -59,7 +59,7 @@
         <div class="d-flex flex-column justify-content-center my-3">
         	<!-- 작성버튼 admin에게만 보임 -->
         	<c:if test="${ user_id eq 'admin' }">
-            <button class="btn btn-secondary text-dark border-0 mx-auto font-weight-bold" style="width: 100px;font-size: 16px;" onclick="popupHideAndShow(target = 'notice_write_popup')">
+            <button class="btn btn-secondary text-dark border-0 mx-auto font-weight-bold" style="width: 100px;" onclick="popupHideAndShow(target = 'notice_write_popup')">
                 작성
             </button>
 			</c:if>
@@ -106,7 +106,7 @@
                     <!-- 날짜 표시 -->
                     <div class="w-100 my-1">
                     	<fmt:formatDate var="date" value="${ notice.notice_date }" pattern="YY.MM.dd"/>
-                        <input class="form-control-plaintext text-right pr-4" disabled type="text" value="${ date }" style="font-size: 14px;">
+                        <input class="form-control-plaintext text-right pr-4 font-primary" disabled type="text" value="${ date }">
                     </div>
                     <!-- 공지사항 제목 -->
                     <div class="col-11 mx-auto">
@@ -126,10 +126,10 @@
                     <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
                     <div class="mx-auto my-3" style="width: fit-content;">
                         <!-- 사용자용 확인버튼 -->
-                        <button class="btn btn-dark btn-lg <c:if test="${ user_id eq 'admin' }">d-none</c:if>>" style="width: 80px; font-size:14px;" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" type="button">확인</button>
+                        <button class="btn btn-dark btn-lg font-primary<c:if test="${ user_id eq 'admin' }">d-none</c:if>>" style="width: 80px;" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" type="button">확인</button>
                         <!-- 관리자용 수정버튼 -->
                         <c:if test="${ user_id eq 'admin' }">
-                        <input type="submit" class="btn btn-dark btn-lg" style="width: 80px; font-size:14px;" value="수정">
+                        <input type="submit" class="btn btn-dark btn-lg font-primary" style="width: 80px;" value="수정">
                         <button class="btn btn-secondary" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction?${ notice.notice_idx}')">삭제</button>
                         </c:if>
                     </div>
@@ -151,7 +151,7 @@
                     
                     <!-- 날짜 표시 -->
                     <div class="w-100 my-1">
-                        <input class="form-control-plaintext text-right pr-4" disabled type="text" value="2022-02-11" style="font-size: 14px;">
+                        <input class="form-control-plaintext text-right pr-4 font-primary" disabled type="text" value="2022-02-11">
                     </div>
                     <!-- 공지사항 제목 -->
                     <div class="col-11 mx-auto">
@@ -167,7 +167,7 @@
                     </div>
                     <!-- 작성버튼 -->
                     <div class="mx-auto" style="width: fit-content;">
-                        <input type="submit" class="btn btn-dark btn-lg" style="width: 100px; font-size:16px;" value="작성">
+                        <input type="submit" class="btn btn-dark btn-lg" style="width: 100px;" value="작성">
                     </div>
                 </form>
             </div>
