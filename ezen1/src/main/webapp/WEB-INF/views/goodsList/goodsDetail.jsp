@@ -77,19 +77,19 @@
       <!--부모클래스bg-primary 안넣었음 -->
     </div>
     <!--상품 상세보기 옵션 드롭다운-->
-    <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px; flex: none;">
+    <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4 font-primary" style="flex: none;">
       <div class="clo-6 py-2"> 
         상품 옵션
       </div>
       <div class="col-6 dropdown border ">
-        <button class="col-12 btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-expanded="false" style="font-size: 14px;">
+        <button class="col-12 btn dropdown-toggle font-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-expanded="false">
           옵션
         </button>
         
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <c:forEach var="option" items="${ goodsOptions }"> 
-          <button class="dropdown-item" id="${ option.option_idx }" type="button" style="font-size: 14px;" onclick="totalPrice(event);">${ option.option_name }+${ option.option_price }</button>
+          <button class="dropdown-item font-primary" id="${ option.option_idx }" type="button" onclick="totalPrice(event);">${ option.option_name }+${ option.option_price }</button>
           <input type="hidden" name="${ option.option_idx }" value="${ option.option_price }">
           <input type="hidden" name="${ option.option_idx }" value="${ option.option_idx }">
  		  </c:forEach>     
@@ -99,12 +99,12 @@
       </div>
     </div>
     <!--판매가격-->
-    <div class="mx-2 my-2 d-flex flex-row justify-content-between w-75" style="font-size: 14px;">
-      <div class="col-3 py-2" style="font-size: 14px;">
+    <div class="mx-2 my-2 d-flex flex-row justify-content-between w-75 font-primary">
+      <div class="col-3 py-2 font-primary">
         판매가 
       </div>
       <input type="hidden" name="goods_price" value="${ goods.goods_price }">
-      <div class="col-4" style="font-size: 14px;">
+      <div class="col-4 font-primary">
       <input type="text" class="form-control-plaintext" name="goods_total_price" value="">
       <%-- <fmt:formatNumber value="${goods.goods_price}" type="number" /> --%>
       </div>
@@ -202,17 +202,16 @@
             	<!-- 질문 제목 -->
               <div class="card-header p-0" id="heading${ question.question_idx }">
                 <h2 class="mb-0">
-                  <button class="btn btn-block text-left d-flex flex-row justify-content-between" type="button"
+                  <button class="btn btn-block text-left d-flex flex-row justify-content-between font-primary" type="button"
                     data-toggle="collapse" data-target="#collapse${ question.question_idx }" aria-expanded="true" aria-controls="collapse${ question.question_idx }"
-                    style="font-size: 14px; height: 40px">
+                    style="height: 40px">
                     <span>${ question.question_title }</span><img src="/img/icon/down.png" alt="" class="img-fluid"
                       style="width: 25px; height: 25px;">
                   </button>
                 </h2>
               </div>
               <!--아코디언 내용-->
-              <div id="collapse${ question.question_idx }" class="collapse" aria-labelledby="heading${ question.question_idx }" data-parent="#accordion"
-                style="font-size: 14px;">
+              <div id="collapse${ question.question_idx }" class="collapse font-primary" aria-labelledby="heading${ question.question_idx }" data-parent="#accordion">
                 <div class="card-body">
                   <p class="card-text my-1">${ question.question_contents }</p>
                   <p class="card-text my-1 float-right"><small class="text-muted">${ question.question_date }</small></p>
@@ -250,18 +249,17 @@
             onclick="popupHideAndShow('goodDetailInquiryPop')" style="width:30px; height: 30px; cursor: pointer;">
         </div>
         <div class="mr-3 mb-4 ml-3">
-          <div class="text-center font-weight-bold text-dark mb-2" style="font-size: 16px;">
+          <div class="text-center font-weight-bold text-dark mb-2">
             상품문의
           </div>
           <form action="productQnaWriteAction" method="post" name="productQnaWriteForm">
             <div class="d-block mb-1">
-              <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 " name="question_title"
-                style="font-size: 14px; ">
+              <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 font-primary" name="question_title">
             </div>
             <div class="d-block">
-              <textarea cols="50" rows="10" placeholder="상품문의 내용을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 mb-4"
+              <textarea cols="50" rows="10" placeholder="상품문의 내용을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 mb-4 font-primary"
                 name="question_contents"
-                style="font-size: 14px; resize: none;"></textarea>
+                style="resize: none;"></textarea>
             </div>
             <!--자동으로 받음-->
             <input type="hidden" name="user_idx" value="${ user_idx }">
