@@ -17,21 +17,43 @@
 <c:import url="../pcMain.jsp"></c:import>
 
 
-<div  class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
+<div  class="container-sm container-fluid d-flex flex-column align-items-center px-0 position-relative"  style="max-width: 520px;max-height: 100vh; overflow: auto;" >
 
 
 <c:import url="../header.jsp"></c:import>
 
 <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
    <!-- titleDiv -->
-    <div class="container-sm container-fluid d-flex flex-row mb-0 border-bottom">
-        <div class="col-1 my-3 py-1 pl-0">
-            <img src="/img/icon/left.png" class="mx-auto d-block" alt="" width="27px" height="27px">
+   <div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-3 text-black-50">리뷰관리</div>
+     
+     <!-- 답글달기 팝업창 -->
+      
+    <div class="d-none position-absolute" id="reviewReplyWriteForm" style="bottom: 30px; top: 150px; z-index: 1100; max-width: 340px;">
+      <!-- 닫기 버튼 -->
+   
+      <div class="d-flex flex-column border rounded bg-white mx-auto">
+        <!--X아이콘-->
+        <div class="d-flex justify-content-end">
+          <img src="/img/icon/cross.png" alt="" onclick="popupHideAndShow('reviewReplyWriteForm')" style="width:30px; height: 30px; cursor: pointer;">
         </div>
-        <div class="col-11 my-3 py-1 text-center text-bold">리뷰관리</div>  
+        <div class="mr-3 mb-4 ml-3">
+          <div class="text-center font-weight-bold text-dark mb-2" >
+            답글달기
+          </div>
+          	<input type="hidden" id="targetIdx" value="">
+            <div class="d-block">
+              <textarea cols="50" rows="5" class="border rounded w-100 text-dark py-1 px-3 mb-4 font-primary" name="review_reply" style="resize: none;"></textarea>
+            </div>
+            <button type="button" class="btn btn-secondary text-dark col-5 ml-3 mr-3" onclick="popupHideAndShow('reviewReplyWriteForm')">취소 </button>
+            <input type="submit" class="btn btn-dark text-light mr-2 ml-1 col-5" onclick="registReviewReply();" value="답글달기">
+        </div>
+      </div>
     </div>
+</div>
+ 
+  
     <!-- mainDiv -->
-    <div class=" container-fluid col-12 d-flex px-0 mt-3 mb-5 align-items-center flex-wrap" style="justify-content: space-evenly;">     
+    <div class=" container-fluid col-12 d-flex px-0 my-3 align-items-center flex-wrap" style="justify-content: space-evenly;">     
         
         
         <c:forEach var="review" items="${ reviewlist }">
@@ -45,44 +67,44 @@
           		<c:remove var="img"/>
           	</c:forEach>
           <div class="card-body py-2 pl-3 pr-3"> 
-            <p class="card-text d-flex text-black-50 justify-content-between" style="font-size: 10px;"><span>★ ${ review.review_star }</span><span class="text-right">${ review.review_date }</span></p>
-		    <h5 class="card-title font-weight-bold" style="font-size: 14px;">${ goodsnamelist.get(review.goods_idx) }</h5>
+            <p class="card-text d-flex text-black-50 justify-content-between font-small"><span>★ ${ review.review_star }</span><span class="text-right">${ review.review_date }</span></p>
+		    <h5 class="card-title font-weight-bold font-primary">${ goodsnamelist.get(review.goods_idx) }</h5>
             <c:remove var="name"/>
-            <p class="card-text" style="font-size:12px; white-space: wrap;">${ review.review_contents }</p>
+            <p class="card-text font-secondary" style="white-space: wrap;">${ review.review_contents }</p>
             <div class="text-center">
-                  <span class="btn btn-primary" id="${ review.review_idx }" onclick="popupHideAndShowForReview(event);" style="cursor: pointer; font-size: 12px;">답글달기</span>
+                  <span class="btn btn-primary font-secondary" id="${ review.review_idx }" onclick="popupHideAndShowForReview(event);" style="cursor: pointer;">답글달기</span>
               </div>
           </div>
         </div>
      	</c:forEach>
     </div>
+       
+
     
-    <!-- 답글달기 팝업창 -->
-    <div class="d-none position-absolute" id="reviewReplyWriteForm" style="bottom: 30px">
-      <div class="d-flex flex-column border rounded bg-white mx-auto">
-        <!--X아이콘-->
-        <div class="d-flex justify-content-end">
-          <img src="/img/icon/cross.png" alt=""
-            onclick="popupHideAndShow('reviewReplyWriteForm')" style="width:30px; height: 30px; cursor: pointer;">
-        </div>
-        <div class="mr-3 mb-4 ml-3">
-          <div class="text-center font-weight-bold text-dark mb-2" style="font-size: 16px;">
-            답글달기
-          </div>
-          	<input type="hidden" id="targetIdx" value="">
-            <div class="d-block">
-              <textarea cols="50" rows="5" class="border rounded w-100 text-dark py-1 px-3 mb-4"
-                name="review_reply"
-                style="font-size: 14px; resize: none;"></textarea>
-            </div>
-            <button type="button" class="btn btn-secondary text-dark col-3" onclick="popupHideAndShow('reviewReplyWriteForm')">취소 </button>
-            <input type="submit" class="btn btn-dark text-light ml-2 col-6" onclick="registReviewReply();" value="답글달기">
-        </div>
-      </div>
-    </div>
+    <!-- 페이지 표시기 -->
+			
+		    <div class="container row mt-3 mb-5 mx-auto">
+		      <nav class="mx-auto">
+		        <ul class="pagination justify-content-center ">
+					<!-- 현재 페이지가 페이지표시기의 페이지 표시 수 보다 작으면 뒤로가기버튼 disable -->
+		          <li class="page-item <c:if test="${ pages.currentPage <= 5 }">disabled</c:if>">
+		            <a class="page-link" href="review?currentPage=${ pages.beginPagenation - 1}">&lang;</a>
+		          </li>
+				  <c:forEach var="page" begin="${ pages.beginPagenation }" end="${ pages.endPagenation }" step="1">
+		          <li class="page-item <c:if test="${ pages.currentPage == page }">active</c:if>">
+		            <a class="page-link" href="review?currentPage=${ page }">${ page }</a>
+		          </li>
+		          </c:forEach>
+		          <!-- 마지막페이지까지 표시되면 앞으로 가기 표시 안됨 -->
+		          <li class="page-item <c:if test="${ pages.countOfPages eq pages.endPagenation }">disabled</c:if>">
+		            <a class="page-link" href="review?currentPage=${ pages.endPagenation+1}">&rang;</a>
+		          </li>
+		        </ul>
+		      </nav>
+		    </div>
     
     
-  </div>
+
 
 
     

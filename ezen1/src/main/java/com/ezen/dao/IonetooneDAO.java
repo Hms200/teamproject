@@ -9,7 +9,9 @@ import com.ezen.dto.OneToOne;
 @Mapper
 public interface IonetooneDAO {
 	//MALL_oneToOne에서 등록된 모든 정보를 가져옴.
-	public ArrayList<OneToOne> getOneToOneList();
+	public ArrayList<OneToOne> getOneToOneList(int start, int end);
+	
+	public int countOfOneToOne();
 	//oneToone_idx를 받아서 MALL_onetoone에서 값이 null인 onetoone_reply에 입력받은 내용을 넣어줌. oneToone_isreply값을 true로 변경.
 	public int updateQnaAnswerByReplyAndContent(int onetoone_idx, String onetoone_reply);
 	//Mall_ONETOONE에서 해당 user_idx를 가진 data를 가져옴.

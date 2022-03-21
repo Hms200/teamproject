@@ -26,7 +26,7 @@
     <!-- 상품 종류 네브 바 -->
     <nav class="w-100">
       <div
-        class="goodsList w-100 d-flex flex-row justify-content-around font-weight-bold text-black-50 text-center my-5"
+        class="goodsList w-100 d-flex flex-row justify-content-around font-weight-bold text-black-50 text-center mt-5 mb-4"
         style="font-size: 15px;">
         <div class="col-3 candle " onclick="setGoodsList('candle')">캔들</div>
         <div class="col-3 warmer" onclick="setGoodsList('warmer')">캔들워머</div>
@@ -37,15 +37,15 @@
     <!-- 상품전체 리스트 -->
     <%String catname = request.getParameter("catval"); %>
     <main class="<%=catname%>">
-      <div class="dep container-fluid px-auto mt-2 mb-1 col-12 d-flex flex-wrap justify-content-start text-center">
+      <div class="dep container-fluid px-auto mt-3 mb-5 col-12 d-flex flex-wrap justify-content-start text-center">
       <c:forEach var="dto" items="${ list }">
           <div class="col-5 inline-block mx-auto my-2 px-0 border rounded val${ dto.goods_cat } position-relative">
             <a href="goodsDetail?goods_idx=${dto.goods_idx}">
             <img src="${dto.goods_thumb}" alt="" class="card-img-top img-fluid"></a>
-            <div class="card-body  py-2 pl-3 pr-3 text-dark text-decoration-none" >
-	            <h5 class="card-title font-weight-bold" style="font-size:14px;">${dto.goods_name}</h5>
-	            <p class="card-text" style="font-size: 10px;">${dto.goods_cat}</p>
-	            <p class="card-text mb-2" style="font-size: 12px;">￦${dto.goods_price }</p>
+            <div class="card-body py-2 px-2 text-dark text-decoration-none" >
+	            <h5 class="card-title font-weight-bold mt-1 font-primary">${dto.goods_name}</h5>
+	            <p class="card-text mb-1 font-secondary">${dto.goods_cat}</p>
+	            <p class="card-text mb-2 font-secondary">￦${dto.goods_price }</p>
        	  	</div>
        	  
      		</div>
