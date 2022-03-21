@@ -72,7 +72,6 @@
     
     <!-- 비밀번호찾기 팝업창  -->
     <div class="container-sm container-fluid col-12 position-absolute d-none flex-column justify-content-center bg-white border border-dark-50 rounded" style="top:50%; left: 50%; transform:translate(-50%, -50%); max-width:340px;" id="pwFindForm">
-      
       <div class="d-100 d-flex flex-row justify-content-end">
         <img src="/img/icon/cross.png" alt="" width="30px" height="30px" onclick="popupHideAndShow(target ='pwFindForm');">
       </div>
@@ -81,14 +80,14 @@
           <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px;">비밀번호찾기</div>        
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
             <form action="../login/pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0 font-primary" >
-              <div class="form-group d-flex align-items-center" style="height:29px;">
-                <lable>아이디 <input type="text" class="mt-1" name="user_id" placeholder="아이디를 입력해주세요" /></lable>
+              <div class="form-group">
+                <lable>아이디 <input type="text" name="user_id" class="border border-dark rounded" placeholder="아이디를 입력해주세요" /></lable>
               </div>
-              <div class="form-group d-flex align-items-center" style="height:29px;">
-                <lable>이름 &nbsp;<input type="text" class="ml-2 mt-1" name="user_name" placeholder="이름을 입력해주세요" /></lable>
+              <div class="form-group">
+                <lable>이름 &nbsp;<input type="text" class="ml-2 border border-dark rounded" name="user_name" placeholder="이름을 입력해주세요" /></lable>
               </div>
-              <div class="form-group d-flex align-items-center" style="height:29px;">
-                <lable>이메일 <input type="email" class="mt-1" name="user_email" placeholder="이메일을 입력해주세요" /></lable>
+              <div class="form-group">
+                <lable>이메일 <input type="email" class="border border-dark rounded" name="user_email" placeholder="이메일을 입력해주세요" /></lable>
               </div>
               <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" style="height:40px;" />
             </form>
