@@ -15,12 +15,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.extern.slf4j.Slf4j;
+
 // application.properties에 다음과 같이 추가 해 주세요.
 //#File uploade service
 //app.goods.img.dir=src/main/resources/static/img/uploadedGoodsImgs
 //app.reviews.img.dir=src/main/resources/static/img/uploadedReviewImgs
 //app.thumb.img.dir=src/main/resources/static/img/uploadedGoodsThumb
 @Service
+@Slf4j
 public class FileService {
 
 	// 상품이미지 업로드 경로
@@ -74,8 +77,9 @@ public class FileService {
 		try {
 			Files.copy(multipartFile.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
+			log.error("{}",e);
 			e.printStackTrace();
-			System.out.println("업로드 실패 파일: " + multipartFile.getOriginalFilename());
+			log.info("업로드 실패 파일 : {}", multipartFile.getOriginalFilename());
 			return "f 업로드 실패 파일: "+multipartFile.getOriginalFilename();
 		}
 		// dir 구분문자를 /로 교체
