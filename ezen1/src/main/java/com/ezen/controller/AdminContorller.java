@@ -22,8 +22,11 @@ import com.ezen.dto.GoodsIMGS;
 import com.ezen.service.AdminService;
 import com.ezen.service.FileService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("admin")
+@Slf4j
 public class AdminContorller {
 	
 	@Autowired
@@ -97,7 +100,8 @@ public class AdminContorller {
 				model = adminService.getOneToOneList(currentPage, model);
 				return "admin/qnaList";
 			}
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			model = adminService.getQuestionsFromGoodsDetail(currentPage, model);
 		}
 		
@@ -160,7 +164,7 @@ public class AdminContorller {
 	@PostMapping("inventoryOrderAction")
 	@ResponseBody
 	public void orderGoods(@RequestBody HashMap<String, String> param) {
-		System.out.println(param.toString());
+		log.info("{}",param.toString());
 		adminService.orderGoods(param);
 	}
 	
@@ -246,10 +250,11 @@ public class AdminContorller {
 	public String transaction(@RequestParam(required = false) String statement, @RequestParam(required=false, defaultValue = "1") String currentPage, Model model) {
 		try {
 			model = adminService.transactionFiltered(statement, model);
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			model = adminService.transaction(currentPage, model);
 		}
-		System.out.println(model.toString());
+		log.info("{}",model.toString());
 		return "admin/transaction";
 	}
 	////////////////////////////
