@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="623567172701800021f67cee" name="bootpay-application-id" />
     <title>구매</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -44,7 +46,7 @@
 	        <div class="d-flex flex-column" style="width: 200px;height: 100px;">
 		          <div class="d-flex flex-row justify-content-around my-auto">
 		            <span class="py-2" style="width: max-contents;">가격</span>
-		            <input type="text" class="form-control-plaintext text-right col-6 price py-2" readonly value="${ cart.cart_total_price }">
+		            <input type="text" class="form-control-plaintext text-right col-6 price py-2" id="goods_price" readonly value="${ cart.cart_total_price }">
 		          </div>
 		         <div class="d-flex flex-row justify-content-around my-auto">
 		            <span>옵션</span>
@@ -203,37 +205,48 @@ window.onloade = calculateTotalPrice();
 </script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
 <script>
-	console.log('${goodslist.get(1)}')
 	function bootpay(){	
-	const goods_name = $('span[id=goods_name]').text();
-	//const goods_price = $('span[id=final_price]').text();
+	const goods_price = $('span[id=final_price]').text();
+	const nameCount = $('span[id=goods_name]').length - 1 ;
+	let goods_name = $('span[id=goods_name]')[0].textContent
+	const goods_count = '${carlist[0].cart_amount}';
+	const goods_idx = "${goodslist[0].goods_idx}";
 	const user_name = "${userinfo.user_name}";
 	const user_email = "${userinfo.user_email}";
 	const user_address = "${userinfo.user_address}";
-	const user_phone = ${userinfo.user_phone};
- 	BootPay.request({
- 		price: 1000, //실제 결제되는 가격
- 		application_id: "623567172701800021f67cee",
+	const user_phone = "${userinfo.user_phone}";
+	//고유 아이디 생성
+	function guid() {
+	function s4() {
+  	return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+	}
+	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	};
+	if(nameCount > 0 ){
+		goods_name +=  " "+"외" + nameCount +"개";
+	}
+	BootPay.request({
+ 		price: 100, //실제 결제되는 가격
+ 		application_id: "623567172701800021f67cee",//부트페이 회원가입후 고유아이디 복사
  		name: goods_name, //결제창에서 보여질 이름
  		pg: 'nicepay',
  		method: 'card', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
  		show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
  		items: [
- 			{
- 				item_name: goods_name, //상품명
- 				qty: 1, //수량
- 				unique: '123', //해당 상품을 구분짓는 primary key
- 				price: 1000, //상품 단가
- 				cat1: "candle", // 대표 상품의 카테고리 상, 50글자 이내
- 			}
- 		],
+ 	         {
+ 	             item_name: goods_name, //상품명
+ 	             qty: Number(goods_count), //수량
+ 	             unique: goods_idx , //해당 상품을 구분짓는 primary key
+ 	             price: goods_price, //상품 단가
+ 	         }
+ 	     ],
  		user_info: {
  			username: user_name,
  			email: user_email,
  			addr: user_address,
  			phone: user_phone
  		},
- 		order_id: '고유order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
+ 		order_id: guid(), //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
  	}).error(function (data) {
  		//결제 진행시 에러가 발생하면 수행됩니다.
  		console.log(data);
@@ -261,7 +274,7 @@ window.onloade = calculateTotalPrice();
  		//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
  		console.log(data);
  	});
-}
+};
 </script>
 
 </body>
