@@ -36,7 +36,7 @@
       </div> 
       
       <div>
-        <input type="button" value="선택삭제" onclick="removeGoodsInCart();" class="btn btn-secondary py-1 " style="font-size: 13px;">
+        <input type="button" value="선택삭제" onclick="removeGoodsInCart();" class="btn btn-secondary py-1 font-secondary">
       </div>
     </div>
     <!-- 상품내용  -->
@@ -75,12 +75,17 @@
           <div class="d-flex flex-row justify-content-between font-primary">
             옵션
             <!-- 서버에서 처리 -->
+<<<<<<< HEAD
+            <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1 btn btn-secondary d-flex flex-content-center font-small" value="변경하기"
+              style="width: 70px; height: 20px;  line-height:2px;" onclick="changeValue(event);">
+=======
             <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1 btn btn-secondary d-flex flex-content-center" value="변경하기"
               style="width: 70px; height: 20px; font-size: 11px; line-height:2px;" onclick="changeValue(event);">
+>>>>>>> branch 'Jyi' of https://github.com/Hms200/teamproject.git
           </div>
           <div class="d-flex flex-row justify-content-end mt-1">
           <div class="mr-1">
-            <select class="form-select text-center" name="changeValue${ cart.cart_idx }" style="width: 125px; font-size:13px;">
+            <select class="form-select text-center font-secondary" name="changeValue${ cart.cart_idx }" style="width: 125px;">
               <c:forEach var="options" items="${ optionlist }">
               <option <c:if test="${ this_cart_option eq options.option_idx }"> selected </c:if> value="${ options.option_idx }">${ options.option_name }+${ options.option_price }</option>
               </c:forEach>
@@ -88,8 +93,8 @@
             </select>
             </div>
             <div>
-            <select class="form-select text-center" name="changeValue${ cart.cart_idx }"
-              style="width: 35px; font-size: 13px;">
+            <select class="form-select text-center font-secondary" name="changeValue${ cart.cart_idx }"
+              style="width: 35px; ">
               <option <c:if test="${ cart.cart_amount == 1 }"> selected </c:if> value="1" >1</option>
               <option <c:if test="${ cart.cart_amount == 2 }"> selected </c:if> value="2">2</option>
               <option <c:if test="${ cart.cart_amount == 3 }"> selected </c:if> value="3">3</option>
@@ -142,7 +147,7 @@
     <div class="d-flex justify-content-center mb-2 mt-5">
       <img src="/img/icon/bag.png" alt="" class="img-fluid " width="215px" height="215px">
     </div>
-    <div class="font-weight-bold mb-5" style="font-size: 20px;">
+    <div class="font-weight-bold mb-5 display-5 lead" >
       장바구니가 비었습니다.
     </div>
     <div class="d-flex flex-row justify-content-center mb-5 w-100">
