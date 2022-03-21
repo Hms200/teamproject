@@ -22,7 +22,7 @@
 <!-- container -->
   <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer" style="max-width: 520px; margin-top:0;">
     <!-- 네브바 -->
-    <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center text-decoration-none text-center border-bottom font-weight-bold" style="font-size: 16px; height: 90px;">
+    <div class="container-sm container-fluid d-flex flex-row justify-content-around align-items-center text-decoration-none text-center border-bottom font-weight-bold" style="height: 90px;">
       <nav>
         <span>
           <a href="" class="text-primary col-4">FAQ</a>
@@ -39,7 +39,7 @@
     <div class="container-sm container-fluid d-flex justify-content-end my-3">
       <form name="faqCatForm" method="get" action="faqCatAction">
       <span>
-        <select name="faq_cat" onchange="this.form.submit()" style="width: 100px; height: 38px; font-size: 14px; padding:3px">
+        <select name="faq_cat" onchange="this.form.submit()" class="font-primary" style="width: 100px; height: 38px; padding:3px">
           <option hidden>문의종류</option>
           <option value="전체문의" <c:if test="${ faq_cat == '전체문의'}"> selected </c:if> >전체문의</option>
           <option value="상품문의" <c:if test="${ faq_cat == '상품문의'}"> selected </c:if> >상품문의</option>
@@ -50,10 +50,10 @@
       </form>
     </div>
     <!-- faq아코디언 -->
-    <div class="accordion container-sm container-fluid" id="accordion" style="font-size: 16px;">
+    <div class="accordion container-sm container-fluid" id="accordion">
       <c:forEach var="dto" items="${ getFaqList }">
       <div class="card my-1">
-          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${dto.faq_idx}" aria-expanded="false" aria-controls="collapse" style="height: 50px;">
+          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${dto.faq_idx}" aria-expanded="false" aria-controls="collapse" style="height: 60px;">
             <div class="d-flex justify-content-between">
               <span>
                 ${dto.faq_title}
@@ -73,7 +73,7 @@
               <div class="d-flex justify-content-end">
               <c:if test="${ user_id eq 'admin' }">
               	<a href="faqDeleteAction?faq_idx=${ dto.faq_idx }">
-                	<button class="btn btn-secondary w-5 mt-1" style="height: 30px; cursor: pointer; font-size:14px;">삭제</button>
+                	<button class="btn btn-secondary w-5 mt-1 font-primary" style="height: 30px; cursor: pointer;">삭제</button>
                 </a>
        		  </c:if>
               </div>
@@ -99,20 +99,20 @@
       
       <div class="w-100 d-flex flex-column justify-content-center align-items-center mb-4" >
           <!-- pwFindText -->
-          <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;"> FAQ문의</div>          
+          <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px;"> FAQ문의</div>          
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
-            <form action="faqWriteAction" method="post" name="faqWriteForm" onsubmit="return nullChecker();" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+            <form action="faqWriteAction" method="post" name="faqWriteForm" onsubmit="return nullChecker();" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0 font-primary">
               
 	          <!-- 히든 input -->
 	          <!-- <input type="hidden" name="faq_idx" value="faq_idx"> -->
 	          <div class="d-flex">
 	            <!-- 제목 -->
 	            <div>
-	              <input type="text" name="faq_title" placeholder="제목을 입력해주세요" class="text-dark nullcheck" style="width: 200px; height: 40px; margin-bottom: 5px; padding: 2px 15px; font-size: 14px;">
+	              <input type="text" name="faq_title" placeholder="제목을 입력해주세요" class="text-dark nullcheck font-primary" style="width: 200px; height: 40px; margin-bottom: 5px; padding: 2px 15px;">
 	            </div>
 	              <!-- 카테고리 -->
 	            <div>
-	              <select name="faq_cat" style="width: 100px; height: 40px; font-size: 14px;">
+	              <select name="faq_cat" class="font-primary" style="width: 100px; height: 38px;">
 	                <option selected hidden>문의 종류</option>
 	                <option value="상품문의">상품문의</option>
 	                <option value="배송문의">배송문의</option>
@@ -121,10 +121,10 @@
 	            </div>
 	          </div>
 	   		 <!-- 내용 -->
-	            <textarea name="faq_contents" placeholder="내용을 입력해주세요" cols="30" rows="10" class="text-dark nullcheck mb-2" style="width: 300px; height: 100px; font-size: 14px; resize: none;"></textarea>
+	            <textarea name="faq_contents" placeholder="내용을 입력해주세요" cols="30" rows="10" class="text-dark nullcheck mb-2 font-primary" style="width: 300px; height: 100px; resize: none;"></textarea>
 	     	 <!-- 확인 버튼 -->
 	          <div class="d-flex align-items-center justify-content-center">
-	            <input type="submit" value="확인" class="btn btn-dark text-light form-control" style="width: 185px; margin: 20px 80px 0; font-size: 14px; cursor: pointer;">
+	            <input type="submit" value="확인" class="btn btn-dark text-light form-control font-primary" style="width: 185px; margin: 20px 80px 0; cursor: pointer;">
 	          </div>         
             </form>
           </div>         
