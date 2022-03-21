@@ -21,7 +21,9 @@ import com.ezen.dto.Purchase;
 import com.ezen.dto.Question;
 import com.ezen.service.GoodsListService;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("goodsList")
 public class GoodsListController {
@@ -132,6 +134,7 @@ public class GoodsListController {
 	public String checkPw(@RequestBody HashMap<String, String> pw) {
 		String password = pw.get("inputtedPw");
 		String result = goodsListService.checkPw(password);
+		log.info("비밀번호 일치여부 검증결과 : {}", result);
 		return result;
 	}
 	// 구매 프로세스 진행 완료 후 구매기록 저장 & 장바구니항목 구매됨으로 변경 & 상품 구매카운터 증가
