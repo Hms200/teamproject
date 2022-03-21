@@ -668,8 +668,13 @@ function checkPw(){
 				}else{
 					/// bootpay 연결 후 수정해야할 부분, bootpay연결로 결제프로세스진행되면
 					// makingPurchase를 그 함수 안으로 옮길것.
-					console.log('결제 프로세스 진행');
-					makingPurchase();
+					if($('input[name=purchase_buyer_payment]:checked').val() == '카드'){
+						console.log('결제 프로세스 진행');
+						bootpay();						
+					}else{
+						alert("주문이 접수되었습니다. 무통장 전용계좌로 입금 확인후 익일 상품이 출고됩니다.");
+						makingPurchase();
+					}
 				}
 		},
 		error: function(e){
@@ -888,4 +893,3 @@ function registerQuestionReply(){
 				error: function(){return false},
 			})
 	  };
-

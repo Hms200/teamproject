@@ -91,7 +91,7 @@
 
 
  <!--팝업창 수정   -->
-    <div class="container-sm container-fluid col-12 position-absolute d-none flex-column justify-content-center bg-white border border-dark-50 rounded" style="top:50%; left: 50%; transform:translate(-50%, -50%); max-width:340px;" id="faq_write_popup">
+    <div class="container-sm container-fluid col-12 position-fixed d-none flex-column justify-content-center bg-white border border-dark-50 rounded" style="top:40%; left: 50%; transform:translate(-50%, -50%); max-width:340px;" id="faq_write_popup">
       <!-- 이모티콘  -->
       <div class="d-100 d-flex flex-row justify-content-end">
         <img src="/img/icon/cross.png" alt="" width="30px" height="30px" onclick="popupHideAndShow(target ='faq_write_popup');">
