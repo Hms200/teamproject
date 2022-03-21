@@ -28,9 +28,7 @@
 
 		<!-- 아이콘 -->
 		<div class="d-flex w-100 flex-row justify-content-end pt-2  pr-2">
-			<img src="/img/icon/cross.png" alt="취소"
-				style="width: 30px; height: 30px; cursor: pointer;"
-				onclick="location.href='myPage'">
+			<img src="/img/icon/cross.png" alt="취소" style="width: 30px; height: 30px; cursor: pointer;" onclick="history.back(-1);">
 		</div>
 		<!-- main -->
 		<div
