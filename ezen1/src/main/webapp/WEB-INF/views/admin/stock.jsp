@@ -56,13 +56,13 @@
         <!-- 품절처리, 발주, 삭제 버튼 그룹-->
         
         <div class="col-12 my-3 d-flex flex-row justify-content-around" style="flex:none;">
-            <button class="btn text-white col-3 font-secondary" style="background-color: rgb(52, 152, 219);" onclick="makeGoodsSoldOut();">
-                품절<br> 처리하기
+            <button class="btn btn-outline-primary col-3 font-secondary" style="background-color: rgb(52, 152, 219);" onclick="makeGoodsSoldOut();">
+                품절처리
             </button>
-            <button class="btn btn-primary col-3 font-secondary" onclick="orderGoods();">
+            <button class="btn btn-outline-primary col-3 font-secondary" onclick="orderGoods();">
                 발주
             </button>
-            <button class="btn btn-dark col-3 font-secondary" onclick="multiSubmit(formName = 'inventoryUpdateForm', formAction = 'inventoryDeleteAction')">
+            <button class="btn btn-outline-primary col-3 font-secondary" onclick="multiSubmit(formName = 'inventoryUpdateForm', formAction = 'inventoryDeleteAction')">
                 리스트<br> 삭제
             </button>
         </div> 

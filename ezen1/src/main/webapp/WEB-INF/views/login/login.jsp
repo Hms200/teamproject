@@ -27,8 +27,8 @@
         <div>       
 	        <div class="col-12 pl-0 pr-0  ml-0 mr-0 column" style="height: 150px;">
 	          <form action="../login/loginAction" method="post" class="control mb-1" name="userInfo" onsubmit="return nullChecker();" style="height: 150px;">
-	            <input type="text" class="mb-1 p-2 w-100 nullcheck" style="font-size: 14px;" name="user_id" id="user_id" placeholder="아이디를 입력하세요.">
-	            <input type="password" class="mb-3 p-2 w-100 nullcheck" style="font-size: 14px;" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요.">
+	            <input type="text" class="mb-1 p-2 w-100 nullcheck font-primary" name="user_id" id="user_id" placeholder="아이디를 입력하세요.">
+	            <input type="password" class="mb-3 p-2 w-100 nullcheck font-primary" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요.">
 	            <input type="submit" class="btn btn-primary w-100 rouned-lg text-white mb-2" value="로그인">
 	          </form>
 	        </div>
@@ -55,16 +55,16 @@
         <img src="/img/icon/cross.png" alt="" width="30px" height="30px" onclick="popupHideAndShow(target ='idFindForm');">
       </div>
         <div class="w-100 d-flex flex-column justify-content-center align-items-center mb-4" >
-          <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;">아이디 찾기</div>
+          <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px;">아이디 찾기</div>
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
-            <form action="../login/idFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+            <form action="../login/idFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0 font-primary" >
               <div class="form-group">
                 <lable>이름 &nbsp;<input type="text" class="ml-2" name="user_name" placeholder="이름을 입력해주세요"></lable>
               </div>
               <div class="form-group">
                 <lable>이메일 <input type="email" name="user_email" placeholder="이메일을 입력해주세요"></lable>
               </div>
-              <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" style="font-size: 16px" height="40px">
+              <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" height="40px">
             </form>
           </div>
         </div>
@@ -78,9 +78,9 @@
       </div>
       <div class="w-100 d-flex flex-column justify-content-center align-items-center mb-4" >
           <!-- pwFindText -->
-          <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px; font-size: 16px;">비밀번호찾기</div>        
+          <div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4" style="height: 30px;">비밀번호찾기</div>        
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mb-4">
-            <form action="../login/pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0" style="font-size: 14px;">
+            <form action="../login/pwFindAction" method="get" class="form-control form-control-lg mb-1 col-12 d-flex flex-column align-items-center border-0 font-primary" >
               <div class="form-group d-flex align-items-center" style="height:29px;">
                 <lable>아이디 <input type="text" class="mt-1" name="user_id" placeholder="아이디를 입력해주세요" /></lable>
               </div>
@@ -90,7 +90,7 @@
               <div class="form-group d-flex align-items-center" style="height:29px;">
                 <lable>이메일 <input type="email" class="mt-1" name="user_email" placeholder="이메일을 입력해주세요" /></lable>
               </div>
-              <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" style="font-size: 16px" height="40px" />
+              <input type="submit" class="btn btn-dark col-6 rouned-lg text-light my-3" style="height:40px;" />
             </form>
           </div>         
       </div>     
