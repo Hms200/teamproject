@@ -100,7 +100,7 @@
                     <button class="btn btn-primary" style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/faq'">FAQ</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/myAsk'">내 문의내역</button>
+                    <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/myAsk'">내 문의<br>내역</button>
                 </div>
                  <div class="col-3">
                     <button class="btn btn-primary " style="width: 70px; height: 70px; padding:0;cursor: pointer;" onclick="location.href='customer/ask'">문의하기</button>

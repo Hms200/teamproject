@@ -11,6 +11,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
+
 </head>
 <body>
 <c:import url="../pcMain.jsp"></c:import>
@@ -35,13 +36,17 @@
                 </div>
                 
                 <div class="text-left font-weight-bold pl-2 mt-2">비밀번호</div>
-                <div class="form-group row mb-2 mx-0 justify-content-between font-primary" >
-                    <input type="text" class="col-8 form-control mb-1 nullcheck" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
-                    <input type="button" class="col-3 btn btn-secondary text-dark mb-1 font-primary" value="확인체크" onclick="pwCheck();">
-                    <input type="text" class="col-12 form-control nullcheck" id="user_pw_check" placeholder="비밀번호를 한 번더 입력해주세요">
-                    <input type="hidden" name="isPWChecked" id="isPWChecked" value='no'>
-                </div>                
-              
+                
+              	<div class="form-group mb-2 font-primary">
+	              	<input type="password" class="col-12 form-control nullcheck mb-1" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
+					<input type="password" class="col-12 form-control nullcheck mb-1" id="user_pw_check" placeholder="비밀번호를 한 번 더 입력해주세요">
+					<input type="hidden" name="isPWChecked" id="isPWChecked" value='no'>
+					<div id="al1" style="color: red; display: none;" >*비밀번호가 서로 다릅니다*</div>
+	           		<div id="al2" style="color: green; display: none;">*비밀번호가 일치합니다*</div>   
+                </div>   
+               
+				         
+             
                 <div class="text-left font-weight-bold pl-2 mt-2">이름</div>
                 <div class="form-group mb-2 font-primary">
                     <input type="text" class="col-12 form-control nullcheck" name="user_name" id="user_name" placeholder="이름을 입력해주세요">
@@ -98,5 +103,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <!-- main js -->
 <script src="/js/main.js"></script>
+<!-- 마이페이지 회원정보 참고해서 수정했습니다. -->
+<script>
+  $(function() {
+	  var pw2;
+	  $('input[id=user_pw_check]').keyup(function(){
+	      var pw2 = $(this).val();
+	      if(pw2 != $('input[id=user_pw]').val()){
+	        $('#al1').css('display','block');
+	        $('#al2').css('display','none');
+	        $('#isPWChecked').val('no');
+	      }
+	      if(pw2 == $('input[id=user_pw]').val()){
+	        $('#al1').css('display','none');
+	        $('#al2').css('display','block');
+	        $('#isPWChecked').val('ok');
+	      }
+	    })	  
+  });
+</script>
 </body>
 </html>
