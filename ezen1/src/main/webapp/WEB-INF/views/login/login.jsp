@@ -42,9 +42,16 @@
 	          <span class="text-dark" onclick="popupHideAndShow(target ='pwFindForm');" style="cursor: pointer;">비밀번호찾기</span>
 	        </div>
 	       </div>        
-      	</div>
+   		</div>
       	
     </div>
+    
+    <!-- 로그인 에러 -->
+    <c:if test="${ errorMessage != null }">
+    <div>
+    	<span class="mx-auto my-auto text-danger">${ errorMessage }</span>
+    </div>
+    </c:if>
     
   </div>
   

@@ -67,13 +67,13 @@
 				<div class="my-3 col-12 font-weight-bold form-group text-dark">
 					이메일 <input type="email"
 						class="form-control col-12 rounded font-weight-nomal nullcheck"
-						name="user_email" placeholder="이메일을 입력해 주세요">
+						name="user_email" value="${user.user_email}">
 				</div>
 				<!-- 전화번호 -->
 				<div class="my-3 col-12 font-weight-bold form-group text-dark">
 					전화번호 <input type="text"
 						class="form-control col-12 rounded font-weight-nomal nullcheck"
-						name="user_phone"placeholder="전화번호를 입력해 주세요">
+						name="user_phone" value="${user.user_phone }">
 						
 				</div>
 				<!-- 주소 -->
@@ -92,22 +92,31 @@
                 </div>
             </div>
         </div> -->
-				<div class="text-left font-weight-bold col-12 mt-2">주소</div>
-				<div class="form-group row mb-5 px-4 justify-content-between font-primary">
-					<input type="text" class="col-8 form-control mb-1 bg-white" name="sample6_postcode" id="sample6_postcode" placeholder="우편주소" readonly>
+				<div class="text-left font-weight-bold col-12 mt-2">주소<input type="text"
+						class="form-control col-12 rounded font-weight-nomal nullcheck"
+						name="user_address" value="${user.user_address }">
+						<span class="p1 float-right" onclick="popupHideAndShow('changeAddress')" style=" cursor: pointer;">
+				          주소 변경하기
+				          <img src="/img/icon/down.png" alt="" class="img-fluid" style="width: 12px;height: 12px;">
+				        </span>
+		        </div>
+				<div class="form-group row mb-5 px-4 justify-content-between d-none" id="changeAddress"
+					style="font-size: 14px;">
+					 <input type="text" class="col-8 form-control mb-1 bg-white d-inline" name="sample6_postcode" id="sample6_postcode" placeholder="우편번호">
                     <input type="button" class="col-3 btn btn-secondary text-dark mb-1"  value="주소찾기" style="font-size: 14px;" onclick="sample6_execDaumPostcode()">
-                    <input type="text" class="col-12 form-control mb-1 bg-white nullcheck" name="sample6_address" id="sample6_address" placeholder="주소를 입력해주세요" readonly>
+                    <input type="text" class="col-12 form-control mb-1 bg-white nullcheck" name="sample6_address" id="sample6_address" placeholder="주소를 입력해주세요">
                     <input type="text" class="col-12 form-control nullcheck" name="sample6_detailAddress" id="sample6_detailAddress"  placeholder="상세주소를 입력해주세요">
+                    <input type="button" class="btn btn-secondary text-dark float-right" value="확인" onclick="mergeAndChangeAddress()">
                     <!-- 지우면 버튼클릭 안됨 -->
                     <input type="hidden" class="inputStyle1" id="sample6_extraAddress" placeholder="참고항목">
-                    <input type="hidden" name="user_address">
+              		
 				</div>
 			</div>
 			<!-- 수정하기 button -->
 			<div class="mt-3 mb-5 align-items-center text-center">
 				<button type="submit"
 					class="btn btn-primary text-light form-control"
-					style="width: 300px;"id="submitButton" disabled>수정하기</button>
+					style="width: 300px;"id="submitButton">수정하기</button>
 			</div>
 		</form>
 	</div>
@@ -142,18 +151,53 @@
     })
   });
   
+  // 비밀번호 확인
   $(function(){
       $('#checkPW').focusout(function(){
-    	  inputPW = $(this).val();
-    	  const user_pw = <c:out value="${user.user_pw}"/>;
-    	  if(user_pw == inputPW){
-    		  alert("기존비밀번호가 일치합니다. 이제수정이 가능합니다")
-    		  $('#submitButton').removeAttr('disabled');
-    	  }else{
-    		  alert("기존비밀번호가 다릅니다. 다시입력해주세요")
-    	  }
+    	  var inputPW = $(this).val();
+    	  var data = {};
+    	  data.inputtedPw = inputPW;
+    	  var user_pw;
+    	  data = JSON.stringify(data);
+    	  console.log(data)
+    	  $.ajax({
+    		  url: '../goodsList/checkPwAction',
+    		  type: 'POST',
+    		  contentType: 'application/json',
+    		  processData: false,
+    		  async: false,
+    		  data: data,
+    		  success: function(result){
+    			  if(result !== 'true'){
+    				  alert('기존비밀번호를 재확인 해 주세요')
+    			  }else{
+    				  alert("기존비밀번호가 일치합니다. 이제수정이 가능합니다")
+    	    		  $('#submitButton').removeAttr('disabled');
+    			  }
+    		  },
+    		  error: function(e){
+    			  console.log(e);
+    			  alert('다시 시도해 주세요');
+    		  }  
+    	  });
+    	  
         })
      })
+     
+     //주소변경
+   function mergeAndChangeAddress(){
+	  let mergedAddress;
+	  const postCode = document.getElementById('sample6_postcode').value;
+	  const address = document.getElementById('sample6_address').value;
+	  const detailAddress = document.getElementById('sample6_detailAddress').value;
+	  mergedAddress = postCode + address +" "+ detailAddress;
+	  
+	  const changeTarget = document.getElementsByName('user_address');
+	  for(i=0; i<changeTarget.length; i++){
+		  changeTarget[i].value = mergedAddress;
+	  }
+	  
+  }  
   
 </script>
 </body>

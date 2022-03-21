@@ -3,6 +3,7 @@ package com.ezen.controller;
 
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -49,8 +50,8 @@ public class MainController {
 		
 		int user_idx;
 		try {
-			user_idx = (int) session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
+		} catch (Exception e) {
 			user_idx = 0;
 		}
 		// 뱃지 숫자 설정. 
@@ -126,4 +127,6 @@ public class MainController {
 		String result = mainService.deleteNotice(notice_idx);
 		return result;
 	}
+	
+	
 }
