@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.ezen.controller.AdminContorller;
 import com.ezen.dao.IcartDAO;
 import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IgoodsIMGSDAO;
@@ -33,9 +34,12 @@ import com.ezen.dto.Review;
 import com.ezen.dto.ReviewIMGS;
 import com.ezen.dto.User;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 
 @Service
+@Slf4j
 public class AdminService {
 
 	@Autowired
@@ -99,11 +103,13 @@ public class AdminService {
 				try {
 					amount1 = Integer.parseInt(String.valueOf(o1.get("TOTAL_AMOUNT")));
 				} catch (Exception e) {
+					log.error("{}",e);
 					amount1= 0;
 				}
 				try {
 					amount2 = Integer.parseInt(String.valueOf(o2.get("TOTAL_AMOUNT")));
 				} catch (Exception e) {
+					log.error("{}",e);
 					amount2 = 0;
 				}
 				
@@ -119,11 +125,13 @@ public class AdminService {
 				try {
 					price1 = Integer.parseInt(String.valueOf(o1.get("TOTAL_PRICE")));
 				} catch (Exception e) {
+					log.error("{}",e);
 					price1 = 0;
 				}
 				try {
 					price2 = Integer.parseInt(String.valueOf(o2.get("TOTAL_PRICE")));
 				} catch (Exception e) {
+					log.error("{}",e);
 					price2 = 0;
 				}
 				return price2 - price1;
@@ -166,7 +174,7 @@ public class AdminService {
 		if(result == 1) {
 			int idx = goodsDAO.getNewestGoodsIdx();
 			resultString = String.valueOf(idx);
-			System.out.println(resultString);
+			log.info("{}",resultString);
 			return resultString;
 		}else {
 			resultString = "false";
@@ -230,7 +238,7 @@ public class AdminService {
 				});
 			}
 			model.addAttribute("goodslist", goodsList);
-			System.out.println(model.toString());
+			log.info("{}",model.toString());
 			return model;
 		}
 	  	 
@@ -240,7 +248,7 @@ public class AdminService {
 		list.forEach((k,v) -> { 
 			if(v == true) {
 				int result = goodsDAO.updateGoodsStockSoldOut(Integer.parseInt(k));
-				System.out.println(result);
+				log.info("result : {}", result);
 				}
 		});
 	}
@@ -249,14 +257,15 @@ public class AdminService {
 		list.forEach((k,v) -> {
 			if(v.equals("on")) {
 				int result = goodsDAO.deleteGoods(Integer.parseInt(k));
-				System.out.println("goods_idx : " + k +" : result - " + String.valueOf(result));
+				log.info("goods_idx : {}", k);
+				log.info("result : {} ", String.valueOf(result));
 			}
 		});
 	}
 	// stock 상품 발주 = amount에 추가 + onsale 1로 변경
 	public void orderGoods(HashMap<String, String> list) {
 		int amount = Integer.parseInt(list.get("amount"));
-		System.out.println(amount);
+		log.info("{}", amount);
 		list.remove("amount");
 		list.forEach((k,v) -> {
 			if(v.equals("true")) {
@@ -430,8 +439,8 @@ public class AdminService {
 	public String registQuestionReply(HashMap<String, String> param) {
 		int question_idx = Integer.parseInt(param.get("question_idx"));
 		String question_reply = param.get("question_reply");
-		System.out.println(param.toString());
-		System.out.println(question_reply);
+		log.info("{}",param.toString());
+		log.info("{}",question_reply);
 		int result = questionDAO.updateQnaAnswer(question_idx, question_reply);
 		if(result == 1) {
 			return "등록되었습니다.";
@@ -443,8 +452,8 @@ public class AdminService {
 	public String registOneToOneReply(HashMap<String, String> param) {
 		int question_idx = Integer.parseInt(param.get("question_idx"));
 		String question_reply = param.get("question_reply");
-		System.out.println(param.toString());
-		System.out.println(question_reply);
+		log.info("{}",param.toString());
+		log.info("{}",question_reply);
 		int result = onetooneDAO.updateQnaAnswerByReplyAndContent(question_idx, question_reply);
 		if(result == 1) {
 			return "등록되었습니다.";

@@ -27,21 +27,26 @@
         <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 
 		<!-- 아이콘 -->
-		<div class="d-flex w-100 flex-row justify-content-end pt-2 ">
+		<div class="d-flex w-100 flex-row justify-content-end pt-2  pr-2">
 			<img src="/img/icon/cross.png" alt="취소"
 				style="width: 30px; height: 30px; cursor: pointer;"
 				onclick="location.href='myPage'">
 		</div>
 		<!-- main -->
 		<div
-			class="w-100 d-flex flex-column jusfity-content-center align-items-center px-3 mb-2">
-			<div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4"
-				style="font-size: 16px;">고객님의 리뷰가 큰 힘이 됩니다!</div>
+			class="w-100 d-flex flex-column justify-content-center align-items-center px-3 my-4">
+			<div class="w-auto text-center font-weight-bold text-dark mt-1 mb-4">
+				고객님의 리뷰가 큰 힘이 됩니다!</div>
 		</div>
+		
+		  <div class=" w-100  d-flex flex-row justify-content-around justify-content-center align-items-center p-2">
 		<form name="reviewImg" method="post" enctype="multipart/form-data"  accept-charset="UTF-8">
+			
+
 			<!-- 파일선택 -->
-			<div class="w-100 custom-flie d-flex flex-row p-2"
-				style="float: left; font-size: 14px;">
+	     
+			<div class="w-100 custom-flie d-flex flex-row p-2 font-primary">
+				
 				<input type="file" class="custom-flie-input " name="reviewFile" id="reviewImg" accept="image/*">
 				<input type="hidden" name="review_idx" value="">
 				<div class="change_img"><img src="" class="mt-2"/></div>
@@ -49,11 +54,12 @@
 		</form>
 			<!-- 셀렉트 -->
 		<form action="reviewWriteAction" name="reviewWriteForm" method="post" id="reviewWriteForm">
-				<div class="d-flex justify-content-end">
-					<select class="form-select form-control rounded text-dark my-2 "
-						style="font-size: 14px; height: 35px; width: 110px;"
+
+				<div class="pr-2">
+					<select class="form-select form-control rounded text-dark my-2 font-secondary pl-1"
+						style="width: 85px;"
 						aria-label="별점" name="review_star" id="review_star">
-						<option value="" disabled selected>별점선택</option>
+						<option value="" disabled selected>별점</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -61,22 +67,27 @@
 						<option value="5">5</option>
 					</select>
 				</div>
+				
 				<!-- 리뷰내용 -->
-				<div style="font-size: 14px;" class="container w-100">
+				<div class="container font-primary mb-5 mt-2">
 					<textarea name="review_contents" id="review" cols="50" rows="10"
-						class="form-control form-control-lg border border-color col-12"
-						style="font-size: 14px; height: 80px;" placeholder="리뷰를 입력해 주세요" id="review_content"></textarea>
+						class="form-control form-control-lg border border-color col-12 font-primary"
+						style="height: 200px;" placeholder="리뷰를 입력해 주세요" id="review_content"></textarea>
 					<input type="hidden" name="user_idx" id="user_idx" value="<%=request.getParameter("user_idx") %>">
 					<input type="hidden" name="goods_idx" id="goods_idx" value="<%=request.getParameter("goods_idx") %>">
 				</div>
+			
 			</form>
+			
+			
 			<!-- 버튼 -->
-			<div class="mt-5 align-items-center text-center">
-				<button type="submit" class="btn btn-dark text-light form-control"style="width: 140px;"
+			<div class="my-5 align-items-center text-center w-100">
+				<button type="submit" class="btn btn-dark text-light form-control w-75 col-6"
 					onclick = "reviewContentAction()">작성</button>
 			</div>
 		<!-- 팝업창 div -->
 	</div>
+</div>
 	<c:import url="../footer.jsp"></c:import>
 	<c:import url="../nav.jsp"></c:import>
 	</div>
@@ -97,33 +108,7 @@
 	    reader.readAsDataURL(this.files[0]);
 	   }
 	  });
-	  function reviewContentAction() {
-		  const form = document.querySelectorAll('form[name="reviewWriteForm"] > div > input, select, textarea');
-		  let formData = {};
-		  for(i=0; i<form.length; i++){
-				formData[form[i].name] = form[i].value;
-		  }
-		  formData = JSON.stringify(formData);
-		  console.log(formData);
-		  console.log('파일등록 폼 전송 시도');
-		  jQuery.ajax({
-				url: "reviewWriteAction",
-				type: "POST",
-				contentType: "application/json",
-				processData: false,
-				data: formData,
-				success: function(result){
-					if(result == false){
-						alert('등록에 실패하였습니다.');
-						return false;
-					}
-					console.log('등록 성공 review_idx ='+result);
-					document.getElementsByName('review_idx')[0].value = result;
-					multiSubmit(formName = 'reviewImg', formAction = 'uploadReviewImgAction');
-				},
-				error: function(){return false},
-			})
-		  };
+	 
  </script>
 </body>
 </html>

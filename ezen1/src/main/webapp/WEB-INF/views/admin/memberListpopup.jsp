@@ -42,7 +42,7 @@
               
                <!-- main -->
                <div class="w-100 d-flex flex-column jusfity-content-center align-items-center px-3 mb-3">
-                <div class="w-auto text-center font-weight-bold text-dark mt-3 mb-4" style="font-size: 16px;">
+                <div class="w-auto text-center font-weight-bold text-dark mt-3 mb-4" >
                        회원정보 상세조회
                 </div>  
                </div>
@@ -54,7 +54,7 @@
                 <div class="col-12 font-weight-bold form-group text-dark d-flex flex-row justify-content-between">
                     이름
                 <div class="pl-5">
-                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck " value="${ user.user_name }" style="font-size: 14px;" disabled>
+                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck font-primary " value="${ user.user_name }"  disabled>
                 </div>
                 </div>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="col-12 font-weight-bold form-group text-dark d-flex flex-row justify-content-between">
                     아이디
                 <div class="pl-4">
-                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck " value=${ user.user_id } style="font-size: 14px;" disabled>
+                <input type="text" class="form-control font-primary col-12 rounded font-weight-nomal nullcheck " value=${ user.user_id }  disabled>
                 </div>
                 </div>
                 </div>
@@ -74,7 +74,7 @@
                 <div class="col-12 font-weight-bold form-group text-dark d-flex flex-row justify-content-between">
                     가입일
                 <div class="pl-3">
-                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck " value=${ user.join_date } style="font-size: 14px;" disabled>
+                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck font-primary " value=${ user.join_date }  disabled>
                 </div>
                 </div>
                 </div>
@@ -84,7 +84,7 @@
                 <div class="col-12 font-weight-bold form-group text-dark d-flex flex-row justify-content-between">
                     이메일
                 <div class="pl-4"> 
-                <input type="email" class="form-control col-12 rounded font-weight-nomal nullcheck " value=${ user.user_email } style="font-size: 14px;" disabled>
+                <input type="email" class="form-control col-12 rounded font-weight-nomal nullcheck  font-primary" value=${ user.user_email }  disabled>
                 </div>
                 </div>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="col-12 font-weight-bold form-group text-dark d-flex flex-row justify-content-between">
                     전화번호
                 <div class="pl-3">
-                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck " value=${ user.user_phone } style="font-size: 14px;" disabled>
+                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck  font-primary" value=${ user.user_phone }  disabled>
                 </div>
                 </div>
                 </div>
@@ -104,15 +104,15 @@
                 <div class="col-12 font-weight-bold form-group text-dark d-flex flex-row justify-content-between">
                     주소
                 <div class="pl-5">
-                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck " value=${ user.user_address } style="font-size: 14px;" disabled>
+                <input type="text" class="form-control col-12 rounded font-weight-nomal nullcheck font-primary " value=${ user.user_address }  disabled>
                 </div>
                 </div>
                 </div>
 
                  <!-- 버튼 -->
                
-                 <div  class="mt-5 mb-3 align-items-center text-center" >
-                    <button type="button" class="btn btn-dark text-light form-control" style="width: 140px;" onclick="location.href='memberList'">확인</button>
+                 <div  class="mt-5 mb-3 align-items-center text-center w-100" >
+                    <button type="button" class="btn btn-dark text-light form-control col-8"  onclick="location.href='memberList'">확인</button>
           
                   </div>
            
