@@ -17,7 +17,10 @@ import com.ezen.dto.Notice;
 import com.ezen.dto.Review;
 import com.ezen.dto.ReviewIMGS;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class MainService {
 
 	@Autowired
@@ -60,7 +63,7 @@ public class MainService {
 		ArrayList<Notice> notice = noticeDAO.getNoticeLIst(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		model.addAttribute("noticeList", notice);
 		model.addAttribute("pages", pagenation);
-		System.out.println(model.toString());
+		log.info("{}", model.toString());
 		return model;
 	}
 	// 관리자용 공지사항 업데이트

@@ -21,8 +21,11 @@ import com.ezen.dto.FaQ;
 import com.ezen.dto.OneToOne;
 import com.ezen.service.CustomerService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("customer")
+@Slf4j
 public class CustomerController {
 	
 	@Autowired
@@ -92,7 +95,8 @@ public class CustomerController {
 		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "redirect:../login/login";
 		}	
 		model = customerService.byUserIdx(user_idx, model, session);
@@ -106,7 +110,8 @@ public class CustomerController {
 		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "redirect:../login/login";
 		}
 		model = customerService.onetooneByCat(user_idx, onetoone_cat, onetoonecat, model, session);
@@ -120,7 +125,8 @@ public class CustomerController {
 		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "redirect:../login/login";
 		}	
 		return "customer/ask";
@@ -134,7 +140,8 @@ public class CustomerController {
 		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "../redirect:login/login";
 		}
 		String result = customerService.insertOneToOne(onetoone);

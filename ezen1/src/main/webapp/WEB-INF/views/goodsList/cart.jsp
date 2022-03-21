@@ -75,13 +75,8 @@
           <div class="d-flex flex-row justify-content-between font-primary">
             옵션
             <!-- 서버에서 처리 -->
-<<<<<<< HEAD
             <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1 btn btn-secondary d-flex flex-content-center font-small" value="변경하기"
               style="width: 70px; height: 20px;  line-height:2px;" onclick="changeValue(event);">
-=======
-            <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1 btn btn-secondary d-flex flex-content-center" value="변경하기"
-              style="width: 70px; height: 20px; font-size: 11px; line-height:2px;" onclick="changeValue(event);">
->>>>>>> branch 'Jyi' of https://github.com/Hms200/teamproject.git
           </div>
           <div class="d-flex flex-row justify-content-end mt-1">
           <div class="mr-1">
