@@ -126,11 +126,11 @@
                     <!-- 확인버튼 / 수정버튼(관리자) // 삭제버튼-->
                     <div class="mx-auto my-3" style="width: fit-content;">
                         <!-- 사용자용 확인버튼 -->
-                        <button class="btn btn-dark btn-lg font-primary<c:if test="${ user_id eq 'admin' }">d-none</c:if>>" style="width: 80px;" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" type="button">확인</button>
+                        <button class="btn btn-dark btn-lg font-primary <c:if test="${ user_id eq 'admin' }">d-none</c:if>>" style="width: 80px;" onclick="popupHideAndShow(target = 'notice_popup${ notice.notice_idx}')" type="button">확인</button>
                         <!-- 관리자용 수정버튼 -->
                         <c:if test="${ user_id eq 'admin' }">
                         <input type="submit" class="btn btn-dark btn-lg font-primary" style="width: 80px;" value="수정">
-                        <button class="btn btn-secondary" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction?${ notice.notice_idx}')">삭제</button>
+                        <button class="btn btn-secondary font-primary" style="width: 80px;" onclick="multiSubmit(formName = 'noticeUpdateForm', formAction = 'noticeDeleteAction?${ notice.notice_idx}')">삭제</button>
                         </c:if>
                     </div>
                 </form>
