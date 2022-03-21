@@ -23,8 +23,11 @@ import com.ezen.dto.User;
 import com.ezen.service.FileService;
 import com.ezen.service.MyPageService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("myPage")
+@Slf4j
 public class MyPageController {
 	
 	@Autowired
@@ -45,7 +48,8 @@ public class MyPageController {
 		try {
 			id = (String)session.getAttribute("user_id");
 			id.isEmpty();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		String user_id = id;
@@ -57,7 +61,7 @@ public class MyPageController {
 	//회원정보 업데이트action
 	@PostMapping("/userUpdateAction")
 	public @ResponseBody String userUpdateAction(User user) {
-		System.out.println(user.toString());
+		log.info("{}", user.toString());
 		String result = myPageService.updateUserInfo(user);
 		return result;
 	}
@@ -68,7 +72,8 @@ public class MyPageController {
 		try {
 			String id = (String)session.getAttribute("user_id");
 			id.isEmpty();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		return "myPage/myPage";
@@ -82,7 +87,8 @@ public class MyPageController {
 		try {
 			id = (String)session.getAttribute("user_id");
 			id.isEmpty();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		String user_id = id;
@@ -126,7 +132,8 @@ public class MyPageController {
 		try {
 			String id = (String)session.getAttribute("user_id");
 			id.isEmpty();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		String goods_idx = request.getParameter("goods_idx");
@@ -147,7 +154,7 @@ public class MyPageController {
 												@RequestParam("review_idx")String idx) throws UnsupportedEncodingException {
 		int review_idx = Integer.parseInt(idx);
 		String review_img = fileService.fileUploader("reviews", MultipartFile);
-		System.out.println(review_img);
+		log.info("{}", review_img);
 		ReviewIMGS reviewImg = ReviewIMGS.builder().review_idx(review_idx).review_img(review_img).build();
 		int result = reviewImgsDAO.insertReviewImg(reviewImg);
 		

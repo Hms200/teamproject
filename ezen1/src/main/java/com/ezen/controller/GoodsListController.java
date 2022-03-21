@@ -21,9 +21,12 @@ import com.ezen.dto.Purchase;
 import com.ezen.dto.Question;
 import com.ezen.service.GoodsListService;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Controller
 @RequestMapping("goodsList")
+@Slf4j
 public class GoodsListController {
 
 	@Autowired
@@ -74,7 +77,8 @@ public class GoodsListController {
 		int cartNum;
 		try {
 			cartNum = (int) session.getAttribute("cart");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			cartNum = 0;
 		}
 		cartNum += 1;
@@ -92,7 +96,8 @@ public class GoodsListController {
 		int user_idx;
 		try {
 			user_idx = (int) session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		model = goodsListService.getGoodsInCart(user_idx, model);

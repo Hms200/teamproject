@@ -17,7 +17,10 @@ import com.ezen.dto.Cart;
 import com.ezen.dto.Review;
 import com.ezen.dto.User;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class MyPageService {
 
 	@Autowired
@@ -35,7 +38,7 @@ public class MyPageService {
 	//입력받은 정보로 회원정보 변경
 	public String updateUserInfo(User user) {
 		int result = userDAO.UpdateMemberInfo(user);
-		System.out.println(result);
+		log.info("{}", result);
 		if(result==1) {
 			return "<script>alert('회원정보가 변경되었습니다.');location.href='/main';</script>";
 		}else {
