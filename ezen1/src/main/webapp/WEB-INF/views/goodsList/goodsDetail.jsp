@@ -27,7 +27,7 @@
     class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer"
     style="max-width: 520px; margin-top: 60px">
     
-    <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
+    <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0">
       <div class="col-2 my-3">
         <a href="goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
@@ -36,10 +36,12 @@
       <div class="col-10 my-3 py-1 pr-5 text-center font-weight-bold">
         상품상세정보
       </div>
-    </div>
+    </div>-->
+    
     <!--상품 상세보기 이미지-->
     <c:if test="${ goodsImgs.size() != 0 }">
-    <div id="carouselImg" class="carousel slide mx-0 px-0" data-ride="carousel" style="width: 360px;">
+    <!-- 이미지 테스트 후 이상 있을경우 w-100 삭제 스타일에 위스 360px 넣어서 다시 되돌려주세요.  -->
+    <div id="carouselImg" class="carousel slide mx-0 px-0 w-100" data-ride="carousel" style="">
         <ol class="carousel-indicators">
         <li data-target="#carouselImg" data-slide-to="0" class="active"></li>
         <li data-target="#carouselImg" data-slide-to="1"></li>
