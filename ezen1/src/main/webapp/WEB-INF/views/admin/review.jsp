@@ -28,7 +28,7 @@
      
      <!-- 답글달기 팝업창 -->
       
-    <div class="d-none position-absolute" id="reviewReplyWriteForm" style="bottom: 30px; top: 150px; z-index: 1100; max-width: 340px;">
+    <div class="position-fixed d-none " id="reviewReplyWriteForm" style="top: 150px; z-index: 1100; max-width: 340px; height: 100vh;">
       <!-- 닫기 버튼 -->
    
       <div class="d-flex flex-column border rounded bg-white mx-auto">
@@ -132,6 +132,8 @@ function popupHideAndShowForReview(event) {
     const reviewIdxInput = document.getElementById('targetIdx');
     reviewIdxInput.value = targetReviewIdx;
 };
+
+
 
 </script>
 </body>
