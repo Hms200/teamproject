@@ -46,7 +46,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 				// user_idx 가져오고 위조된경우 예외처리함.
 				String user_idx = tokenProvider.validateAndGetUserIdx(token);
 			//	log.info("토큰 검증 완료. 권한을 설정합니다.");
-				// 사용자 권한 설정 관리자의 user_idx = 2임.
+				// 사용자 권한 설정. 관리자의 user_idx = 2임.
 				Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 				if(user_idx.equals("2")) {
 					grantedAuthorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
@@ -68,6 +68,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 			
 		} catch (Exception e) {
 			log.error("jwt 인증 실패 {}",e);
+			response.sendRedirect("../login/login");
 		}
 		
 		filterChain.doFilter(request, response);
