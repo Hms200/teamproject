@@ -68,7 +68,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 			
 		} catch (Exception e) {
 			log.error("jwt 인증 실패 {}",e);
-			response.sendRedirect("../login/login");
+			
 		}
 		
 		filterChain.doFilter(request, response);

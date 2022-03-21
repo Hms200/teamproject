@@ -2,7 +2,7 @@ package com.ezen.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,25 +10,16 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.ezen.security.CustomAuthFailureHandler;
 import com.ezen.security.FormAhuthenticationProvider;
 import com.ezen.security.JwtAuthenticationFilter;
 import com.ezen.security.LoginSuccessHandler;
-import com.ezen.security.UserDetailsServieceImpl;
-
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 
 // spring security를 이용한 보안설정
-@Slf4j
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -37,28 +28,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	JwtAuthenticationFilter jwtAuthenticationFilter;
 	
-//	// custom userDetailesService
-//	@Autowired
-//	UserDetailsServieceImpl userdetailsserviceImpl;
-	
 	// 로그인 성공시 수행할 작업(토큰발급)
 	@Autowired
 	LoginSuccessHandler loginSuccessHandler;
-//	@Bean
-//	public AuthenticationSuccessHandler loginSuccessHandler() {
-//		return new LoginSuccessHandler();
-//	}
 	
 	// 로그인 실패시 수행할 작업(실패원인 분석)
 	@Autowired
 	CustomAuthFailureHandler customAuthFailureHandler;
 	
-	// passwordEncoder 등록
-//	@Bean
-//	public BCryptPasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
-	
+	// id, pw check 클래스
 	@Autowired
 	FormAhuthenticationProvider formAhuthenticationProvider;
 	
@@ -113,10 +91,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 				.sessionManagement()	  // session 관리
 					.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
-				//	.maximumSessions(-1)					// 최대 허용 session 무제
+				//	.maximumSessions(1)					// 최대 허용 session 1
 				//	.maxSessionsPreventsLogin(true);		// 중복 로그인 허용 안함
-			
-		http.authenticationProvider(formAhuthenticationProvider);
+		
+		// custom AhuthenticationProvider 등록
+		http.authenticationProvider(formAhuthenticationProvider); 
 		
 			
 		// 필터 등록. 매 요청마다 SecurityContextHolderAwareRequestFilter 실행한 후 jwtAuthenticationFilter를 실행하여 토큰검사

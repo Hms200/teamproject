@@ -128,10 +128,5 @@ public class MainController {
 		return result;
 	}
 	
-	@RequestMapping("invalidate")
-	public String invalidate(HttpServletRequest request) {
-		request.getSession();
-		session.invalidate();
-		return "main";
-	}
+	
 }

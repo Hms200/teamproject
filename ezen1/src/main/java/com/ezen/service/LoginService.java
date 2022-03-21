@@ -34,7 +34,8 @@ public class LoginService {
 	@Autowired
 	DisposablePasswordGenerator passwordGenerator;
 	
-	
+/**	 기존 db조회 로그인 인증방식 폐기, spring security 기반 로그인으로 변경
+ * 
 //	 로그인
 //	 MALL_USER에 있는 user_id 값 조회 후 null값일 경우 js로 이전 페이지로 이동 
 //	 user_id가 있을 경우 user_id과 매치되는 userPw값과 MALL_USER에 있는 userPw값 일치할 경우
@@ -62,7 +63,7 @@ public class LoginService {
 //		}
 //		return result;									
 //	}
-
+*/
 	
 	//아이디찾기
 	//mapper를 통해 입력받은 user_name와 user_email과 매칭되는 user_id값 조회
@@ -115,18 +116,35 @@ public class LoginService {
 	}
 	
 	//회원가입 
-	//입력받은 user정보를 User user값에 insert
 	public String join(User user) {
+		// password 암호화
+		log.info("입력받은 password암호화를 시작합니다.");
 		String pw = user.getUser_pw();
 		pw = bCryptPasswordEncoder.encode(pw);
 		user.setUser_pw(pw);
+		log.info("password 암호화 완료. 회원가입을 시도합니다.");
 		int result = userDao.insertUser(user);
 		if( result == 1 ) {
+			log.info("회원가입 성공");
 			return "<script>alert('회원가입되었습니다.'); location.href='login';</script>";
 		}
 		else {
+			log.info("회원가입 실패");
 			return "<script>alert('회원가입 실패'); history.back(-1);</script>";
 		}
+	}
+	
+	//회원탈퇴
+	public String quit(String user_id) {
+		String resultString;
+		int result = userDao.deleteUser(user_id);
+		if( result == 1){	
+			session.invalidate();
+			resultString = "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";
+		} else {			
+			resultString = "<script>alert('회원탈퇴 실패!'); history.back(-1);</script>";		
+		}	
+		return resultString;
 	}
 	
 }
