@@ -24,10 +24,10 @@
 <c:import url="../header.jsp"></c:import>
 
 <div
-    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative" id="mainContainer"
+    class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative mb-5" id="mainContainer"
     style="max-width: 520px; margin-top: 60px">
     
-    <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용-->
+    <!--상품 상단 뒤로가기 버튼 &&현재 페이지 내용
     <div class="container-sm container-fluid d-flex flex-row mb-0 px-0">
       <div class="col-2 my-3">
         <a href="goodsList"><img src="/img/icon/left.png" alt="" class="mx-auto d-block my-auto img-fluid"
@@ -36,10 +36,12 @@
       <div class="col-10 my-3 py-1 pr-5 text-center font-weight-bold">
         상품상세정보
       </div>
-    </div>
+    </div>-->
+    
     <!--상품 상세보기 이미지-->
     <c:if test="${ goodsImgs.size() != 0 }">
-    <div id="carouselImg" class="carousel slide mx-0 px-0" data-ride="carousel" style="width: 360px;">
+    <!-- 이미지 테스트 후 이상 있을경우 w-100 삭제 스타일에 위스 360px 넣어서 다시 되돌려주세요.  -->
+    <div id="carouselImg" class="carousel slide mx-0 px-0 w-100" data-ride="carousel" style="">
         <ol class="carousel-indicators">
         <li data-target="#carouselImg" data-slide-to="0" class="active"></li>
         <li data-target="#carouselImg" data-slide-to="1"></li>
@@ -75,19 +77,19 @@
       <!--부모클래스bg-primary 안넣었음 -->
     </div>
     <!--상품 상세보기 옵션 드롭다운-->
-    <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4" style="font-size: 14px; flex: none;">
+    <div class="col-12 d-flex flex-row justify-content-between w-75 mx-4 font-primary" style="flex: none;">
       <div class="clo-6 py-2"> 
         상품 옵션
       </div>
       <div class="col-6 dropdown border ">
-        <button class="col-12 btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-expanded="false" style="font-size: 14px;">
+        <button class="col-12 btn dropdown-toggle font-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-expanded="false">
           옵션
         </button>
         
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <c:forEach var="option" items="${ goodsOptions }"> 
-          <button class="dropdown-item" id="${ option.option_idx }" type="button" style="font-size: 14px;" onclick="totalPrice(event);">${ option.option_name }+${ option.option_price }</button>
+          <button class="dropdown-item font-primary" id="${ option.option_idx }" type="button" onclick="totalPrice(event);">${ option.option_name }+${ option.option_price }</button>
           <input type="hidden" name="${ option.option_idx }" value="${ option.option_price }">
           <input type="hidden" name="${ option.option_idx }" value="${ option.option_idx }">
  		  </c:forEach>     
@@ -97,17 +99,17 @@
       </div>
     </div>
     <!--판매가격-->
-    <div class="mx-2 my-2 d-flex flex-row justify-content-between w-75" style="font-size: 14px;">
-      <div class="col-3" style="font-size: 14px;">
+    <div class="mx-2 my-2 d-flex flex-row justify-content-between w-75 font-primary">
+      <div class="col-3 py-2 font-primary">
         판매가 
       </div>
       <input type="hidden" name="goods_price" value="${ goods.goods_price }">
-      <div class="col-4" style="font-size: 14px;">
+      <div class="col-4 font-primary">
       <input type="text" class="form-control-plaintext" name="goods_total_price" value="">
       <%-- <fmt:formatNumber value="${goods.goods_price}" type="number" /> --%>
       </div>
     </div>
-    <div class="w-100 bg-primary" style="height: 20px">
+    <div class="w-100 bg-secondary" style="height: 20px">
       <!--bg-dark-50-->
     </div>
     <!--상품정보 리뷰 문의/안내 네브-->
@@ -115,9 +117,9 @@
       <div
         class="navMenu d-flex flex-row justify-content-around mb-2 mt-1 font-weight-bold border-bottom w-100 text-center"
         style="height: 45px;">
-        <div class="col-4 info on" onclick="setMenu('info')">상품 정보</div>
-        <div class="col-4 review" onclick="setMenu('review')">리뷰</div>
-        <div class="col-4 inquiry" onclick="setMenu('inquiry')">문의/안내</div>
+        <div class="col-4 info on pt-2" onclick="setMenu('info')">상품 정보</div>
+        <div class="col-4 review pt-2" onclick="setMenu('review')">리뷰</div>
+        <div class="col-4 inquiry pt-2" onclick="setMenu('inquiry')">문의/안내</div>
       </div>
     </nav>
 
@@ -127,16 +129,20 @@
       <div class="dep _info">
         <div class="d-block text-center mx-5 my-4">
           <img src="${goods.goods_detail}" alt="" class="img-fluid">
-          <!--구매하기버튼/장바구니 아이콘-->
-          <div class="col-12 my-2">
+         
+           <!--구매하기버튼/장바구니 아이콘-->
+          
+          <div class="d-flex w-100 my-2 py-2 pl-4 border border-dark-50 overflow">
             <!--장바구니 버튼을 누르면 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
-            <img src="/img/icon/장바구니_큰아이콘.png" id="justAdd"
+            <img src="/img/icon/bag.png" id="justAdd"
               onclick="addCart(event);" style="width: 40px; height: 40px; cursor: pointer;">
             <!--구매하기 버튼을 누르면 장바구니페이지로 이동하고 장바구니에 해당상품 페이지에 보고있던 상품이 추가된다-->
             <button type="submit" class="btn btn-primary col-8 ml-4" id="addAndBuy" onclick="addCart(event);">구매하기</button>
-          </div>
+            </div>
+         
         </div>
       </div>
+      
       <!--해당네브:리뷰-->
       <div class="dep _review ">
         <div class="d-flex flex-column justify-content-start my-3">
@@ -196,17 +202,16 @@
             	<!-- 질문 제목 -->
               <div class="card-header p-0" id="heading${ question.question_idx }">
                 <h2 class="mb-0">
-                  <button class="btn btn-block text-left d-flex flex-row justify-content-between" type="button"
+                  <button class="btn btn-block text-left d-flex flex-row justify-content-between font-primary" type="button"
                     data-toggle="collapse" data-target="#collapse${ question.question_idx }" aria-expanded="true" aria-controls="collapse${ question.question_idx }"
-                    style="font-size: 14px; height: 40px">
+                    style="height: 40px">
                     <span>${ question.question_title }</span><img src="/img/icon/down.png" alt="" class="img-fluid"
                       style="width: 25px; height: 25px;">
                   </button>
                 </h2>
               </div>
               <!--아코디언 내용-->
-              <div id="collapse${ question.question_idx }" class="collapse" aria-labelledby="heading${ question.question_idx }" data-parent="#accordion"
-                style="font-size: 14px;">
+              <div id="collapse${ question.question_idx }" class="collapse font-primary" aria-labelledby="heading${ question.question_idx }" data-parent="#accordion">
                 <div class="card-body">
                   <p class="card-text my-1">${ question.question_contents }</p>
                   <p class="card-text my-1 float-right"><small class="text-muted">${ question.question_date }</small></p>
@@ -244,18 +249,17 @@
             onclick="popupHideAndShow('goodDetailInquiryPop')" style="width:30px; height: 30px; cursor: pointer;">
         </div>
         <div class="mr-3 mb-4 ml-3">
-          <div class="text-center font-weight-bold text-dark mb-2" style="font-size: 16px;">
+          <div class="text-center font-weight-bold text-dark mb-2">
             상품문의
           </div>
           <form action="productQnaWriteAction" method="post" name="productQnaWriteForm">
             <div class="d-block mb-1">
-              <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 " name="question_title"
-                style="font-size: 14px; ">
+              <input type="text" placeholder="상품 문의 제목을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 font-primary" name="question_title">
             </div>
             <div class="d-block">
-              <textarea cols="50" rows="10" placeholder="상품문의 내용을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 mb-4"
+              <textarea cols="50" rows="10" placeholder="상품문의 내용을 입력해주세요." class="border rounded w-100 text-dark py-1 px-3 mb-4 font-primary"
                 name="question_contents"
-                style="font-size: 14px; resize: none;"></textarea>
+                style="resize: none;"></textarea>
             </div>
             <!--자동으로 받음-->
             <input type="hidden" name="user_idx" value="${ user_idx }">

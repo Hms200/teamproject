@@ -28,36 +28,36 @@
             <form action="../login/joinAction" method="post" onsubmit="return nullChecker();">
             
                 <div class="text-left font-weight-bold pl-2 mt-2">아이디</div>
-                <div class="form-group row mb-2 mx-0 justify-content-between" style="font-size:14px;">
+                <div class="form-group row mb-2 mx-0 justify-content-between font-primary" >
                     <input type="text" class="col-8 form-control nullcheck" name="user_id" id="user_id" placeholder="아이디를 입력해주세요">
-                    <input type="button" class="col-3 btn btn-secondary text-dark" value="중복체크" style="font-size: 14px;" onclick="idCheck();">
+                    <input type="button" class="col-3 btn btn-secondary text-dark font-primary" value="중복체크" onclick="idCheck();">
                     <input type="hidden" name="isIDChecked" id="isIDChecked" value='no'>
                 </div>
                 
                 <div class="text-left font-weight-bold pl-2 mt-2">비밀번호</div>
-                <div class="form-group row mb-2 mx-0 justify-content-between" style="font-size:14px;">
+                <div class="form-group row mb-2 mx-0 justify-content-between font-primary" >
                     <input type="text" class="col-8 form-control mb-1 nullcheck" name="user_pw" id="user_pw" placeholder="비밀번호를 입력해주세요">
-                    <input type="button" class="col-3 btn btn-secondary text-dark mb-1" value="확인체크" style="font-size: 14px;" onclick="pwCheck();">
+                    <input type="button" class="col-3 btn btn-secondary text-dark mb-1 font-primary" value="확인체크" onclick="pwCheck();">
                     <input type="text" class="col-12 form-control nullcheck" id="user_pw_check" placeholder="비밀번호를 한 번더 입력해주세요">
                     <input type="hidden" name="isPWChecked" id="isPWChecked" value='no'>
                 </div>                
               
                 <div class="text-left font-weight-bold pl-2 mt-2">이름</div>
-                <div class="form-group mb-2" style="font-size:14px;">
+                <div class="form-group mb-2 font-primary">
                     <input type="text" class="col-12 form-control nullcheck" name="user_name" id="user_name" placeholder="이름을 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2">이메일</div>
-                <div class="form-group mb-2" style="font-size:14px;">
+                <div class="form-group mb-2 font-primary">
                     <input type="email" class="col-12 form-control nullcheck" name="user_email" id="user_email" placeholder="이메일을 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2 ">휴대폰</div>
-                <div class="form-group mb-2" style="font-size:14px;">
+                <div class="form-group mb-2 font-primary">
                     <input type="text" class="col-12 form-control nullcheck" name="user_phone" id="user_phone" placeholder="전화번호를 입력해주세요">
                 </div>
                 <div class="text-left font-weight-bold pl-2 mt-2">주소</div>
-                <div class="form-group row mb-5 ml-0 mr-0 justify-content-between" style="font-size:14px;">
+                <div class="form-group row mb-5 ml-0 mr-0 justify-content-between font-primary">
                     <input type="text" class="col-8 form-control mb-1 bg-white" name="sample6_postcode" id="sample6_postcode" placeholder="우편주소" readonly>
-                    <input type="button" class="col-3 btn btn-secondary text-dark mb-1"  value="주소찾기" style="font-size: 14px;" onclick="sample6_execDaumPostcode()">
+                    <input type="button" class="col-3 btn btn-secondary text-dark mb-1 font-primary"  value="주소찾기" onclick="sample6_execDaumPostcode()">
                     <input type="text" class="col-12 form-control mb-1 bg-white nullcheck" name="sample6_address" id="sample6_address" placeholder="주소를 입력해주세요" readonly>
                     <input type="text" class="col-12 form-control nullcheck" name="sample6_detailAddress" id="sample6_detailAddress"  placeholder="상세주소를 입력해주세요">
                     <!-- 주소찾기 기본 hidden버튼(삭제x) -->

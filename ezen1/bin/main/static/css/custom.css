@@ -22,6 +22,15 @@
 .text-secondary{
     color: rgb(244, 244, 244) !important;
 }
+.font-primary{
+	font-size: 14px;
+}
+.font-secondary{
+	font-size: 12px;
+}
+.font-small{
+	font-size:10px;
+}
 .bg-primary{
     background-color: rgb(167, 130, 111) !important;
 }

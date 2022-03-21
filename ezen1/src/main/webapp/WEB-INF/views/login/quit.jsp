@@ -20,7 +20,7 @@
     <div class="d-100  d-flex flex-row  justify-content-end">
       <img src="/img/icon/cross.png" alt="취소아이콘" width="30px" height="30px" onclick="history.back(-1);">
     </div>
-    <div class="col-12 font-weight-bold text-center text-dark mt-3 py-4" width="300px" height="60px" style="font-size: 16px;">
+    <div class="col-12 font-weight-bold text-center text-dark mt-3 py-4" width="300px" height="60px">
       탈퇴 시 고객님의 모든 정보가 소멸됩니다.<br>
       정말 탈퇴 하시겠습니까?
     </div>
@@ -28,7 +28,7 @@
     <div class="col-12 row ml-2">
 	      <div class=" custom-control custom-checkbox my-1" >
 	        <input type="checkbox" class="custom-control-input nullcheck" name="agree" id="quitCheck" >
-	        <label class="custom-control-label text-dart pl-2" for="quitCheck" style="font-size:14px;">정보처리에 동의합니다.</label>
+	        <label class="custom-control-label text-dart pl-2 font-primary" for="quitCheck" >정보처리에 동의합니다.</label>
 	      </div>
 	    </div>
 	   

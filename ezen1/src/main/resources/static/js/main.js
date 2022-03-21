@@ -106,8 +106,8 @@ function setGoodsList(_type) {
 // 모든 체크박스 체크
 function checkAll() {
 //모든 체크박스를 checked 되게 한다.
-var checkboxArray = document.getElementsByName('agree');
-for(var cbx of checkboxArray) {
+let checkboxArray = document.getElementsByName('agree');
+for(let cbx of checkboxArray) {
     cbx.checked = true;
     }
 }
@@ -120,8 +120,8 @@ function sample6_execDaumPostcode() {
 
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ''; // 주소 변수
-            var extraAddr = ''; // 참고항목 변수
+            let addr = ''; // 주소 변수
+            let extraAddr = ''; // 참고항목 변수
 
             //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -177,7 +177,7 @@ function changeValueOfCheckbox(){
 
 //ajax을 이용한 id 중복체크 여부기능 
 function idCheck() {
-	var user_id = $('#user_id').val();
+	const user_id = $('#user_id').val();
 	if(!user_id){
 		alert("아이디 중복체크 후 회원가입이 가능합니다");
 		return false;
@@ -191,7 +191,7 @@ function idCheck() {
 	    		success: function(data) {
 	    			console.log('통신 성공, data:' + data);
 	    			
-	    			var data_num = Number( data );
+	    			let data_num = Number( data );
 	    			if( data_num >= 1 ) {
 	    				//아이디가 중복됨.
 	    				alert("중복된 아이디입니다.");
@@ -213,7 +213,7 @@ function idCheck() {
 
 //비밀번호 일치 여부확인 
 function pwCheck() {
-	var user_pw = $('#user_pw').val();
+	const user_pw = $('#user_pw').val();
 	if(!user_pw){
 		alert("비밀번호 중복체크 후 회원가입이 가능합니다");
 		return false;
@@ -232,9 +232,9 @@ function pwCheck() {
 
 function joinCheckAll(){
     	
-		var isIDChecked = $('#isIDChecked').val();
-		var isPWChecked = $('#isPWChecked').val();			
-		var userNull = nullChecker();
+		const isIDChecked = $('#isIDChecked').val();
+		const isPWChecked = $('#isPWChecked').val();			
+		const userNull = nullChecker();
 		
 		if( isIDChecked == 'no'){
 			alert("아이디 중복확인 후 회원가입이 가능합니다.");
@@ -248,8 +248,8 @@ function joinCheckAll(){
 			return false;
 		}
 		
-		var address1 = $('#sample6_address').val();
-		var address2 = $('#sample6_detailAddress').val();
+		const address1 = $('#sample6_address').val();
+		const address2 = $('#sample6_detailAddress').val();
 		$('#user_address').val( address1 + " " + address2 ); 
 		
 		document.forms[0].submit();
