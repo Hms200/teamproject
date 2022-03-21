@@ -22,8 +22,11 @@ import com.ezen.dto.Notice;
 import com.ezen.service.GoodsListService;
 import com.ezen.service.MainService;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Controller
+@Slf4j
 public class MainController {
 	
 	
@@ -51,6 +54,7 @@ public class MainController {
 		try {
 			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
+			log.error("{}",e);
 			user_idx = 0;
 		}
 		// 뱃지 숫자 설정. 
@@ -59,7 +63,8 @@ public class MainController {
 			try {
 				cartBedgNum = goodsListService.getCountOfGoodsInCart(user_idx);
 				session.setAttribute("cart", cartBedgNum);
-			} catch (NullPointerException e) {
+			} catch (Exception e) {
+				log.error("{}",e);
 				return "login/login";
 			}
 		}

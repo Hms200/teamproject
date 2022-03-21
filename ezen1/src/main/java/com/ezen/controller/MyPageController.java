@@ -48,7 +48,8 @@ public class MyPageController {
 		try {
 			id = (String)session.getAttribute("user_id");
 			id.isEmpty();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		String user_id = id;
@@ -60,7 +61,7 @@ public class MyPageController {
 	//회원정보 업데이트action
 	@PostMapping("/userUpdateAction")
 	public @ResponseBody String userUpdateAction(User user) {
-		System.out.println(user.toString());
+		log.info("{}", user.toString());
 		String result = myPageService.updateUserInfo(user);
 		return result;
 	}
@@ -71,7 +72,8 @@ public class MyPageController {
 		try {
 			String id = (String)session.getAttribute("user_id");
 			id.isEmpty();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		return "myPage/myPage";
@@ -85,7 +87,8 @@ public class MyPageController {
 		try {
 			id = (String)session.getAttribute("user_id");
 			id.isEmpty();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		String user_id = id;
@@ -128,7 +131,8 @@ public class MyPageController {
 		
 		try {
 			String id = (String)session.getAttribute("user_id");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		String goods_idx = request.getParameter("goods_idx");
@@ -151,7 +155,7 @@ public class MyPageController {
 		int review_idx = Integer.parseInt(idx);
 		if(MultipartFile.isEmpty() ==  false) {
 			String review_img = fileService.fileUploader("reviews", MultipartFile);
-			System.out.println(review_img);
+			log.info("{}",review_img);
 			ReviewIMGS reviewImg = ReviewIMGS.builder().review_idx(review_idx).review_img(review_img).build();
 			int result = reviewImgsDAO.insertReviewImg(reviewImg);
 		}

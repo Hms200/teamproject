@@ -29,7 +29,10 @@ import com.ezen.dto.Review;
 import com.ezen.dto.ReviewIMGS;
 import com.ezen.dto.User;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class GoodsListService {
 	
 	@Autowired
@@ -144,7 +147,7 @@ public class GoodsListService {
 		list.forEach((k, v) -> {
 			if(v.equals("true")) {
 				cartDAO.removeGoodsFromCart(Integer.parseInt(k));
-				System.out.println(k+"삭제됨");
+				log.info(" {} 삭제됨", k);
 			}
 		});
 		int userIdx = (int) session.getAttribute("user_idx");
@@ -155,7 +158,7 @@ public class GoodsListService {
 	public String listingGoods(HashMap<String, String> list) {
 		cartListDAO.generateCartListKey();
 		int cart_list_idx = cartListDAO.getNewestCartListKey();
-		System.out.println(cart_list_idx);
+		log.info("{}", cart_list_idx);
 		list.forEach((k,v) ->{
 			if(v.equals("true")) {
 				cartDAO.listingCart(Integer.parseInt(k), cart_list_idx);
