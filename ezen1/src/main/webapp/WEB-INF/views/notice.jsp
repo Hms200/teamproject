@@ -23,7 +23,7 @@
 <c:import url="header.jsp"></c:import>
 
  <!-- container -->
-    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px">
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative px-0 mb-5" id="mainContainer" style="max-width: 520px; margin-top: 60px">
    
         <!-- title container -->
         <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
@@ -56,7 +56,7 @@
             
         </div>
             
-        <div class="d-flex flex-column justify-content-center mb-2">
+        <div class="d-flex flex-column justify-content-center my-3">
         	<!-- 작성버튼 admin에게만 보임 -->
         	<c:if test="${ user_id eq 'admin' }">
             <button class="btn btn-secondary text-dark border-0 mx-auto font-weight-bold" style="width: 100px;font-size: 16px;" onclick="popupHideAndShow(target = 'notice_write_popup')">

@@ -6,12 +6,11 @@
         <!-- title -->
         <div class="d-block font-weight-bold font-italic  pl-1" style="font-size: 16px;">Best Review</div>
 			
-			<div class="container-fluid px-0 my-2">           
-        		<div class="row d-flex flex-row justify-content-between mx-1" style="height:150px; overflow-y : auto">
+			<div class="container-fluid px-0 mt-2 mb-2 col-12 d-flex justify-content-start" style="white-space:nowrap; overflow-x: auto;">
         			
       <c:forEach var="review" items="${ reviewlist }">
       
-        <div class="col-6 card my-2 px-0 border rounded" onclick="location.href = '../goodsList/goodsDetail?goods_idx=${ review.goods_idx }'" style="cursor: pointer">
+        <div class="col-5 card inline-block mx-1 my-2 px-0 border rounded" onclick="location.href = '../goodsList/goodsDetail?goods_idx=${ review.goods_idx }'" style="cursor: pointer">
           <div class="row no-gutters my-0">
         	<c:forEach var="review_img" items="${ reviewimgslist }">
         		<c:if test="${ review.review_idx == review_img.review_idx }">
@@ -35,4 +34,4 @@
     		 </c:forEach>
 			</div>
         </div>
-    </div>
+   
