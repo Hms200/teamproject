@@ -43,9 +43,9 @@
             <a href="goodsDetail?goods_idx=${dto.goods_idx}">
             <img src="${dto.goods_thumb}" alt="" class="card-img-top img-fluid"></a>
             <div class="card-body py-2 px-2 text-dark text-decoration-none" >
-	            <h5 class="card-title font-weight-bold mt-1" style="font-size:14px;">${dto.goods_name}</h5>
-	            <p class="card-text mb-1" style="font-size: 10px;">${dto.goods_cat}</p>
-	            <p class="card-text mb-2" style="font-size: 12px;">￦${dto.goods_price }</p>
+	            <h5 class="card-title font-weight-bold mt-1 font-primary">${dto.goods_name}</h5>
+	            <p class="card-text mb-1 font-secondary">${dto.goods_cat}</p>
+	            <p class="card-text mb-2 font-secondary">￦${dto.goods_price }</p>
        	  	</div>
        	  
      		</div>

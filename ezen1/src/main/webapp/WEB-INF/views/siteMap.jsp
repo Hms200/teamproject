@@ -25,7 +25,7 @@
 <div class="container-sm container-fluid d-flex flex-column postion-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top:60px;">
 
     <!-- 분류 컨테이너 -->
-    <div class="container-sm container-fluid mt-0" style="max-width: 520px; font-size: 14px;">
+    <div class="container-sm container-fluid mt-0 font-primary" style="max-width: 520px;">
 
         <!-- 메인 타이틀 -->
         <p class="col-12 text-start my-3">메인</p>
