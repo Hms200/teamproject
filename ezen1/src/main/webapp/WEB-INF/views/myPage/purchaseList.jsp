@@ -80,8 +80,12 @@
 				class="w-100 d-flex flex-column border border-dark-50 py-2 my-1"
 				style="height: 170px;">
 				<form name="purchaseHistoryForm">
+<<<<<<< HEAD
 					<div class="w-100 d-flex flex-row justify-content-between my-1 font-secondary">
 						
+=======
+					<div class="w-100 d-flex flex-row justify-content-between my-1 font-secondary">			
+>>>>>>> branch 'Jang' of https://github.com/Hms200/teamproject.git
 						<div class="ml-2">${list.get("PURCHASE_STATEMENT") }</div>
 						<div class="mr-3">
 						<fmt:formatDate value="${list.get('PURCHASE_DATE') }" dateStyle="default"/></div>

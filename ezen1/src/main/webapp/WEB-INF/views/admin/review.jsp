@@ -27,7 +27,10 @@
    <div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-3 text-black-50">리뷰관리</div>
      
      <!-- 답글달기 팝업창 -->
+<<<<<<< HEAD
       
+=======
+>>>>>>> branch 'Jang' of https://github.com/Hms200/teamproject.git
     <div class="position-fixed d-none " id="reviewReplyWriteForm" style="top: 150px; z-index: 1100; max-width: 340px; height: 100vh;">
       <!-- 닫기 버튼 -->
    
