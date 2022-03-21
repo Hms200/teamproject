@@ -138,14 +138,14 @@
 
 	<input type="hidden" id="mode" value="${ mode }">
     <!-- 상품 문의 답글 팝업 -->
-    <div class="position-absolute d-none flex-column bg-white border border-dark-50 rouned w-90" id="qna_reply_popup" style="top: 150px;z-index: 1100; max-width: 520px;">
+    <div class="position-fixed d-none flex-column bg-white border border-dark-50 rouned w-90" id="qna_reply_popup" style="top: 150px;z-index: 1100; max-width: 520px;">
       <!-- 닫기 버튼 -->
       <div class="d-flex justify-content-end">
         <img src="/img/icon/cross.png" alt="닫기 버튼" width="30px" height="30px" style="cursor: pointer;" onclick="popupHideAndShow(target ='qna_reply_popup')">
       </div>
       <div style="margin: 0 20px 30px">
         <!-- 타이틀 -->
-        <div class="text-center font-weight-bold text-dark" style="height: 25px; margin: 5px 0 20px; font-size: 16px;">
+        <div class="text-center font-weight-bold text-dark" style="height: 25px; margin: 5px 0 20px;">
           답글 작성
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center">

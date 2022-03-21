@@ -80,8 +80,13 @@
 				class="w-100 d-flex flex-column border border-dark-50 py-2 my-1"
 				style="height: 170px;">
 				<form name="purchaseHistoryForm">
+<<<<<<< HEAD
+					<div class="w-100 d-flex flex-row justify-content-between my-1 font-secondary">
+						
+=======
 					<div class="w-100 d-flex flex-row justify-content-between my-1"
 						style="font-size: 12px;">
+>>>>>>> branch 'Jyi' of https://github.com/Hms200/teamproject.git
 						<div class="ml-2">${list.get("PURCHASE_STATEMENT") }</div>
 						<div class="mr-3">
 						<fmt:formatDate value="${list.get('PURCHASE_DATE') }" dateStyle="default"/></div>
@@ -91,7 +96,7 @@
 							<img src="${list.get('GOODS_THUMB') }" alt="" class="img-thumbnail"
 								width="100px">
 						</div>
-						<div class="col-9 mt-2" style="font-size: 14px;">
+						<div class="col-9 mt-2 font-primary" >
 							<div class="col-12 text-left pl-2">상품이름: &nbsp;  ${list.get("GOODS_NAME") } </div>
 							<div class="col-12 text-left pl-2">구매번호:  &nbsp; ${list.get("PURCHASE_IDX") }</div>
 							<div class="col-12 text-left pl-2 position-relative">
@@ -103,14 +108,14 @@
 							</div>
 							<div
 								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-3 ">
-								<button type="submit" value="환불신청" class="p-0" name="AskRefund"
-									style="font-size: 14px;"
+								<button type="submit" value="환불신청" class="p-0 font-primary" name="AskRefund"
+									
 									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseRefundAction')">환불신청</button>
-								<button type="submit" value="교환신청" class="p-0" name="AskChange"
-									style="font-size: 14px;"
+								<button type="submit" value="교환신청" class="p-0 font-primary" name="AskChange"
+									
 									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseChangeAction')">교환신청</button>
-								<button type="submit" value="취소신청" class="p-0" name="AskCancle"
-									style="font-size: 14px;" style=" font-size: 14px;"
+								<button type="submit" value="취소신청" class="p-0  font-primary" name="AskCancle"
+								
 									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseCancleAction')">취소신청</button>
 								<input type="hidden" name="purchase_idx" value="${list.get('PURCHASE_IDX') }" >
 							</div>
