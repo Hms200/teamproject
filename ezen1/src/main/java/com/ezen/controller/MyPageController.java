@@ -25,9 +25,9 @@ import com.ezen.service.MyPageService;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("myPage")
-@Slf4j
 public class MyPageController {
 	
 	@Autowired
@@ -131,7 +131,6 @@ public class MyPageController {
 		
 		try {
 			String id = (String)session.getAttribute("user_id");
-			id.isEmpty();
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "login/login";
@@ -145,6 +144,7 @@ public class MyPageController {
 	//리뷰등록
 	@PostMapping("reviewWriteAction")
 	public @ResponseBody String reviewWriteAction(@RequestBody Review review) {
+		log.info(review.toString());
 		String result = myPageService.insertReview(review);
 		return result;
 	}
@@ -153,11 +153,12 @@ public class MyPageController {
 	public @ResponseBody String reviewImgUpload(@RequestParam("reviewFile") MultipartFile MultipartFile,
 												@RequestParam("review_idx")String idx) throws UnsupportedEncodingException {
 		int review_idx = Integer.parseInt(idx);
-		String review_img = fileService.fileUploader("reviews", MultipartFile);
-		log.info("{}", review_img);
-		ReviewIMGS reviewImg = ReviewIMGS.builder().review_idx(review_idx).review_img(review_img).build();
-		int result = reviewImgsDAO.insertReviewImg(reviewImg);
-		
+		if(MultipartFile.isEmpty() ==  false) {
+			String review_img = fileService.fileUploader("reviews", MultipartFile);
+			log.info("{}",review_img);
+			ReviewIMGS reviewImg = ReviewIMGS.builder().review_idx(review_idx).review_img(review_img).build();
+			int result = reviewImgsDAO.insertReviewImg(reviewImg);
+		}
 		return "<script>alert('리뷰등록 성공'); location.href='/main'; </script> ";
 	}
 	

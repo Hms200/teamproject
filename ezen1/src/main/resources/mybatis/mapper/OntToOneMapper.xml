@@ -5,13 +5,18 @@
     
 <mapper namespace="com.ezen.dao.IonetooneDAO">
 
-	<!-- MALL_oneToOne에서 등록된 모든 정보를 가져옴. -->	
+	<!-- MALL_oneToOne에서 등록된 정보를 가져옴. -->	
 	<select id="getOneToOneList" resultType="com.ezen.dto.OneToOne">
 		SELECT * FROM ( 
 			SELECT ROWNUM AS rnum, mall_onetoone.* FROM(
 				SELECT * FROM MALL_ONETOONE ORDER BY onetoone_idx ASC )
 			 mall_onetoone)
 			WHERE rnum BETWEEN #{param1} AND #{param2} order by onetoone_idx DESC
+	</select>
+	
+	<!-- mall_onetoone에서등록된 모든정보 가져옴 -->
+	<select id="getAllOneToOneList" resultType="com.ezen.dto.OneToOne">
+		SELECT * FROM mall_onetoone
 	</select>
 	
 	<select id="countOfOneToOne" resultType="int">
