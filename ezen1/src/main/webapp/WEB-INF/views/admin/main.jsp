@@ -26,7 +26,7 @@
 <div class="container-sm container-fluid d-flex flex-column postion-relative pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top:60px;">
 
     <!-- 분류 컨테이너 -->
-    <div class="container-sm container-fluid mt-0" style="max-width: 520px; font-size: 14px;">        
+    <div class="container-sm container-fluid mt-0 font-primary" style="max-width: 520px;">        
 
         <!-- 회원관리 타이틀 -->
         <p class="col-12 text-start my-3">회원관리</p>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-3">
                     <a href="eventConfig">
-                    <button class="btn btn-primary mt-4" style="width: 70px; height: 70px; padding:0; font-size: 12px;">할인/추천<br>이벤트관리</button>
+                    <button class="btn btn-primary mt-4 font-secondary" style="width: 70px; height: 70px; padding:0;">할인/추천<br>이벤트관리</button>
                     </a>
                 </div>
             </div>
