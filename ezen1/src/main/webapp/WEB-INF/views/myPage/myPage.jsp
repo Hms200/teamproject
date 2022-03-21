@@ -23,7 +23,6 @@
 	<c:import url="../header.jsp"></c:import>
 
 	<!-- 페이지 전체 div -->
-<<<<<<< HEAD
 
 	<div
 		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center mb-5 mt-1"
@@ -32,28 +31,22 @@
 		<!-- main container -->
     <!--  <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">-->
 		
-
-
-
-
-	<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
-
-
-
+	<div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 mb-3" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
 
 		<!-- 박스 -->
-		<div class="container-fluid container-sm shadow border rounded my-2 mx-2" style="width:320px;">
+
+		<div class="container-fluid container-sm shadow border rounded my-5 mx-2" style="width:320px;">
 			<div class="d-flex flex-column">
 				<div
 					class="w-100 text-center font-weight-bold d-flex justify-content-center align-items-center"
-					style="height: 150px;">
+					style="height: 100px;">
 					<div>${user_id}님의 방문을 환영합니다.</div>
 			</div>
 				<!-- 회원정보 보기 링크 -->
 				<div class="border-top w-100 container-fluid" style="height:40px;">
 					<a href="./memberInfo" class="text-dark"
 						style="text-decoration: none;">
-						<div class="col-10 text-left pl-2 ml-0 mr-0  d-flex  align-items-center pt-2" style="float: left; font-size: 14px;">회원정보보기</div>
+						<div class="col-10 text-left pl-2 ml-0 mr-0  d-flex  align-items-center pt-2 font-primary" style="float: left; ">회원정보보기</div>
 						<div style="float: left;">
 							<img src="/img/icon/right.png" alt=""
 								style="width: 30px; height: 30px;" class="mx-auto d-block pt-2">
@@ -67,26 +60,26 @@
 
 		<!-- 쇼핑 -->
 		<div class="w-100 ml-0 mr-0 border p-2 mt-2">
-			<div class="text-black-50" style="font-size: 12px;">쇼핑</div>
-			<a href="./purchaseList" style="font-size: 14px;"
-				class="text-dark"> 구매내역보기</a>
+			<div class="text-black-50 font-secondary" >쇼핑</div>
+			<a href="./purchaseList" 
+				class="text-dark font-primary"> 구매내역보기</a>
 		</div>
 		<!-- 고객센터 -->
 		<div class="w-100 ml-0 mr-0 border p-2">
-			<div class="text-black-50" style="font-size: 12px;">고객센터</div>
-			<a href="/customer/ask?" style="font-size: 14px;"
-				class="text-dark"> 1:1 문의 </a> <br> 
-				<a href="/customer/myAsk"style="font-size: 14px;" class="text-dark">상품문의보기</a> <br>
-				<a href="/customer/faq" style="font-size: 14px;" class="text-dark">FAQ</a>
+			<div class="text-black-50 font-secondary" >고객센터</div>
+			<a href="/customer/ask?" 
+				class="text-dark font-primary"> 1:1 문의 </a> <br> 
+				<a href="/customer/myAsk" class="text-dark font-primary">상품문의보기</a> <br>
+				<a href="/customer/faq" class="text-dark font-primary">FAQ</a>
 		</div>
 		<!-- 로그아웃 -->
 		<div class="w-100 ml-0 mr-0 border p-2">
 
-			<a href="/login/logoutAction" style="font-size: 14px;" class="text-dark"> 로그아웃</a>
+			<a href="/login/logoutAction" class="text-dark font-primary"> 로그아웃</a>
 		</div>
 		<!-- 회원탈퇴 -->
 		<div class="w-100 ml-0 mr-0 border p-2" class="text-dark">
-			<a href="/login/quit" style="font-size: 14px;" class="text-dark">
+			<a href="/login/quit" class="text-dark font-primary">
 				회원탈퇴</a>
 		</div>
 		<!-- 목업 div -->

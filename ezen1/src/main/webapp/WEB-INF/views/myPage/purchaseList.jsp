@@ -41,34 +41,18 @@
 		class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center position-relative"
 		style="max-width: 520px;">--!>
 		 <!-- main container -->
-        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
-		
-		
-		
-
-
-       
-
-		<!-- header -->
-		<div
-			class="container-fluid border-bottom container-sm d-flex flex-row mb-0"
-			style="height: 60px;">
-			<!-- 아이콘 -->
-			<div class="col-1 my-3">
-				<img src="/img/icon/뒤로가기 (2).png" alt=""
-					class="mx-auto d-block  my-auto"
-					style="width: 30px; height: 30px; cursor: pointer; "
-					onclick="location.href='myPage'">
-			</div>
-			<!-- 헤더 텍스트 -->
-			<div class="col-11 my-3 py-1 text-center text-bold">
-				<div class="font-weight-bold pl-2 mb-2" style="font-size: 16px;">
-					구매내역</div>
-			</div>
-		</div>
+         <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0 mb-5" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
+				
+	<!-- header 
+		<div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">           
+                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+                  구매내역 상세조회  
+                </div>
+        </div> -->
+        
 		<!-- 검색창 -->
-		<div class="form-goup d-flex flex-row justify-content-between my-3 w-75 " >
-			<div class="font-weight-bold mt-2">내 구매내역 보기</div>
+		<div class="form-goup d-flex flex-row justify-content-between mt-5 mb-3 w-100 " >
+			<div class="font-weight-bold mt-2 pl-3">내 구매내역 보기</div>
 			<%String user_id = request.getParameter("user_id"); %>
 			<!-- 드롭다운 -->
 			<div style="width: 120px; height: 40px;">
@@ -93,11 +77,11 @@
 		<!-- 카드 -->
 		<c:forEach var="list" items="${purchaseList}">
 			<div
-				class="w-100 d-flex flex-column border border-dark-50 py-1 my-2"
-				style="height: 160px;">
+				class="w-100 d-flex flex-column border border-dark-50 py-2 my-1"
+				style="height: 170px;">
 				<form name="purchaseHistoryForm">
-					<div class="w-100 d-flex flex-row justify-content-between mb-1"
-						style="font-size: 12px;">
+					<div class="w-100 d-flex flex-row justify-content-between my-1 font-secondary">
+						
 						<div class="ml-2">${list.get("PURCHASE_STATEMENT") }</div>
 						<div class="mr-3">
 						<fmt:formatDate value="${list.get('PURCHASE_DATE') }" dateStyle="default"/></div>
@@ -107,7 +91,7 @@
 							<img src="${list.get('GOODS_THUMB') }" alt="" class="img-thumbnail"
 								width="100px">
 						</div>
-						<div class="col-9 mt-2" style="font-size: 14px;">
+						<div class="col-9 mt-2 font-primary" >
 							<div class="col-12 text-left pl-2">상품이름: &nbsp;  ${list.get("GOODS_NAME") } </div>
 							<div class="col-12 text-left pl-2">구매번호:  &nbsp; ${list.get("PURCHASE_IDX") }</div>
 							<div class="col-12 text-left pl-2 position-relative">
@@ -119,14 +103,14 @@
 							</div>
 							<div
 								class="col-12 border rounded d-flex flex-row justify-content-between form-control my-3 ">
-								<button type="submit" value="환불신청" class="p-0" name="AskRefund"
-									style="font-size: 14px;"
+								<button type="submit" value="환불신청" class="p-0 font-primary" name="AskRefund"
+									
 									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseRefundAction')">환불신청</button>
-								<button type="submit" value="교환신청" class="p-0" name="AskChange"
-									style="font-size: 14px;"
+								<button type="submit" value="교환신청" class="p-0 font-primary" name="AskChange"
+									
 									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseChangeAction')">교환신청</button>
-								<button type="submit" value="취소신청" class="p-0" name="AskCancle"
-									style="font-size: 14px;" style=" font-size: 14px;"
+								<button type="submit" value="취소신청" class="p-0  font-primary" name="AskCancle"
+								
 									onclick="multiSubmit(formName='purchasehistoryForm', formAction='purchaseCancleAction')">취소신청</button>
 								<input type="hidden" name="purchase_idx" value="${list.get('PURCHASE_IDX') }" >
 							</div>
