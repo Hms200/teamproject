@@ -56,7 +56,7 @@
         
       </div>
       
-      <div class="d-flex flex-row justify-content-around">
+      <div class="d-flex flex-row justify-content-around mb-3">
         <img src="${ goods.goods_thumb }" alt="" class="img-fluid mr-1" width="100px" height="100px">
         <div class="d-flex flex-column col-8 pl-2 pt-1" >
           <div class="d-flex flex-row justify-content-between mb-1">
@@ -104,7 +104,7 @@
       
       </c:forEach>
       
-      <div class="d-flex flex-row justify-content-between mx-2 mt-5 mb-2 pr-3 font-primary">
+      <div class="d-flex flex-row justify-content-between mx-2 mt-5 mb-3 pr-3 font-primary">
         <div>
           상품금액
         </div>
