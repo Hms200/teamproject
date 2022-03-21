@@ -1,6 +1,7 @@
 package com.ezen.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,10 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.ezen.dao.IfaqDAO;
+import com.ezen.dao.IgoodsDAO;
 import com.ezen.dao.IonetooneDAO;
+import com.ezen.dao.IquestionDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.FaQ;
 import com.ezen.dto.OneToOne;
+import com.ezen.dto.Question;
 
 @Service
 public class CustomerService {
@@ -23,6 +27,11 @@ public class CustomerService {
 	IonetooneDAO onetooneDao;
 	@Autowired
 	IuserDAO userDao;
+	@Autowired
+	IquestionDAO questionDAO;
+	@Autowired
+	IgoodsDAO goodsDAO;
+	
 	
 	//FAQ List 카테고리 선택
 	//faqList가 리턴한 Model 배열을 전체순환하면서 faq_cat가 파라미터로 넘겨받은 faq_cat와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
@@ -75,52 +84,66 @@ public class CustomerService {
 	
 	//내 문의 내역 (myAsk List)
 	//allOneToOne가 리턴한 Model 배열을 전체순환하면서 user_idx가 파라미터로 넘겨받은 user_idx와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
-	public Model byUserIdx(int user_idx, Model model, HttpSession session) {
-		ArrayList<OneToOne> allOneToOne = onetooneDao.getOneToOneList(user_idx, user_idx);
+	public Model byUserIdx(int user_idx, Model model) {
+		ArrayList<OneToOne> allOneToOne = onetooneDao.getAllOneToOneList();
 		ArrayList<OneToOne> myOneToOne = new ArrayList<>();
 			allOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getUser_idx() == user_idx) {
 					myOneToOne.add(OnetoOne);
 				}
 			});
+		ArrayList<Question> myQuestions = questionDAO.getQuestionList(user_idx);
+		HashMap<String, String> goodsnameList = new HashMap<>();
+		myQuestions.forEach(q -> {
+			String goods_name = goodsDAO.getGoodsName(q.getGoods_idx());
+			goodsnameList.put(String.valueOf(q.getGoods_idx()), goods_name);
+		});
+		
 		model.addAttribute("getOneToOneList", myOneToOne);
+		model.addAttribute("questionList", myQuestions);
+		model.addAttribute("goodsnamelist", goodsnameList);
 		return model;
 	}
 	  
 	//myAsk List 카테고리 선택
 	////myOneToOne가 리턴한 Model 배열을 전체순환하면서 faq_cat가 파라미터로 넘겨받은 faq_cat와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
-	public Model onetooneByCat(int user_idx, String onetoone_cat, String onetoonecat, Model model, HttpSession session) {
+	public Model onetooneByCat(int user_idx, String onetoone_cat, Model model) {
 		ArrayList<OneToOne> myOneToOne = onetooneDao.getOnetoOneByUserIdx(user_idx);
 		ArrayList<OneToOne> oneToOneByCat = new ArrayList<>();
+		ArrayList<Question> myQuestions = questionDAO.getQuestionList(user_idx);
+		HashMap<String, String> goodsnameList = new HashMap<>();
 		if(onetoone_cat.equals("전체문의")) {
-			onetoonecat = "전체문의";
 			myOneToOne.forEach(OnetoOne -> {
 					oneToOneByCat.add(OnetoOne);
 			});
 		}else if(onetoone_cat.equals("상품문의")) {
-			onetoonecat = "상품문의";
 			myOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
 					oneToOneByCat.add(OnetoOne);
 				}
 			});
 		}else if(onetoone_cat.equals("배송문의")) {
-			onetoonecat = "배송문의";
 			myOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
 					oneToOneByCat.add(OnetoOne);
 				}
 			});
 		}else if(onetoone_cat.equals("결제문의")) {
-			onetoonecat = "결제문의";
 			myOneToOne.forEach(OnetoOne -> {
 				if(OnetoOne.getOnetoone_cat().equals(onetoone_cat)) {
 					oneToOneByCat.add(OnetoOne);
 				}
 			});
+		}else if(onetoone_cat.equals("개별상품")) {
+			myQuestions.forEach(q -> {
+				String goods_name = goodsDAO.getGoodsName(q.getGoods_idx());
+				goodsnameList.put(String.valueOf(q.getGoods_idx()), goods_name);
+			});
 		}
 		model.addAttribute("getOneToOneList", oneToOneByCat);
 		model.addAttribute("onetoone_cat", onetoone_cat);
+		model.addAttribute("questionList", myQuestions);
+		model.addAttribute("goodsnamelist", goodsnameList);
 		return model;
 	}
 	

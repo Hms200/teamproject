@@ -50,6 +50,10 @@ public class FileService {
 	// 파일 업로드에 실패했는지 여부는 리턴된 String의 charAt(0) 의 값이 f 이면 실패로 처리.
 	public String fileUploader(String cat, MultipartFile multipartFile) throws UnsupportedEncodingException {
 		
+		if(multipartFile.getOriginalFilename().isEmpty() == true || multipartFile.getOriginalFilename().isBlank() == true) {
+			return "f";
+		}
+		
 		String uploadDir;
 		if(cat.equals("goods")) {
 			uploadDir = goodsImgUploadDir;

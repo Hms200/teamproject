@@ -40,11 +40,12 @@
       <form name="myAskCatForm" method="get" action="myAskCatAction">
       <span>
         <select name="onetoone_cat" onchange="this.form.submit();" style="width: 100px; height: 38px; font-size: 14px; padding:3px">
-          <option hidden>문의종류</option>
+          <option >문의종류</option>
           <option value="전체문의" <c:if test="${ onetoone_cat == '전체문의'}"> selected </c:if> >전체문의</option>
           <option value="상품문의" <c:if test="${ onetoone_cat == '상품문의'}"> selected </c:if> >상품문의</option>
           <option value="배송문의" <c:if test="${ onetoone_cat == '배송문의'}"> selected </c:if> >배송문의</option>
           <option value="결제문의" <c:if test="${ onetoone_cat == '결제문의'}"> selected </c:if> >결제문의</option>
+          <option value="개별상품" <c:if test="${ onttoont_cat == '개별상품'}"> selected </c:if> >개별상품</option>
         </select>
       </span>
     </form>
@@ -80,6 +81,43 @@
           </div>
       </div>
       </c:forEach>
+      <c:if test="${ !onetoone_cat || onetoone_cat == '개별상품' }">
+      <c:forEach var="question" items="${ questionList }">
+      <div class="card my-2">
+          <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${question.question_idx}" aria-expanded="false" aria-controls="collapse">
+            <div class="d-flex flex-wrap justify-content-between">
+              <span class="col-8 text-left px-0 mb-1">
+                ${question.question_title}
+              </span>
+              <span class="col-4 text-right px-0 font-secondary">
+              <c:set var="idx" value="${ question.goods_idx }"  />
+              	<c:forEach var="name" items="${ goodsnamelist }">
+              		<c:if test="${ name.containsKey(idx) }">
+              			${ name.get(idx) }에 등록된 질문입니다.&nbsp;
+              		</c:if>
+              	</c:forEach>
+              	<c:remove var="idx"/>
+                ${question.question_date}
+              </span>
+              <span class="col-10 text-left font-primary px-0">
+                ${question.question_contents}
+              </span>
+              <span class="col-2 text-right pr-0 pt-5">
+                <img src="/img/icon/down.png" alt="펼치기 아이콘" width="25px" height="25px">
+              </span>
+            </div>
+          </button>
+          <!--답변 -->
+          <div class="collapse" id="collapse_${question.question_idx}" data-parent="#accordion">
+            <div class="card-body">
+              <span >
+                ${question.question_reply}
+              </span>
+            </div>
+          </div>
+      </div>
+      </c:forEach>
+      </c:if>
   </div>
   </div>
     
