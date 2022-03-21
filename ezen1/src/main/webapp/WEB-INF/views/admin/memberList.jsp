@@ -57,7 +57,7 @@
 
            <div class="table-responsive my-4 pb-5" >
            <table class="table table-bordered table-sm text-dark">
-               <thead class="font-weight-bold text-center" style="font-size: 14px;">
+               <thead class="font-weight-bold text-center font-primary" >
                 <tr class="table-secondary">
                     <td>no</td>
                     <td>아이디</td>
