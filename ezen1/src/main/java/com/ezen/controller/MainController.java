@@ -54,7 +54,7 @@ public class MainController {
 		try {
 			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
-			log.error("로그인하지 않은 사용자.{}",e);
+			log.error("로그인하지 않은 사용자.");
 			user_idx = 0;
 		}
 		// 뱃지 숫자 설정. 
