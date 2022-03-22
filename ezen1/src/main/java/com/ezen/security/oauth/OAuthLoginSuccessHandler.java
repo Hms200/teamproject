@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 import com.ezen.dao.IuserDAO;
+import com.ezen.dto.User;
 import com.ezen.security.TokenProvider;
 
 import lombok.RequiredArgsConstructor;
@@ -52,6 +53,8 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
 		//String user_id = (String) securityContextHolder().getContext().getAuthentication().getPrincipal();
 		int user_idx = userDAO.getUserIdx(user_id);
 		String userIdx = String.valueOf(user_idx);
+		User user = userDAO.getMemberInfo(user_id);
+		String user_name = user.getUser_name();
 		log.info("user_idx : {}", user_idx);
 		
 		// jwt 인증 토큰 생성
@@ -72,9 +75,9 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
 		
 		// session에 user_id와 user_idx 넣어줌
 		
-		session.setAttribute("user_id", user_id);
+		session.setAttribute("user_id", user_name);
 		session.setAttribute("user_idx", user_idx);
-		log.info("user_id : {}, user_idx : {} 세선에 저장합니다.",user_id,user_idx);
+		log.info("소셜로그인. id대신 name을 저장합니다. user_id : {}, user_idx : {} 세선에 저장합니다.",user_id,user_idx);
 		// myPage로 redirect
 		log.info("myPage로 redirect합니다.");
 		response.sendRedirect("http://localhost:8085/myPage/myPage");
