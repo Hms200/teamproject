@@ -30,24 +30,24 @@
     
     <div class="d-flex flex-column bg-white rounded col-12 pt-4 my-5" style="height: auto;">
       <form action="productRegisterAction" class="w-100 mb-3" id="productRegisterForm" name="productRegisterForm" method="post">
-      <p class="text-center font-weight-bold text-dark my-4" style="font-size: 16px;">
+      <p class="text-center font-weight-bold text-dark mb-5">
         상품등록
       </p>
       <div class="d-flex felx-row justify-content-around mb-3 form-group">
-        <span class="font-weight-bold text-dark font-primary" >상품이름</span>
+        <span class="font-weight-bold text-dark font-primary pt-2" >상품이름</span>
         <input type="text" id="goods_name" name="goods_name" class="nullcheck form-control col-7 font-primary" placeholder="상품이름을 입력해주세요" >
         
       </div>
       <div class="d-flex felx-row justify-content-around mb-3 form-group">
-        <span class="font-weight-bold text-dark font-primary" >정품가격</span>
+        <span class="font-weight-bold text-dark font-primary pt-2" >정품가격</span>
         <input type="text" id="goods_price" name="goods_price" class="nullcheck form-control col-7 font-primary" placeholder="상품가격을 입력해주세요" >
       </div>
       <div class="d-flex felx-row justify-content-around mb-4 form-group">
-        <span class="font-weight-bold text-dark font-primary" >판매수량</span>
+        <span class="font-weight-bold text-dark font-primary pt-2" >판매수량</span>
         <input type="text" id="goods_stock" name="goods_stock" class="nullcheck form-control col-7 font-primary" placeholder="상품수량을 입력해주세요" >
       </div>
       <div class="d-flex felx-row justify-content-between form-group mx-4 mb-4">
-        <span class="font-weight-bold font-primary" >카테고리 선택</span>
+        <span class="font-weight-bold font-primary pt-2" >카테고리 선택</span>
         <select class="text-dark form-control col-6 font-primary" name="goods_cat" id="goods_cat" >
           <option selected>카테고리 선택</option>
           <option value="candle">캔들</option>
