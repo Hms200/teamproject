@@ -36,6 +36,12 @@
 		VALUES (mall_user_seq.nextval, #{user_id}, #{user_pw}, #{user_name}, #{user_phone}, #{user_address}, #{user_email}, sysdate)
 	</insert>
 	
+	<!-- 소셜로그인회원 정보저장 -->
+	<insert id="insertUserLoginedByOAuth" parameterType="com.ezen.dto.User">
+		INSERT INTO mall_user (user_idx, user_id, user_name, user_email, join_date, user_provider)
+			VALUES (mall_user_seq.nextval, #{user_id}, #{user_name}, #{user_email}, sysdate, #{user_provider})
+	</insert>
+	
 	<!-- 유저 아이디를 받아 MALL_USER에서 일치하는 정보 딜리트. -->
 	<delete id="deleteUser">
 		DELETE FROM MALL_USER WHERE user_id= #{ user_id }

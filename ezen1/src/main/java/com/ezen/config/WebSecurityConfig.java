@@ -17,6 +17,8 @@ import com.ezen.security.CustomAuthFailureHandler;
 import com.ezen.security.FormAhuthenticationProvider;
 import com.ezen.security.JwtAuthenticationFilter;
 import com.ezen.security.LoginSuccessHandler;
+import com.ezen.security.oauth.CustomOAuth2UserService;
+import com.ezen.security.oauth.OAuthLoginSuccessHandler;
 
 
 // spring security를 이용한 보안설정
@@ -36,9 +38,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	CustomAuthFailureHandler customAuthFailureHandler;
 	
+	// OAuth2.0 로그인 성공시 수행할 작업
+	@Autowired
+	OAuthLoginSuccessHandler oauthLoginSuccessHandler;
+	
 	// id, pw check 클래스
 	@Autowired
 	FormAhuthenticationProvider formAhuthenticationProvider;
+	
+	// OAuth2.0 userSerivce
+	@Autowired
+	CustomOAuth2UserService customOAuth2UserService;
 	
 	// fromAhuthenticationProvider 등록
 	@Override
@@ -88,9 +98,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.invalidateHttpSession(true)
 					.clearAuthentication(true)
 					.logoutSuccessUrl("/main")
-			.and()
-				.sessionManagement()	  // session 관리
-					.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+			.and().oauth2Login()
+					.loginPage("/login/login")
+					.defaultSuccessUrl("/main")
+					.successHandler(oauthLoginSuccessHandler)
+					.failureHandler(customAuthFailureHandler)
+					.userInfoEndpoint()
+					.userService(customOAuth2UserService);
+			
+		http.sessionManagement()	  // session 관리
+			.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 				//	.maximumSessions(1)					// 최대 허용 session 1
 				//	.maxSessionsPreventsLogin(true);		// 중복 로그인 허용 안함
 		
