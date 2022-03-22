@@ -306,12 +306,12 @@ public class AdminService {
 		int countOfArticles = purchaseDAO.countOfPurchase();
 		int numberOfArticlesOnPage = 10;
 		int numberOfPagenation = 5;
+		pagenation = pagenation.pagenation(currentPage, countOfArticles, numberOfArticlesOnPage, numberOfPagenation);
 		ArrayList<Purchase> list = purchaseDAO.getPurchaseList(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		HashMap<Integer, String> userlist = new HashMap<>();
 		list.forEach(item -> {
 			userlist.put(item.getUser_idx(), userDAO.getUserIdByUserIdx(item.getUser_idx()));
 		});
-		pagenation = pagenation.pagenation(currentPage, countOfArticles, numberOfArticlesOnPage, numberOfPagenation);
 		model.addAttribute("purchaselist", list);
 		model.addAttribute("userlist", userlist);
 		model.addAttribute("pages", pagenation);

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -67,6 +68,8 @@ public class GoodsListService {
 	@Autowired
 	IquestionDAO questionDAO;
 	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	// 전체상품 페이지
 	public Model goodsList(Model model) {
@@ -186,11 +189,16 @@ public class GoodsListService {
 	}
 	// 구매 전 비밀번호 확인
 	public String checkPw(String pw) {
-		String user_id = (String) session.getAttribute("user_id");
-		String user_pw = userDAO.getUserPw(user_id);
-		if(pw.equals(user_pw)) {
-			return "true";
-		}else {
+		
+		try {
+			String user_id = (String) session.getAttribute("user_id");
+			String user_pw = userDAO.getUserPw(user_id);
+			if(passwordEncoder.matches(pw, user_pw)) {
+				return "true";
+			}else {
+				return "false";
+			}
+		} catch (Exception e) {
 			return "false";
 		}
 	}
