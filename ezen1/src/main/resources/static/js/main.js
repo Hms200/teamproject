@@ -668,8 +668,13 @@ function checkPw(){
 				}else{
 					/// bootpay 연결 후 수정해야할 부분, bootpay연결로 결제프로세스진행되면
 					// makingPurchase를 그 함수 안으로 옮길것.
-					console.log('결제 프로세스 진행');
-					makingPurchase();
+					if($('input[name=purchase_buyer_payment]:checked').val() == '카드'){
+						console.log('결제 프로세스 진행');
+						bootpay();						
+					}else{
+						alert("주문이 접수되었습니다. 무통장 전용계좌로 입금 확인후 익일 상품이 출고됩니다.");
+						makingPurchase();
+					}
 				}
 		},
 		error: function(e){
@@ -860,5 +865,31 @@ function registerQuestionReply(){
 			});
 		}
 }
-
-
+// 리뷰등록
+ function reviewContentAction() {
+		  const form = document.querySelectorAll('form[name="reviewWriteForm"] > div > input, select, textarea');
+		  let formData = {};
+		  for(i=0; i<form.length; i++){
+				formData[form[i].name] = form[i].value;
+		  }
+		  formData = JSON.stringify(formData);
+		  console.log(formData);
+		  console.log('리뷰 폼 전송 시도');
+		  jQuery.ajax({
+				url: "reviewWriteAction",
+				type: "POST",
+				contentType: "application/json",
+				processData: false,
+				data: formData,
+				success: function(result){
+					if(result == false){
+						alert('등록에 실패하였습니다.');
+						return false;
+					}
+					console.log('등록 성공 review_idx ='+result);
+					document.getElementsByName('review_idx')[0].value = result;
+					multiSubmit(formName = 'reviewImg', formAction = 'uploadReviewImgAction');
+				},
+				error: function(){return false},
+			})
+	  };

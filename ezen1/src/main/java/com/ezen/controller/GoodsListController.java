@@ -20,11 +20,13 @@ import com.ezen.dto.Cart;
 import com.ezen.dto.Purchase;
 import com.ezen.dto.Question;
 import com.ezen.service.GoodsListService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
+
 
 @Controller
 @RequestMapping("goodsList")
+@Slf4j
 public class GoodsListController {
 
 	@Autowired
@@ -32,7 +34,7 @@ public class GoodsListController {
 	
 	@Autowired
 	HttpSession session;
-	private final Logger logger = LoggerFactory.getLogger("LoggerController 의 로그");
+	
 	////////////////////////
     //전체상품 페이지
 	////////////////////////
@@ -48,8 +50,6 @@ public class GoodsListController {
 	@RequestMapping("goodsDetail")
 	public String goodsDetail(@RequestParam("goods_idx")int goods_idx,
 							  Model model) {
-		
-		logger.info("goods_idx==="+goods_idx);
 		model = goodsListService.goodsDetail(goods_idx, model);
 		return "goodsList/goodsDetail";
 	}
@@ -77,7 +77,8 @@ public class GoodsListController {
 		int cartNum;
 		try {
 			cartNum = (int) session.getAttribute("cart");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			cartNum = 0;
 		}
 		cartNum += 1;
@@ -95,7 +96,8 @@ public class GoodsListController {
 		int user_idx;
 		try {
 			user_idx = (int) session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "login/login";
 		}
 		model = goodsListService.getGoodsInCart(user_idx, model);

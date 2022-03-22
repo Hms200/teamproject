@@ -146,43 +146,57 @@
       <!--해당네브:리뷰-->
       <div class="dep _review ">
         <div class="d-flex flex-column justify-content-start my-3">
+       
+       
         <c:forEach var = "dto" items="${reviewList}">
           
-          <div class="card mb-3 col-10 position-relative" style="max-width: 520px;">
-			  <div class="row no-gutters">
-			  <!-- 등록된 리뷰이미지가 있으면 표시하고, 없으면 공란으로 둠 -->
-			  <c:forEach var="reviewimg" items="${ reviewImgList }">
-			      <c:if test="${ dto.review_idx == reviewimg.review_idx }">
-			      	<c:set var="imgsrc" value="${ reviewimg.review_img }" />
-			    		<div class="col-4 border rounded my-2" >
-			     		 	<img class="img-fluid" src="${ imgsrc }" alt="유저등록 리뷰이미지">
-			    		</div>
-		    		 <c:remove var="imgsrc"/>
-			      </c:if>
-			     
-	          </c:forEach>
+          <div class="card mb-3 col-10 pl-0" style="max-width: 520px;">
+			  <div class="row no-gutters h-50 position-relative">
+			  <!-- 등록된 리뷰이미지가 있으면 표시하고, 없으면 대체이미지 표시함 -->
+			  <c:set var="isExistImg" value="0" />
+			  <c:forEach var="review_img" items="${ reviewImgList }">
+	        		<c:if test="${ dto.review_idx == review_img.review_idx }">
+	        			<c:set var="img" value="${ review_img.review_img }" />
+	        			<c:set var="isExistImg" value="1" />
+	        			<div class="col-5">
+		          			<div class="w-100" style=" padding-bottom: 75%; height: 0;">
+		          				<img src="${ img }" class="" alt="${ goodsnamelist.get(review.goods_idx) }" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
+		          			</div>
+	          			</div>
+	          			<c:remove var="img"/>
+	          		</c:if>	
+	          	</c:forEach>
+	          		<c:if test="${ isExistImg == 0 }">
+	          			<div class="col-5">
+		          			<div class="w-100" style="padding-bottom: 75%; height: 0;">
+		          				<img src="/img/img_not_found.png" class="" alt="등록된 이미지가 없습니다." style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
+		          			</div>
+	          			</div>
+	          		</c:if>
+	          		<c:remove var="isExistImg"/>
 	          
-			    <div class="col-8">
-			      <div class="card-body">
+			    <div class="col-7 float-right">
+			      <div class="card-body col-12 d-flex flex-column align-items-start justify-content-center px-1 py-0">
 			        <p class="card-title"><small>★ ${ dto.review_star }</small></p>
 			        <p class="card-text my-2">${ dto.review_contents }</p>
-			        <p class="card-text my-1"><small class="text-muted">${ dto.review_date }</small></p>
+			        <p class="card-text my-1 align-self-end"><small class="text-muted">${ dto.review_date }</small></p>
 			        <!-- 등록된 답글이 있으면 답글보기 버튼이 노출됨 -->
 			        <c:if test="${ dto.review_isreplied == 1 }">
-			        	<p class="card-text" onclick="popupHideAndShow('reply${ dto.review_idx}')"><small class="text-muted" style="cursor: pointer;">답글보기</small></p>
+			        	<p class="card-text align-self-end" onclick="popupHideAndShow('reply${ dto.review_idx}')"><small class="text-muted" style="cursor: pointer;">답글보기</small></p>
 			        </c:if>
 			      </div>
 			    </div>
 			  </div>
-			</div>
-			<!-- 답글팝업 -->
-			<div class="card col-11 position-absolute d-none justify-contents-center" id="reply${ dto.review_idx }" style="top: 96%; right: 4%;">
+			  <!-- 답글팝업 -->
+			<div class="card col-11 position-absolute d-none justify-contents-center" id="reply${ dto.review_idx }" style="top: 96%; right: 4%; z-index: 1500;">
 			  <div class="card-body">
 			    <p class="card-text my-1">${ dto.review_reply }</p>
 			    <p class="card-text my-1"><small class="text-muted">${ dto.review_reply_date }</small></p>
 			    <button class="btn btn-primary float-right mb-2" type="button" onclick="popupHideAndShow('reply${ dto.review_idx}')">닫기</button>
 			  </div>
 			</div>
+		</div>
+			
           
           </c:forEach>
           

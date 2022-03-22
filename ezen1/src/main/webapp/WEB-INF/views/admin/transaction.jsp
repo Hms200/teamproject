@@ -23,21 +23,19 @@
 <c:import url="../header.jsp"></c:import>
 
  <!-- container -->
-    <!--  <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">--!>
-     <!-- main container -->
-        <div class="container-sm container-fluid d-flex flex-column align-items-center pl-0 pr-0" id="mainContainer" style="max-width: 520px; margin-top: 60px; ">
-   
-         <!-- title container -->
+    <div class="container-sm container-fluid d-flex flex-column justify-content-center align-items-center postion-relative" id="mainContainer" style="max-width: 520px; margin-top: 60px;">
+   		<div class="font-weight-bold pl-3 d-flex my-2 w-100 pb-2 pt-3 text-black-50">주문목록</div>
+         <!-- title container 
          <div class="container-fluid d-flex flex-row mb-4 border-bottom border-dark-50" style="height: 60px;">
-            <!-- title back btn -->
+            
                 <div class="col-1 my-3" onclick="location.href='../admin'" style="cursor: pointer;">
                     <img src="/img/icon/뒤로가기 (2).png" alt="뒤로가기">
                 </div>
-            <!-- title -->
+            
                 <div class="col-11 my-3 py-1 text-center font-weight-bold" style="font-size: 16px;">
                     주문목록
                 </div>
-            </div>
+            </div>-->
 
             <!-- drop down 정렬버튼 -->
             <!-- href 에 해당상품만 노출되도록 서버에 요청하는 request 작성해야함. -->
@@ -125,8 +123,6 @@
 		    </div>
     
     </div>
-   
-
 
     
 <c:import url="../footer.jsp"></c:import>

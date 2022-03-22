@@ -28,9 +28,7 @@
 
 		<!-- 아이콘 -->
 		<div class="d-flex w-100 flex-row justify-content-end pt-2  pr-2">
-			<img src="/img/icon/cross.png" alt="취소"
-				style="width: 30px; height: 30px; cursor: pointer;"
-				onclick="location.href='myPage'">
+			<img src="/img/icon/cross.png" alt="취소" style="width: 30px; height: 30px; cursor: pointer;" onclick="history.back(-1);">
 		</div>
 		<!-- main -->
 		<div
@@ -67,7 +65,7 @@
 						<option value="5">5</option>
 					</select>
 				</div>
-				</div>
+				
 				<!-- 리뷰내용 -->
 				<div class="container font-primary mb-5 mt-2">
 					<textarea name="review_contents" id="review" cols="50" rows="10"
@@ -87,6 +85,7 @@
 			</div>
 		<!-- 팝업창 div -->
 	</div>
+</div>
 	<c:import url="../footer.jsp"></c:import>
 	<c:import url="../nav.jsp"></c:import>
 	</div>
@@ -107,33 +106,7 @@
 	    reader.readAsDataURL(this.files[0]);
 	   }
 	  });
-	  function reviewContentAction() {
-		  const form = document.querySelectorAll('form[name="reviewWriteForm"] > div > input, select, textarea');
-		  let formData = {};
-		  for(i=0; i<form.length; i++){
-				formData[form[i].name] = form[i].value;
-		  }
-		  formData = JSON.stringify(formData);
-		  console.log(formData);
-		  console.log('파일등록 폼 전송 시도');
-		  jQuery.ajax({
-				url: "reviewWriteAction",
-				type: "POST",
-				contentType: "application/json",
-				processData: false,
-				data: formData,
-				success: function(result){
-					if(result == false){
-						alert('등록에 실패하였습니다.');
-						return false;
-					}
-					console.log('등록 성공 review_idx ='+result);
-					document.getElementsByName('review_idx')[0].value = result;
-					multiSubmit(formName = 'reviewImg', formAction = 'uploadReviewImgAction');
-				},
-				error: function(){return false},
-			})
-		  };
+	 
  </script>
 </body>
 </html>

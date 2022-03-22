@@ -21,8 +21,11 @@ import com.ezen.dto.FaQ;
 import com.ezen.dto.OneToOne;
 import com.ezen.service.CustomerService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("customer")
+@Slf4j
 public class CustomerController {
 	
 	@Autowired
@@ -71,7 +74,7 @@ public class CustomerController {
 	//("faqDeleteAction") faq_idx를 파라미터로 받아 IfaqDAO,faqDelete로 보내준다
 	@RequestMapping("faqDeleteAction")
 	@ResponseBody
-	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx, HttpServletRequest reuqest) {
+	public String faqDeleteAction(@RequestParam("faq_idx") String faq_idx) {
 		
 		int result = faqDao.faqDeleteByFaqIdx(faq_idx);
 		if(result == 1) {
@@ -88,28 +91,30 @@ public class CustomerController {
 	//("myAsk")로 매핑시 로그인한 사용자 user_idx를 읽어 CustomerService.byUserIdx로 넘겨준 뒤
 	//리턴된 ArrayList<Model>을 페이지로 넘김, 사용자 정보가 없는 경우 login으로 리다이렉트
 	@RequestMapping("myAsk")
-	public String myAsk(Model model, HttpServletRequest request, HttpSession session) {
+	public String myAsk(Model model, HttpSession session) {
 		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "redirect:../login/login";
 		}	
-		model = customerService.byUserIdx(user_idx, model, session);
+		model = customerService.byUserIdx(user_idx, model);
 		return "customer/myAsk";
 	}
 	
 	//myAsk List 카테고리 선택
 	//("myAskCatAction") onetoone_cat을 파라미터로 받아 CustomerService.onetooneByCat으로 넘겨준 뒤 리턴된 ArrayList<Model>을 페이지로 넘김
 	@GetMapping("myAskCatAction")
-	public String myAskCatAction(@RequestParam String onetoone_cat, String onetoonecat, Model model, HttpSession session) {
+	public String myAskCatAction(@RequestParam String onetoone_cat, Model model, HttpSession session) {
 		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "redirect:../login/login";
 		}
-		model = customerService.onetooneByCat(user_idx, onetoone_cat, onetoonecat, model, session);
+		model = customerService.onetooneByCat(user_idx, onetoone_cat,model);
 		return "customer/myAsk";
 		}
 	
@@ -117,10 +122,11 @@ public class CustomerController {
 	//사용자 정보가 없는 경우 login으로 리다이렉트
 	@RequestMapping("ask")
 	public String ask(HttpSession session) {
-		int user_idx;
+		
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "redirect:../login/login";
 		}	
 		return "customer/ask";
@@ -134,7 +140,8 @@ public class CustomerController {
 		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			log.error("{}",e);
 			return "../redirect:login/login";
 		}
 		String result = customerService.insertOneToOne(onetoone);

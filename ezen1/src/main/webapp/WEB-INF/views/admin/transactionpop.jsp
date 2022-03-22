@@ -29,7 +29,7 @@
         <!-- title container -->
         <div class="container-fluid d-flex flex-row mb-4 " style="height: 60px;">
             <!-- title -->
-                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50" style="font-size: 16px;">
+                <div class="col-12 my-4 py-2 text-start font-weight-bold text-black-50">
                   주문목록 상세조회 
                 </div>
             </div>
@@ -38,13 +38,10 @@
         <div class="container-fluid d-flex flex-column mb-4 border-bottom border-dark-50 pb-2">
 
             <!-- 구매일 -->
-            <div class="w-100 text-right" style="font-size: 14px; height: 20px;">
-                ${ purchase.purchase_date }
-            </div>
-            <!-- 구매번호 -->
-            <div class="w-100 text-left border-bottom border-dark-50" style="font-size: 14px; height: 40px;">
-                구매번호 - ${ purchase.purchase_idx }
-            </div>
+           <div class="d-flex font-primary justify-content-between text-black-50 mt-3" style="height: 40px;">
+           	<span class="text-left">구매번호 - ${ purchase.purchase_idx }</span>
+           	<span class="test-right">${ purchase.purchase_date }</span>
+           </div> 
 
             <!-- 상품정보 반복-->
             <c:forEach var="cart" items="${ cartlist }">
@@ -62,7 +59,7 @@
                     <img class="img-fluid" src="${ thumb }" alt="">
                 </div>
                 <!-- 정보 -->
-                <div class="col-8 d-flex flex-column text-left">
+                <div class="col-8 d-flex flex-column text-left pl-0">
                     <div class="my-1">
                         ${ name }
                     </div>
