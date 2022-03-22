@@ -192,14 +192,16 @@ public class GoodsListService {
 		
 		try {
 			int user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
+			log.info("확인대상 user_idx : {}", user_idx);
 			String user_pw = userDAO.getUserPw(user_idx);
 			if(passwordEncoder.matches(pw, user_pw)) {
 				return "true";
-			}else {
+			}else  {
 				return "false";
 			}
 		} catch (Exception e) {
-			return "false";
+			log.info("password가 등록되지 않은 사용자. 소셜로그인사용자입니다.");
+			return "true";
 		}
 	}
 	// 구매기록 저장
