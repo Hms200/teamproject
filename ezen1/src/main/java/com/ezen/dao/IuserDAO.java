@@ -14,7 +14,7 @@ public interface IuserDAO {
 	//로그인
 	public String getUserID(String user_id);
 	//MALL_USER에서 사용자 비밀번호를 조회
-	public String getUserPw(String user_id);
+	public String getUserPw(int user_idx);
 	//아이디찾기
 	public String getUserIdByFindId(String user_name, String user_email);
 	//비밀번호찾기
