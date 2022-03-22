@@ -87,7 +87,7 @@ public class UserPrincipal implements OAuth2User, UserDetails, OidcUser{
 	}
 	
 	public static UserPrincipal create(User user, Map<String, Object> attributes) {
-		log.info("UserPrincipal에 provider에서 공받은 사용자정보를 등록합니다.");
+		log.info("UserPrincipal에 provider에서 제공받은 사용자정보를 등록합니다.");
 		UserPrincipal userPrincipal = create(user);
 		userPrincipal.setAttributes(attributes);
 		
