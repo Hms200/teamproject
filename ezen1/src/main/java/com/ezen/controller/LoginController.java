@@ -145,9 +145,9 @@ public class LoginController {
 	//회원탈퇴 
 	@RequestMapping("quitAction")
 	@ResponseBody
-	public String quitAction(@RequestParam("user_id") String user_id) {
+	public String quitAction(@RequestParam("user_id") String user_idx) {
 		
-		String result = loginService.quit(user_id);
+		String result = loginService.quit(user_idx);
 		return result;			
 	}
 	

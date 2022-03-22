@@ -44,7 +44,7 @@
 	
 	<!-- 유저 아이디를 받아 MALL_USER에서 일치하는 정보 딜리트. -->
 	<delete id="deleteUser">
-		DELETE FROM MALL_USER WHERE user_id= #{ user_id }
+		DELETE FROM MALL_USER WHERE user_idx= ${ user_idx }
 	</delete>
 	
 	<!-- 유저 아이디를 받아 MALL_USER에서 일치하는 회원의 모든 데이터를 가져옴 -->
