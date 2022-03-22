@@ -149,7 +149,7 @@
       <!-- 서버에는 정상작동 / 라디오 모양 없애고 버튼 모양만 다듬어서 완성시키기  -->
       <div class="d-flex flex-row justify-content-between my-2">
         <div class="d-flex flex-column align-items-center">
-          	<input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option1" value="카드" checked style=" opacity:0;">
+          	<input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option1" value="bootpay" checked style=" opacity:0;">
           		<label class="btn btn-primary" for="option1">카드결제</label>          	
         </div>
         
@@ -206,6 +206,7 @@ window.onloade = calculateTotalPrice();
 </script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
 <script>
+
    //아이템 통계data startTrace()
 	$(document).ready(function() {
 	 var list = [];
@@ -223,6 +224,7 @@ window.onloade = calculateTotalPrice();
 	    items: list
 	  });
 	});
+   
 	//고유아이디(영수증에 나오는고유번호) 생성
 	function guid() {
 	function s4() {
@@ -230,6 +232,7 @@ window.onloade = calculateTotalPrice();
 	}
 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 	};
+	
 	//부트페이 화면연동
 	function bootpay(){	
 	//구매 itemList 배열로 미리생성
@@ -244,6 +247,7 @@ window.onloade = calculateTotalPrice();
 		itemList.cat1 = '${goodslist[i].goods_cat}';
 		statsList.push(itemList);
 	</c:forEach>
+	
 	//data 변수선언
 	const goods_price = $('span[id=final_price]').text();
 	const nameCount = $('span[id=goods_name]').length - 1 ;
@@ -278,9 +282,11 @@ window.onloade = calculateTotalPrice();
  	}).error(function (data) {
  		//결제 진행시 에러가 발생하면 수행됩니다.
  		console.log(data);
+ 		location.reload();
  	}).cancel(function (data) {
  		//결제가 취소되면 수행됩니다.
  		console.log(data);
+ 		location.reload();
  	}).ready(function (data) {
  		// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
  		console.log(data);
