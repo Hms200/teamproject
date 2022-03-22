@@ -191,8 +191,8 @@ public class GoodsListService {
 	public String checkPw(String pw) {
 		
 		try {
-			String user_id = (String) session.getAttribute("user_id");
-			String user_pw = userDAO.getUserPw(user_id);
+			int user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
+			String user_pw = userDAO.getUserPw(user_idx);
 			if(passwordEncoder.matches(pw, user_pw)) {
 				return "true";
 			}else {

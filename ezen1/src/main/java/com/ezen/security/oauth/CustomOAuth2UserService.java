@@ -4,6 +4,7 @@ package com.ezen.security.oauth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -22,6 +23,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
 
 	@Autowired
 	IuserDAO userDAO;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -63,13 +67,15 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
 	}
 	
 	private User createUser(OAuth2UserInfo userInfo, ProviderType providerType) {
+		
 		User user = User.builder()
 					.user_id(userInfo.getId())
-					.user_pw("$2a$10$c0lfMtgmpE/ZygYKT9FNE.9CNqAdVhBVA1cFn8ifcEsaOi8KhCJBm")
+					.user_pw(passwordEncoder.encode("1234"))
 					.user_name(userInfo.getName())
 					.user_email(userInfo.getEmail())
 					.user_provider(providerType.toString())
 					.build();
+		log.info("새로운 사용자 {} 이름 : {} 초기비밀번호 1234 생성합니다.", providerType.toString(), userInfo.getName());
 		userDAO.insertUserLoginedByOAuth(user);
 		return user;
 	}
