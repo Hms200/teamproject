@@ -94,7 +94,7 @@ public class GoodsListController {
 		// 로그인 되어있지 않으면 로그인페이지로 이동
 		int user_idx;
 		try {
-			user_idx = (int) session.getAttribute("user_idx");
+			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "login/login";
