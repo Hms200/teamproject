@@ -111,7 +111,6 @@ public class MainService {
 	// entireItem card
 	public Model entireItemCardData( Model model) {
 		
-
 		ArrayList<Goods> goods = goodsDAO.getAllGoodsList();
 		
 		model.addAttribute("goodsList", goods );
