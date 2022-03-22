@@ -39,7 +39,7 @@
     <div class="container-sm container-fluid d-flex justify-content-end my-3">
       <form name="faqCatForm" method="get" action="faqCatAction">
       <span>
-        <select name="faq_cat" onchange="this.form.submit()" class="font-primary" style="width: 100px; height: 38px; padding:3px">
+        <select name="faq_cat" onchange="this.form.submit()" class="font-primary rounded px-1 py-1" style="width: 100px; height: 38px;">
           <option hidden>문의종류</option>
           <option value="전체문의" <c:if test="${ faq_cat == '전체문의'}"> selected </c:if> >전체문의</option>
           <option value="상품문의" <c:if test="${ faq_cat == '상품문의'}"> selected </c:if> >상품문의</option>

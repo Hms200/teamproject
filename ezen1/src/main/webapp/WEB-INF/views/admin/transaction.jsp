@@ -78,21 +78,21 @@
             <div class="container-fluid text-center">
                 <!-- table -->
                 <table class="table table-hover border border-dark-50">
-                    <thead class="thead-dark-50 bg-secondary">
-                        <th scope="col">주문번호</th>
-                        <th scope="col">아이디</th>
-                        <th scope="col">주문상태</th>
-                        <th scope="col">주문날짜</th>
+                    <thead class="thead-dark-50 bg-secondary font-primary">
+                        <th scope="col" class="px-2">주문번호</th>
+                        <th scope="col" class="px-2">아이디</th>
+                        <th scope="col" class="px-2">주문상태</th>
+                        <th scope="col" class="px-2">주문날짜</th>
                     </thead>
                     <tbody>
                     	<c:forEach var="list" items="${ purchaselist }">
-                        <tr>
+                        <tr class="font-primary">
                             <th scope="row" onclick="location.href='transactionpop?purchase_idx=${ list.purchase_idx}'" style="cursor: pointer;">${ list.purchase_idx }</th>
                             <td>
 	                            ${ userlist.get(list.user_idx) }
                             </td>
                             <td>${ list.purchase_statement }</td>
-                            <td style="font-size: 12px;">${ list.purchase_date }</td>
+                            <td class="font-secondary">${ list.purchase_date }</td>
                         </tr>
                         </c:forEach>                        
                     </tbody>

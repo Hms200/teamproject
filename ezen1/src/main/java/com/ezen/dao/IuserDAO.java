@@ -23,6 +23,8 @@ public interface IuserDAO {
 	public int getUserIdx(String user_id);
 	//회원가입
 	public int insertUser(User user);
+	//소셜로그인회원 정보저장
+	public int insertUserLoginedByOAuth(User user);
 	//회원탈퇴
 	public int deleteUser(String user_id);
 	//회원정보조회
