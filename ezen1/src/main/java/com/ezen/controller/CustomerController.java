@@ -124,7 +124,7 @@ public class CustomerController {
 	public String ask(HttpSession session) {
 		int user_idx;
 		try {
-			int user_idx = (int)session.getAttribute("user_idx");
+			session.getAttribute("user_idx");
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "redirect:../login/login";
