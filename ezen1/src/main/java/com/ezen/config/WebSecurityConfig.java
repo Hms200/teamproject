@@ -98,7 +98,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.invalidateHttpSession(true)
 					.clearAuthentication(true)
 					.logoutSuccessUrl("/main")
-			.and().oauth2Login()
+			.and().oauth2Login()			// 소셜로그인 서비스
 					.loginPage("/login/login")
 					.defaultSuccessUrl("/main")
 					.successHandler(oauthLoginSuccessHandler)
