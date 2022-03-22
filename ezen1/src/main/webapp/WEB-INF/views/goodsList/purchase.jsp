@@ -144,19 +144,19 @@
     
     <div class="w-75 d-flex flex-column my-3">
       <span class="font-weight-bold text-center" >
-        결제방법
+        결제수단 선택 
       </span>
       <!-- 서버에는 정상작동 / 라디오 모양 없애고 버튼 모양만 다듬어서 완성시키기  -->
       <div class="d-flex flex-row justify-content-between my-2">
         <div class="d-flex flex-column align-items-center">
-          	<input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option1" value="bootpay" checked style=" opacity:0;">
-          		<label class="btn btn-primary" for="option1">카드결제</label>          	
+          	<input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option1" value="카드" checked style=" opacity:0;">
+          		<label class="btn btn-primary" style="width:110px;" for="option1">카드결제</label>          	
         </div>
         
         <div class="d-flex flex-row justify-content-between">
           <div class="d-flex flex-column align-items-center">
             <input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option2" value="무통장결제" style=" opacity:0;">
-            	<label class="btn btn-primary" for="option2">무통장결제</label>          
+            	<label class="btn btn-primary" style="width:110px;" for="option2">무통장결제</label>          
           </div>
         </div>
         
