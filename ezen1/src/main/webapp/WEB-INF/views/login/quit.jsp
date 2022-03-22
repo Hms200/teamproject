@@ -33,7 +33,7 @@
 	    </div>
 	   
 	    <div class="d-flex justify-content-center mb-3">	      
-	      <a href="../login/quitAction?user_id=${ user_id }" class="col-5 btn btn-dark text-light my-3 mr-1" onclick="return nullChecker();">네</a>
+	      <a href="../login/quitAction?user_id=${ user_idx }" class="col-5 btn btn-dark text-light my-3 mr-1" onclick="return nullChecker();">네</a>
 	      <a href="/main" class="col-5 btn btn-secondary text-dark my-3 ml-1">아니오</a>
 	    </div>
  	
