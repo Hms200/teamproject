@@ -94,7 +94,7 @@ public class CustomerController {
 	public String myAsk(Model model, HttpSession session) {
 		int user_idx;
 		try {
-			user_idx = (int)session.getAttribute("user_idx");
+			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "redirect:../login/login";
@@ -109,7 +109,7 @@ public class CustomerController {
 	public String myAskCatAction(@RequestParam String onetoone_cat, Model model, HttpSession session) {
 		int user_idx;
 		try {
-			user_idx = (int)session.getAttribute("user_idx");
+			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "redirect:../login/login";
@@ -124,7 +124,7 @@ public class CustomerController {
 	public String ask(HttpSession session) {
 		int user_idx;
 		try {
-			session.getAttribute("user_idx");
+			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "redirect:../login/login";
@@ -139,7 +139,7 @@ public class CustomerController {
 	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone, HttpSession session) {
 		int user_idx;
 		try {
-			user_idx = (int)session.getAttribute("user_idx");
+			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "../redirect:login/login";
