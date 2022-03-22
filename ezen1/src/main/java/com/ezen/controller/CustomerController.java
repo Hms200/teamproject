@@ -122,7 +122,7 @@ public class CustomerController {
 	//사용자 정보가 없는 경우 login으로 리다이렉트
 	@RequestMapping("ask")
 	public String ask(HttpSession session) {
-		
+		int user_idx;
 		try {
 			user_idx = (int)session.getAttribute("user_idx");
 		} catch (Exception e) {
