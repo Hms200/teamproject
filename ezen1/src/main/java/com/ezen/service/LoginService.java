@@ -135,9 +135,9 @@ public class LoginService {
 	}
 	
 	//회원탈퇴
-	public String quit(String user_id) {
+	public String quit(String user_idx) {
 		String resultString;
-		int result = userDao.deleteUser(user_id);
+		int result = userDao.deleteUser(user_idx);
 		if( result == 1){	
 			session.invalidate();
 			resultString = "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";
