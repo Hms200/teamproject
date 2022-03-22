@@ -55,8 +55,8 @@ public class MyPageService {
 		}
 	}
 	//해당 매개변수에 해당하는 purchaseList만듬
-	public Model purchaseList(String user_id,Model model) {
-		int user_idx = userDAO.getUserIdx(user_id);
+	public Model purchaseList(int user_idx,Model model) {
+		
 		ArrayList<Cart> isDoneList = cartDAO.getCartIsDone(user_idx);
 		ArrayList<HashMap<String, String>> purchaseList = new ArrayList<>();
 		isDoneList.forEach(result ->{
@@ -86,8 +86,8 @@ public class MyPageService {
 		return result;
 	}
 	//cat별로 위에 purchaseList 에서 현재상태가 해당되는것만 가져옴
-	public Model purchaseListByCat(String user_id, Model model, Integer cat) {
-		int user_idx = userDAO.getUserIdx(user_id);
+	public Model purchaseListByCat(int user_idx, Model model, Integer cat) {
+		
 		String str = null;
 		switch (cat) {
 		case 1: str = "주문접수";

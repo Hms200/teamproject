@@ -44,16 +44,15 @@ public class MyPageController {
 	//회원정보 수정 리스트
 	@RequestMapping("/memberInfo")
 	public String memberInfo(HttpServletRequest request,Model model) {
-		String id;
+		int user_idx;
 		try {
-			id = (String)session.getAttribute("user_id");
-			id.isEmpty();
+			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "login/login";
 		}
-		String user_id = id;
-		User user = userDAO.getMemberInfo(user_id);
+		
+		User user = userDAO.getMemberInfoByUserIdx(user_idx);
 		model.addAttribute("user",user);
 		return "myPage/memberInfo";
 	}
@@ -71,7 +70,6 @@ public class MyPageController {
 	public String myPage(Model model) {
 		try {
 			String id = (String)session.getAttribute("user_id");
-			id.isEmpty();
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "login/login";
@@ -83,19 +81,18 @@ public class MyPageController {
 	@RequestMapping("/purchaseList")
 	public String purchaseList(HttpServletRequest request,Model model,
 							   @RequestParam(name = "cat", required = false) Integer cat) {
-		String id;
+		int user_idx;
 		try {
-			id = (String)session.getAttribute("user_id");
-			id.isEmpty();
+			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
+			
 		} catch (Exception e) {
 			log.error("{}",e);
 			return "login/login";
 		}
-		String user_id = id;
 		if(cat == null ) {
-		myPageService.purchaseList(user_id, model);
+		myPageService.purchaseList(user_idx, model);
 		}else {
-		myPageService.purchaseListByCat(user_id, model , cat);
+		myPageService.purchaseListByCat(user_idx, model , cat);
 		}
 		return "myPage/purchaseList";
 	}
