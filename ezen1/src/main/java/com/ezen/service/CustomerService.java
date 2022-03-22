@@ -35,30 +35,26 @@ public class CustomerService {
 	
 	//FAQ List 카테고리 선택
 	//faqList가 리턴한 Model 배열을 전체순환하면서 faq_cat가 파라미터로 넘겨받은 faq_cat와 일치하는 Model만 골라내 새로운 ArrayList로 만들어 리턴
-	public Model faqListByFaqCat(String faq_cat, String faqcat, Model model) {
+	public Model faqListByFaqCat(String faq_cat, Model model) {
 		ArrayList<FaQ> allFaqList = faqDao.getFaqList();
 		ArrayList<FaQ> faqListByCat = new ArrayList<>();
 		if(faq_cat.equals("전체문의")) {
-			faqcat = "전체문의";
 			allFaqList.forEach(FaQ -> {
 					faqListByCat.add(FaQ);
 			});
 		}else if(faq_cat.equals("상품문의")) {
-			faqcat = "상품문의";
 			allFaqList.forEach(FaQ -> {
 				if(FaQ.getFaq_cat().equals(faq_cat)) {
 					faqListByCat.add(FaQ);
 				}
 			});
 		}else if (faq_cat.equals("배송문의")) {
-			faqcat = "배송문의";
 			allFaqList.forEach(FaQ -> {
 				if(FaQ.getFaq_cat().equals(faq_cat)) {
 					faqListByCat.add(FaQ);
 				}
 			});
 		}else if (faq_cat.equals("결제문의")) {
-			faqcat = "결제문의";
 			allFaqList.forEach(FaQ -> {
 				if(FaQ.getFaq_cat().equals(faq_cat)) {
 					faqListByCat.add(FaQ);

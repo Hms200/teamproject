@@ -21,7 +21,6 @@ import com.ezen.dao.IreviewIMGSDAO;
 import com.ezen.dao.IuserDAO;
 import com.ezen.dto.Cart;
 import com.ezen.dto.Goods;
-import com.ezen.dto.GoodsIMGS;
 import com.ezen.dto.GoodsOption;
 import com.ezen.dto.Purchase;
 import com.ezen.dto.Question;
@@ -106,9 +105,7 @@ public class GoodsListService {
 	
 	// 카트에 상품담기
 	public String addGoodsInCart(Cart cart) {
-		
 		int result = cartDAO.insertCart(cart);
-		
 		return result == 1 ? "true" : "false";
 	}
 	
@@ -147,10 +144,10 @@ public class GoodsListService {
 		list.forEach((k, v) -> {
 			if(v.equals("true")) {
 				cartDAO.removeGoodsFromCart(Integer.parseInt(k));
-				log.info(" {} 삭제됨", k);
+				log.info("카트에서 {} 삭제됨", k);
 			}
 		});
-		int userIdx = (int) session.getAttribute("user_idx");
+		int userIdx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		int countOfGoodsInCart = cartDAO.getNumberOfCartIsNotDone(userIdx);
 		session.setAttribute("cart", countOfGoodsInCart);
 	}
@@ -158,7 +155,7 @@ public class GoodsListService {
 	public String listingGoods(HashMap<String, String> list) {
 		cartListDAO.generateCartListKey();
 		int cart_list_idx = cartListDAO.getNewestCartListKey();
-		log.info("{}", cart_list_idx);
+		log.info("생성된 cart_list_idx : {}", cart_list_idx);
 		list.forEach((k,v) ->{
 			if(v.equals("true")) {
 				cartDAO.listingCart(Integer.parseInt(k), cart_list_idx);
