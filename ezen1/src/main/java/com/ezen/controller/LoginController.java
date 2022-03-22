@@ -75,7 +75,7 @@ public class LoginController {
 			log.error("로그인 하지 않은 사용자의 회원탈퇴 시도." + e);;
 			String errorMessage = "로그인하신 후 회원탈퇴 기능을 이용하실 수 있습니다.";
 			request.setAttribute("errorMessage", errorMessage);
-			request.getRequestDispatcher("../login/login").forward(request, response);
+			request.getRequestDispatcher("/login/login").forward(request, response);
 			return "login/login";
 		}
 		return "login/quit";
