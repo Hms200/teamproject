@@ -150,8 +150,8 @@
        
         <c:forEach var = "dto" items="${reviewList}">
           
-          <div class="card mb-3 col-10 position-relative pl-0" style="max-width: 520px;overflow: hidden;">
-			  <div class="row no-gutters h-50">
+          <div class="card mb-3 col-10 pl-0" style="max-width: 520px;">
+			  <div class="row no-gutters h-50 position-relative">
 			  <!-- 등록된 리뷰이미지가 있으면 표시하고, 없으면 대체이미지 표시함 -->
 			  <c:set var="isExistImg" value="0" />
 			  <c:forEach var="review_img" items="${ reviewImgList }">
@@ -178,24 +178,25 @@
 			    <div class="col-7 float-right">
 			      <div class="card-body col-12 d-flex flex-column align-items-start justify-content-center px-1 py-0">
 			        <p class="card-title"><small>★ ${ dto.review_star }</small></p>
-			        <p class="card-text my-2 align-self-end">${ dto.review_contents }</p>
+			        <p class="card-text my-2">${ dto.review_contents }</p>
 			        <p class="card-text my-1 align-self-end"><small class="text-muted">${ dto.review_date }</small></p>
 			        <!-- 등록된 답글이 있으면 답글보기 버튼이 노출됨 -->
 			        <c:if test="${ dto.review_isreplied == 1 }">
-			        	<p class="card-text float-right" onclick="popupHideAndShow('reply${ dto.review_idx}')"><small class="text-muted" style="cursor: pointer;">답글보기</small></p>
+			        	<p class="card-text align-self-end" onclick="popupHideAndShow('reply${ dto.review_idx}')"><small class="text-muted" style="cursor: pointer;">답글보기</small></p>
 			        </c:if>
 			      </div>
 			    </div>
 			  </div>
-			</div>
-			<!-- 답글팝업 -->
-			<div class="card col-11 position-absolute d-none justify-contents-center" id="reply${ dto.review_idx }" style="top: 96%; right: 4%;">
+			  <!-- 답글팝업 -->
+			<div class="card col-11 position-absolute d-none justify-contents-center" id="reply${ dto.review_idx }" style="top: 96%; right: 4%; z-index: 1500;">
 			  <div class="card-body">
 			    <p class="card-text my-1">${ dto.review_reply }</p>
 			    <p class="card-text my-1"><small class="text-muted">${ dto.review_reply_date }</small></p>
 			    <button class="btn btn-primary float-right mb-2" type="button" onclick="popupHideAndShow('reply${ dto.review_idx}')">닫기</button>
 			  </div>
 			</div>
+		</div>
+			
           
           </c:forEach>
           
