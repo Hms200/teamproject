@@ -230,6 +230,7 @@ function pwCheck() {
 	
 }
 
+// 회원가입페이지 모든 체크사항 체크
 function joinCheckAll(){
     	
 		const isIDChecked = $('#isIDChecked').val();
