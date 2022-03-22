@@ -1,14 +1,9 @@
 package com.ezen.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +15,6 @@ import com.ezen.dao.IuserDAO;
 import com.ezen.dto.User;
 import com.ezen.service.LoginService;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 @RequestMapping("login")
 public class LoginController {
@@ -35,74 +27,74 @@ public class LoginController {
 	
 	
 	@RequestMapping("login")
-	public String login(HttpServletRequest request, HttpServletResponse response) {
-//		Spring Security 적용으로 기존 코드 사용 안함.		
-//		int user_idx;
-//		try {
-//			user_idx = (int) session.getAttribute("user_idx");
-//		} catch (NullPointerException e) {
-//			user_idx = 0;
-//		}
-//		
-//		if( user_idx != 0 ) {	
-//			return "redirect:../myPage/myPage";
-//		} 	
+	public String login(HttpSession session) {
+		
+		int user_idx;
+		try {
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx != 0 ) {	
+			return "redirect:../myPage/myPage";
+		} 	
 			return "login/login";
 		
 	}
 	
 	@RequestMapping("join")
-	public String join(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	public String join(HttpSession session) {
 		
+		int user_idx;
 		try {
-			int	user_idx = (int) session.getAttribute("user_idx");
-			String errorMessage = "이미 가입된 회원은 회원가입을 이용하실 수 없습니다.";
-			log.info("이미 가입된 회원의 회원가입 시도 차단.");
-			request.setAttribute("errorMessage", errorMessage);
-			request.getRequestDispatcher("../login/login").forward(request, response);
-		} catch (Exception e) {
-			return "login/join";
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
 		}
-		
+		System.out.println(user_idx);
+		if( user_idx != 0 ) {	
+			return "redirect:/login/login";
+		}
 		return "login/join";
 	}
 	
 	@RequestMapping("quit")
-	public String quit(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String quit(HttpSession session) {
 		
+		int user_idx;
 		try {
-			int	user_idx = (int) session.getAttribute("user_idx");
-		} catch (Exception e) {
-			log.error("로그인 하지 않은 사용자의 회원탈퇴 시도." + e);;
-			String errorMessage = "로그인하신 후 회원탈퇴 기능을 이용하실 수 있습니다.";
-			request.setAttribute("errorMessage", errorMessage);
-			request.getRequestDispatcher("../login/login").forward(request, response);
-			return "login/login";
+			user_idx = (int) session.getAttribute("user_idx");
+		} catch (NullPointerException e) {
+			user_idx = 0;
+		}
+		System.out.println(user_idx);
+		if( user_idx == 0 ) {	
+			return "redirect:/main";
 		}
 		return "login/quit";
 	}
-//	Spring Security 적용으로 로그인, 로그아웃은 Spring Security가 담당하여 기존코드 사용안함.
-//	로그인액션
-//	@RequestMapping("loginAction")
-//	@ResponseBody
-//	public String loginAction( @RequestParam("user_id") String user_id,
-//							   @RequestParam("user_pw") String user_pw
-//							   ) {
-//			String result = loginService.login(user_id, user_pw, response);			
-//		return "";
-//	}
-//
-//	로그아웃 기능
-//	@RequestMapping("logoutAction")
-//	@ResponseBody
-//	public String loginAction(HttpServletRequest request) {
-//			
-//		//세션객체 초기화
-//		request.getSession().invalidate();
-//		return "<script>alert('로그아웃 되었습니다.'); location.href='/main';</script>";
-//			
-//	} 
-//
+	
+	//로그인액션
+	@RequestMapping("loginAction")
+	@ResponseBody
+	public String loginAction( @RequestParam("user_id") String user_id,
+							   @RequestParam("user_pw") String user_pw,
+							   HttpSession session) {
+		String result = loginService.login(user_id, user_pw, session);			
+		return result;
+	}
+
+	//로그아웃 기능
+	@RequestMapping("logoutAction")
+	@ResponseBody
+	public String loginAction(HttpServletRequest request) {
+			
+		//세션객체 초기화
+		request.getSession().invalidate();
+		return "<script>alert('로그아웃 되었습니다.'); location.href='/main';</script>";
+			
+	}
 	
 	//아이디찾기
 	@RequestMapping("idFindAction")
@@ -146,10 +138,16 @@ public class LoginController {
 	//회원탈퇴 
 	@RequestMapping("quitAction")
 	@ResponseBody
-	public String quitAction(@RequestParam("user_id") String user_id) {
-		
-		String result = loginService.quit(user_id);
-		return result;			
+	public String quitAction(@RequestParam("user_id") String user_id,
+							 HttpServletRequest request) {
+			
+		int result = userDao.deleteUser(user_id);
+		if( result == 1){	
+			request.getSession().invalidate();
+			return "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";
+		} else {			
+			return "<script>alert('회원탈퇴 실패!'); history.back(-1);</script>";		
+		}		
 	}
 	
 }

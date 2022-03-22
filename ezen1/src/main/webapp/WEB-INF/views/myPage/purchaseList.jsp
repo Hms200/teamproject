@@ -52,7 +52,7 @@
         
 		<!-- 검색창 -->
 		<div class="form-goup d-flex flex-row justify-content-between mt-5 mb-3 w-100 " >
-			<div class="font-weight-bold mt-2 pl-3 text-black-50">내 구매내역 보기</div>
+			<div class="font-weight-bold mt-2 pl-3">내 구매내역 보기</div>
 			<%String user_id = request.getParameter("user_id"); %>
 			<!-- 드롭다운 -->
 			<div style="width: 120px; height: 40px;">

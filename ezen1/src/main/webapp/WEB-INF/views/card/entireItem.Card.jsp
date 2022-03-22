@@ -29,8 +29,8 @@
 	            <a href="../goodsList/goodsDetail?goods_idx=${ list.goods_idx }">
 	            	<img src="${ list.goods_thumb }" class="card-img-top" alt="goods_idx:${ list.goods_idx }_img">
 		            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
-		            	<h5 class="card-title font-weight-bold font-primary" >${ list.goods_name }</h5>
-		            	<p class="card-text font-secondary" >${ list.goods_price }원</p>              
+		            	<h5 class="card-title font-weight-bold" style="font-size: 14px;">${ list.goods_name }</h5>
+		            	<p class="card-text" style="font-size:12px;">${ list.goods_price }원</p>              
 		            </div>
 	            </a>
 	        </div>
@@ -52,8 +52,8 @@
             <a href="../goodsList/goodsDetail?goods_idx=${ list.goods_idx }">
             	<img src="${ list.goods_thumb }" class="card-img-top" alt="goods_idx:${ list.goods_idx }_img">
 	            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
-	            	<h5 class="card-title font-weight-bold font-primary" >${ list.goods_name }</h5>
-	            	<p class="card-text font-secondary" >${ list.goods_price }원</p>              
+	            	<h5 class="card-title font-weight-bold" style="font-size: 14px;">${ list.goods_name }</h5>
+	            	<p class="card-text" style="font-size:12px;">${ list.goods_price }원</p>              
 	            </div>
             </a>
         </div>
@@ -76,18 +76,17 @@
 	            	</label>
 			         <a href="../goodsList/goodsDetail?goods_idx=${ list.goods_idx }">
 			            <div class="card-body py-2 pl-3 pr-3 text-dark text-decoration-none"> 
-			            	<h5 class="card-title font-weight-bold font-primary">${ list.goods_name }</h5>
-			            	<p class="card-text mb-1 font-secondary">${ list.goods_price }원</p>   
+			            	<h5 class="card-title font-weight-bold" style="font-size: 14px;">${ list.goods_name }</h5>
+			            	<p class="card-text mb-1" style="font-size:12px;">${ list.goods_price }원</p>   
 			            	<p class="card-text">
-			            		<small>재고 : ${ list.goods_stock }개  
-			            		  <c:if test="${ list.goods_onsale == 1 }">/ 판매중</c:if>
-			            		  <c:if test="${ list.goods_onsale == 0 }">/ 판매중지</c:if><br>
-			            		  <c:if test="${ list.goods_onevent == 1 }">- 할인상품 -</c:if>
-			            		  <c:if test="${ list.goods_onevent == 2 }">- 추천상품 -</c:if>
-			            		  <c:if test="${ list.goods_onevent == 3 }">- 행사상품 -</c:if>
+			            		<small>재고 : ${ list.goods_stock },
+			            		  <c:if test="${ list.goods_onsale == 1 }">판매중</c:if>
+			            		  <c:if test="${ list.goods_onsale == 0 }">판매중지 중</c:if>
+			            		  <c:if test="${ list.goods_onevent == 1 }">/할인</c:if>
+			            		  <c:if test="${ list.goods_onevent == 2 }">/추천</c:if>
+			            		  <c:if test="${ list.goods_onevent == 3 }">/이벤트</c:if>
 			            		  
-			            		  </small>
-			            	</p>         
+			            		  </small></p>         
 			            </div>
 		            </a>
 		        </div>

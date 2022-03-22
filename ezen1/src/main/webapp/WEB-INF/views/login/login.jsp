@@ -25,24 +25,12 @@
         <div class="text-dark  w-100 mb-4 font-small">로그인을 하시면 다양한 혜택을 누릴 수 있습니다.</div>
         
         <div>       
-	        <div class="col-12 pl-0 pr-0  ml-0 mr-0 column">
-	          <form action="../login/loginAction" method="post" name="userInfo" onsubmit="return nullChecker();" style="height: 150px;">
+	        <div class="col-12 pl-0 pr-0  ml-0 mr-0 column" style="height: 150px;">
+	          <form action="../login/loginAction" method="post" class="control mb-1" name="userInfo" onsubmit="return nullChecker();" style="height: 150px;">
 	            <input type="text" class="mb-1 p-2 w-100 nullcheck font-primary" name="user_id" id="user_id" placeholder="아이디를 입력하세요.">
 	            <input type="password" class="mb-3 p-2 w-100 nullcheck font-primary" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요.">
-	            <input type="submit" class="btn btn-primary w-100 rouned-lg text-white mb-1" value="로그인">
+	            <input type="submit" class="btn btn-primary w-100 rouned-lg text-white mb-2" value="로그인">
 	          </form>
-	          <div class="w-100 mb-3">
-	          	<hr class="mt-0">
-	          	
-	          	<div class="p-0 d-inline">
-	          		<a href="../oauth2/authorization/google">
-	          		<img alt="구글로고" src="/img/googleIcon.jpeg" width="25px">
-	          		<span class="text-dark text-decoration-none"><small>Google ID로 로그인</small></span>
-	          		</a>
-	          	</div>
-	          	
-	          </div>
-	          
 	        </div>
         
 	        <a href="../login/join" class="btn btn-outline-primary text-primary mb-2 w-100">회원가입</a>
@@ -54,16 +42,9 @@
 	          <span class="text-dark" onclick="popupHideAndShow(target ='pwFindForm');" style="cursor: pointer;">비밀번호찾기</span>
 	        </div>
 	       </div>        
-   		</div>
+      	</div>
       	
     </div>
-    
-    <!-- 로그인 에러 -->
-    <c:if test="${ errorMessage != null }">
-    <div>
-    	<span class="mx-auto my-auto text-danger">${ errorMessage }</span>
-    </div>
-    </c:if>
     
   </div>
   

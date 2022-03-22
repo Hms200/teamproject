@@ -52,7 +52,7 @@ public class MainController {
 		
 		int user_idx;
 		try {
-			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
+			user_idx = (int) session.getAttribute("user_idx");
 		} catch (Exception e) {
 			log.error("{}",e);
 			user_idx = 0;
@@ -132,6 +132,4 @@ public class MainController {
 		String result = mainService.deleteNotice(notice_idx);
 		return result;
 	}
-	
-	
 }

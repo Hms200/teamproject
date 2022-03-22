@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -20,8 +19,8 @@ import com.ezen.dto.User;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
+@Slf4j
 public class MyPageService {
 
 	@Autowired
@@ -36,16 +35,8 @@ public class MyPageService {
 	IcartListDAO cartListDAO;
 	@Autowired
 	IpurchaseDAO purchaseDAO;
-	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
-	
 	//입력받은 정보로 회원정보 변경
 	public String updateUserInfo(User user) {
-		
-		String rawPw = user.getUser_pw();
-		String encodedPw = passwordEncoder.encode(rawPw);
-		user.setUser_pw(encodedPw);
-		log.info("비밀번호 암호화 완료");
 		int result = userDAO.UpdateMemberInfo(user);
 		log.info("{}", result);
 		if(result==1) {
