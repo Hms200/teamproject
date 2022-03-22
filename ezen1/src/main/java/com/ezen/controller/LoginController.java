@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,11 +54,11 @@ public class LoginController {
 	public String join(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
-			int	user_idx = (int) session.getAttribute("user_idx");
+			int	user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 			String errorMessage = "이미 가입된 회원은 회원가입을 이용하실 수 없습니다.";
 			log.info("이미 가입된 회원의 회원가입 시도 차단.");
 			request.setAttribute("errorMessage", errorMessage);
-			request.getRequestDispatcher("../login/login").forward(request, response);
+			request.getRequestDispatcher("/login/login").forward(request, response);
 		} catch (Exception e) {
 			return "login/join";
 		}
@@ -71,7 +70,7 @@ public class LoginController {
 	public String quit(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			int	user_idx = (int) session.getAttribute("user_idx");
+			int	user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
 			log.error("로그인 하지 않은 사용자의 회원탈퇴 시도." + e);;
 			String errorMessage = "로그인하신 후 회원탈퇴 기능을 이용하실 수 있습니다.";
