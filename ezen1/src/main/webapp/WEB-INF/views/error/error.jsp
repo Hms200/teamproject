@@ -27,13 +27,19 @@
       <h3 style="font-size: 20px;" class="text-center font-weight-bold mb-3">ERROR PAGE</h3>
       <p class="text-center" style="font-size: 14px; line-height: 25px;">     
         서비스 이용에 불편을 드려서 죄송합니다.<br>
+        <c:if test="${ errorMessage == '404' }">
+        페이지를 찾을 수 없습니다. 다시 시도해 주세요.<br>
+        지속적으로 문제가 발생하면 고객센터를 통해 문의해주시기 바랍니다.<br>
+        </c:if>
+        <c:if test="${ errorMessage == '500' }">
         다시 로그인 하신 후 이용해주세요.<br>
-        문제가 지속될 경우 고객센터를 통해 문의해주시기 바랍니다.
+        문제가 지속될 경우 고객센터를 통해 문의해주시기 바랍니다.<br>
+        </c:if>
       </p>
     </div>
     
     <!-- button -->
-    <a href="login/login" class="btn btn-primary" style="font-size: 16px; width: 130px;"> 로그인페이지 > </a>
+    <a href="../login/login" class="btn btn-primary" style="font-size: 16px; width: 130px;"> 로그인페이지 > </a>
   
   </div>
 

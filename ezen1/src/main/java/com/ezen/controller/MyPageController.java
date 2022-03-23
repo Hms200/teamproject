@@ -43,7 +43,7 @@ public class MyPageController {
 	
 	//회원정보 수정 리스트
 	@RequestMapping("/memberInfo")
-	public String memberInfo(HttpServletRequest request,Model model) {
+	public String memberInfo(Model model) {
 		int user_idx;
 		try {
 			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
@@ -59,27 +59,23 @@ public class MyPageController {
 	
 	//회원정보 업데이트action
 	@PostMapping("/userUpdateAction")
-	public @ResponseBody String userUpdateAction(User user) {
-		log.info("{}", user.toString());
+	@ResponseBody
+	public String userUpdateAction(User user) {
+		log.info("다음 정보로 user를 업데이트 합니다. user : {}", user.toString());
 		String result = myPageService.updateUserInfo(user);
 		return result;
 	}
 	
 	//마이페이지 화면보여주기
 	@RequestMapping("/myPage")
-	public String myPage(Model model) {
-		try {
-			String id = (String)session.getAttribute("user_id");
-		} catch (Exception e) {
-			log.error("{}",e);
-			return "login/login";
-		}
+	public String myPage() {
+		
 		return "myPage/myPage";
 	}
 	
 	//user_id해당 구매내역 보여주기
 	@RequestMapping("/purchaseList")
-	public String purchaseList(HttpServletRequest request,Model model,
+	public String purchaseList(Model model,
 							   @RequestParam(name = "cat", required = false) Integer cat) {
 		int user_idx;
 		try {
@@ -99,7 +95,8 @@ public class MyPageController {
 	
 	//구매리스트 환불신청
 	@RequestMapping("/purchaseRefundAction")
-	public @ResponseBody String purchaseRefundAction(@RequestParam("purchase_idx")int purchase_idx,
+	@ResponseBody
+	public String purchaseRefundAction(@RequestParam("purchase_idx")int purchase_idx,
 									   @RequestParam("AskRefund")String ask) {
 		String result = myPageService.changeStatement(purchase_idx,ask);
 		return result;
@@ -107,7 +104,8 @@ public class MyPageController {
 	
 	//구매리스트 교환신청
 	@RequestMapping("/purchaseChangeAction")
-	public @ResponseBody String purchaseChangeAction(@RequestParam("purchase_idx")int purchase_idx,
+	@ResponseBody
+	public String purchaseChangeAction(@RequestParam("purchase_idx")int purchase_idx,
 									   @RequestParam("AskChange")String ask) {
 		String result = myPageService.changeStatement(purchase_idx, ask);
 		return result;
@@ -115,7 +113,8 @@ public class MyPageController {
 	
 	//구매리스트 취소신청
 	@RequestMapping("/purchaseCancleAction")
-	public @ResponseBody String purchaseCancleAction(@RequestParam("purchase_idx")int purchase_idx,
+	@ResponseBody
+	public String purchaseCancleAction(@RequestParam("purchase_idx")int purchase_idx,
 									   @RequestParam("AskCancle") String ask) {
 		String result = myPageService.changeStatement(purchase_idx, ask);
 		return result;
@@ -126,12 +125,6 @@ public class MyPageController {
 	@RequestMapping("/reviewpopup")
 	public String reviewpopup(HttpServletRequest request,Model model) {
 		
-		try {
-			String id = (String)session.getAttribute("user_id");
-		} catch (Exception e) {
-			log.error("{}",e);
-			return "login/login";
-		}
 		String goods_idx = request.getParameter("goods_idx");
 		model.addAttribute("goods_idx",goods_idx);
 		return "myPage/reviewpopup";
@@ -140,23 +133,27 @@ public class MyPageController {
 	
 	//리뷰등록
 	@PostMapping("reviewWriteAction")
-	public @ResponseBody String reviewWriteAction(@RequestBody Review review) {
-		log.info(review.toString());
+	@ResponseBody
+	public String reviewWriteAction(@RequestBody Review review) {
+		log.info("다음 내용으로 리뷰를 작성합니다. 내용 - {}",review.toString());
 		String result = myPageService.insertReview(review);
 		return result;
 	}
 	//리뷰 이미지 등록
 	@PostMapping("uploadReviewImgAction")
-	public @ResponseBody String reviewImgUpload(@RequestParam("reviewFile") MultipartFile MultipartFile,
+	@ResponseBody
+	public String reviewImgUpload(@RequestParam("reviewFile") MultipartFile MultipartFile,
 												@RequestParam("review_idx")String idx) throws UnsupportedEncodingException {
 		int review_idx = Integer.parseInt(idx);
 		if(MultipartFile.isEmpty() ==  false) {
 			String review_img = fileService.fileUploader("reviews", MultipartFile);
-			log.info("{}",review_img);
+			log.info("다음 경로를 db에 저장합니다. - {}",review_img);
 			ReviewIMGS reviewImg = ReviewIMGS.builder().review_idx(review_idx).review_img(review_img).build();
 			int result = reviewImgsDAO.insertReviewImg(reviewImg);
+		}else {
+			return "<script>alert('리뷰파일이 잘못 지정되어 리뷰작성에 실패하였습니다.'); </script>";
 		}
-		return "<script>alert('리뷰등록 성공'); location.href='/main'; </script> ";
+		return "<script>alert('리뷰등록 성공'); location.href='../goodsList/purchaseList'; </script> ";
 	}
 	
 	

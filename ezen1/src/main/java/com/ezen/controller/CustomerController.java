@@ -45,7 +45,7 @@ public class CustomerController {
 	//자주묻는질문(FAQ List)
 	//IfaqDAO.getFaqList등록된 모든 데이터를 가져옴
 	@RequestMapping("faq")
-	public String faq(Model model, HttpServletRequest request) {
+	public String faq(Model model) {
 		
 		ArrayList<FaQ> getFaqList = faqDao.getFaqList();
 		model.addAttribute("getFaqList", getFaqList);
@@ -56,8 +56,8 @@ public class CustomerController {
 	//FAQ List 카테고리 선택
 	//("faqCatAction") faq_cat을 파라미터로 받아 CustomerService.byFaqCat으로 넘겨준 뒤 리턴된 ArrayList<Model>을 페이지로 넘김
 	@GetMapping("faqCatAction")
-	public String faqCatAction(@RequestParam String faq_cat, String faqcat, Model model) {
-		model = customerService.faqListByFaqCat(faq_cat, faqcat, model);
+	public String faqCatAction(@RequestParam String faq_cat, Model model) {
+		model = customerService.faqListByFaqCat(faq_cat, model);
 		return "customer/faq";
 	}
 	
@@ -78,11 +78,11 @@ public class CustomerController {
 		
 		int result = faqDao.faqDeleteByFaqIdx(faq_idx);
 		if(result == 1) {
-			System.out.println("삭제 성공");
+			log.info("삭제 성공");
 			return "<script>alert('삭제 성공'); location.href='/customer/faq';</script>";
 		}
 		else {
-			System.out.println("삭제 실패");
+			log.info("삭제 실패");
 			return "<script>alert('삭제 실패'); location.href='/customer/faq';</script>";
 		}
 	}
@@ -122,13 +122,7 @@ public class CustomerController {
 	//사용자 정보가 없는 경우 login으로 리다이렉트
 	@RequestMapping("ask")
 	public String ask(HttpSession session) {
-		int user_idx;
-		try {
-			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
-		} catch (Exception e) {
-			log.error("{}",e);
-			return "redirect:../login/login";
-		}	
+			
 		return "customer/ask";
 	}
 	
@@ -137,13 +131,7 @@ public class CustomerController {
 	@PostMapping("qnaQuestionAction")
 	@ResponseBody
 	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone, HttpSession session) {
-		int user_idx;
-		try {
-			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
-		} catch (Exception e) {
-			log.error("{}",e);
-			return "../redirect:login/login";
-		}
+	
 		String result = customerService.insertOneToOne(onetoone);
 		return result;
 	}

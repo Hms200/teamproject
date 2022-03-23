@@ -1,20 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<head>
-<!-- 검색최적화(seo)용 meta tag -->
-<meta property="title" content="소향행">
-<meta property="description" content="소중한 향기의 행복을 당신에게 선물하세요. 향기전문 샵 - 소향행">
-<meta property="image" content="/img/logo.png">
-<meta property="keyword" content="디퓨저 비누 향초 diffuse candle soap">
-<!-- og는 공유하기 등을 통해 나타나는 미리보기 표시항목 -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="소향행" />
-<meta property="og:description" content="소중한 향기의 행복을 당신에게 선물하세요. 향기전문 샵 - 소향행" />
-<!-- 페이지 도메인등록 후 og:url은 수정할것. -->
-<meta property="og:url" content="localhost:8085/" />
-<meta property="og:image" content="/img/logo.png" />
-</head>
+
 
    <header style="width: 100%;">
         <!-- header container -->
