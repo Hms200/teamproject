@@ -63,7 +63,7 @@ public class MainService {
 		ArrayList<Notice> notice = noticeDAO.getNoticeLIst(pagenation.getStartNumOfRow(), pagenation.getEndNumOfRow());
 		model.addAttribute("noticeList", notice);
 		model.addAttribute("pages", pagenation);
-		log.info("{}", model.toString());
+		
 		return model;
 	}
 	// 관리자용 공지사항 업데이트

@@ -72,7 +72,7 @@ public class LoginController {
 		try {
 			int	user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		} catch (Exception e) {
-			log.error("로그인 하지 않은 사용자의 회원탈퇴 시도." + e);;
+			log.error("로그인 하지 않은 사용자의 회원탈퇴 시도." + e);
 			String errorMessage = "로그인하신 후 회원탈퇴 기능을 이용하실 수 있습니다.";
 			request.setAttribute("errorMessage", errorMessage);
 			request.getRequestDispatcher("/login/login").forward(request, response);
@@ -145,9 +145,9 @@ public class LoginController {
 	//회원탈퇴 
 	@RequestMapping("quitAction")
 	@ResponseBody
-	public String quitAction(@RequestParam("user_id") String user_id) {
+	public String quitAction(@RequestParam("user_id") String user_idx) {
 		
-		String result = loginService.quit(user_id);
+		String result = loginService.quit(user_idx);
 		return result;			
 	}
 	

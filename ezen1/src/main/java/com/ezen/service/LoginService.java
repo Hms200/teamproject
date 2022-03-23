@@ -66,14 +66,14 @@ public class LoginService {
 */
 	
 	//아이디찾기
-	//mapper를 통해 입력받은 user_name와 user_email과 매칭되는 user_id값 조회
-	//null 값일 경우 이전 페이지 이동, 값이 존재할 경우 자바스크립트 alert을 이용해 user_id 전달
+	// 입력받은 user_name와 user_email과 매칭되는 user_id값 조회
+	// 값이 존재할 경우 자바스크립트 alert을 이용해 user_id 전달
 	public String findId( String user_name, String user_email) {
 		
 		String user_id = userDao.getUserIdByFindId(user_name, user_email);
 		
 		if( user_id == null ) {
-			return "<script>alert('아이디를 찾을 수 없습니다.'); history.back(-1);</script>";			
+			return "<script>alert('아이디를 찾을 수 없습니다.'); location.href='login';</script>";			
 		} else {
 			return "<script>alert('고객님의 아이디는" + user_id + " 입니다.'); location.href='login';</script>";
 		}	
@@ -85,7 +85,7 @@ public class LoginService {
 		String user_pw = userDao.getUserPwByFindPw( user_id, user_name, user_email);
 	
 		if( user_pw == null ) {
-			return "<script>alert('일치하는 정보를 찾을 수 없습니다.'); location.href='../login/login';</script>";
+			return "<script>alert('일치하는 정보를 찾을 수 없습니다.'); location.href='login';</script>";
 			
 		} else {
 			// 임시비밀번호 생성기
@@ -135,9 +135,9 @@ public class LoginService {
 	}
 	
 	//회원탈퇴
-	public String quit(String user_id) {
+	public String quit(String user_idx) {
 		String resultString;
-		int result = userDao.deleteUser(user_id);
+		int result = userDao.deleteUser(user_idx);
 		if( result == 1){	
 			session.invalidate();
 			resultString = "<script>alert('회원탈퇴 성공!'); location.href='/';</script>";

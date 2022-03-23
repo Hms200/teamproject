@@ -70,12 +70,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
 		
 		User user = User.builder()
 					.user_id(userInfo.getId())
-					.user_pw(passwordEncoder.encode("1234"))
 					.user_name(userInfo.getName())
 					.user_email(userInfo.getEmail())
 					.user_provider(providerType.toString())
 					.build();
-		log.info("새로운 사용자 {} 이름 : {} 초기비밀번호 1234 생성합니다.", providerType.toString(), userInfo.getName());
+		log.info("새로운 사용자 {} 이름 : {} 생성했습니다.", providerType.toString(), userInfo.getName());
 		userDAO.insertUserLoginedByOAuth(user);
 		return user;
 	}
