@@ -52,7 +52,7 @@
 			<div class="d-flex flex-column">
 				<div class="my-2 col-12 font-weight-bold form-group text-dark">
 					비밀번호 <input type="password"
-						class="form-control col-12 rounded font-weight-nomal nullcheck"
+						class="form-control col-12 rounded font-weight-nomal"
 						placeholder="기존 비밀번호를 입력해 주세요" id="checkPW">
 						 <input type="password"
 						class="form-control col-12 rounded font-weight-nomal my-1 nullcheck" id="pw1"
@@ -94,7 +94,7 @@
         </div> -->
 				<div class="text-left font-weight-bold col-12 mt-2">주소<input type="text"
 						class="form-control col-12 rounded font-weight-nomal nullcheck"
-						name="user_address" value="${user.user_address }">
+						name="user_address" value="${user.user_address }" placeholder="주소를 확인해주세요">
 						<span class="p1 float-right" onclick="popupHideAndShow('changeAddress')" style=" cursor: pointer;">
 				          주소 변경하기
 				          <img src="/img/icon/down.png" alt="" class="img-fluid" style="width: 12px;height: 12px;">
@@ -116,7 +116,7 @@
 			<div class="mt-3 mb-5 align-items-center text-center">
 				<button type="submit"
 					class="btn btn-primary text-light form-control"
-					style="width: 300px;"id="submitButton">수정하기</button>
+					style="width: 300px;"id="submitButton" disabled>수정하기</button>
 			</div>
 		</form>
 	</div>
@@ -196,6 +196,7 @@
 	  for(i=0; i<changeTarget.length; i++){
 		  changeTarget[i].value = mergedAddress;
 	  }
+	  popupHideAndShow('changeAddress');
 	  
   }  
   

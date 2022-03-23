@@ -47,7 +47,6 @@ public class MyPageService {
 		user.setUser_pw(encodedPw);
 		log.info("비밀번호 암호화 완료");
 		int result = userDAO.UpdateMemberInfo(user);
-		log.info("{}", result);
 		if(result==1) {
 			return "<script>alert('회원정보가 변경되었습니다.');location.href='/main';</script>";
 		}else {

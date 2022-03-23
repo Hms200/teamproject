@@ -7,6 +7,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <!-- 검색최적화(seo)용 meta tag -->
+	<meta property="title" content="소향행">
+	<meta property="description" content="소중한 향기의 행복을 당신에게 선물하세요. 향기전문 샵 - 소향행">
+	<meta property="image" content="https://postfiles.pstatic.net/MjAyMjAzMjJfMjE3/MDAxNjQ3OTUyMDQ3Mzc1.j4tI-RkQikaoUyx5hSUxnv059wvaDLRQ4Qp7mPRJQvog.67A-WtXggNCGMnAdZGLYn51MZ9R7KZ-eMwnKA0o0ZRsg.JPEG.anselddl17/logo.jpg?type=w966">
+	<meta property="keyword" content="디퓨저 비누 향초 diffuse candle soap">
+	<!-- og는 공유하기 등을 통해 나타나는 미리보기 표시항목 -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="소향행" />
+	<meta property="og:description" content="소중한 향기의 행복을 당신에게 선물하세요. 향기전문 샵 - 소향행" />
+	<!-- 페이지 도메인등록 후 og:url은 수정할것. -->
+	<meta property="og:url" content="http://localhost:8085/" />
+	<meta property="og:image" content="https://postfiles.pstatic.net/MjAyMjAzMjJfMjE3/MDAxNjQ3OTUyMDQ3Mzc1.j4tI-RkQikaoUyx5hSUxnv059wvaDLRQ4Qp7mPRJQvog.67A-WtXggNCGMnAdZGLYn51MZ9R7KZ-eMwnKA0o0ZRsg.JPEG.anselddl17/logo.jpg?type=w966" />
     <title>소향행</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
