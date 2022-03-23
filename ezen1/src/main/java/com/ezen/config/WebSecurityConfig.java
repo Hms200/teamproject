@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		// http 시큐리티 빌더
-		http.cors()
+		http.cors()						 // 동일한 포트를 사용하므로 따로 설정 없음
 			.and()
 				.csrf()   				 // 사용하지 않으므로 disable
 					.disable()
@@ -98,7 +98,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.invalidateHttpSession(true)
 					.clearAuthentication(true)
 					.logoutSuccessUrl("/main")
-			.and().oauth2Login()			// 소셜로그인 서비스
+			.and()
+				.oauth2Login()			// 소셜로그인 서비스
 					.loginPage("/login/login")
 					.defaultSuccessUrl("/main")
 					.successHandler(oauthLoginSuccessHandler)
