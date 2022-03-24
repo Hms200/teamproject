@@ -49,7 +49,7 @@ public class MainService {
 	// main화면용 공지사항 조회
 	public Model noticeForMain(Model model) {
 		ArrayList<Notice> noticeForMain = noticeDAO.getNoticeForMain();
-		model.addAttribute(noticeForMain);
+		model.addAttribute("noticeList",noticeForMain);
 		return model;
 	}
 	
@@ -118,7 +118,7 @@ public class MainService {
 		return model;
 	}
 	// best item card
-	public Model bestItemsCardDate(Model model) {
+	public Model bestItemsCardData(Model model) {
 		ArrayList<Goods> goods = goodsDAO.getBestSellingGoods();
 		model.addAttribute("best", goods);
 		return model;
@@ -135,7 +135,7 @@ public class MainService {
 		model.addAttribute("discount", goods);
 		return model;
 	}
-	// best review cart
+	// best review card
 	public Model BestReviewCard(Model model) {
 		ArrayList<Review> reviewList = reviewDAO.getAllReviews(1, 10);
 		ArrayList<ReviewIMGS> reviewImgsList = reviewIMGSDAO.getAllReviewImgs();

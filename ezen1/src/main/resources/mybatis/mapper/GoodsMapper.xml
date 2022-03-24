@@ -44,7 +44,7 @@
 		select * from mall_goods where goods_onsale = 1
 	</select>
 	
-	<!-- 품절 포함 모든상품 가져오기 -->
+	<!-- 품절된 모든상품 가져오기 -->
 	<select id="getAllSoldOutGoodsList" resultType="com.ezen.dto.Goods">
 		SELECT * FROM mall_goods where goods_onsale = 0
 	</select>
