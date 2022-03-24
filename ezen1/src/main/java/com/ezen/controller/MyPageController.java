@@ -44,13 +44,7 @@ public class MyPageController {
 	//회원정보 수정 리스트
 	@RequestMapping("/memberInfo")
 	public String memberInfo(Model model) {
-		int user_idx;
-		try {
-			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
-		} catch (Exception e) {
-			log.error("{}",e);
-			return "login/login";
-		}
+		int user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		
 		User user = userDAO.getMemberInfoByUserIdx(user_idx);
 		model.addAttribute("user",user);
@@ -77,14 +71,8 @@ public class MyPageController {
 	@RequestMapping("/purchaseList")
 	public String purchaseList(Model model,
 							   @RequestParam(name = "cat", required = false) Integer cat) {
-		int user_idx;
-		try {
-			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
-			
-		} catch (Exception e) {
-			log.error("{}",e);
-			return "login/login";
-		}
+		int user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
+
 		if(cat == null ) {
 		myPageService.purchaseList(user_idx, model);
 		}else {

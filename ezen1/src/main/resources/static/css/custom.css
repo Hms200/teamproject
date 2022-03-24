@@ -4,37 +4,39 @@
     --secondary : rgb(244,244,244);
 }
 .btn-primary{
-    background-color: rgb(167, 130, 111) !important;
-    border-color: rgb(167, 130, 111) !important
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important
     
 }
 .btn-secondary{
-    background-color: rgb(244, 244, 244) !important;
-    border-color: rgb(244, 244, 244) !important;
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
     color: #4e5358;
 }
 .btn-secondary:active, .btn-secondary:hover, .btn-primary:focus{
     color: black !important;
 }
 .text-primary{
-    color: rgb(167, 130, 111) !important;
+    color: var(--primary) !important;
 }
 .text-secondary{
-    color: rgb(244, 244, 244) !important;
+    color: var(--secondary) !important;
 }
 .bg-primary{
-    background-color: rgb(167, 130, 111) !important;
+    background-color: var(--primary) !important;
 }
 .bg-secondary{
-    background-color: rgb(244, 244, 244)!important;
+    background-color: var(--secondary)!important;
 }
 .btn-outline-primary{
     background-color: white !important;
-    border: 2px solid rgb(167, 130, 111) !important;
-    color: rgb(167, 130, 111) !important;
+    border: 2px solid !important;
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
 }
 .border-primary{
-  border: 1px solid rgb(167, 130, 111) !important;
+  border: 1px solid !important;
+  border-color: var(--primary) !important;
 }
 textarea:focus,
 input[type="text"]:focus,
@@ -57,7 +59,7 @@ select:focus,
 .uneditable-input:focus {   
   border-color: rgba(167, 130, 111, 1) !important;
   box-shadow: 0 0 0 1px rgba(167, 130, 111, 0.6) inset, 0 0 0 3px rgba(167, 130, 111, 0.8) !important;
-  outline-color: rgb(167, 130, 111);
+  outline-color: var(--primary);
 }
 .page-link{
     color: black !important;
