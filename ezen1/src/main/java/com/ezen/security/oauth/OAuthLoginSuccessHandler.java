@@ -80,7 +80,7 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
 		log.info("소셜로그인. id대신 name을 저장합니다. user_id : {}, user_idx : {} 세선에 저장합니다.",user_name,user_idx);
 		// myPage로 redirect
 		log.info("myPage로 redirect합니다.");
-		response.sendRedirect("http://localhost:8085/myPage/myPage");
+		response.sendRedirect("/myPage/myPage");
 		
 	}
 	

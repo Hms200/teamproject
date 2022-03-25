@@ -175,7 +175,7 @@ function changeValueOfCheckbox(){
 	return true;
 }
 
-//ajax을 이용한 id 중복체크 여부기능 
+//id 중복체크 
 function idCheck() {
 	const user_id = $('#user_id').val();
 	if(!user_id){
@@ -254,7 +254,7 @@ function joinCheckAll(){
 		$('#user_address').val( address1 + " " + address2 ); 
 		
 		document.forms[0].submit();
-		return true;
+		
 	}	
 /* thumbnail 이미지 등록 */
 

@@ -55,10 +55,14 @@ public class LoginController {
 		
 		try {
 			int	user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
-			String errorMessage = "이미 가입된 회원은 회원가입을 이용하실 수 없습니다.";
-			log.info("이미 가입된 회원의 회원가입 시도 차단.");
-			request.setAttribute("errorMessage", errorMessage);
-			request.getRequestDispatcher("/login/login").forward(request, response);
+			if(user_idx != 0) {
+				String errorMessage = "이미 가입된 회원은 회원가입을 이용하실 수 없습니다.";
+				log.info("이미 가입된 회원의 회원가입 시도 차단.");
+				request.setAttribute("errorMessage", errorMessage);
+				request.getRequestDispatcher("/login/login").forward(request, response);
+			}else {
+				return "login/join";
+			}
 		} catch (Exception e) {
 			return "login/join";
 		}
