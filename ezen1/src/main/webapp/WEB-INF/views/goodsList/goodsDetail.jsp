@@ -160,7 +160,8 @@
 	        			<c:set var="isExistImg" value="1" />
 	        			<div class="col-5">
 		          			<div class="w-100" style=" padding-bottom: 75%; height: 0;">
-		          				<img src="${ img }" class="" alt="${ goodsnamelist.get(review.goods_idx) }" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
+		          				<img src="${ img }" class="" alt="${ goodsnamelist.get(review.goods_idx) }"
+		          				 style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
 		          			</div>
 	          			</div>
 	          			<c:remove var="img"/>
@@ -169,7 +170,8 @@
 	          		<c:if test="${ isExistImg == 0 }">
 	          			<div class="col-5">
 		          			<div class="w-100" style="padding-bottom: 75%; height: 0;">
-		          				<img src="/img/img_not_found.png" class="" alt="등록된 이미지가 없습니다." style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
+		          				<img src="/img/img_not_found.png" class="" alt="등록된 이미지가 없습니다."
+		          				 style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
 		          			</div>
 	          			</div>
 	          		</c:if>
@@ -182,17 +184,21 @@
 			        <p class="card-text my-1 align-self-end"><small class="text-muted">${ dto.review_date }</small></p>
 			        <!-- 등록된 답글이 있으면 답글보기 버튼이 노출됨 -->
 			        <c:if test="${ dto.review_isreplied == 1 }">
-			        	<p class="card-text align-self-end" onclick="popupHideAndShow('reply${ dto.review_idx}')"><small class="text-muted" style="cursor: pointer;">답글보기</small></p>
+			        	<p class="card-text align-self-end" onclick="popupHideAndShow('reply${ dto.review_idx}')">
+			        		<small class="text-muted" style="cursor: pointer;">답글보기</small>
+		        		</p>
 			        </c:if>
 			      </div>
 			    </div>
 			  </div>
 			  <!-- 답글팝업 -->
-			<div class="card col-11 position-absolute d-none justify-contents-center" id="reply${ dto.review_idx }" style="top: 96%; right: 4%; z-index: 1500;">
+			<div class="card col-11 position-absolute d-none justify-contents-center" id="reply${ dto.review_idx }" 
+			 style="top: 96%; right: 4%; z-index: 1500;">
 			  <div class="card-body">
 			    <p class="card-text my-1">${ dto.review_reply }</p>
 			    <p class="card-text my-1"><small class="text-muted">${ dto.review_reply_date }</small></p>
-			    <button class="btn btn-primary float-right mb-2" type="button" onclick="popupHideAndShow('reply${ dto.review_idx}')">닫기</button>
+			    <button class="btn btn-primary float-right mb-2" type="button" 
+			     onclick="popupHideAndShow('reply${ dto.review_idx}')">닫기</button>
 			  </div>
 			</div>
 		</div>

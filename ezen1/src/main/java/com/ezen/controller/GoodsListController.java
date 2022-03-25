@@ -99,6 +99,9 @@ public class GoodsListController {
 			log.error("{}",e);
 			return "login/login";
 		}
+		if(user_idx == 0) {
+			return "login/login";
+		}
 		model = goodsListService.getGoodsInCart(user_idx, model);
 		return "goodsList/cart";
 	}
