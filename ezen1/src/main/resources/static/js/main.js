@@ -720,9 +720,9 @@ function makingPurchase(){
 		async: false,
 		data: formData,
 		success: function(result){
-			console.log(result);
 			console.log('구매프로세스 완료');
-			location.reload;
+			bedge.innerText = Number(num);
+			bedgeHideAndShow()
 			// mypage 구매기록 페이지로 보내기. result로 purchase_idx를 받을 예정
 			location.href = '../myPage/purchaseList';
 		},

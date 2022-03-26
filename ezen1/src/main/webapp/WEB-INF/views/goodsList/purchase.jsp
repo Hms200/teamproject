@@ -146,17 +146,17 @@
       <span class="font-weight-bold text-center" >
         결제수단 선택 
       </span>
-      <!-- 서버에는 정상작동 / 라디오 모양 없애고 버튼 모양만 다듬어서 완성시키기  -->
-      <div class="d-flex flex-row justify-content-between my-2">
-        <div class="d-flex flex-column align-items-center">
-          	<input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option1" value="카드" checked style=" opacity:0;">
-          		<label class="btn btn-primary" style="width:110px;" for="option1">카드결제</label>          	
+      
+      <div class="form-group custom-radio mt-3">
+        <div>
+          	<input type="radio" class="custom-control-input my-3" name="purchase_buyer_payment" id="option1" value="bootpay" checked >
+          		<label class="custom-control-label"  for="option1">온라인 결제<br><small>(카드 결제,가상계좌 결제, 휴대폰 결제 <br> 카카오페이, 네이버페이, 페이코)</small></label>          	
         </div>
         
-        <div class="d-flex flex-row justify-content-between">
-          <div class="d-flex flex-column align-items-center">
-            <input type="radio" class="btn-check my-3" name="purchase_buyer_payment" id="option2" value="무통장결제" style=" opacity:0;">
-            	<label class="btn btn-primary" style="width:110px;" for="option2">무통장결제</label>          
+        <div class="form-group custom-radio mt-3">
+          <div>
+            <input type="radio" class="custom-control-input my-3" name="purchase_buyer_payment" id="option2" value="무통장결제" >
+            	<label class="custom-control-label"  for="option2">오프라인 직접 결제<br><small>(무통장결제)</small></label>          
           </div>
         </div>
         
@@ -290,6 +290,7 @@ window.onloade = calculateTotalPrice();
  	}).ready(function (data) {
  		// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
  		console.log(data);
+ 		alert("발급된 가상계좌는 "+data+" 입니다. 다시 확인이 어려우니 메모해주세요");
  	}).confirm(function (data) {
  		//결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
  		//주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
