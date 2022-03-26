@@ -117,7 +117,7 @@ public class CustomerController {
 	//("qnaQuestionAction")에서 입력받은 내용들을 파라미터 값으로 받고 Question으로 담아 CustormerService.insertOneToOne으로 보내준다
 	@PostMapping("qnaQuestionAction")
 	@ResponseBody
-	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone, HttpSession session) {
+	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone) {
 	
 		String result = customerService.insertOneToOne(onetoone);
 		return result;

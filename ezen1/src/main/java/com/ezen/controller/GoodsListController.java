@@ -147,7 +147,7 @@ public class GoodsListController {
 	@PostMapping("makePurchaseAction")
 	@ResponseBody
 	public String makePurchase(@RequestBody Purchase purchase) {
-		String returnString = goodsListService.makePurchase(purchase);
+		goodsListService.makePurchase(purchase);
 		int cart_list_idx = purchase.getCart_list_idx();
 		goodsListService.makeCartIsDone(cart_list_idx);
 		goodsListService.increaseCountOfPurchasedAndCheckGoodsStock(cart_list_idx);

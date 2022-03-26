@@ -667,8 +667,7 @@ function checkPw(){
 				alert('비밀번호를 재확인 해주세요');
 				inputtedPw = '';
 				}else{
-					/// bootpay 연결 후 수정해야할 부분, bootpay연결로 결제프로세스진행되면
-					// makingPurchase를 그 함수 안으로 옮길것.
+					
 					if($('input[name=purchase_buyer_payment]:checked').val() == 'bootpay'){
 						console.log('결제 프로세스 진행');
 						bootpay();						
@@ -721,9 +720,9 @@ function makingPurchase(){
 		data: formData,
 		success: function(result){
 			console.log('구매프로세스 완료');
-			bedge.innerText = Number(num);
+			bedge.innerText = Number(result);
 			bedgeHideAndShow()
-			// mypage 구매기록 페이지로 보내기. result로 purchase_idx를 받을 예정
+			// mypage 구매기록 페이지로 보내기.
 			location.href = '../myPage/purchaseList';
 		},
 		error: function(e){

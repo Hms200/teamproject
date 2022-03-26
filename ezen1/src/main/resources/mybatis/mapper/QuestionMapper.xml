@@ -10,6 +10,11 @@
 		SELECT * FROM mall_question WHERE goods_idx = ${param1} ORDER BY question_idx DESC
 	</select>
 	
+	<!-- 해당 user_idx를 가진 모든 행 내림차순으로 정렬하여 가져옴 -->
+	<select id="getQuestionListByUserIdx" resultType="com.ezen.dto.Question">
+		SELECT * FROM mall_question WHERE user_idx = ${param1} ORDER BY question_idx DESC
+	</select>
+	
 	<select id="countOfQuestions" resultType="int">
 		SELECT COUNT(*) FROM mall_question
 	</select>
