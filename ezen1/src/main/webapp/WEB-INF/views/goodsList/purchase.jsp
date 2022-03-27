@@ -74,9 +74,10 @@
       <span id="nameAndPhone">
         ${ userinfo.user_name } <br>
         ${ userinfo.user_phone }
+       </span>
         <input type="hidden" name="purchase_buyer_name" value="${ userinfo.user_name }">
         <input type="hidden" name="purchase_buyer_phone" value="${ userinfo.user_phone }">
-      </span>
+      
       <span class="mt-1 mb-3" id="originalAddress">
         ${ userinfo.user_address }
       </span>
