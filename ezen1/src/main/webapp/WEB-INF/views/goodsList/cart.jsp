@@ -51,7 +51,7 @@
         <input type="hidden" class="cartidx" name="changeValue${ cart.cart_idx }" value="${ cart.cart_idx }">
         <input type="checkbox" name="${ cart.cart_idx }" class="mx-1" style="width: 16px; height: 16px;">
         <c:set var="goods" value="${ goodslist.get(status.index) }" scope="page" />
-        <div name="goods_name">${ goods.goods_name }</div>
+        <div>${ goods.goods_name }</div>
         <input type="hidden" name="changeValue${ cart.cart_idx }" value="${ goods.goods_price }">
         
       </div>
@@ -63,7 +63,7 @@
             <span class="font-primary">가격</span><span>${ cart.cart_total_price }</span> 
             <input type="hidden" class="price font-primary" name="changeValue${ cart.cart_idx }" value="${ cart.cart_total_price }">
           </div>
-          <div class="d-flex flex-row justify-content-between mb-1">
+         <div class="d-flex flex-row justify-content-between mb-1">
             <span class="font-primary">옵션</span>
             <span class="font-primary"><c:set var="this_cart_option" value="${ cart.option_idx }" scope="page"/>
             <c:forEach var="option" items="${ optionlist }">
@@ -71,24 +71,23 @@
             </c:forEach>
           <c:remove var="goods" scope="page"/>  
             </span>
-          </div> 
-          <div class="d-flex flex-row justify-content-between font-primary">
+         </div> 
+         <div class="d-flex flex-row justify-content-between font-primary">
             옵션 및 수량
             <!-- 서버에서 처리 -->
             <input id="changeValue${ cart.cart_idx }" type="button" class="btn-block mt-1 mb-1 btn btn-secondary d-flex flex-content-center font-small" value="변경하기"
               style="width: 70px; height: 20px;  line-height:2px;" onclick="changeValue(event);">
           </div>
           <div class="d-flex flex-row justify-content-end mt-1">
-          <div class="mr-1">
-            <select class="form-select text-center font-secondary" name="changeValue${ cart.cart_idx }" style="width: 125px;">
+          
+            <select class="text-center font-secondary" name="changeValue${ cart.cart_idx }" style="width: 125px;">
               <c:forEach var="options" items="${ optionlist }">
               <option <c:if test="${ this_cart_option eq options.option_idx }"> selected </c:if> value="${ options.option_idx }">${ options.option_name }+${ options.option_price }</option>
               </c:forEach>
               <c:remove var="this_cart_option" scope="page"/>
             </select>
-            </div>
-            <div>
-            <select class="form-select text-center font-secondary" name="changeValue${ cart.cart_idx }"
+            
+            <select class=" text-center font-secondary" name="changeValue${ cart.cart_idx }"
               style="width: 35px; ">
               <option <c:if test="${ cart.cart_amount == 1 }"> selected </c:if> value="1" >1</option>
               <option <c:if test="${ cart.cart_amount == 2 }"> selected </c:if> value="2">2</option>
@@ -96,14 +95,14 @@
               <option <c:if test="${ cart.cart_amount == 4 }"> selected </c:if> value="4">4</option>
               <option <c:if test="${ cart.cart_amount == 5 }"> selected </c:if> value="5">5</option>
             </select>
-            </div>
+            
             
           </div>
         </div>
       </div>
       
       </c:forEach>
-      
+     
       <div class="d-flex flex-row justify-content-between mx-2 mt-5 mb-3 pr-3 font-primary">
         <div>
           상품금액
