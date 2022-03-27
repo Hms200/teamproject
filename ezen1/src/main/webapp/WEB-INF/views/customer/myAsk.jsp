@@ -45,7 +45,7 @@
           <option value="상품문의" <c:if test="${ onetoone_cat == '상품문의'}"> selected </c:if> >상품문의</option>
           <option value="배송문의" <c:if test="${ onetoone_cat == '배송문의'}"> selected </c:if> >배송문의</option>
           <option value="결제문의" <c:if test="${ onetoone_cat == '결제문의'}"> selected </c:if> >결제문의</option>
-          <option value="개별상품" <c:if test="${ onttoont_cat == '개별상품'}"> selected </c:if> >개별상품</option>
+         <%--  <option value="개별상품" <c:if test="${ onttoont_cat == '개별상품'}"> selected </c:if> >개별상품</option> --%>
         </select>
       </span>
     </form>
@@ -81,7 +81,7 @@
           </div>
       </div>
       </c:forEach>
-      <c:if test="${ !onetoone_cat || onetoone_cat == '개별상품' }">
+      <%-- <c:if test="${ !onetoone_cat || onetoone_cat == '개별상품' }">
       <c:forEach var="question" items="${ questionList }">
       <div class="card my-2">
           <button class="container-sm container-fluid btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapse_${question.question_idx}" aria-expanded="false" aria-controls="collapse">
@@ -117,7 +117,7 @@
           </div>
       </div>
       </c:forEach>
-      </c:if>
+      </c:if> --%>
   </div>
   </div>
     

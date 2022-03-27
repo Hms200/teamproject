@@ -12,7 +12,7 @@
 	
 	<!-- MALL_USER에서 사용자 비밀번호를 조회해서 가져옴. -->
 	<select id="getUserPw" resultType="String">
-		SELECT user_pw FROM MALL_USER WHERE user_id= ${user_idx}
+		SELECT user_pw FROM MALL_USER WHERE user_idx= ${user_idx}
 	</select>
 	
 	<!-- MALL_USER에서 사용자 아이디를 이름과 이메일을 받아서 가져옴. -->

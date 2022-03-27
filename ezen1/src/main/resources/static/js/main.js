@@ -652,7 +652,7 @@ function makingPurchase(){
 		data: formData,
 		success: function(result){
 			console.log('구매프로세스 완료');
-			bedge.innerText = Number(result);
+			document.getElementById('bedgeNumber').innerText = Number(result);
 			bedgeHideAndShow()
 			// mypage 구매기록 페이지로 보내기.
 			location.href = '../myPage/purchaseList';

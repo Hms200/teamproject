@@ -141,7 +141,7 @@ public class MyPageController {
 		}else {
 			return "<script>alert('리뷰파일이 잘못 지정되어 리뷰작성에 실패하였습니다.'); </script>";
 		}
-		return "<script>alert('리뷰등록 성공'); location.href='../goodsList/purchaseList'; </script> ";
+		return "<script>alert('리뷰등록 성공'); location.href='../myPage/purchaseList'; </script> ";
 	}
 	
 	
