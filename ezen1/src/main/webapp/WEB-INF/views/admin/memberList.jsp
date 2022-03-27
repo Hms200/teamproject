@@ -55,25 +55,25 @@
 
            <!-- 테이블 -->
 
-           <div class="table-responsive my-4 pb-5" >
-           <table class="table table-bordered table-sm text-dark">
-               <thead class="font-weight-bold text-center font-primary" >
+           <div class=" my-4 pb-5" >
+           <table class="table table-bordered text-dark table-sm">
+               <thead class="font-weight-bold text-center font-primary " >
                 <tr class="table-secondary">
-                    <td>no</td>
-                    <td>아이디</td>
-                    <td>이름</td>
-                    <td>구매량</td>
-                    <td>구매금액</td>
-                    <td>가입일</td> 
+                    <td class="col-1">no</td>
+                    <td class="col-3">아이디</td>
+                    <td class="col-2">이름</td>
+                    <td class="col-2">구매량</td>
+                    <td class="col-2">구매금액</td>
+                    <td class="col-2">가입일</td> 
                 </tr>
                 </thead>
-                <tbody class="text-center font-secondary" >
+                <tbody class="text-center word-break font-secondary" >
                
                 <c:forEach var="user" items="${ userlist }"> 
                 	
-			               <tr style="cursor:pointer;" onclick="location.href='memberListpopup?user_idx=${ user.get('USER_IDX')}'">
+			               <tr class="word-break" style="cursor:pointer;" onclick="location.href='memberListpopup?user_idx=${ user.get('USER_IDX')}'">
 			                <td>${ user.get("USER_IDX") }</td>
-			               <td>${ user.get("USER_ID") }</td>
+			               <td class="">${ user.get("USER_ID") }</td>
 			               <td>${ user.get("USER_NAME") }</td>
 			               <td>${ user.get("TOTAL_AMOUNT") }</td>
 			               <td>${ user.get("TOTAL_PRICE") }</td>

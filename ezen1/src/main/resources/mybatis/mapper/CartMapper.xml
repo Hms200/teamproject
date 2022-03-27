@@ -53,7 +53,9 @@
 	<!-- admin userList 용 쿼리. user_idx, user_id, user_name, user_idx별 구매량합계, 지불총액합계를 가져옴 -->
 	<select id="getCartSumOfPriceAndAmount" resultType="hashmap">
 		SELECT   u.user_idx, u.user_id, u.user_name, u.join_date, c.total_amount, c.total_price
-			FROM mall_user u, lateral (select c.user_idx, SUM(NVL(c.cart_amount,0)) AS total_amount, SUM(NVL(c.cart_total_price,0)) as total_price from mall_cart c where u.user_idx = c.user_idx and c.cart_isdone=1 group by c.user_idx)(+) c
+			FROM mall_user u, lateral (select c.user_idx, SUM(NVL(c.cart_amount,0)) AS total_amount, 
+				SUM(NVL(c.cart_total_price,0)) AS total_price FROM mall_cart c 
+					WHERE u.user_idx = c.user_idx AND c.cart_isdone=1 GROUP BY c.user_idx)(+) c
 	</select>
 	
 	

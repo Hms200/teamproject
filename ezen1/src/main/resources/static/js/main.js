@@ -335,75 +335,7 @@ function registerGoods(){
 	
 };
 
-// admin/stock	상품품절처리
 
-function makeGoodsSoldOut(){
-	const form = document.forms[2].elements;
-	let formData = {};
-	for(i=0 ; i<form.length; i++){
-		formData[form[i].name] = form[i].checked;
-	}
-	formData = JSON.stringify(formData);
-	console.log(formData.toString())
-	jQuery.ajax({
-		url: "inventorySoldOutAction",
-		type: "POST",
-		contentType: "application/json",
-		processData: false,
-		async: false,
-		data: formData,
-		success: function(){
-			alert('품절처리되었습니다.');
-			for(i=0; i<form.length; i++){
-				form[i].checked = false;
-			}
-		},
-		error: function(e){
-			console.log(e);
-			alert('처리에 실패하였습니다. 다시 시도해 주세요');
-		},
-	});
-}
-
-// admin/stock 상품발주처리
-
-function orderGoods(){
-	let amount = prompt('발주 수량을 입력해 주세요.');
-	while(true){
-		if(amount == null || amount == 0 || amount < 0){
-			amount = prompt('발주 수량을 입력해 주세요');
-		}else{
-			break;
-		}
-	}
-	const form = document.forms[2].elements;
-	let formData = {};
-	for(i=0 ; i<form.length; i++){
-		formData[form[i].name] = form[i].checked;
-	}
-	formData.amount = amount;
-	formData = JSON.stringify(formData);
-	console.log(formData.toString())
-	jQuery.ajax({
-		url: "inventoryOrderAction",
-		type: "POST",
-		contentType: "application/json",
-		processData: false,
-		async: false,
-		data: formData,
-		success: function(){
-			alert('발주처리되었습니다. 상태를 판매중으로 변경합니다.');
-			for(i=0; i<form.length; i++){
-				form[i].checked = false;
-			}
-		},
-		error: function(e){
-			console.log(e);
-			alert('처리에 실패하였습니다. 다시 시도해 주세요');
-		},
-	});
-	
-}
 // 상품상세페이지 상품문의글 작성 전 로그인여부 체크
 function checkLogin(){
 	
@@ -894,3 +826,74 @@ function registerQuestionReply(){
 				error: function(){return false},
 			})
 	  };
+	  
+ 
+// admin/stock	상품품절처리
+
+function makeGoodsSoldOut(){
+	const form = document.forms[2].elements;
+	let formData = {};
+	for(i=0 ; i<form.length; i++){
+		formData[form[i].name] = form[i].checked;
+	}
+	formData = JSON.stringify(formData);
+	console.log(formData.toString())
+	jQuery.ajax({
+		url: "inventorySoldOutAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(){
+			alert('품절처리되었습니다.');
+			for(i=0; i<form.length; i++){
+				form[i].checked = false;
+			}
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
+		},
+	});
+}
+
+// admin/stock 상품발주처리
+
+function orderGoods(){
+	let amount = prompt('발주 수량을 입력해 주세요.');
+	while(true){
+		if(amount == null || amount == 0 || amount < 0){
+			amount = prompt('발주 수량을 입력해 주세요');
+		}else{
+			break;
+		}
+	}
+	const form = document.forms[2].elements;
+	let formData = {};
+	for(i=0 ; i<form.length; i++){
+		formData[form[i].name] = form[i].checked;
+	}
+	formData.amount = amount;
+	formData = JSON.stringify(formData);
+	console.log(formData.toString())
+	jQuery.ajax({
+		url: "inventoryOrderAction",
+		type: "POST",
+		contentType: "application/json",
+		processData: false,
+		async: false,
+		data: formData,
+		success: function(){
+			alert('발주처리되었습니다. 상태를 판매중으로 변경합니다.');
+			for(i=0; i<form.length; i++){
+				form[i].checked = false;
+			}
+		},
+		error: function(e){
+			console.log(e);
+			alert('처리에 실패하였습니다. 다시 시도해 주세요');
+		},
+	});
+	
+}

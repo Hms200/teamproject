@@ -141,8 +141,12 @@ public class AdminService {
 			Comparator<HashMap<String, String>> comparator = (o1, o2) -> {
 				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.S");
 				//내림차순
-				LocalDate date1 = LocalDate.parse(String.valueOf(o1.get("JOIN_DATE")).replace(" ", "T"),fmt);
-				LocalDate date2 = LocalDate.parse(String.valueOf(o2.get("JOIN_DATE")).replace(" ", "T"),fmt);
+				LocalDate date1 = LocalDate.parse
+						(String.valueOf(o1.get("JOIN_DATE"))
+								.replace(" ", "T"),fmt);
+				LocalDate date2 = LocalDate.parse
+						(String.valueOf(o2.get("JOIN_DATE"))
+								.replace(" ", "T"),fmt);
 				return date2.compareTo(date1);
 			};
 			Collections.sort(userList, comparator);

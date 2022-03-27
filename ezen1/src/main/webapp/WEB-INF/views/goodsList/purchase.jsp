@@ -182,7 +182,7 @@
           비밀번호를 다시 입력해주세요
         </div>
         <div class="mx-auto mb-2 py-1 px-2 font-primary " style="width: 300px; height: 40px;">
-          <input type="text" id="inputtedPw" placeholder="비밀번호를 입력해주세요" class="text-center text-dark w-100 border border-dark-50 form-control rounded">
+          <input type="password" id="inputtedPw" placeholder="비밀번호를 입력해주세요" class="text-center text-dark w-100 border border-dark-50 form-control rounded">
         </div>
         <div class="d-flex flex-row justify-content-center my-5">
           <button class="btn btn-dark rounded" style="width: 140px; height: 40px;" onclick="checkPw();">확인</button>

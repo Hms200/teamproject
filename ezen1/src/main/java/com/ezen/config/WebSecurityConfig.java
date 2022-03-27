@@ -119,7 +119,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		// 필터 등록. 매 요청마다 SecurityContextHolderAwareRequestFilter 실행한 후 jwtAuthenticationFilter를 실행하여 토큰검사
 		http.addFilterAfter(jwtAuthenticationFilter,  SecurityContextHolderAwareRequestFilter.class)
 			.exceptionHandling()
-				.accessDeniedPage("/error/error");
+				.accessDeniedPage("/login/login");
 		
 	}
 	

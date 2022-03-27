@@ -32,7 +32,7 @@ public class TokenProvider {
 				.compact();
 	}
 	
-	public String validateAndGetUserIdx(String token) {
+	public String validateAndGetUserIdx(String token) throws Exception {
 		// 위조되지 않았다면 페이로드(claims)리턴, 위조라면 예외날림
 		// getbody로 useridx 가져옴
 		Claims claims = Jwts.parser()
@@ -40,6 +40,10 @@ public class TokenProvider {
 				.parseClaimsJws(token)
 				.getBody();
 		
+		Date now = Date.from(Instant.now());
+		if(Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getExpiration().compareTo(now) != 1) {
+			throw new Exception();
+		}
 		return claims.getSubject();
 	}
 	
