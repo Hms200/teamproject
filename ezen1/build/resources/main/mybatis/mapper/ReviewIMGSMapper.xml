@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IreviewIMGSDAO">
+
+	<!-- 해당 review_idx를 가진 모든 행의 review_img를 가져옴 -->
+	<select id="getReviewImgList" resultType="com.ezen.dto.ReviewIMGS">
+		SELECT * FROM MALL_REVIEW_IMGS WHERE review_idx = ${param1}
+	</select>
+	
+	<!-- review_idx와 review_img를 insert -->
+	<insert id="insertReviewImg" parameterType="com.ezen.dto.ReviewIMGS">
+		INSERT INTO MALL_REVIEW_IMGS (review_idx, review_img)
+			values (#{review_idx}, #{review_img})
+	</insert>
+	
+	<!-- 모든 정보를 가져옴 -->
+	<select id="getAllReviewImgs" resultType="com.ezen.dto.ReviewIMGS">
+		SELECT * FROM mall_review_imgs
+	</select>
+
+</mapper>

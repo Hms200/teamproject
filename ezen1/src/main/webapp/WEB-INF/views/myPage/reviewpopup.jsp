@@ -37,14 +37,14 @@
 				고객님의 리뷰가 큰 힘이 됩니다!</div>
 		</div>
 		
-		  <div class=" w-100  d-flex flex-row justify-content-around justify-content-center align-items-center p-2">
+		  <div class=" w-100  d-flex flex-column justify-content-around justify-content-center align-items-center p-2">
 		<form name="reviewImg" method="post" enctype="multipart/form-data"  accept-charset="UTF-8">
 			
 
 			<!-- 파일선택 -->
 	     
-			<div class="w-100 custom-flie d-flex flex-row p-2 font-primary">
-				
+			<div class="col-12 border rounded custom-flie d-flex flex-column justify-content-center align-items-center p-2 font-primary">
+				<span class="mr-3">이미지 등록</span>
 				<input type="file" class="custom-flie-input " name="reviewFile" id="reviewImg" accept="image/*">
 				<input type="hidden" name="review_idx" value="">
 				<div class="change_img"><img src="" class="mt-2"/></div>
@@ -53,7 +53,7 @@
 			<!-- 셀렉트 -->
 		<form action="reviewWriteAction" name="reviewWriteForm" method="post" id="reviewWriteForm">
 
-				<div class="pr-2">
+				<div class="float-right mr-3">
 					<select class="form-select form-control rounded text-dark my-2 font-secondary pl-1"
 						style="width: 85px;"
 						aria-label="별점" name="review_star" id="review_star">

@@ -78,7 +78,7 @@ public class MainController {
 		model.addAttribute("entireItemCardMode", 0);
 		}
 		// bestItems card
-		model = mainService.bestItemsCardDate(model);
+		model = mainService.bestItemsCardData(model);
 		// MD Pick card
 		model = mainService.mdPickCardData(model);
 		// 이달의 할인 card
@@ -106,7 +106,9 @@ public class MainController {
 	
 	// main검색
 	@GetMapping("mainsearchAction")
-	public String mainSearch(@RequestParam String searchtext,@RequestParam(required = false, defaultValue = "1")String currentPage ,Model model) {
+	public String mainSearch(@RequestParam String searchtext,
+							@RequestParam(required = false, defaultValue = "1")String currentPage,
+							Model model) {
 		model = mainService.goodsSearch(searchtext, model);
 		return main(model);
 	}

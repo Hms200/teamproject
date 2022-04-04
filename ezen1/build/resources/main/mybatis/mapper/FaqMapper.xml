@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IfaqDAO">
+
+	<!-- mall_faq에서 모든 data를 가져옴 -->
+	<select id="getFaqList" resultType="com.ezen.dto.FaQ">
+		SELECT * FROM mall_faq ORDER BY faq_idx DESC
+	</select>
+	
+	<!-- mall_faq에서 faq_cat이 동일한 data를 가져옴 -->
+	<select id="getFaqListByCat" resultType="com.ezen.dto.FaQ">
+		SELECT * FROM mall_faq WHERE faq_cat LIKE #{faq_cat} ORDER BY faq_idx DESC
+	</select>
+	
+	<!-- Faq를 받아 mall_faq에 insert -->
+	<insert id="FaqWrite" parameterType="com.ezen.dto.FaQ">
+		INSERT INTO mall_faq VALUES (mall_faq_seq.nextval, #{faq_title}, #{faq_contents}, #{faq_cat})
+	</insert>
+	
+	<!-- 해당 faq_idx를 가진 data를 삭제 -->
+	<delete id="faqDeleteByFaqIdx">
+		DELETE FROM mall_faq WHERE faq_idx=#{faq_idx}
+	</delete>
+
+</mapper>

@@ -88,7 +88,7 @@ public class CustomerService {
 					myOneToOne.add(OnetoOne);
 				}
 			});
-		ArrayList<Question> myQuestions = questionDAO.getQuestionList(user_idx);
+		ArrayList<Question> myQuestions = questionDAO.getQuestionListByUserIdx(user_idx);
 		HashMap<String, String> goodsnameList = new HashMap<>();
 		myQuestions.forEach(q -> {
 			String goods_name = goodsDAO.getGoodsName(q.getGoods_idx());

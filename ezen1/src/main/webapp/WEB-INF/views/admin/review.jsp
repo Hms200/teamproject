@@ -56,28 +56,40 @@
         
         
         <c:forEach var="review" items="${ reviewlist }">
-        <div class="col-5 inline-block mx-1 my-2 px-0 border rounded">
-        	<c:forEach var="review_img" items="${ reviewimglist }">
-        		<c:set var="img" value="" />
-        		<c:if test="${ review.review_idx == review_img.review_idx }">
-        			<c:set var="img" value="${ review_img.review_img }" />
-          			<img src="${ img }" class="card-img-top img-fluid" alt="임시이미지사용">
-          		</c:if>
-          		<c:remove var="img"/>
-          	</c:forEach>
-          <div class="card-body py-2 pl-3 pr-3"> 
-            <p class="card-text d-flex text-black-50 justify-content-between font-small"><span>★ ${ review.review_star }</span><span class="text-right">${ review.review_date }</span></p>
-		    <h5 class="card-title font-weight-bold font-primary">${ goodsnamelist.get(review.goods_idx) }</h5>
-            <c:remove var="name"/>
-            <p class="card-text font-secondary" style="white-space: wrap;">${ review.review_contents }</p>
-            <div class="text-center">
-                  <span class="btn btn-primary font-secondary" id="${ review.review_idx }" onclick="popupHideAndShowForReview(event);" style="cursor: pointer;">답글달기</span>
-              </div>
-          </div>
-        </div>
-     	</c:forEach>
+	      
+	        <div class="col-5 card inline-block mx-1 my-2 px-0 border rounded">
+	          <div class="column no-gutters my-0">
+	          	<c:set var="isExistImg" value="0" />
+	        	<c:forEach var="review_img" items="${ reviewimgslist }">
+	        		<c:if test="${ review.review_idx == review_img.review_idx }">
+	        			<c:set var="img" value="${ review_img.review_img }" />
+	        			<c:set var="isExistImg" value="1" />
+	          			<div class="col-12" style="position: relative; padding-bottom: 75%; height: 0;">
+	          			<img src="${ img }" class="" alt="${ goodsnamelist.get(review.goods_idx) }" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
+	          			</div>
+	          			<c:remove var="img"/>
+	          		</c:if>	
+	          	</c:forEach>
+	          		<c:if test="${ isExistImg == 0 }">
+	          			<div class="col-12" style="position: relative; padding-bottom: 75%; height: 0;">
+	          			<img src="/img/img_not_found.png" class="" alt="등록된 이미지가 없습니다." style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
+	          			</div>
+	          		</c:if>
+	          		<c:remove var="isExistImg"/>
+	          	
+		          <div class="card-body col-12 py-2 ml-1 d-flex flex-column align-items-start justify-content-center"> 
+		            <p class="card-text d-block text-black-50 mb-1 w-100 pr-2" style="font-size: 10px;"><span>★ ${ review.review_star }</span><span class="text-right float-right">${ review.review_date }</span></p>
+				    <h5 class="card-title font-weight-bold" style="font-size: 14px;">${ goodsnamelist.get(review.goods_idx) }</h5>
+		            <c:remove var="name"/>
+		            <p class="card-text w-100 pr-2" style="font-size:12px;">${ review.review_contents }</p>
+		             <span class="btn btn-primary font-secondary align-self-center mr-2" id="${ review.review_idx }" onclick="popupHideAndShowForReview(event);" style="cursor: pointer;">답글달기</span> 
+		             <c:if test="${ review.review_isreplied == 1 }"><span class="text-muted align-self-end mr-2"><small>답글 등록됨</small></span></c:if>         
+		          </div>
+	          
+	        	</div>
+	        </div>
+	 	  </c:forEach>
     </div>
-       
 
     
     <!-- 페이지 표시기 -->

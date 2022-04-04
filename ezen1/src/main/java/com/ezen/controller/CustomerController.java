@@ -89,16 +89,10 @@ public class CustomerController {
 	
 	//내 문의 내역(myAsk List)
 	//("myAsk")로 매핑시 로그인한 사용자 user_idx를 읽어 CustomerService.byUserIdx로 넘겨준 뒤
-	//리턴된 ArrayList<Model>을 페이지로 넘김, 사용자 정보가 없는 경우 login으로 리다이렉트
+	//리턴된 ArrayList<Model>을 페이지로 넘김
 	@RequestMapping("myAsk")
 	public String myAsk(Model model, HttpSession session) {
-		int user_idx;
-		try {
-			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
-		} catch (Exception e) {
-			log.error("{}",e);
-			return "redirect:../login/login";
-		}	
+		int user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		model = customerService.byUserIdx(user_idx, model);
 		return "customer/myAsk";
 	}
@@ -107,21 +101,14 @@ public class CustomerController {
 	//("myAskCatAction") onetoone_cat을 파라미터로 받아 CustomerService.onetooneByCat으로 넘겨준 뒤 리턴된 ArrayList<Model>을 페이지로 넘김
 	@GetMapping("myAskCatAction")
 	public String myAskCatAction(@RequestParam String onetoone_cat, Model model, HttpSession session) {
-		int user_idx;
-		try {
-			user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
-		} catch (Exception e) {
-			log.error("{}",e);
-			return "redirect:../login/login";
-		}
+		int user_idx = Integer.parseInt(String.valueOf(session.getAttribute("user_idx")));
 		model = customerService.onetooneByCat(user_idx, onetoone_cat,model);
 		return "customer/myAsk";
 		}
 	
 	//문의하기 페이지(ask)
-	//사용자 정보가 없는 경우 login으로 리다이렉트
 	@RequestMapping("ask")
-	public String ask(HttpSession session) {
+	public String ask() {
 			
 		return "customer/ask";
 	}
@@ -130,7 +117,7 @@ public class CustomerController {
 	//("qnaQuestionAction")에서 입력받은 내용들을 파라미터 값으로 받고 Question으로 담아 CustormerService.insertOneToOne으로 보내준다
 	@PostMapping("qnaQuestionAction")
 	@ResponseBody
-	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone, HttpSession session) {
+	public String qnaQuestionAction(@ModelAttribute OneToOne onetoone) {
 	
 		String result = customerService.insertOneToOne(onetoone);
 		return result;

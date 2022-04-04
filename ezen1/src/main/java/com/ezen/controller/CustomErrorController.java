@@ -1,41 +1,53 @@
 package com.ezen.controller;
 
+import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @AllArgsConstructor
-@RestController
+@Controller
 public class CustomErrorController implements ErrorController {
 
-	@GetMapping("/error")
-	public String handleError(HttpServletRequest request, Model model) {
+	@RequestMapping("/error")
+	public String handleError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+		String errorMessage = "";
 		if (status != null) {
 			int statusCode = Integer.valueOf(status.toString());
 
 			// 404 에러
 			if (statusCode == HttpStatus.NOT_FOUND.value()) {
 				log.info("404 ERROR!");
-				model.addAttribute("errorMessage", statusCode);
+				errorMessage = ""+statusCode;
+				request.setAttribute("errorMessage", errorMessage);
+				//request.getRequestDispatcher("/error/error").forward(request, response);
+				return "error/404";
 			}
-			// 500 에러(프로젝트 완료시 주석 해제)
+			// 500 에러
 			 if (statusCode == HttpStatus.FORBIDDEN.value()) {
-			 log.info("500 ERROR!");
-			 model.addAttribute("errorMessage", statusCode);
+				 log.info("500 ERROR!");
+				 errorMessage = ""+statusCode;
+				 request.setAttribute("errorMessage", errorMessage);
+				// request.getRequestDispatcher("/error/error").forward(request, response);
+				 return "error/500";
 			 }
 
 		}
-		return "error/error";
+		request.setAttribute("errorMessage", errorMessage);
+		request.getRequestDispatcher("/error/error").forward(request, response);
+		return "error/500";
 	}
 
 

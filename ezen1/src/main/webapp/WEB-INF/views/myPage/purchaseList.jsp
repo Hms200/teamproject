@@ -61,7 +61,7 @@
 					<input type="hidden" name="user_id" value="<%=user_id%>">
 					<select class="form-select mt-2" name="cat" aria-label="문의종류"
 						onchange="submit();">
-						<option value="null" selected>문의종류</option>
+						<option value="null" selected>주문상태</option>
 						<option value="1">주문접수</option>
 						<option value="2">상품준비중</option>
 						<option value="3">배송준비중</option>

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.ezen.dao.IuserDAO;
+import com.ezen.service.GoodsListService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,9 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 	
 	@Autowired
 	IuserDAO userDAO;
+	
+	@Autowired
+	GoodsListService goodsListService;
 
 	@SuppressWarnings("static-access")
 	@Override
@@ -72,6 +76,19 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 		session.setAttribute("user_id", user_id);
 		session.setAttribute("user_idx", user_idx);
 		log.info("user_id : {}, user_idx : {} 세선에 저장합니다.",user_id,user_idx);
+		
+		// 장바구니 뱃지 숫자 설정. 
+		int cartBedgNum = 0;
+		
+		try {
+			cartBedgNum = goodsListService.getCountOfGoodsInCart(user_idx);
+			session.setAttribute("cart", cartBedgNum);
+			log.info("장바구니 숫자 설정됨 : {}",cartBedgNum);
+		} catch (Exception e) {
+			log.error("{}",e);
+			session.setAttribute("cart", 0);
+		}
+		
 		// myPage로 redirect
 		log.info("myPage로 redirect합니다.");
 		response.sendRedirect("../myPage/myPage");

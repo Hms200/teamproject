@@ -91,9 +91,10 @@ public class LoginService {
 			// 임시비밀번호 생성기
 			String disposablePW = passwordGenerator.generateDisposablePassword();
 			log.info("1회용 비밀번호 : {}", disposablePW );
+			String encodedDisposablePassword = bCryptPasswordEncoder.encode(disposablePW);
 			// 임시비밀번호로 db update
 			while(true) {
-				int result = userDao.updateUserPwByDisposablePassword(user_id, disposablePW);
+				int result = userDao.updateUserPwByDisposablePassword(user_id, encodedDisposablePassword);
 				if(result == 1) {
 					log.info("id : {} 임시밀번호 설정됨. pw = {}", user_id, disposablePW);
 					break;

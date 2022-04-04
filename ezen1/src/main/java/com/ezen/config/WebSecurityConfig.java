@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		// http 시큐리티 빌더
-		http.cors()
+		http.cors()						 // 동일한 포트를 사용하므로 따로 설정 없음
 			.and()
 				.csrf()   				 // 사용하지 않으므로 disable
 					.disable()
@@ -76,7 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.disable()
 				.authorizeRequests()  	 // 다음 경로는 인증 안해도 됨
 					.antMatchers(
-							"/", "/main", "/aboutUs", "/siteMap", "/goodsList/**", "/login/**"
+							"/", "/main", "/aboutUs", "/siteMap", "/goodsList/**", "/login/**", "/error/**"
 							).permitAll()
 					.antMatchers("/admin/**").hasRole("ADMIN") // /admin/** 은  admin만 허용
 				.anyRequest() 			 // 위 경로 외에는 인증 해야 함
@@ -98,7 +98,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.invalidateHttpSession(true)
 					.clearAuthentication(true)
 					.logoutSuccessUrl("/main")
-			.and().oauth2Login()			// 소셜로그인 서비스
+			.and()
+				.oauth2Login()			// 소셜로그인 서비스
 					.loginPage("/login/login")
 					.defaultSuccessUrl("/main")
 					.successHandler(oauthLoginSuccessHandler)
@@ -118,7 +119,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		// 필터 등록. 매 요청마다 SecurityContextHolderAwareRequestFilter 실행한 후 jwtAuthenticationFilter를 실행하여 토큰검사
 		http.addFilterAfter(jwtAuthenticationFilter,  SecurityContextHolderAwareRequestFilter.class)
 			.exceptionHandling()
-				.accessDeniedPage("/error/error");
+				.accessDeniedPage("/login/login");
 		
 	}
 	

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IonetooneDAO">
+
+	<!-- MALL_oneToOne에서 등록된 정보를 가져옴. -->	
+	<select id="getOneToOneList" resultType="com.ezen.dto.OneToOne">
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_onetoone.* FROM(
+				SELECT * FROM MALL_ONETOONE ORDER BY onetoone_idx ASC )
+			 mall_onetoone)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by onetoone_idx DESC
+	</select>
+	
+	<!-- mall_onetoone에서등록된 모든정보 가져옴 -->
+	<select id="getAllOneToOneList" resultType="com.ezen.dto.OneToOne">
+		SELECT * FROM mall_onetoone
+	</select>
+	
+	<select id="countOfOneToOne" resultType="int">
+		SELECT COUNT(*) FROM mall_ONETOONE
+	</select>
+	
+	<!-- oneToone_idx를 받아서 MALL_onetoone에서 값이 null인 onetoone_reply에 입력받은 내용을 넣어줌. oneToone_isreply값을 true로 변경 -->
+	<update id="updateQnaAnswerByReplyAndContent">
+		UPDATE MALL_ONETOONE SET onetoone_reply= #{param2}, oneToone_isreplied = 1, onetoone_reply_date = sysdate WHERE oneToone_idx = ${param1}
+	</update>
+	
+	<!-- Mall_ONETOONE에서 해당 user_idx를 가진 data를 가져옴. -->
+	<select id="getOnetoOneByUserIdx" resultType="com.ezen.dto.OneToOne">
+		SELECT * FROM MALL_ONETOONE WHERE user_idx = #{user_idx}
+	</select>
+	
+	<!-- Mall_ONETOONE에서 해당 user_idx를 가진 data중에 onetoone_cat이 동일한 data를 가져옴. -->
+	<select id="myOnetoOneByCat" resultType="com.ezen.dto.OneToOne">
+		SELECT * FROM mall_onetoone where user_idx = #{user_idx} AND onetoone_cat like #{onetoone_cat}
+	</select>
+	
+	<!-- OneToOne을 받아 mall_onetoone에 insert -->
+	<insert id="insertOneToOne" parameterType="com.ezen.dto.OneToOne">
+		INSERT INTO MALL_ONETOONE VALUES
+		(mall_onetoone_seq.nextval, #{user_idx}, #{onetoone_cat}, #{onetoone_title}, #{onetoone_contents}, sysdate, 0, null, null)
+	</insert>
+
+</mapper>

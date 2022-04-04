@@ -11,7 +11,7 @@
 	<meta property="title" content="소향행">
 	<meta property="description" content="소중한 향기의 행복을 당신에게 선물하세요. 향기전문 샵 - 소향행">
 	<meta property="image" content="https://postfiles.pstatic.net/MjAyMjAzMjJfMjE3/MDAxNjQ3OTUyMDQ3Mzc1.j4tI-RkQikaoUyx5hSUxnv059wvaDLRQ4Qp7mPRJQvog.67A-WtXggNCGMnAdZGLYn51MZ9R7KZ-eMwnKA0o0ZRsg.JPEG.anselddl17/logo.jpg?type=w966">
-	<meta property="keyword" content="디퓨저 비누 향초 diffuse candle soap">
+	<meta property="keyword" content="디퓨저 비누 향초 diffuser candle soap">
 	<!-- og는 공유하기 등을 통해 나타나는 미리보기 표시항목 -->
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="소향행" />
@@ -58,15 +58,18 @@
             <!-- 공지사항 -->
             <div id="carouselNotice" class="carousel slide w-100" data-ride="carousel" style="cursor: pointer;">
                 <div class="carousel-inner">
-	                <div class="carousel-item active" data-interval="4000">
-	                    <div class="w-100 font-weight-bold border text-dark bg-secondary py-1 pr-2 pb-0 pl-3 font-primary" onclick="location.href='notice'" overflow: hidden;">
+	               
+   	                <div class="carousel-item active" data-interval="4000">
+	                    <div class="w-100 font-weight-bold border text-dark bg-secondary py-1 pr-2 pb-0 pl-3 font-primary"
+	                     onclick="location.href='notice'">
 	                		[공지] ${ noticeList[0].notice_title }
 	            		</div>
 	                </div>
 	                
 	                <c:forEach var="notice" items="${noticeList}" begin="1" step="1">
 	                <div class="carousel-item" data-interval="4000">
-	                    <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3 font-primary" onclick="location.href='notice'">
+	                    <div class="w-100 font-weight-bold border  text-dark bg-secondary py-1 pr-2 pb-0 pl-3 font-primary"
+	                     onclick="location.href='notice'">
 	              		  [공지] ${ notice.notice_title }
 	            		</div>
 	                </div>
@@ -77,7 +80,7 @@
 
             <!-- 카드영역 -->
             <div class="w-100">
-             <!-- main search결과를 노출할  -->
+             <!-- main search결과를 노출할때 -->
              <c:if test="${ entireItemCardMode == 1 }">
              <c:import url="card/entireItem.Card.jsp"></c:import>
              </c:if>
