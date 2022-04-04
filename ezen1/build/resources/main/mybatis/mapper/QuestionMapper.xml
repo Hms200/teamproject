@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IquestionDAO">
+
+	<!-- 해당 goods_idx를 가진 모든 행 내림차순으로 정렬하여 가져옴 -->
+	<select id="getQuestionList" resultType="com.ezen.dto.Question">
+		SELECT * FROM mall_question WHERE goods_idx = ${param1} ORDER BY question_idx DESC
+	</select>
+	
+	<!-- 해당 user_idx를 가진 모든 행 내림차순으로 정렬하여 가져옴 -->
+	<select id="getQuestionListByUserIdx" resultType="com.ezen.dto.Question">
+		SELECT * FROM mall_question WHERE user_idx = ${param1} ORDER BY question_idx DESC
+	</select>
+	
+	<select id="countOfQuestions" resultType="int">
+		SELECT COUNT(*) FROM mall_question
+	</select>
+	
+	<!-- 넘어온 question으로 mall_question에 insert -->
+	<insert id="insertQna" parameterType="com.ezen.dto.Question">
+		INSERT INTO mall_question (question_idx, user_idx, goods_idx, question_title, question_contents, question_date)VALUES
+		(mall_question_seq.nextval, ${user_idx}, ${goods_idx}, #{question_title}, #{question_contents}, sysdate)
+	</insert>
+	
+	<update id="updateQnaAnswer" parameterType="com.ezen.dto.Question">
+		UPDATE mall_question SET question_isreplied= 1, question_reply=#{param2},
+		question_reply_date=sysdate WHERE question_idx=${param1}
+	</update>
+	
+	<select id="getAllQuestions" resultType="com.ezen.dto.Question">
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_question.* FROM(
+				SELECT * FROM mall_question ORDER BY question_idx ASC )
+			 mall_question)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by question_idx DESC
+	</select>
+	
+</mapper>

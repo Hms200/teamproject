@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IpurchaseDAO">
+
+	<!-- cart_list_idx가 일치하는 정보를 가져옴 -->
+	<select id="getPurchaseInfoByCartListidx" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM MALL_PURCHASE WHERE CART_LIST_IDX = #{cart_list_idx}
+	</select>
+	<!-- purchase_idx가 일치하는 값의 purchase_statement 를 변경함 -->
+	<update id="updatePurchaseStatementByMyPage">
+		UPDATE MALL_PURCHASE SET PURCHASE_STATEMENT = #{param2} WHERE PURCHASE_IDX = ${param1}
+	</update>
+	<!-- 모든 mall_purchase의 정보를 가져옴 -->
+	<select id="getPurchaseList" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_purchase.* FROM(
+				SELECT * FROM mall_purchase ORDER BY purchase_idx ASC )
+			 mall_purchase)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by purchase_idx DESC
+	</select>
+	
+	<select id="countOfPurchase" resultType="int">
+		SELECT COUNT(*) FROM mall_purchase
+	</select>
+	
+	<!-- purchase 단건 가저옴 -->
+	<select id="getPurchaseByPurchaseIdx" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM mall_purchase WHERE purchase_idx = ${param1}
+	</select>
+	
+	<!-- insert purchase -->
+	<insert id="insertPurchase" parameterType="com.ezen.dto.Purchase">
+		INSERT INTO mall_purchase 
+			(purchase_idx, cart_list_idx, user_idx, purchase_total_price, purchase_buyer_name,
+			 purchase_buyer_phone, purchase_buyer_address, purchase_payment, purchase_buyer_request,
+			 purchase_date, purchase_statement)
+			 VALUES
+			 (mall_purchase_seq.nextval, ${cart_list_idx}, ${user_idx}, ${purchase_total_price},
+			  #{purchase_buyer_name}, #{purchase_buyer_phone}, #{purchase_buyer_address},
+			  #{purchase_payment}, #{purchase_buyer_request}, sysdate, '주문접수')
+	</insert>
+	
+	<!-- 해당 purchase_statement를 가진 모든 row 가져옴 -->
+	<select id="getPurchaseListByStatement" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM mall_purchase WHERE purchase_statement = #{param1}
+	</select>
+	
+	<!-- 모든 mall_purchase의 정보를 최신순으로 정렬하여 가져옴 -->
+	<select id="getPurchaseListDesc" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM MALL_PURCHASE ORDER BY purchase_date DESC
+	</select>
+
+	<!-- 모든 mall_purchase의 정보를 오래된 순으로 정렬하여  가져옴 -->
+	<select id="getPurchaseListAsc" resultType="com.ezen.dto.Purchase">
+		SELECT * FROM MALL_PURCHASE ORDER BY purchase_date ASC
+	</select>
+	
+	<!-- cart,purhcase,goods join후 user_idx,cart_list_idx,goods_idx가져옴 넘어온값에 해당하는 상품 리턴 -->
+	<select id="getpurchaseArrayList" resultType="map">
+		SELECT * FROM MALL_CART 
+		INNER JOIN MALL_PURCHASE 
+		ON MALL_CART.CART_LIST_IDX  = MALL_PURCHASE.CART_LIST_IDX
+		AND MALL_CART.USER_IDX = MALL_PURCHASE.USER_IDX
+		INNER JOIN MALL_GOODS
+		ON MALL_CART.GOODS_IDX = MALL_GOODS.GOODS_IDX
+		WHERE MALL_CART.CART_ISDONE = 1
+		AND MALL_CART.USER_IDX = ${param1}
+		 AND MALL_CART.CART_LIST_IDX = ${param2}
+		 AND MALL_CART.GOODS_IDX = ${param3}
+	</select>
+	<!-- cart,purchase,goods join후 statement와user_idx가 일치하는 상품 리턴  -->
+	<select id="getCartIsDoneAndByCat" resultType="hashmap">
+		SELECT * FROM MALL_CART 
+		INNER JOIN MALL_PURCHASE 
+		ON MALL_CART.CART_LIST_IDX  = MALL_PURCHASE.CART_LIST_IDX
+		INNER JOIN MALL_GOODS
+		ON MALL_CART.GOODS_IDX = MALL_GOODS.GOODS_IDX
+		WHERE MALL_CART.CART_ISDONE = 1
+		AND MALL_CART.USER_IDX = #{param1}
+		AND MALL_PURCHASE.PURCHASE_STATEMENT = #{param2}
+	
+	</select>
+</mapper>

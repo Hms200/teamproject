@@ -1,0 +1,139 @@
+/* Bootstrap css override */
+:root{
+    --primary : rgb(167, 130, 111);
+    --secondary : rgb(244,244,244);
+}
+.btn-primary{
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important
+    
+}
+.btn-secondary{
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
+    color: #4e5358;
+}
+.btn-secondary:active, .btn-secondary:hover, .btn-primary:focus{
+    color: black !important;
+}
+.text-primary{
+    color: var(--primary) !important;
+}
+.text-secondary{
+    color: var(--secondary) !important;
+}
+.bg-primary{
+    background-color: var(--primary) !important;
+}
+.bg-secondary{
+    background-color: var(--secondary)!important;
+}
+.btn-outline-primary{
+    background-color: white !important;
+    border: 2px solid !important;
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+.border-primary{
+  border: 1px solid !important;
+  border-color: var(--primary) !important;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+select:focus,
+.btn-primary:focus,
+.btn:focus,
+.uneditable-input:focus {   
+  border-color: rgba(167, 130, 111, 1) !important;
+  box-shadow: 0 0 0 1px rgba(167, 130, 111, 0.6) inset, 0 0 0 3px rgba(167, 130, 111, 0.8) !important;
+  outline-color: var(--primary);
+}
+.page-link{
+    color: black !important;
+}
+.page-link:hover{
+    color: black !important;
+}
+.page-item.active .page-link{
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+input[type="text"]:focus.form-control-plaintext{
+	border: none !important;
+	box-shadow: none !important;
+	outline-color: transparent !important;
+	cursor: default !important;
+}
+
+/* goodslist */
+body .dep {
+    display: none;
+  }
+
+  main.candle .dep._candle,
+  main.warmer .dep._warmer,
+  main.diffuser .dep._diffuser,
+  main.soap .dep._soap {
+    display: block;
+  }
+
+  div .on {
+    border-bottom: 2px solid rgb(161, 159, 159); 
+  }
+
+  nav div .candle:hover,
+  nav div .warmer:hover,
+  nav div .diffuser:hover,
+  nav div .soap:hover {
+    background-color: aliceblue;
+    transition: background-color .5s; 
+    cursor: pointer; 
+  }
+  
+  /* goodsDetail*/
+  main.info .dep._info,
+  main.review .dep._review,
+  main.inquiry .dep._inquiry {
+    display: block;
+  }
+  div .on {
+    border-bottom: 2px solid rgb(161, 159, 159);
+  }
+  nav div .info:hover,
+  nav div .review:hover,
+  nav div .inquiry:hover {
+    background-color: aliceblue;
+    transition: background-color 0.7s;
+    cursor: pointer;
+  }
+
+/* responsible 페이지적용 body*/
+body{
+	display: flex;
+	flex-direction: row;
+	max-width : 1400px;
+}
+
+/* font-size */
+.font-primary{
+	font-size: 14px;
+}
+.font-secondary{
+	font-size: 12px;
+}
+.font-small{
+	font-size:10px;
+}

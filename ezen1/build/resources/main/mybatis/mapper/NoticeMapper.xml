@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.InoticeDAO">
+
+	<insert id="insertNotice" parameterType="com.ezen.dto.Notice">
+		INSERT INTO mall_notice VALUES
+		(mall_notice_seq.nextval, #{notice_title}, #{notice_contents}, #{notice_show}, sysdate)
+	</insert>
+	
+	<update id="updateNotice" parameterType="com.ezen.dto.Notice">
+		UPDATE mall_notice SET notice_title=#{notice_title}, notice_contents=#{notice_contents}, notice_show=${notice_show}, notice_date=sysdate
+		WHERE notice_idx=${notice_idx}
+	</update>
+	
+	<select id="getNoticeLIst" resultType="com.ezen.dto.Notice">
+		SELECT * FROM ( 
+			SELECT ROWNUM AS rnum, mall_notice.* FROM(
+				SELECT * FROM mall_notice ORDER BY notice_idx ASC )
+			 mall_notice)
+			WHERE rnum BETWEEN #{param1} AND #{param2} order by notice_idx DESC
+	</select>
+	
+	<select id="getNotice" resultType="com.ezen.dto.Notice">
+		SELECT * FROM mall_notice WHERE notice_idx=#{notice_idx}
+	</select>
+
+	<select id="getNoticeForMain" resultType="com.ezen.dto.Notice">
+		SELECT * FROM mall_notice WHERE notice_show = 1
+	</select>
+	
+	<select id="countOfNotice" resultType="int">
+		SELECT COUNT(*) FROM mall_notice
+	</select>
+	
+	<delete id="deleteNotice">
+		DELETE FROM mall_notice WHERE notice_idx=#{notice_idx}
+	</delete>
+</mapper>

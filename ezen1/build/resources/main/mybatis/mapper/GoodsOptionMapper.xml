@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IgoodsOptionDAO">
+
+	<!-- 옵션 테이블의 모든내용을 가져옴 -->
+	<select id="getGoodsOptions" resultType="com.ezen.dto.GoodsOption">
+		SELECT * FROM MALL_GOODS_OPTION
+	</select>
+	
+	<!-- option_idx로 option_price 가져옴 -->
+	<select id="getOptionPrice" resultType="int">
+		SELECT option_price FROM mall_goods_option WHERE option_idx = ${param1}
+	</select>
+</mapper>

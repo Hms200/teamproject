@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ezen.dao.IcartDAO">
+
+	<!-- user_idx가 일치하고 cart_isdone가 1 인값을 반환 -->
+	<select id="getCartIsDone" resultType="com.ezen.dto.Cart">
+		SELECT * FROM MALL_CART WHERE USER_IDX = #{user_idx} AND CART_ISDONE=1
+	</select>
+
+	<!-- user_idx가 일치하고 cart_isdone이 0인값의 갯수를 반환 -->
+	<select id="getNumberOfCartIsNotDone" resultType="_int">
+		SELECT COUNT(*) FROM MALL_CART WHERE USER_IDX = ${user_idx} AND CART_ISDONE = 0
+	</select>
+	
+	<!-- user_idx가 일치하고 cart_isdone이 0인 값을 반환 -->
+	<select id="getCartIsNotDone" resultType="com.ezen.dto.Cart">
+		SELECT * FROM MALL_CART WHERE USER_IDX = ${user_idx} AND CART_ISDONE=0
+	</select>
+	
+	<!-- cart_idx가 일치하는 값의 cart_list_idx를 넘어온 값으로 변경-->
+	<update id="listingCart">
+		UPDATE MALL_CART SET CART_LIST_IDX = ${param2} WHERE CART_IDX = ${param1}
+	</update>
+	<!-- 넘겨받은 값으로 데이터 추가 -->
+	<insert id="insertCart" parameterType="com.ezen.dto.Cart">
+		INSERT INTO MALL_CART(cart_idx, user_idx, goods_idx, option_idx, cart_amount, cart_total_price, cart_isdone)
+		VALUES (MALL_CART_SEQ.NEXTVAL, ${user_idx}, ${goods_idx}, ${option_idx}, ${cart_amount},${cart_total_price}, ${cart_isdone})	
+	</insert>
+	
+	<!-- 수량, 옵션 변경 -->
+	<update id="updateValues">
+		UPDATE mall_cart SET option_idx = ${param2}, cart_amount = ${param3}, cart_total_price = ${param4} where cart_idx = ${param1}
+	</update>
+	
+	<!-- 장바구니에서 상품삭제 -->
+	<delete id="removeGoodsFromCart">
+		DELETE FROM mall_cart WHERE cart_idx = #{param1}
+	</delete>
+	
+	<!-- 해당 cart_list_idx를 가진 장바구니 품목들을 반환 -->
+	<select id="getCartIsListed" resultType="com.ezen.dto.Cart">
+		SELECT * FROM mall_cart WHERE cart_list_idx = ${param1}
+	</select>
+	
+	<!-- 해당 cart_list_idx를 가진 cart의 isdone을 1로 변경 -->
+	<update id="updateCartIsDone">
+		UPDATE mall_cart SET cart_isdone = 1 WHERE cart_list_idx = ${param1}
+	</update>
+	
+	<!-- admin userList 용 쿼리. user_idx, user_id, user_name, user_idx별 구매량합계, 지불총액합계를 가져옴 -->
+	<select id="getCartSumOfPriceAndAmount" resultType="hashmap">
+		SELECT   u.user_idx, u.user_id, u.user_name, u.join_date, c.total_amount, c.total_price
+			FROM mall_user u, lateral (select c.user_idx, SUM(NVL(c.cart_amount,0)) AS total_amount, 
+				SUM(NVL(c.cart_total_price,0)) AS total_price FROM mall_cart c 
+					WHERE u.user_idx = c.user_idx AND c.cart_isdone=1 GROUP BY c.user_idx)(+) c
+	</select>
+	
+	
+	
+</mapper>
