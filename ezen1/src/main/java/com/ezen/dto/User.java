@@ -4,9 +4,6 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-import com.ezen.security.oauth.ProviderType;
-
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

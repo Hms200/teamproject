@@ -17,8 +17,6 @@ import com.ezen.dto.Notice;
 import com.ezen.dto.Review;
 import com.ezen.dto.ReviewIMGS;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
 public class MainService {
 

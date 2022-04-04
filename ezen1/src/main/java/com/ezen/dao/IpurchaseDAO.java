@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.dto.Purchase;
-import com.ezen.dto.User;
 
 @Mapper
 public interface IpurchaseDAO {
