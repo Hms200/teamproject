@@ -51,7 +51,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
 		User savedUser = userDAO.getMemberInfo(userInfo.getId());
 		
 		if(savedUser != null) {
-			if(!providerType.toString().equals(savedUser.getUser_provider())) {
+			if(!providerType.toString().replace("ProviderType.", "").equals(savedUser.getUser_provider())) {
 				throw new OAuthProviderMissMatchException(
 						"provider miss match! 로그인 시도 provider :" + providerType + ", 지정된 provider :" + savedUser.getUser_provider()
 						);
